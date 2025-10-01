@@ -1,0 +1,105 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id          Int       @id @default(autoincrement())
+  name        String
+  email       String    @unique
+  password    String
+  role        String    @default("student") // admin, instructor, student
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  enrollments Enrollment[]
+  submissions TestSubmission[]
+}
+
+//for resume store
+model Application {
+  id        Int      @id @default(autoincrement())
+  fullName  String   @map("full_name")
+  phone     String?  
+  email     String
+  about     String?
+  resumeUrl String   @map("resume_url")
+  jobId     Int?
+  jobTitle  String?  @map("job_title")
+  createdAt DateTime @default(now()) @map("created_at")
+}
+
+model Course {
+  id          Int       @id @default(autoincrement())
+  title       String
+  slug        String    @unique
+  description String
+  thumbnail   String?
+  instructor  String?
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  enrollments Enrollment[]
+  tests       Test[]
+}
+
+model Enrollment {
+  id         Int      @id @default(autoincrement())
+  user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId     Int
+  course     Course   @relation(fields: [courseId], references: [id], onDelete: Cascade)
+  courseId   Int
+  enrolledAt DateTime @default(now())
+
+  @@unique([userId, courseId])
+}
+
+model Test {
+  id         Int       @id @default(autoincrement())
+  course     Course    @relation(fields: [courseId], references: [id], onDelete: Cascade)
+  courseId   Int
+  title      String
+  maxScore   Int       @default(100)
+  createdAt  DateTime  @default(now())
+  submissions TestSubmission[]
+}
+
+model TestSubmission {
+  id          Int      @id @default(autoincrement())
+  test        Test     @relation(fields: [testId], references: [id], onDelete: Cascade)
+  testId      Int
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId      Int
+  answers     Json?
+  score       Int?
+  submittedAt DateTime @default(now())
+
+  @@index([userId])
+  @@index([testId])
+}
+
+model ExternalLink {
+  id        Int      @id @default(autoincrement())
+  title     String
+  url       String
+  logo      String?
+  createdAt DateTime @default(now())
+}
+
+model TestSeries {
+  id          Int      @id @default(autoincrement())
+  title       String
+  description String
+  totalTests  Int
+  date        DateTime
+  createdAt   DateTime @default(now())
+}
+
+model DailyUpdate {
+  id        Int      @id @default(autoincrement())
+  title     String
+  content   String
+  createdAt DateTime @default(now())
+}
