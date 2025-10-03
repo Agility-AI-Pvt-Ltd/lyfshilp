@@ -70,7 +70,7 @@ const ApplicationForm = ({ jobId, jobTitle }) => {
   const [email, setEmail] = useState("");
   const [about, setAbout] = useState("");
   const [resumeUrl, setResumeUrl] = useState("");
-  const [submitting, setSubmitting] = useState(false); // ✅ track submission
+  const [submitting, setSubmitting] = useState(false); //track submission
   const [message, setMessage] = useState(""); // success/error message
 
   const handleSubmit = async (e) => {

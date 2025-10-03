@@ -90,8 +90,8 @@ export default function Footer() {
           <h3 className="font-semibold mb-4">Company</h3>
           <ul className="space-y-2 text-gray-200 text-sm">
             <li><a href="/podcast" className="hover:text-white">Podcast</a></li>
-            {/* <li><a href="https://lyfshilp.com/terms" target="_blank" rel="noopener noreferrer" className="hover:text-white">Terms & Conditions</a></li>
-            <li><a href="https://lyfshilp.com/privacy" target="_blank" rel="noopener noreferrer" className="hover:text-white">Privacy Policy</a></li> */}
+            <li><a href="/termsconditions" className="hover:text-white">Terms & Conditions</a></li>
+            <li><a href="https://www.lyfshilpacademy.in/privacypolicy" target="_blank" rel="noopener noreferrer" className="hover:text-white">Privacy Policy</a></li>
           </ul>
         </div>
 

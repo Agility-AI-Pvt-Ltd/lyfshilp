@@ -7,7 +7,7 @@ export default function Hero() {
     <section className="bg-white pt-15 pb-5 font-sans relative overflow-hidden min-h-[100vh]">
       <div className="container mx-auto px-10 grid grid-cols-1 md:grid-cols-2 items-center gap-4 max-w-10xl h-full">
         {/* Left Content */}
-        <div className="max-w-xl pr-10 -mt-10">
+        <div className="max-w-xl pr-10 ">
           {/* Co-powered */}
           <div className="flex items-center mb-4 space-x-2">
             <span className="text-xs font-medium text-gray-600 bg-gray-100 px-2.5 py-1 rounded-full border">

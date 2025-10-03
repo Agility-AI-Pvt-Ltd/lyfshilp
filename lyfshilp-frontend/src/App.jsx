@@ -11,6 +11,7 @@ import TestSeries from "./pages/TestSeries";
 import AboutUs from "./pages/AboutUs";
 import Careers from "./pages/Careers";
 import Olympiad from "./pages/Olympiad";
+import TermsConditions from "./pages/TermsConditions";
 
 import Job1 from "./pages/Job1";
 import Job2 from "./pages/Job2";
@@ -61,6 +62,7 @@ export default function App() {
             <Route path="/podcast" element={<Podcast/>}/>
             <Route path="/internships" element={<Internships/>}/>
             <Route path="/olympiad" element={<Olympiad/>}/>
+            <Route path="/termsconditions" element={<TermsConditions/>}/>
 
           </Routes>
         </main>
