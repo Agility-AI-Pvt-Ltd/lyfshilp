@@ -8,7 +8,7 @@ export default function Header() {
   const [careerOpen, setCareerOpen] = useState(false);
   const closeTimeout = useRef(null);
 
-  const { user, logout } = useContext(AuthContext);
+  const { user, logout, loading } = useContext(AuthContext);
   const navigate = useNavigate();
 
   const openDropdown = (setter) => {
@@ -99,7 +99,9 @@ export default function Header() {
 
         {/* Buttons */}
         <div className="flex space-x-3">
-          {user ? (
+          {loading ? (
+            <span className="text-sm text-gray-500">Loading...</span>
+          ) : user ? (
             <>
               <span className="text-sm text-gray-700">
                 Welcome {user.name?.split(" ")[0]}
