@@ -12,8 +12,8 @@ export default function Register() {
     password: "",
   });
   const [loading, setLoading] = useState(false);
-  const [success, setSuccess] = useState(""); // ✅ success state
-  const [error, setError] = useState("");     // ✅ error state
+  const [success, setSuccess] = useState(""); 
+  const [error, setError] = useState("");    
 
   const handleChange = (e) =>
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -27,9 +27,10 @@ export default function Register() {
     try {
       const res = await api.post("/auth/register", form);
       setSuccess(res.data.message || "Registered successfully!");
-      setTimeout(() => navigate("/login"), 1500); // 1.5s baad login page
+      setTimeout(() => navigate("/login"), 1500);
     } catch (err) {
-      setError(err?.response?.data?.message || "Error during registration");
+      // ✅ yahan fix kiya
+      setError(err?.response?.data?.error || "Error during registration");
     } finally {
       setLoading(false);
     }

@@ -30,6 +30,8 @@ import Footer from "./components/Footer";
 import ExploreYoutubeSection from "./components/ExploreYoutubeSection";
 
 import { AuthProvider } from "./contexts/AuthContext";
+import AdminDashboard from "./pages/AdminDashboard";
+import ProtectedRoute from "./components/ProtectedRoute";
 
 export default function App() {
   return (
@@ -59,11 +61,27 @@ export default function App() {
             <Route path="/career/frontend" element={<Intern1 />} /> 
             <Route path="/career/ui-ux" element={<Intern2 />} /> 
             <Route path="/career/marketing" element={<Intern3 />} />
-            <Route path="/podcast" element={<Podcast/>}/>
-            <Route path="/internships" element={<Internships/>}/>
-            <Route path="/olympiad" element={<Olympiad/>}/>
-            <Route path="/termsconditions" element={<TermsConditions/>}/>
+            <Route path="/podcast" element={<Podcast />} />
+            <Route path="/internships" element={<Internships />} />
+            <Route path="/olympiad" element={<Olympiad />} />
+            <Route path="/termsconditions" element={<TermsConditions />} />
+            <Route 
+                path="/dashboard" 
+                element={
+                <ProtectedRoute>
+                <Dashboard />
+                </ProtectedRoute>} />
 
+
+            {/* Admin Protected Route */}
+            <Route 
+              path="/admin" 
+              element={
+                <ProtectedRoute requiredRole="admin">
+                  <AdminDashboard />
+                </ProtectedRoute>
+              } 
+            />
           </Routes>
         </main>
 

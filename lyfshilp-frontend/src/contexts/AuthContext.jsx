@@ -1,80 +1,54 @@
-// src/contexts/AuthContext.jsx
 import { createContext, useState, useEffect } from "react";
 import api from "../api/axios";
 
-// Context create kiya
 export const AuthContext = createContext();
 
 export function AuthProvider({ children }) {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  // ✅ Page reload hone par token check
+  // ✅ App load hone par token se user fetch
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (token) {
-      // Recommended: Backend se "/auth/me" call karke fresh user info fetch karo
       fetchUserProfile(token);
     } else {
       setLoading(false);
     }
   }, []);
 
-  // ✅ Backend se user fetch
+  // 🔹 Fetch user info from backend
   const fetchUserProfile = async (token) => {
     try {
       const res = await api.get("/auth/me", {
         headers: { Authorization: `Bearer ${token}` },
       });
-      setUser(res.data);
+      setUser(res.data); // backend se user object
     } catch (err) {
       console.error("Failed to fetch user:", err);
-      localStorage.removeItem("token");
-      setUser(null);
+      logout(); // invalid token → clear everything
     } finally {
       setLoading(false);
     }
   };
 
-  // 🔑 Login
+  // 🔹 Login
   const login = async (email, password) => {
-    try {
-      const res = await api.post("/auth/login", { email, password });
-      const { token, user } = res.data;
-
-      // Token save
-      localStorage.setItem("token", token);
-
-      // State update
-      setUser(user || { token });
-    } catch (err) {
-      console.error("Login failed:", err);
-      throw err;
-    }
+    const res = await api.post("/auth/login", { email, password });
+    const { token, user } = res.data;
+    localStorage.setItem("token", token);
+    setUser(user);
   };
 
-  // 📝 Register
+  // 🔹 Register
   const register = async (username, email, password) => {
-    try {
-      const res = await api.post("/auth/register", {
-        username,
-        email,
-        password,
-      });
-      const { token, user } = res.data;
-
-      // Token save
-      localStorage.setItem("token", token);
-
-      // State update
-      setUser(user || { token });
-    } catch (err) {
-      console.error("Registration failed:", err);
-      throw err;
-    }
+    const res = await api.post("/auth/register", { username, email, password });
+    const { token, user } = res.data;
+    localStorage.setItem("token", token);
+    setUser(user);
   };
 
-  // 🚪 Logout
+  // 🔹 Logout
   const logout = () => {
     localStorage.removeItem("token");
     setUser(null);
