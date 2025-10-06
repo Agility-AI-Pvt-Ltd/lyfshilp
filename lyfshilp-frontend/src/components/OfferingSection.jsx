@@ -3,8 +3,8 @@ import React from "react";
 
 import classroomImg from "../assets/classroomImg.svg";
 import circleImg from "../assets/circleImg.png";
-import edumaniaxBig from "../assets/edumaniaxBig.png";
-import competitiveImg from "../assets/competitiveImg.png"; 
+import edumaniaxBig from "../assets/EdumaniaxBig.png";
+import competitiveImg from "../assets/CompetitiveImg.png"; 
 
 export default function OfferingsSection() {
   return (
