@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: "http://localhost:5000/api", // backend URL
+  baseURL: "https://lyfshilp-backend-210425516679.asia-south1.run.app/api", // Production backend URL from Google Cloud Run
 });
 
 // Add JWT automatically if available
