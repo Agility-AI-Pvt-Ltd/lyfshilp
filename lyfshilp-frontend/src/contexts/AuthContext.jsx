@@ -23,7 +23,7 @@ export function AuthProvider({ children }) {
       const res = await api.get("/auth/me", {
         headers: { Authorization: `Bearer ${token}` },
       });
-      setUser(res.data); // backend se user object
+      setUser(res.data.user || res.data); // backend se user object (handle both formats)
     } catch (err) {
       console.error("Failed to fetch user:", err);
       logout(); // invalid token → clear everything
