@@ -1,8 +1,8 @@
 import axios from "axios";
 
-// Base URL tumhare backend ka (http://localhost:4000/api by default)
+// Base URL tumhare backend ka (Production URL from Google Cloud Run)
 const api = axios.create({
-  baseURL: "http://localhost:4000/api",
+  baseURL: "https://lyfshilp-backend-210425516679.asia-south1.run.app/api",
   withCredentials: true, // agar cookies / jwt use ho raha ho
 });
 
