@@ -55,12 +55,8 @@ export default function ExamStats() {
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentIndex((prevIndex) => {
-        if (prevIndex >= examData.length - 1) {
-          // Reset to 0 for seamless loop
-          setTimeout(() => setCurrentIndex(0), 50);
-          return prevIndex + 1;
-        }
-        return prevIndex + 1;
+        // Loop back to 0 when reaching the end
+        return (prevIndex + 1) % examData.length;
       });
     }, 2500); // Change every 2.5 seconds
 
