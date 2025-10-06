@@ -1,4 +1,4 @@
-import AboutImage from "../assets/Aboutimg/Lyfshilpstudents.svg"; 
+import AboutImage from "../assets/Aboutimg/LyfshilpStudents.svg"; 
 
 export default function AboutLyfshilp() {
   return (
