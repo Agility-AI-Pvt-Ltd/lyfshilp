@@ -19,9 +19,27 @@ const app = express();
 
 // --- Middlewares ---
 app.use(helmet());
+
+// CORS configuration - allow multiple origins
+const allowedOrigins = [
+  "http://localhost:5173",
+  "http://localhost:4000",
+  "https://lyfshilp.vercel.app",
+  process.env.CLIENT_URL, // for any additional custom URL
+].filter(Boolean); // Remove undefined values
+
 app.use(
   cors({
-    origin: process.env.CLIENT_URL || "*", // frontend ka URL env me rakho
+    origin: (origin, callback) => {
+      // Allow requests with no origin (like mobile apps or Postman)
+      if (!origin) return callback(null, true);
+      
+      if (allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error("Not allowed by CORS"));
+      }
+    },
     credentials: true,
   })
 );
