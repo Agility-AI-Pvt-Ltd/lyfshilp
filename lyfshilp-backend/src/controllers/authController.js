@@ -40,7 +40,12 @@ export async function register(req, res) {
 
     const token = generateToken(user);
 
-    res.cookie("token", token, { httpOnly: true, sameSite: "lax" });
+    res.cookie("token", token, {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === "production", // HTTPS only in production
+      sameSite: process.env.NODE_ENV === "production" ? "none" : "lax", // Allow cross-origin in production
+      maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
+    });
 
     res.json({
       message: "Registration successful!",
@@ -76,7 +81,12 @@ export async function login(req, res) {
 
     const token = generateToken(user);
 
-    res.cookie("token", token, { httpOnly: true, sameSite: "lax" });
+    res.cookie("token", token, {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === "production", // HTTPS only in production
+      sameSite: process.env.NODE_ENV === "production" ? "none" : "lax", // Allow cross-origin in production
+      maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
+    });
 
     res.json({
       message: "Login successful!",
