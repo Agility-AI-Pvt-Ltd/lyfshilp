@@ -12,7 +12,7 @@ export default function FoundersSection() {
   const founders = [
     {
       img: Sharadimg,
-      name: "Sharad Raj Ustav",
+      name: "Sharad Raaj Ustav",
       role: "Founder & CEO",
       linkedin: "https://www.linkedin.com/in/sharadrajutsav?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_appv",
     },
@@ -39,7 +39,7 @@ export default function FoundersSection() {
         </h2>
         <p className="mt-2 text-gray-600 max-w-2xl mx-auto leading-relaxed">
           Behind every student’s success is a visionary founder who blends
-          expertise in education, technology, and mentorship to create
+          expertise in education, technology and mentorship to create
           transformative learning experiences.
         </p>
 

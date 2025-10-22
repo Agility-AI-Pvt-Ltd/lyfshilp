@@ -12,6 +12,9 @@ import AboutUs from "./pages/AboutUs";
 import Careers from "./pages/Careers";
 import Olympiad from "./pages/Olympiad";
 import TermsConditions from "./pages/TermsConditions";
+import CuetPage from "./pages/CuetPage";
+import ClatPage from "./pages/ClatPage";
+import IpmatPage from "./pages/IpmatPage";
 
 import Job1 from "./pages/Job1";
 import Job2 from "./pages/Job2";
@@ -21,6 +24,12 @@ import Job4 from "./pages/Job4";
 import Intern1 from "./pages/Intern1";
 import Intern2 from "./pages/Intern2";
 import Intern3 from "./pages/Intern3";
+
+import Financepage from "./pages/Financepage";
+import Aipage from "./pages/Aipage";
+import Employabilitypage from "./pages/Employabilitypage";
+import Entrepreneurshippage from "./pages/Entrepreneurshippage";
+import Workshop from "./pages/Workshop.jsx";
 
 import Podcast from "./pages/Podcast";
 import Internships from "./pages/Internships";
@@ -52,6 +61,7 @@ export default function App() {
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
+            <Route path="/workshop" element={<Workshop />} />
             <Route path="/about" element={<AboutUs />} />
             <Route path="/career" element={<Careers />} />
             <Route path="/career/job1" element={<Job1 />} /> 
@@ -65,6 +75,14 @@ export default function App() {
             <Route path="/internships" element={<Internships />} />
             <Route path="/olympiad" element={<Olympiad />} />
             <Route path="/termsconditions" element={<TermsConditions />} />
+            <Route path="/cuet" element={<CuetPage />} />
+            <Route path="/clat" element={<ClatPage />} />
+            <Route path="/ipmat" element={<IpmatPage />} />
+            <Route path="/olympiad/finance" element={<Financepage />} />
+            <Route path="/olympiad/ai" element={<Aipage />} />
+            <Route path="/olympiad/employability" element={<Employabilitypage />} />
+            <Route path="/olympiad/entrepreneurship" element={<Entrepreneurshippage />} />
+            
             <Route 
                 path="/dashboard" 
                 element={

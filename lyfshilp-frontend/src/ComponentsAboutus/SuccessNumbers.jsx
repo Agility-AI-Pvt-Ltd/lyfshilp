@@ -22,7 +22,7 @@ export default function SuccessNumbers() {
           </h2>
           <p className="mt-4 text-gray-600 max-w-2xl mx-auto text-center leading-relaxed">
             Empowering students with AI-driven exam prep, Olympiad training,
-            mentorship, and workshops.
+            mentorship and workshops.
           </p>
         </div>
 
@@ -30,10 +30,10 @@ export default function SuccessNumbers() {
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
           {/* Card 1 */}
           <div className="bg-white rounded-2xl shadow-lg p-8 text-center">
-            <h3 className="text-3xl font-extrabold text-gray-900">15,00+</h3>
+            <h3 className="text-3xl font-extrabold text-gray-900">2,000+</h3>
             <p className="mt-2 text-sm text-gray-600">
               Students guided <br />
-              Through exam prep, mentorship, and skill-building programs across India.
+              Through exam prep, mentorship and skill-building programs across India.
             </p>
           </div>
 
@@ -51,13 +51,13 @@ export default function SuccessNumbers() {
             <h3 className="text-3xl font-extrabold text-gray-900">50+</h3>
             <p className="mt-2 text-sm text-gray-600">
               Olympiad challenges & quizzes <br />
-              Designed to sharpen reasoning, problem-solving, and subject knowledge.
+              Designed to sharpen reasoning, problem-solving and subject knowledge.
             </p>
           </div>
 
           {/* Card 4 */}
           <div className="bg-white rounded-2xl shadow-lg p-8 text-center">
-            <h3 className="text-3xl font-extrabold text-gray-900">200+</h3>
+            <h3 className="text-3xl font-extrabold text-gray-900">250+</h3>
             <p className="mt-2 text-sm text-gray-600">
               Workshops conducted <br />
               AI, ICT, and gamified learning sessions delivered nationwide.

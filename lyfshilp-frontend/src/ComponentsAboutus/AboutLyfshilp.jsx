@@ -13,11 +13,12 @@ export default function AboutLyfshilp() {
             About{" "}
             <span className="text-[#1DB954]">Lyfshilp Academy</span>
           </h2>
-          <p className="mt-4 text-gray-600 max-w-xl mx-auto text-center leading-relaxed">
-            Mentorship-driven learning that prepares students for exams, careers, 
-            and life with AI-powered insights, skill-building courses, and 
-            future-ready guidance.
-          </p>
+   <p className="mt-4 text-gray-600 text-sm sm:text-base md:text-lg leading-relaxed max-w-xs sm:max-w-md md:max-w-xl lg:max-w-2xl mx-auto text-center px-4 sm:px-6">
+  Mentorship-driven learning that prepares students for exams, careers, 
+  and life — with AI-powered insights, skill-building courses, and 
+  future-ready guidance.
+  </p>
+
         </div>
 
         {/* Main Content */}
@@ -43,8 +44,8 @@ export default function AboutLyfshilp() {
             <p className="text-gray-200 leading-relaxed">
               We believe education goes beyond exams. <br />
               Beyond Exams, Towards Excellence is our mission to prepare students 
-              with AI-powered prep, mentorship, and skills to succeed academically, 
-              professionally, and personally.
+              with AI-powered prep, mentorship and skills to succeed academically, 
+              professionally and personally.
             </p>
           </div>
         </div>

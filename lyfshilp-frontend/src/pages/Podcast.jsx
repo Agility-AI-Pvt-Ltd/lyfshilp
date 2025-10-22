@@ -83,7 +83,7 @@ export default function PodcastSection() {
           </h2>
           <p className="text-gray-600 mb-6">
             Our podcast features top educators, leaders, and learners discussing education,
-            careers, and future skills – with stories, insights, and inspiration.
+            careers and future skills – with stories, insights and inspiration.
           </p>
 
           {/* Main Video (lazy load with thumbnail) */}
@@ -121,7 +121,7 @@ export default function PodcastSection() {
           <div className="flex gap-4 overflow-x-auto pb-4">
             <iframe
               className="w-64 h-40 rounded-lg shadow-md"
-              src="https://www.youtube.com/embed/7FQU1GqPKho"
+              src="https://www.youtube.com/embed/1Bp5oBhTxf8?si=IqsW7vU73apdc1nQ"
               title="Related Video 1"
               frameBorder="0"
               loading="lazy"

@@ -161,7 +161,7 @@ const handleSubmit = async (e) => {
       />
 
       {message && (
-        <p className={`text-sm ${message.startsWith("✅") ? "text-green-600" : "text-red-600"}`}>
+        <p className={`text-sm ${message.startsWith("✅") ? "text-green-600" : "text-green-600"}`}>
           {message}
         </p>
       )}

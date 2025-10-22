@@ -14,6 +14,8 @@ import testSeriesRoutes from "./routes/testSeriesRoutes.js";
 import updateRoutes from "./routes/updateRoutes.js";
 import userRoutes from "./routes/userRoutes.js";
 import applicationRoutes from "./routes/applicationRoutes.js";
+import olympiadRoutes from "./routes/olympiadRoutes.js";
+import workshopRoutes from "./routes/workshopRoutes.js";
 
 const app = express();
 
@@ -57,6 +59,8 @@ app.use("/api/updates", updateRoutes);
 app.use("/api/user",userRoutes);
 
 app.use("/api/applications", applicationRoutes);
+app.use("/api/olympiad",olympiadRoutes);
+app.use("/api/workshop",workshopRoutes)
 
 
 

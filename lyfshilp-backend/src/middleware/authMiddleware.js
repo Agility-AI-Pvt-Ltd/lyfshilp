@@ -40,7 +40,7 @@ export async function authMiddleware(req, res, next) {
     req.user = user;
     next();
   } catch (err) {
-    console.error("❌ authMiddleware error:", err.message);
+    console.error("authMiddleware error:", err.message);
     return res.status(401).json({ error: "Unauthorized: invalid token" });
   }
 }
