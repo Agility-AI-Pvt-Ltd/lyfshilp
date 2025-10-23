@@ -1,9 +1,9 @@
 // src/components/Firstpart.jsx
-import heroImg from "../assets/cuetCimg/cuet-hero.svg";
-import bgpath from "../assets/cuetCimg/bgpath.svg";
-import rocket from "../assets/cuetCimg/rocketing.svg";
+import heroImg from "../assets/CuetCimg/cuet-hero.svg";
+import bgpath from "../assets/CuetCimg/bgpath.svg";
+import rocket from "../assets/CuetCimg/rocketing.svg";
 import cuetlogo from "../assets/logos/cuetimg.svg";
-import Caticonic from "../assets/cuetCimg/Caticonic.svg";
+import Caticonic from "../assets/CuetCimg/Caticonic.svg";
 
 export default function Firstpart() {
   return (
