@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from "react";
+import { FaWhatsapp } from "react-icons/fa"; // ✅ React Icon used like in Footer
 import api from "../api/axios";
-import workshopMain from "../assets/workshopimg/workshopMain.svg";
+
 import teacherIcon from "../assets/workshopimg/teacherIcon.svg";
 import studentIcon from "../assets/workshopimg/studentIcon.svg";
 import corporateIcon from "../assets/workshopimg/corporateIcon.svg";
@@ -17,13 +18,14 @@ import empowerMan2 from "../assets/workshopimg/empowerman2.svg";
 import empowerMan3 from "../assets/workshopimg/empowerman3.svg";
 
 // 📸 Gallery images
-import img1 from "../assets/workshopimg/workshopmain1.svg";
+import workshopMain from "../assets/workshopimg/workshopMain7.svg";
+import img1 from "../assets/workshopimg/workshopmain3.svg";
 import img2 from "../assets/workshopimg/workshopmain2.svg";
-import img3 from "../assets/workshopimg/workshopmain3.svg";
-import img4 from "../assets/workshopimg/workshopmain4.svg";
-import img5 from "../assets/workshopimg/workshopmain5.svg";
+import img3 from "../assets/workshopimg/workshopmain4.svg";
+import img4 from "../assets/workshopimg/workshopmain.svg";
+import img5 from "../assets/workshopimg/workshopmain1.svg";
 import img6 from "../assets/workshopimg/workshopmain6.svg";
-import img7 from "../assets/workshopimg/workshopmain7.svg";
+import img7 from "../assets/workshopimg/workshopmain5.svg";
 
 export default function Workshop() {
   const handleWhatsAppClick = () => {
@@ -37,25 +39,33 @@ export default function Workshop() {
   // 🎯 Intersection Observer for Trending Topics
   const [isVisible, setIsVisible] = useState(false);
   const sectionRef = useRef(null);
+  const formRef = useRef(null);
+  const [showFloatingButtons, setShowFloatingButtons] = useState(true);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-        }
+        if (entry.isIntersecting) setIsVisible(true);
       },
       { threshold: 0.2 }
     );
-
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
-    }
-
+    if (sectionRef.current) observer.observe(sectionRef.current);
     return () => {
-      if (sectionRef.current) {
-        observer.unobserve(sectionRef.current);
-      }
+      if (sectionRef.current) observer.unobserve(sectionRef.current);
+    };
+  }, []);
+
+  // 👇 Hide floating buttons when form visible
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setShowFloatingButtons(!entry.isIntersecting);
+      },
+      { threshold: 0.3 }
+    );
+    if (formRef.current) observer.observe(formRef.current);
+    return () => {
+      if (formRef.current) observer.unobserve(formRef.current);
     };
   }, []);
 
@@ -82,21 +92,12 @@ export default function Workshop() {
     const orgRegex = /^[A-Za-z0-9\s&.,'-]{2,100}$/;
     const msgRegex = /^.{0,500}$/;
 
-    if (!nameRegex.test(formData.name.trim())) {
-      return "Please enter a valid full name.";
-    }
-    if (!phoneRegex.test(formData.phone.trim())) {
-      return "Please enter a valid 10-digit phone number.";
-    }
-    if (!emailRegex.test(formData.email.trim())) {
-      return "Please enter a valid email address.";
-    }
-    if (formData.organization && !orgRegex.test(formData.organization.trim())) {
+    if (!nameRegex.test(formData.name.trim())) return "Please enter a valid full name.";
+    if (!phoneRegex.test(formData.phone.trim())) return "Please enter a valid 10-digit phone number.";
+    if (!emailRegex.test(formData.email.trim())) return "Please enter a valid email address.";
+    if (formData.organization && !orgRegex.test(formData.organization.trim()))
       return "Organization name contains invalid characters.";
-    }
-    if (!msgRegex.test(formData.message.trim())) {
-      return "Message must be under 500 characters.";
-    }
+    if (!msgRegex.test(formData.message.trim())) return "Message must be under 500 characters.";
     return null;
   };
 
@@ -122,7 +123,7 @@ export default function Workshop() {
     setStatus({ success: null, message: "" });
 
     try {
-      const response = await api.post("/workshop/register", {
+      await api.post("/workshop/register", {
         ...formData,
         name: formData.name.trim(),
         phone: formData.phone.trim(),
@@ -131,29 +132,15 @@ export default function Workshop() {
         message: formData.message.trim(),
       });
 
-      setStatus({
-        success: true,
-        message: "Workshop request submitted successfully!",
-      });
+      setStatus({ success: true, message: "Workshop request submitted successfully!" });
+      setFormData({ name: "", phone: "", email: "", organization: "", message: "" });
 
-      setFormData({
-        name: "",
-        phone: "", 
-        email: "",
-        organization: "",
-        message: "",
-      });
-
-      setTimeout(() => {
-        setStatus({ success: null, message: "" });
-      }, 2000);
+      setTimeout(() => setStatus({ success: null, message: "" }), 2000);
     } catch (error) {
       console.error("Error submitting form:", error);
       setStatus({
         success: false,
-        message:
-          error.response?.data?.message ||
-          "Failed to submit form. Please try again.",
+        message: error.response?.data?.message || "Failed to submit form. Please try again.",
       });
     } finally {
       setLoading(false);
@@ -162,7 +149,7 @@ export default function Workshop() {
 
   return (
     <div className="font-sans mt-14 sm:mt-18 space-y-22 sm:space-y-24">
-      {/* 🌟 Hero Section */}
+            {/* 🌟 Hero Section */}
       <section className="text-center px-4 py-10 sm:py-8 bg-white">
         <h1 className="text-2xl sm:text-6xl font-bold text-gray-900">
           Workshops that Inspire
@@ -343,26 +330,22 @@ export default function Workshop() {
       </section>
 
       {/* 📞 Contact Form */}
-      <section className="bg-[#FFF8EE] py-12 px-4 sm:px-8 relative overflow-hidden">
+      <section ref={formRef} className="bg-[#FFF8EE] py-12 px-4 sm:px-8 relative overflow-hidden">
         <h2 className="text-center text-xl sm:text-3xl font-bold text-gray-900 mb-6">
           Reach <span className="text-green-600">Out Now!</span>
         </h2>
         <p className="text-center text-gray-600 text-sm mb-8">
-          Want to book a workshop? Contact us now we'll answer your query as
-          soon as possible.
+          Want to book a workshop? Contact us now we'll answer your query as soon as possible.
         </p>
 
         <div className="flex flex-col md:flex-row justify-center items-center relative gap-0">
           <div className="hidden md:flex justify-end w-1/3 relative z-20 -mr-4">
-            <img
-              src={boyLeft}
-              alt="Left character"
-              className="h-64 md:h-72 object-cover rounded-2xl scale-110 -translate-x-3"
-            />
+            <img src={boyLeft} alt="Left character" className="h-64 md:h-72 object-cover rounded-2xl scale-110 -translate-x-3" />
           </div>
 
           <form
             onSubmit={handleSubmit}
+            id="workshop-form"
             className="bg-white rounded-2xl shadow-xl p-5 sm:p-8 w-full max-w-md flex flex-col justify-center mx-auto z-10 relative"
           >
             <h3 className="text-center text-lg sm:text-xl font-semibold text-green-700 mb-3">
@@ -370,74 +353,25 @@ export default function Workshop() {
             </h3>
 
             {status.message && (
-              <p
-                className={`text-center text-sm mb-3 font-medium ${
-                  status.success ? "text-green-600" : "text-red-500"
-                }`}
-              >
+              <p className={`text-center text-sm mb-3 font-medium ${status.success ? "text-green-600" : "text-red-500"}`}>
                 {status.message}
               </p>
             )}
 
+            {/* Inputs unchanged */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-3">
-              <input
-                type="text"
-                name="name"
-                value={formData.name}
-                onChange={handleChange}
-                placeholder="Full Name"
-                required
-                className="border border-gray-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-green-500"
-              />
-              <input
-                type="text"
-                name="phone"
-                value={formData.phone}
-                onChange={handleChange}
-                placeholder="Phone Number"
-                required
-                className="border border-gray-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-green-500"
-              />
+              <input type="text" name="name" value={formData.name} onChange={handleChange} placeholder="Full Name" required className="border border-gray-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-green-500" />
+              <input type="text" name="phone" value={formData.phone} onChange={handleChange} placeholder="Phone Number" required className="border border-gray-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-green-500" />
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-3">
-              <input
-                type="email"
-                name="email"
-                value={formData.email}
-                onChange={handleChange}
-                placeholder="Email ID"
-                required
-                className="border border-gray-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-green-500"
-              />
-              <input
-                type="text"
-                name="organization"
-                value={formData.organization}
-                onChange={handleChange}
-                placeholder="School or Company Name"
-                className="border border-gray-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-green-500"
-              />
+              <input type="email" name="email" value={formData.email} onChange={handleChange} placeholder="Email ID" required className="border border-gray-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-green-500" />
+              <input type="text" name="organization" value={formData.organization} onChange={handleChange} placeholder="School or Company Name" className="border border-gray-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-green-500" />
             </div>
 
-            <textarea
-              name="message"
-              value={formData.message}
-              onChange={handleChange}
-              placeholder="Message"
-              rows="3"
-              className="border border-gray-300 rounded-lg px-3 py-2 text-sm mb-4 focus:ring-2 focus:ring-green-500"
-            ></textarea>
+            <textarea name="message" value={formData.message} onChange={handleChange} placeholder="Message" rows="3" className="border border-gray-300 rounded-lg px-3 py-2 text-sm mb-4 focus:ring-2 focus:ring-green-500"></textarea>
 
-            <button
-              type="submit"
-              disabled={loading}
-              className={`w-full ${
-                loading
-                  ? "bg-green-400"
-                  : "bg-green-600 hover:bg-green-700"
-              } text-white py-2 rounded-full font-medium transition`}
-            >
+            <button type="submit" disabled={loading} className={`w-full ${loading ? "bg-green-400" : "bg-green-600 hover:bg-green-700"} text-white py-2 rounded-full font-medium transition`}>
               {loading ? "Submitting..." : "Submit Now"}
             </button>
 
@@ -446,125 +380,66 @@ export default function Workshop() {
             <button
               type="button"
               onClick={handleWhatsAppClick}
-              className="w-full border border-green-600 text-green-600 py-2 rounded-full font-medium hover:bg-green-50 transition"
+              className="w-full border border-green-600 text-green-600 py-2 rounded-full font-medium hover:bg-green-50 transition flex items-center justify-center gap-2"
             >
-              WhatsApp Now
+              <FaWhatsapp className="text-green-600 text-lg" /> WhatsApp Now
             </button>
           </form>
 
           <div className="hidden md:flex justify-start w-1/3 relative z-20 -ml-4">
-            <img
-              src={boyRight}
-              alt="Right character"
-              className="h-64 md:h-72 object-cover rounded-2xl scale-110 translate-x-3"
-            />
+            <img src={boyRight} alt="Right character" className="h-64 md:h-72 object-cover rounded-2xl scale-110 translate-x-3" />
           </div>
         </div>
       </section>
 
+      {/* Floating WhatsApp + Register Buttons */}
+      {showFloatingButtons && (
+        <div className="fixed bottom-6 right-6 flex flex-col gap-3 z-50">
+          <button
+            onClick={handleWhatsAppClick}
+            className="bg-green-600 hover:bg-green-700 text-white rounded-full p-3 shadow-lg flex items-center justify-center transition"
+          >
+            <FaWhatsapp className="text-2xl" />
+          </button>
+          <a
+            href="#workshop-form"
+            className="bg-green-600 hover:bg-green-700 text-white text-sm px-4 py-2 rounded-full shadow-md font-medium transition text-center"
+          >
+            Register For Workshop
+          </a>
+        </div>
+      )}
+
       {/* 🎨 All Animation Styles */}
-      <style>
-        {`
-          /* Rotating Images Animation */
-          @keyframes rotateImage1 {
-            0% { 
-              opacity: 1; 
-              z-index: 30; 
-              transform: scale(1) rotate(0deg) translateX(0); 
-            }
-            33.33% { 
-              opacity: 0.6; 
-              z-index: 10; 
-              transform: scale(0.85) rotate(8deg) translateX(40px); 
-            }
-            66.66% { 
-              opacity: 0.6; 
-              z-index: 10; 
-              transform: scale(0.85) rotate(-8deg) translateX(-40px); 
-            }
-            100% { 
-              opacity: 1; 
-              z-index: 30; 
-              transform: scale(1) rotate(0deg) translateX(0); 
-            }
-          }
-
-          @keyframes rotateImage2 {
-            0% { 
-              opacity: 0.6; 
-              z-index: 10; 
-              transform: scale(0.85) rotate(8deg) translateX(40px); 
-            }
-            33.33% { 
-              opacity: 0.6; 
-              z-index: 10; 
-              transform: scale(0.85) rotate(-8deg) translateX(-40px); 
-            }
-            66.66% { 
-              opacity: 1; 
-              z-index: 30; 
-              transform: scale(1) rotate(0deg) translateX(0); 
-            }
-            100% { 
-              opacity: 0.6; 
-              z-index: 10; 
-              transform: scale(0.85) rotate(8deg) translateX(40px); 
-            }
-          }
-
-          @keyframes rotateImage3 {
-            0% { 
-              opacity: 0.6; 
-              z-index: 10; 
-              transform: scale(0.85) rotate(-8deg) translateX(-40px); 
-            }
-            33.33% { 
-              opacity: 1; 
-              z-index: 30; 
-              transform: scale(1) rotate(0deg) translateX(0); 
-            }
-            66.66% { 
-              opacity: 0.6; 
-              z-index: 10; 
-              transform: scale(0.85) rotate(8deg) translateX(40px); 
-            }
-            100% { 
-              opacity: 0.6; 
-              z-index: 10; 
-              transform: scale(0.85) rotate(-8deg) translateX(-40px); 
-            }
-          }
-
-          .animate-rotateImage1 {
-            animation: rotateImage1 9s infinite ease-in-out;
-          }
-          .animate-rotateImage2 {
-            animation: rotateImage2 9s infinite ease-in-out;
-          }
-          .animate-rotateImage3 {
-            animation: rotateImage3 9s infinite ease-in-out;
-          }
-
-          /* Popup Card Animation */
-          @keyframes popupCard {
-            0% {
-              opacity: 0;
-              transform: translateY(30px) scale(0.9);
-            }
-            60% {
-              transform: translateY(-8px) scale(1.02);
-            }
-            100% {
-              opacity: 1;
-              transform: translateY(0) scale(1);
-            }
-          }
-
-          .animate-popupCard {
-            animation: popupCard 0.6s ease-out forwards;
-          }
-        `}
-      </style>
+      <style>{`
+        @keyframes rotateImage1 {
+          0% {opacity:1;z-index:30;transform:scale(1)rotate(0)translateX(0);}
+          33.33% {opacity:0.6;z-index:10;transform:scale(0.85)rotate(8deg)translateX(40px);}
+          66.66% {opacity:0.6;z-index:10;transform:scale(0.85)rotate(-8deg)translateX(-40px);}
+          100% {opacity:1;z-index:30;transform:scale(1)rotate(0)translateX(0);}
+        }
+        @keyframes rotateImage2 {
+          0% {opacity:0.6;z-index:10;transform:scale(0.85)rotate(8deg)translateX(40px);}
+          33.33% {opacity:0.6;z-index:10;transform:scale(0.85)rotate(-8deg)translateX(-40px);}
+          66.66% {opacity:1;z-index:30;transform:scale(1)rotate(0)translateX(0);}
+          100% {opacity:0.6;z-index:10;transform:scale(0.85)rotate(8deg)translateX(40px);}
+        }
+        @keyframes rotateImage3 {
+          0% {opacity:0.6;z-index:10;transform:scale(0.85)rotate(-8deg)translateX(-40px);}
+          33.33% {opacity:1;z-index:30;transform:scale(1)rotate(0)translateX(0);}
+          66.66% {opacity:0.6;z-index:10;transform:scale(0.85)rotate(8deg)translateX(40px);}
+          100% {opacity:0.6;z-index:10;transform:scale(0.85)rotate(-8deg)translateX(-40px);}
+        }
+        .animate-rotateImage1{animation:rotateImage1 9s infinite ease-in-out;}
+        .animate-rotateImage2{animation:rotateImage2 9s infinite ease-in-out;}
+        .animate-rotateImage3{animation:rotateImage3 9s infinite ease-in-out;}
+        @keyframes popupCard{
+          0%{opacity:0;transform:translateY(30px)scale(0.9);}
+          60%{transform:translateY(-8px)scale(1.02);}
+          100%{opacity:1;transform:translateY(0)scale(1);}
+        }
+        .animate-popupCard{animation:popupCard 0.6s ease-out forwards;}
+      `}</style>
     </div>
   );
 }

@@ -4,10 +4,8 @@ import logo from "../assets/logo.png";
 import { AuthContext } from "../contexts/AuthContext";
 
 export default function Header() {
-  const [examOpen, setExamOpen] = useState(false);
   const [careerOpen, setCareerOpen] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [mobileExamOpen, setMobileExamOpen] = useState(false);
   const [mobileCareerOpen, setMobileCareerOpen] = useState(false);
   const closeTimeout = useRef(null);
 
@@ -36,7 +34,8 @@ export default function Header() {
   return (
     <header className="w-full bg-white shadow-sm fixed top-0 left-0 z-50 font-sans transition-all duration-200">
       <div className="max-w-7xl mx-auto flex items-center justify-between px-3 sm:px-4 lg:px-6 py-2.5 sm:py-3">
-        {/* Logo Section - Compact on small screens */}
+        
+        {/* Logo Section */}
         <div className="flex items-center space-x-1.5 sm:space-x-2 flex-shrink-0 min-w-0">
           <img src={logo} alt="Lyfshilp Academy" className="h-6 sm:h-7 lg:h-8 flex-shrink-0" />
           <span className="font-bold text-sm sm:text-base lg:text-lg text-gray-800 tracking-tight truncate">
@@ -44,51 +43,19 @@ export default function Header() {
           </span>
         </div>
 
-        {/* Desktop Navigation - Hidden on mobile/tablet */}
+        {/* Desktop Navigation */}
         <nav className="hidden lg:flex items-center gap-4 xl:gap-6 text-gray-700 font-medium text-sm xl:text-base flex-shrink-0">
-          <Link to="/" className="hover:text-green-600 transition whitespace-nowrap">
-            Home
-          </Link>
-          <Link to="/about" className="hover:text-green-600 transition whitespace-nowrap">
-            About Us
+          <Link to="/" className="hover:text-green-600 transition whitespace-nowrap">Home</Link>
+          <Link to="/about" className="hover:text-green-600 transition whitespace-nowrap">About Us</Link>
+
+          {/* Exam Prep (NO DROPDOWN) */}
+          <Link to="/exam-prep" className="hover:text-green-600 transition whitespace-nowrap">
+            Exam Prep
           </Link>
 
-          {/* Exam Prep Dropdown */}
-          <div className="relative">
-            <button
-              onClick={() => openDropdown(setExamOpen)}
-              className="hover:text-green-600 transition flex items-center whitespace-nowrap"
-            >
-              Exam Prep <span className="ml-1">▾</span>
-            </button>
-            {examOpen && (
-              <div
-                className="absolute left-0 mt-2 bg-white border rounded-lg shadow-lg w-40 py-2 z-50"
-                onMouseEnter={cancelClose}
-                onMouseLeave={() => delayClose(setExamOpen)}
-              >
-                <Link to="/cuet" className="block px-4 py-2 hover:text-green-600">
-                  CUET
-                </Link>
-                <Link to="/clat" className="block px-4 py-2 hover:text-green-600">
-                  CLAT
-                </Link>
-                <Link to="/ipmat" className="block px-4 py-2 hover:text-green-600">
-                  IPMAT
-                </Link>
-              </div>
-            )}
-          </div>
-
-          <Link to="/olympiad" className="hover:text-green-600 transition whitespace-nowrap">
-            Olympiad
-          </Link>
-          <Link to="/podcast" className="hover:text-green-600 transition whitespace-nowrap">
-            Podcast
-          </Link>
-          <Link to="/workshop" className="hover:text-green-600 transition whitespace-nowrap">
-            Workshop
-          </Link>
+          <Link to="/olympiad" className="hover:text-green-600 transition whitespace-nowrap">Olympiad</Link>
+          <Link to="/podcast" className="hover:text-green-600 transition whitespace-nowrap">Podcast</Link>
+          <Link to="/workshop" className="hover:text-green-600 transition whitespace-nowrap">Workshop</Link>
 
           {/* Careers Dropdown */}
           <div className="relative">
@@ -121,9 +88,8 @@ export default function Header() {
           )}
         </nav>
 
-        {/* Right Section - Compact buttons */}
+        {/* Right Section (Auth Buttons) */}
         <div className="flex items-center gap-2 sm:gap-3 flex-shrink-0">
-          {/* Desktop Auth Buttons */}
           <div className="hidden lg:flex items-center gap-2 xl:gap-3">
             {loading ? (
               <span className="text-xs xl:text-sm text-gray-500">Loading...</span>
@@ -167,38 +133,21 @@ export default function Header() {
         </div>
       </div>
 
-      {/* Mobile Navigation Drawer */}
+      {/* Mobile Navigation */}
       {mobileOpen && (
         <div className="lg:hidden bg-white shadow-md border-t animate-slide-down overflow-y-auto max-h-[90vh]">
           <div className="flex flex-col space-y-2 p-4 text-gray-700 font-medium text-sm">
-            <Link to="/" onClick={() => setMobileOpen(false)} className="hover:text-green-600">
-              Home
-            </Link>
-            <Link to="/about" onClick={() => setMobileOpen(false)} className="hover:text-green-600">
-              About Us
-            </Link>
+            <Link to="/" onClick={() => setMobileOpen(false)} className="hover:text-green-600">Home</Link>
+            <Link to="/about" onClick={() => setMobileOpen(false)} className="hover:text-green-600">About Us</Link>
 
-            {/* Exam Prep (Collapsible) */}
-            <button
-              onClick={() => setMobileExamOpen(!mobileExamOpen)}
-              className="flex justify-between items-center hover:text-green-600"
+            {/* Exam Prep as Single Link */}
+            <Link
+              to="/exam-prep"
+              onClick={() => setMobileOpen(false)}
+              className="hover:text-green-600"
             >
-              <span>Exam Prep</span>
-              <span>{mobileExamOpen ? "▴" : "▾"}</span>
-            </button>
-            {mobileExamOpen && (
-              <div className="ml-4 flex flex-col space-y-1">
-                <Link to="/cuet" onClick={() => setMobileOpen(false)} className="hover:text-green-600">
-                  CUET
-                </Link>
-                <Link to="/clat" onClick={() => setMobileOpen(false)} className="hover:text-green-600">
-                  CLAT
-                </Link>
-                <Link to="/ipmat" onClick={() => setMobileOpen(false)} className="hover:text-green-600">
-                  IPMAT
-                </Link>
-              </div>
-            )}
+              Exam Prep
+            </Link>
 
             <Link to="/olympiad" onClick={() => setMobileOpen(false)} className="hover:text-green-600">
               Olympiad
@@ -210,7 +159,7 @@ export default function Header() {
               Workshop
             </Link>
 
-            {/* Careers (Collapsible) */}
+            {/* Careers Collapsible */}
             <button
               onClick={() => setMobileCareerOpen(!mobileCareerOpen)}
               className="flex justify-between items-center hover:text-green-600"

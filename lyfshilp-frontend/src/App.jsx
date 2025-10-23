@@ -10,6 +10,7 @@ import DailyUpdates from "./pages/DailyUpdate";
 import TestSeries from "./pages/TestSeries";
 import AboutUs from "./pages/AboutUs";
 import Careers from "./pages/Careers";
+import ExamPrep from "./pages/ExamPrep.jsx";
 import Olympiad from "./pages/Olympiad";
 import TermsConditions from "./pages/TermsConditions";
 import CuetPage from "./pages/CuetPage";
@@ -73,6 +74,7 @@ export default function App() {
             <Route path="/career/marketing" element={<Intern3 />} />
             <Route path="/podcast" element={<Podcast />} />
             <Route path="/internships" element={<Internships />} />
+            <Route path="/exam-prep" element={<ExamPrep />} />
             <Route path="/olympiad" element={<Olympiad />} />
             <Route path="/termsconditions" element={<TermsConditions />} />
             <Route path="/cuet" element={<CuetPage />} />
