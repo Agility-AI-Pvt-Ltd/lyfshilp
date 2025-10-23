@@ -1,21 +1,19 @@
-// src/routes/applicationRoutes.js
 import express from "express";
 import {
   createApplication,
   getAllApplications,
+  addApplication,
+  updateApplication,
+  deleteApplication,
 } from "../controllers/applicationController.js";
-import { authMiddleware } from "../middleware/authMiddleware.js";
+import { authMiddleware, adminMiddleware } from "../middleware/authMiddleware.js";
 
 const router = express.Router();
 
-/**
- * 📝 Candidate: Resume form submit (public route)
- */
+// Public: Form submit
 router.post("/", createApplication);
 
-/**
- * 👑 Admin: Get all applications (protected route)
- */
+// Admin CRUD
 router.get(
   "/all",
   authMiddleware, // verify token + user
@@ -27,5 +25,8 @@ router.get(
   },
   getAllApplications
 );
+router.post("/add", authMiddleware, adminMiddleware, addApplication);
+router.put("/update/:id", authMiddleware, adminMiddleware, updateApplication);
+router.delete("/delete/:id", authMiddleware, adminMiddleware, deleteApplication);
 
 export default router;

@@ -56,7 +56,7 @@ export default function EdumaniaxBox() {
 
           <p className="text-white/90 text-lg leading-relaxed mb-8 max-w-lg">
             Skill-based courses in AI, Finance, Law, Communication &amp;
-            Entrepreneurship — made fun with gamified learning.
+            Entrepreneurship made fun with gamified learning.
           </p>
 
           {/* ✅ Updated Button with link */}
@@ -66,7 +66,7 @@ export default function EdumaniaxBox() {
             rel="noopener noreferrer"
           >
             <button className="inline-flex items-center bg-white text-green-600 px-8 py-4 rounded-full font-semibold shadow-lg hover:bg-gray-50 hover:shadow-xl transform hover:scale-105 transition duration-300 group">
-              Start Learning — For Free
+              Start Learning
               <span className="ml-3 bg-green-600 text-white w-8 h-8 rounded-full flex items-center justify-center group-hover:translate-x-1 transition-transform duration-300">
                 →
               </span>

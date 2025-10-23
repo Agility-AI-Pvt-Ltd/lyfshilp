@@ -3,69 +3,43 @@ import studentsImage from "../assets/Olympiadimg/students-group.svg";
 
 export default function OlympiadSection() {
   const stats = [
-    {
-      icon: "📚",
-      value: "9/10",
-      label: "Improved Exam Readiness"
-    },
-    {
-      icon: "💡",
-      value: "82%",
-      label: "Boosted Confidence & Problem-Solving"
-    },
-    {
-      icon: "📈",
-      value: "87%",
-      label: "Reported Better Career Clarity"
-    }
+    { icon: "📚", value: "9/10", label: "Improved Exam Readiness" },
+    { icon: "💡", value: "82%", label: "Boosted Confidence & Problem-Solving" },
+    { icon: "📈", value: "87%", label: "Reported Better Career Clarity" },
   ];
 
   return (
-    <section className="bg-white py-4 relative overflow-hidden">
-      <div className="container mx-auto px-6">
-        <div className="grid grid-cols-1 lg:grid-cols-2 items-center gap-12">
+    <section className="bg-white py-14 sm:py-16 md:py-20 relative overflow-hidden">
+      <div className="container mx-auto px-4 sm:px-6 md:px-10">
+        <div className="grid grid-cols-1 lg:grid-cols-2 items-center gap-10 md:gap-14">
           
-          {/* Left Content */}
-          <div className="max-w-xl">
-   <h2 className="text-4xl md:text-5xl font-bold leading-tight mb-6">
-  <span className="text-green-600">Olympiads</span>
-  <span className="text-gray-900"> - where skill meets </span>
-  
-  <span className="inline-block bg-green-600 text-white px-3 py-1 rounded">
-    challenges
-  </span>
-</h2>
+          {/* ==== Left Content ==== */}
+          <div className="max-w-2xl text-center lg:text-left mx-auto lg:mx-0 order-2 lg:order-1">
+            
+            {/* Heading */}
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight mb-6">
+              <span className="text-green-600">Olympiads</span>
+              <span className="text-gray-900"> – where skill meets </span>
+              <span className="inline-block bg-green-600 text-white px-3 py-1 rounded mt-2 sm:mt-0">
+                challenges
+              </span>
+            </h2>
 
-<p className="text-gray-600 text-lg leading-relaxed mb-8">
-  Test your knowledge, sharpen your skills, and compete with the best through 
-  our engaging, real-world Olympiads.
-</p>
+            {/* Subheading */}
+            <p className="text-gray-600 text-sm sm:text-base md:text-lg leading-relaxed mb-8 px-3 sm:px-0 max-w-md sm:max-w-lg md:max-w-xl mx-auto lg:mx-0">
+              Test your knowledge, sharpen your skills, and compete with the best through 
+              our engaging, real-world Olympiads.
+            </p>
 
-
-            {/* Search Box */}
-           {/* <div className="relative max-w-md">
-              <input
-                type="text"
-                placeholder="Search the olympiad"
-                className="w-full px-6 py-4 pr-14 rounded-full border-2 border-gray-200 focus:border-green-500 focus:outline-none text-gray-700 placeholder-gray-400"
-              />
-              <button className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-green-600 text-white p-3 rounded-full hover:bg-green-700 transition duration-300">
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                </svg>
-              </button>
-            </div>
-            */}
-
-            {/* Statistics */}
-            <div className="mt-12 grid grid-cols-3 gap-6">
+            {/* Stats Section */}
+            <div className="mt-10 grid grid-cols-3 gap-4 sm:gap-6">
               {stats.map((stat, index) => (
                 <div key={index} className="text-center">
-                  <div className="text-3xl mb-2">{stat.icon}</div>
-                  <div className="text-2xl md:text-3xl font-bold text-gray-900 mb-1">
+                  <div className="text-2xl sm:text-3xl mb-2">{stat.icon}</div>
+                  <div className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 mb-1">
                     {stat.value}
                   </div>
-                  <p className="text-xs md:text-sm text-gray-600 leading-tight">
+                  <p className="text-[10px] sm:text-xs md:text-sm text-gray-600 leading-tight">
                     {stat.label}
                   </p>
                 </div>
@@ -73,10 +47,10 @@ export default function OlympiadSection() {
             </div>
           </div>
 
-          {/* Right Image */}
-          <div className="relative flex justify-center lg:justify-end">
+          {/* ==== Right Image ==== */}
+          <div className="relative flex justify-center lg:justify-end order-1 lg:order-2">
             {/* Yellow Background Shape */}
-            <div className="absolute top-0 right-0 w-full h-full">
+            <div className="absolute top-0 right-0 w-full h-full hidden sm:block">
               <svg
                 viewBox="0 0 400 400"
                 className="w-full h-full"
@@ -91,18 +65,17 @@ export default function OlympiadSection() {
             </div>
 
             {/* Students Image */}
-            <div className="relative z-10">
+            <div className="relative z-10 w-[80%] sm:w-[70%] md:w-[65%] lg:w-[85%] max-w-md sm:max-w-lg">
               <img
                 src={studentsImage}
                 alt="Happy students celebrating success"
-                className="w-full max-w-lg h-auto object-contain drop-shadow-2xl"
+                className="w-full h-auto object-contain drop-shadow-2xl"
                 onError={(e) => {
-                  // Fallback if image doesn't load
                   e.target.outerHTML = `
-                    <div class="w-full max-w-lg h-96 bg-gradient-to-br from-blue-500 to-purple-600 rounded-3xl flex items-center justify-center shadow-2xl">
-                      <div class="text-center text-white">
-                        <div class="text-8xl mb-4">🎓👥</div>
-                        <p class="text-xl font-bold">Students Group</p>
+                    <div class='w-full h-72 bg-gradient-to-br from-blue-500 to-purple-600 rounded-3xl flex items-center justify-center shadow-2xl'>
+                      <div class='text-center text-white'>
+                        <div class='text-6xl sm:text-7xl mb-4'>🎓👥</div>
+                        <p class='text-lg sm:text-xl font-bold'>Students Group</p>
                       </div>
                     </div>
                   `;

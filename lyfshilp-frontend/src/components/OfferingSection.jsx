@@ -38,7 +38,7 @@ export default function OfferingsSection() {
                 </h3>
                 <p className="mt-4 text-base text-gray-600 leading-relaxed flex-grow">
                   AI-powered mock tests, expert faculty, and personalized strategies
-                  for CLAT, CUET, IPMAT/JIPMAT, and more.
+                  for CLAT, CUET, IPMAT/JIPMAT and more.
                 </p>
                 <a
                   href="https://lyfshilpacademy.co.in/"
@@ -98,12 +98,11 @@ export default function OfferingsSection() {
               </h3>
               <p className="mt-4 text-base text-gray-600 leading-relaxed flex-grow">
                 Special sessions for teachers and students focusing on AI, ICT
-                integration, and gamified learning methods delivered across
+                integration and gamified learning methods delivered across
                 schools and colleges to inspire future-ready education.
               </p>
               <a
-                href="https://lyfshilp.com/workshops"
-                target="_blank"
+                href="/workshop"
                 rel="noopener noreferrer"
                 className="mt-6 inline-flex items-center gap-2 self-start rounded-full bg-green-600 px-6 py-2 text-sm font-medium text-white hover:bg-green-700 transition"
               >
@@ -121,7 +120,7 @@ export default function OfferingsSection() {
               </h3>
               <p className="mt-4 text-base text-gray-600 leading-relaxed flex-grow">
                 Interactive, NEP 2020-aligned modules in AI, Finance, Law,
-                Communication, and Entrepreneurship for Classes 6–12.
+                Communication and Entrepreneurship for Classes 6–12.
               </p>
               <a
                 href="https://edumaniax.com/"

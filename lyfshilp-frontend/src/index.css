@@ -13,3 +13,41 @@ body {
   background-color: #ffffff;  /* Default White Background */
   color: #213547;             /* Default text color */
 }
+@keyframes scrollUp {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-50%);
+  }
+}
+
+@keyframes scrollDown {
+  0% {
+    transform: translateY(-50%);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+@keyframes bounce-slow {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+.animate-bounce-slow {
+  animation: bounce-slow 2s infinite;
+}
+
+
+.animate-scrollUp {
+  animation: scrollUp 25s linear infinite alternate;
+}
+
+.animate-scrollDown {
+  animation: scrollDown 25s linear infinite alternate;
+}
