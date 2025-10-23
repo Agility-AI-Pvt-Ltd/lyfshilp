@@ -9,25 +9,25 @@ export default function OlympiadDash() {
     {
       title: "Finance Management Olympiad",
       image: financeImg,
-      desc: "10 Questions • Quiz Type • 2 Weeks",
+      desc: "28 Questions • Quiz Type • 20 minutes",
       link: "/olympiad/finance",
     },
     {
       title: "Artificial Intelligence Olympiad",
       image: aiImg,
-      desc: "10 Questions • Quiz Type • 2 Weeks",
+      desc: "28 Questions • Quiz Type • 20 minutes",
       link: "/olympiad/ai",
     },
     {
       title: "Employability Skills Olympiad",
       image: employImg,
-      desc: "10 Questions • Quiz Type • 2 Weeks",
+      desc: "28 Questions • Quiz Type • 20 minutes",
       link: "/olympiad/employability",
     },
     {
       title: "Entrepreneurship Olympiad",
       image: entreImg,
-      desc: "10 Questions • Quiz Type • 2 Weeks",
+      desc: "28 Questions • Quiz Type • 20 minutes",
       link: "/olympiad/entrepreneurship",
     },
   ];

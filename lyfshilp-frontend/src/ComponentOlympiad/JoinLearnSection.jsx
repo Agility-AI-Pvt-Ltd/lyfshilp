@@ -18,7 +18,7 @@ export default function JoinLearnSection() {
         {/* Right Side Text */}
         <div className="bg-white p-6 md:p-8 rounded-xl shadow-sm">
           <h2 className="text-2xl md:text-3xl font-bold text-gray-900">
-            Join 15,000+ learners shaping their future with us!
+            Join 5,000+ learners shaping their future with us!
           </h2>
           <ul className="mt-4 space-y-2 text-gray-700 text-base md:text-lg">
             <li>• Prepare with AI-powered mock tests and Olympiads</li>
