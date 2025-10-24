@@ -1,6 +1,6 @@
 import { FaFacebookF, FaInstagram, FaLinkedinIn, FaYoutube } from "react-icons/fa";
 
-export default function Footer() {
+export default function Footerbefore() {
   return (
     <footer className="bg-gradient-to-r from-gray-900 to-gray-800 text-gray-300">
       {/* Main Container */}

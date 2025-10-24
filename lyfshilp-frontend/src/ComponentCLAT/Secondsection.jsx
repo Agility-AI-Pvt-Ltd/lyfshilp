@@ -1,5 +1,5 @@
 // src/components/Secondsection.jsx
-import waveBg from "../assets/cuetCimg/wave-bg.svg";
+import waveBg from "../assets/CuetCimg/wave-bg.svg";
 import { Layers, BarChart2, BookOpen, Users } from "lucide-react";
 
 export default function Secondsection() {

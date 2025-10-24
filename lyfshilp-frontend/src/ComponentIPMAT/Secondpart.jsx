@@ -1,4 +1,4 @@
-import waveBg from "../assets/cuetCimg/wave-bg.svg"; // 🟢 change folder if needed
+import waveBg from "../assets/CuetCimg/wave-bg.svg"; // 🟢 change folder if needed
 import { Brain, BarChart3, FileText, Users } from "lucide-react";
 
 export default function Secondpart() {

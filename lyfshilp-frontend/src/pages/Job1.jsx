@@ -61,7 +61,7 @@ const jobs = [
    }
 ];
 
-export default function JobBox({ jobId }) {
+export default function Job1({ jobId }) {
   const [copiedJobId, setCopiedJobId] = useState(null);
   const [activeForm, setActiveForm] = useState(null); // left | right | null
 
