@@ -1,5 +1,6 @@
 // src/components/OfferingsSection.jsx
 import React from "react";
+import { Link } from "react-router-dom";
 
 import classroomImg from "../assets/classroomImg.svg";
 import circleImg from "../assets/circleImg.png";
@@ -40,14 +41,12 @@ export default function OfferingsSection() {
                   AI-powered mock tests, expert faculty, and personalized strategies
                   for CLAT, CUET, IPMAT/JIPMAT and more.
                 </p>
-                <a
-                  href="https://lyfshilpacademy.co.in/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="mt-6 inline-flex items-center gap-2 self-start rounded-full bg-green-600 px-6 py-2 text-sm font-medium text-white hover:bg-green-700 transition"
-                >
-                  Learn More <span aria-hidden>→</span>
-                </a>
+              <Link
+                 to="/exam-prep"
+                className="mt-6 inline-flex items-center gap-2 self-start rounded-full bg-green-600 px-6 py-2 text-sm font-medium text-white hover:bg-green-700 transition"
+              >
+               Learn More <span aria-hidden>→</span>
+              </Link>
               </div>
             </div>
 
@@ -116,7 +115,7 @@ export default function OfferingsSection() {
             {/* EduManiax */}
             <div className="flex flex-col rounded-2xl border border-gray-200 bg-white p-8 shadow-md hover:shadow-lg transition">
               <h3 className="text-xl font-semibold text-gray-900">
-                EduManiax — Gamified Skill Learning
+                EduManiax - Gamified Skill Learning
               </h3>
               <p className="mt-4 text-base text-gray-600 leading-relaxed flex-grow">
                 Interactive, NEP 2020-aligned modules in AI, Finance, Law,
