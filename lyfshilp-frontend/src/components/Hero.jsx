@@ -1,4 +1,5 @@
 // src/components/Hero.jsx
+import { Link } from "react-router-dom";
 import heroImg from "../assets/hero-students.svg"; // Students image
 import copoweredLogo from "../assets/copowered.png"; // Co-powered logo
 
@@ -52,17 +53,15 @@ export default function Hero() {
 
           {/* CTA */}
           <div className="flex justify-center md:justify-start">
-            <a
-              href="https://lyfshilpacademy.co.in/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center bg-green-600 text-white px-5 sm:px-6 md:px-7 py-2.5 sm:py-3 rounded-full font-semibold shadow-lg hover:bg-green-700 hover:shadow-xl transform hover:scale-105 transition duration-300 group text-sm sm:text-base"
-            >
-              Start Learning
-              <span className="ml-2 text-base sm:text-lg group-hover:translate-x-1 transition-transform duration-300">
-                →
-              </span>
-            </a>
+          <Link
+          to="/exam-prep"
+          className="inline-flex items-center bg-green-600 text-white px-5 sm:px-6 md:px-7 py-2.5 sm:py-3 rounded-full font-semibold shadow-lg hover:bg-green-700 hover:shadow-xl transform hover:scale-105 transition duration-300 group text-sm sm:text-base"
+          >
+          Start Learning
+          <span className="ml-2 text-base sm:text-lg group-hover:translate-x-1 transition-transform duration-300">
+           →
+          </span>
+          </Link>
           </div>
         </div>
 
