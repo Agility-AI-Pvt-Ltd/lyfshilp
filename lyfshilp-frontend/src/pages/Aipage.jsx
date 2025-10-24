@@ -1,6 +1,6 @@
 import { useState } from "react";
 import api from "../api/axios";
-import aiImg from "../assets/Olympiadimg/AIimg.png";
+import aiImg from "../assets/Olympiadimg/Aiimg.png";
 
 export default function Aipage() {
   const [activeFaq, setActiveFaq] = useState(null);

@@ -18,11 +18,11 @@ import empowerMan2 from "../assets/workshopimg/empowerman2.svg";
 import empowerMan3 from "../assets/workshopimg/empowerman3.svg";
 
 // 📸 Gallery images
-import workshopMain from "../assets/workshopimg/workshopMain7.svg";
-import img1 from "../assets/workshopimg/workshopmain3.svg";
+import workshopMain from "../assets/workshopimg/workshopmain7.svg";
+import img1 from "../assets/workshopimg/workshopMain3.svg";
 import img2 from "../assets/workshopimg/workshopmain2.svg";
 import img3 from "../assets/workshopimg/workshopmain4.svg";
-import img4 from "../assets/workshopimg/workshopmain.svg";
+import img4 from "../assets/workshopimg/workshopMain.svg";
 import img5 from "../assets/workshopimg/workshopmain1.svg";
 import img6 from "../assets/workshopimg/workshopmain6.svg";
 import img7 from "../assets/workshopimg/workshopmain5.svg";

@@ -1,5 +1,5 @@
 // Small helper to open external links safely (target + rel) and optionally show an "external" icon.
-export default function ExternalLink({ href, children, className = "" }) {
+export default function ExternalLinks({ href, children, className = "" }) {
   return (
     <a
       href={href}

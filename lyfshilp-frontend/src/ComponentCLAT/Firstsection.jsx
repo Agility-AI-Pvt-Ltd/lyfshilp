@@ -1,8 +1,8 @@
 // src/components/Firstsection.jsx
-import clatHeroImg from "../assets/clatCimg/clat-hero.svg";
-import bgpath from "../assets/clatCimg/bg-path.svg";
+import clatHeroImg from "../assets/ClatCimg/clat-hero.svg";
+import bgpath from "../assets/ClatCimg/bg-path.svg";
 import clatLogo from "../assets/logos/clatimg.svg";
-import successIcon from "../assets/clatCimg/success-star.svg";
+import successIcon from "../assets/ClatCimg/success-star.svg";
 
 export default function Firstsection() {
   return (

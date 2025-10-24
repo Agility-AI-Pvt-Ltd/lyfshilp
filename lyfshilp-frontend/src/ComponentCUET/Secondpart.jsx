@@ -1,5 +1,5 @@
 // src/components/WhyWorkWithUs.jsx
-import waveBg from "../assets/cuetCimg/wave-bg.svg";
+import waveBg from "../assets/CuetCimg/wave-bg.svg";
 import {
   GraduationCap,
   Users,
@@ -7,7 +7,7 @@ import {
   Layers3,
 } from "lucide-react"; // 🎯 Updated icons
 
-export default function WhyWorkWithUs() {
+export default function Secondpart() {
   return (
     <section
       className="relative bg-[#FFF8EE] py-16 sm:py-20 px-4 sm:px-6 md:px-12 lg:px-20 overflow-hidden"

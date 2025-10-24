@@ -7,7 +7,7 @@ import StepLogo3 from "../assets/edumaniaxbox/logo3.svg";
 import StepLogo4 from "../assets/edumaniaxbox/logo4.svg";
 import MainCharacter from "../assets/edumaniaxbox/boy-character.svg";
 
-export default function EdumaniaxBox() {
+export default function EdumaniaxBoxSection() {
   const [showLogos, setShowLogos] = useState(true);
 
   const popOutLogos = [

@@ -4,7 +4,7 @@ import laptopImg from "../assets/laptop.svg";
 import academyLogo from "../assets/Lyfshilplogo.svg";
 import cursorImg from "../assets/podcastimg/cursor.png";
 
-export default function PodcastSection() {
+export default function Podcast() {
   const [subscribed, setSubscribed] = useState(false);
   const [showMainVideo, setShowMainVideo] = useState(false);
 

@@ -1,9 +1,9 @@
 // src/components/Firstpart.jsx
-import heroImg from "../assets/ipmatCimg/ipmat-hero.svg";
-import bgpath from "../assets/ipmatCimg/bgpath.svg";
-import percentimg from "../assets/ipmatCimg/percentimg.svg";
+import heroImg from "../assets/IpmatCimg/ipmat-hero.svg";
+import bgpath from "../assets/IpmatCimg/bgpath.svg";
+import percentimg from "../assets/IpmatCimg/percentimg.svg";
 import cuetlogo from "../assets/logos/ipmatimg.svg";
-import Caticonic from "../assets/cuetCimg/Caticonic.svg";
+import Caticonic from "../assets/CuetCimg/Caticonic.svg";
 
 export default function Firstpart() {
   return (
