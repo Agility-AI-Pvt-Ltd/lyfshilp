@@ -8,19 +8,16 @@ export default function Testimonials() {
     {
       text: "A very insightful, productive and all encompassing discussion! At the end of the session, I felt all my queries well answered, my fears and concerns addressed. I'd highly recommend parents to avail counselling sessions and discover actionable insights!",
       name: "mani sirohi",
-      role: "Upper-Intermediate · 6 Months",
       img: SaraImg,
     },
     {
       text: "Very professional and friendly environment , all the subjects related books provided by the faculty , teachers are very understanding and and will help you in all the doubts after classes, classes start on time and every topic is covered properly according to the schedule provided a day before on the WhatsApp group created!",
       name: "Amilia",
-      role: "Intermediate · 4 Months",
       img: AnnaImg,
     },
     {
       text: "I am extremely satisfied with the services provided by this institute. The quality of teaching is top-notch, and the faculty members are highly knowledgeable and dedicated. I truly appreciate the personalized attention given to each student.If you are looking for an institute that genuinely cares about students' success, I highly recommend joining this one!",
       name: "anjali Dhasmana",
-      role: "Upper-Intermediate · 6 Months",
       img: LiamImg,
     },
   ];
