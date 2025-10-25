@@ -7,27 +7,23 @@ import { User } from "lucide-react"; // 🟢 Added user icon
 const testimonials = [
   {
     id: 1,
-    name: "Vishakha Pandit",
-    title: "IIM Ahmedabad, MBA",
-    text: "Lyfshilp Academy helped me get into top IIMs. The teachers and mentors helped me in every possible way to succeed.",
+    name: "Manan Jani",
+    text: "Great IPMAT syllabus coaching! Very comprehensive approach",
   },
   {
     id: 2,
-    name: "Rahul Mehta",
-    title: "IIM Bangalore, MBA",
-    text: "The support and environment at Lyfshilp Academy pushed me to reach my potential.",
+    name: "Ojash Pandey",
+    text: "The faculty's guidence in IPMAT classes is outstanding.",
   },
   {
     id: 3,
-    name: "Sneha Sharma",
-    title: "IIM Calcutta, MBA",
-    text: "Amazing experience! The guidance I got was beyond expectations.",
+    name: "Aadya Bansal",
+    text: "The teachers and faculty is really supportive and helpful.I am very happy to be a part of this institute.",
   },
   {
     id: 4,
-    name: "Aman Gupta",
-    title: "IIM Indore, MBA",
-    text: "Excellent mentorship and personalized feedback helped me excel.",
+    name: "Swaroop yadav",
+    text: "The faculty's guidence in IPMAT classes is outstanding",
   },
 ];
 

@@ -6,28 +6,27 @@ import { User } from "lucide-react"; // 🟢 User icon from lucide-react
 const testimonials = [
   {
     id: 1,
-    name: "Trishaan Pandit",
-    title: "NALSAR Hyderabad, NMIMS Mumbai",
-    text: "Lyfshilp Academy helped me in proper preparation and guidance which eventually lead to my success in exam.",
+    name: "Paarijat Knojiya",
+    text: "Best CLAT coaching I’ve experienced! Highly recommend.",
   },
   {
     id: 2,
-    name: "Ananya Verma",
-    title: "NLSIU Bangalore, Symbiosis Pune",
-    text: "The teachers and mentors guided me throughout the journey, helping me improve speed and accuracy for CLAT.",
+    name: "Chhavi Chaudhary",
+    text: "I joined Lyfshilp Academy for their 2-year CLAT course, and honestly, it turned out to be a great decision. The teachers are really supportive and know how to make even tough concepts easy to understand. Their doubt sessions, mocks, and guidance throughout the preparation kept me consistent and confident. The study material is well-structured, and the regular tests helped me track my progress clearly.",
   },
   {
     id: 3,
-    name: "Rohit Mehra",
-    title: "NLU Delhi, Christ University",
-    text: "Daily mocks and feedback from mentors kept me on track and confident till the final exam day.",
+    name: "Yug Swaroop",
+    text: "Very nice faculty and good individual attention. Extremely knowledgable and supportive owner of the academy which is pretty rare nowadays.",
   },
   {
     id: 4,
-    name: "Sanya Kapoor",
-    title: "GNLU Gandhinagar, NMIMS Mumbai",
-    text: "The mentorship and study plan provided by Lyfshilp were instrumental in helping me reach my dream law school.",
+    name: "Aryanshi Gupta",
+    text: "This is the best academy I've been to so far, and I'm sure that opinion will not change. I really am in love with the nurturing environment we have here that promotes growth. The sessions we have on personality development or stress management are really very fruitful. I find that this coaching is very unique in terms of teaching as well. The time we spend here learning together is memorable and fun yet at the same time we learn new things together. What I love about this center is that it makes us want to do better rather than pressurizing or forcing us to do anything. We also get some amazing study tips here and there which I find amazingly helpful. Overall, I think the center is a gem. The faculty, content and the environment is top-tier.",
   },
+
+
+
 ];
 
 function Thirdsection() {
