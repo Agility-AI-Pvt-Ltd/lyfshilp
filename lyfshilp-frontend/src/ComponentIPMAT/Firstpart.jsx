@@ -78,21 +78,25 @@ export default function Firstpart() {
           </div>
         </div>
 
-        {/* Right Section - Hero Image */}
-        <div className="w-full md:w-1/2 relative flex justify-center items-center mb-2 md:mb-0">
-          <div className="relative max-w-[280px] sm:max-w-xs md:max-w-md lg:max-w-lg">
-            <img
-              src={heroImg}
-              alt="IPMAT students"
-              className="w-full h-auto relative z-20 drop-shadow-2xl"
-            />
-            <img
-              src={Caticonic}
-              alt="Decorative Icon"
-              className="absolute top-4 left-1/2 transform -translate-x-1/2 w-8 sm:w-10 md:w-12 animate-bounce z-30"
-            />
-          </div>
-        </div>
+{/* Right Section - Hero Image */}
+<div className="w-full md:w-1/2 relative flex justify-center items-center mb-2 md:mb-0 z-20 -mt-4 md:-mt-6">
+  <div className="relative max-w-[280px] sm:max-w-xs md:max-w-md lg:max-w-lg">
+    {/* Hero Image */}
+    <img
+      src={heroImg}
+      alt="IPMAT students"
+      className="w-full h-auto relative z-20 drop-shadow-2xl"
+    />
+
+    {/* Decorative Bouncing Icon */}
+    <img
+      src={Caticonic}
+      alt="Decorative Icon"
+      className="absolute top-[12%] sm:top-[10%] md:top-[12%] left-1/2 transform -translate-x-1/2 w-8 sm:w-10 md:w-12 animate-bounce z-30"
+    />
+  </div>
+</div>
+
       </div>
     </section>
   );

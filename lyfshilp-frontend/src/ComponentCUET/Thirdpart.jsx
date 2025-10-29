@@ -6,27 +6,23 @@ import { User } from "lucide-react"; // 🟢 Added user icon from lucide-react
 const testimonials = [
   {
     id: 1,
-    name: "Aditi Sharma",
-    title: "B.A. (Hons) Psychology, Delhi University",
-    text: "Lyfshilp Academy’s CUET preparation program gave me a clear roadmap and the right strategies to score well. The mock tests were a game changer!",
+    name: "Esha Gupta",
+    text: "This is a very good institution for CUET preparation. They provide us classes by high level and Professional Faculties. Faculties are very helpful and interactive. They try to clear our concepts and doubts. Overall i find my experience here very informative and helpful in the preparation process.❤️",
   },
   {
     id: 2,
-    name: "Rohan Verma",
-    title: "B.Com (Hons), Banaras Hindu University",
-    text: "Regular practice sessions and mentor feedback at Lyfshilp helped me stay confident throughout my CUET journey.",
+    name: "Shrikanth Varma",
+    text: "Excellent CUET Crash Course! I feel much more confident now.",
   },
   {
     id: 3,
-    name: "Sneha Patel",
-    title: "B.Sc. (Hons) Computer Science, Delhi University",
-    text: "The personalized doubt-solving and structured syllabus made CUET prep easy and effective. I couldn’t have asked for better guidance.",
+    name: "Subhadeep Debnath",
+    text: "Highly effective CUET classes! I've gained so much knowledge.",
   },
   {
     id: 4,
-    name: "Arjun Mehta",
-    title: "B.A. (Hons) Economics, Ashoka University",
-    text: "Thanks to Lyfshilp Academy’s mentors, I built a strong foundation and cracked CUET with confidence. Their support made all the difference!",
+    name: "Archit Mishra",
+    text: "The resources provided for CUET training are excellent!",
   },
 ];
 
