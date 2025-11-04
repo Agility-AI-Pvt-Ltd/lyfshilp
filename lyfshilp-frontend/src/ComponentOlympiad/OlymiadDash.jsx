@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom";
-import financeImg from "../assets/Olympiadimg/Financeimg.png";
-import aiImg from "../assets/Olympiadimg/Aiimg.png";
+import financeImg from "../assets/Olympiadimg/Financeimg.jpg";
+import aiImg from "../assets/Olympiadimg/Aiimg.jpg";
 import employImg from "../assets/Olympiadimg/Empimg.png";
-import entreImg from "../assets/Olympiadimg/Entrepimg.png";
+import entreImg from "../assets/Olympiadimg/Entrepimg.jpg";
 
 export default function OlympiadDash() {
   const olympiads = [

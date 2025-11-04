@@ -6,16 +6,17 @@ import Founder from "../components/Founder";
 import VideoMap from "../components/VideoMap";
 import CourseCard from "../components/CourseCard";
 import Exams from "../components/Exams";
-import DailyUpdate from "../pages/DailyUpdate"; 
+import DailyUpdate from "../pages/DailyUpdate";
 import ExamStats from "../components/ExamStats";
 import OfferingSection from "../components/OfferingSection";
 import FounderIntro from "../components/FounderIntro";
 import StepsSection from "../components/StepsSection";
 import EdumaniaxBoxSection from "../components/EdumaniaxBoxSection";
 import Testimonials from "../components/Testimonials";
+import VisionMission from "../components/VisionMission";
 import FaqSection from "../components/FaqSection";
 import ExploreYoutubeSection from "../components/ExploreYoutubeSection";
-
+import EdumaniaxVideo from "../components/EdumaniaxVideo";
 export default function Home() {
   const [courses, setCourses] = useState([]);
   const [testSeries, setTestSeries] = useState([]);
@@ -62,12 +63,16 @@ export default function Home() {
       <Hero />
 
       <ExamStats />
-
       <OfferingSection />
       <FounderIntro />
+      <EdumaniaxVideo />
       <StepsSection />
       <EdumaniaxBoxSection />
       <Testimonials />
+
+      {/* 🌿 Vision & Mission Section */}
+      <VisionMission />
+
       <FaqSection />
 
       {/* Courses Section

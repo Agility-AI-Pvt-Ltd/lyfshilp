@@ -15,7 +15,7 @@ export default function AboutLyfshilp() {
           </h2>
    <p className="mt-4 text-gray-600 text-sm sm:text-base md:text-lg leading-relaxed max-w-xs sm:max-w-md md:max-w-xl lg:max-w-2xl mx-auto text-center px-4 sm:px-6">
   Mentorship-driven learning that prepares students for exams, careers, 
-  and life — with AI-powered insights, skill-building courses, and 
+  and life with AI-powered insights, skill-building courses, and 
   future-ready guidance.
   </p>
 

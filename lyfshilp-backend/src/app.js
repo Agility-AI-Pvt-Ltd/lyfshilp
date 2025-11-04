@@ -16,6 +16,7 @@ import userRoutes from "./routes/userRoutes.js";
 import applicationRoutes from "./routes/applicationRoutes.js";
 import olympiadRoutes from "./routes/olympiadRoutes.js";
 import workshopRoutes from "./routes/workshopRoutes.js";
+import callbackRoutes from "./routes/callbackRoutes.js";
 
 const app = express();
 
@@ -60,13 +61,13 @@ app.use("/api/user",userRoutes);
 
 app.use("/api/applications", applicationRoutes);
 app.use("/api/olympiad",olympiadRoutes);
-app.use("/api/workshop",workshopRoutes)
-
+app.use("/api/workshop",workshopRoutes);
+app.use("/api/callback", callbackRoutes);
 
 
 // --- Health check ---
 app.get("/api/health", (req, res) => {
-  res.json({ status: "ok", service: "Lyfshilp Academy API 🚀" });
+  res.json({ status: "ok", service: "Lyfshilp Academy API" });
 });
 
 // --- Global Error handler ---

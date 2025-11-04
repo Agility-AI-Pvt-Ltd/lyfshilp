@@ -5,27 +5,34 @@ import api from "../api/axios";
 import teacherIcon from "../assets/workshopimg/teacherIcon.svg";
 import studentIcon from "../assets/workshopimg/studentIcon.svg";
 import corporateIcon from "../assets/workshopimg/corporateIcon.svg";
-import studySmartIcon from "../assets/workshopimg/studysmartIcon.svg";
-import communicationIcon from "../assets/workshopimg/communicationIcon.svg";
-import creativityIcon from "../assets/workshopimg/creativityIcon.svg";
+import studySmartIcon from "../assets/workshopimg/Micon2.svg";
+import communicationIcon from "../assets/workshopimg/Micon3.svg";
+import creativityIcon from "../assets/workshopimg/Micon4.svg";
 import boyLeft from "../assets/workshopimg/boyleft.svg";
 import boyRight from "../assets/workshopimg/boyright.svg";
 import clickArrow from "../assets/workshopimg/clickArrow.svg";
-import inculcationIcon from "../assets/workshopimg/image769.svg";
+import inculcationIcon from "../assets/workshopimg/Micon1.svg";
+import logicIcon from "../assets/workshopimg/Micon5.svg";
+import gamingIcon from "../assets/workshopimg/Micon6.svg";
+
 
 import empowerMan1 from "../assets/workshopimg/empowerman1.svg";
 import empowerMan2 from "../assets/workshopimg/empowerman2.svg";
 import empowerMan3 from "../assets/workshopimg/empowerman3.svg";
 
 // 📸 Gallery images
-import workshopMain from "../assets/workshopimg/workshopmain7.svg";
-import img1 from "../assets/workshopimg/workshopMain3.svg";
-import img2 from "../assets/workshopimg/workshopmain2.svg";
-import img3 from "../assets/workshopimg/workshopmain4.svg";
-import img4 from "../assets/workshopimg/workshopMain.svg";
-import img5 from "../assets/workshopimg/workshopmain1.svg";
-import img6 from "../assets/workshopimg/workshopmain6.svg";
-import img7 from "../assets/workshopimg/workshopmain5.svg";
+import workshopMain from "/images/workshopmain7.svg";
+import img1 from "/images/workshopMain3.svg";
+import img2 from "/images/workshopmain2.svg";
+import img3 from "/images/workshopmain4.svg";
+import img4 from "/images/workshopMain.svg";
+import img5 from "/images/workshopmain1.svg";
+import img6 from "/images/workshopmain6.svg";
+import img7 from "/images/workshopmain5.svg";
+import SchoolLogo from "../components/SchoolLogo";
+
+//career Fair 
+import CareerFairSection from "../components/CareerFairSection";
 
 export default function Workshop() {
   const handleWhatsAppClick = () => {
@@ -149,7 +156,7 @@ export default function Workshop() {
 
   return (
     <div className="font-sans mt-14 sm:mt-18 space-y-22 sm:space-y-24">
-            {/* 🌟 Hero Section */}
+        {/* 🌟 Hero Section */}
       <section className="text-center px-4 py-10 sm:py-8 bg-white">
         <h1 className="text-2xl sm:text-6xl font-bold text-gray-900">
           Workshops that Inspire
@@ -223,6 +230,9 @@ export default function Workshop() {
         )}
       </section>
 
+      <div> <CareerFairSection /> </div> 
+      <div> <SchoolLogo/> </div> 
+
       {/* 🌱 Empower Section */}
       <section className="bg-[#FFF8EE] py-10 px-4 sm:px-8 flex flex-col md:flex-row items-center justify-center gap-8 sm:gap-12 relative overflow-hidden">
         {/* Left Side Text */}
@@ -271,13 +281,17 @@ export default function Workshop() {
         </div>
       </section>
 
-      {/* 💡 Trending Topics with Popup Animation */}
-      <section ref={sectionRef} className="py-8 px-4 sm:px-8 bg-white">
-        <h3 className="text-center text-xl sm:text-4xl font-bold text-gray-900 mb-10">
-          Most Trending Topics from Workshops
-        </h3>
+{/* 💡 Trending Topics — Infinite Right-to-Left Scroll */}
+<section className="py-10 px-4 sm:px-8 bg-white">
+ <h3 className="text-center text-xl sm:text-4xl font-bold text-gray-900 mb-10">
+  Most Trending Topics from <span className="text-green-700">Workshops</span>
+</h3>
 
-        <div className="flex flex-wrap justify-center gap-6">
+  <div className="overflow-hidden relative">
+    <div className="flex animate-scrollLoop hover:[animation-play-state:paused] space-x-6 w-max">
+      {/* 🔁 Repeat twice for seamless infinite scroll */}
+      {[...Array(2)].map((_, loopIndex) => (
+        <div key={loopIndex} className="flex space-x-6">
           {[
             {
               icon: inculcationIcon,
@@ -291,43 +305,84 @@ export default function Workshop() {
             },
             {
               icon: communicationIcon,
-              bgColor: "bg-[#D8F3DC]",
+              bgColor: "bg-[#FFE5B4]",
               text: "Communication workshop on Conflict Resolution",
             },
             {
               icon: creativityIcon,
+              bgColor: "bg-[#D8F3DC]",
+              text: "AI-User Capacity Building",
+            },
+            {
+              icon: inculcationIcon,
               bgColor: "bg-[#FFE5B4]",
-              text: "AI – User Capacity Building",
+              text: "Career Exploration in the New Age",
+            },
+            {
+              icon: logicIcon,
+              bgColor: "bg-[#D8F3DC]",
+              text: "Future Skills for the AI Age",
+            },
+            {
+              icon: studySmartIcon,
+              bgColor: "bg-[#FFF3B0]",
+              text: "Smart Preparation for CUET, CLAT & IPMAT",
+            },            {
+              icon: creativityIcon,
+              bgColor: "bg-[#FFE5B4]",
+              text: "Learn How to Learn: Scientific Study Techniques",
+            },            {
+              icon: communicationIcon,
+              bgColor: "bg-[#D8F3DC]",
+              text: "Communication, Collaboration & Conflict Resolution",
+            },            {
+              icon: logicIcon,
+              bgColor: "bg-[#FFF3B0]",
+              text: "AI in Education: From Tools to Transformation",
+            },            {
+              icon: creativityIcon,
+              bgColor: "bg-[#FFE5B4]",
+              text: "Entrepreneurship & Innovation for Teens",
+            },            {
+              icon: gamingIcon,
+              bgColor: "bg-[#FFF3B0]",
+              text: "Critical Thinking & Problem Solving MasterClass",
+            },            {
+              icon: inculcationIcon,
+              bgColor: "bg-[#D8F3DC]",
+              text: "Building Growth Mindset in Classrooms",
+            },            {
+              icon: logicIcon,
+              bgColor: "bg-[#FFF3D0]",
+              text: "Building a Growth Mindset in Classrooms",
             },
           ].map(({ icon, bgColor, text }, i) => (
             <div
-              key={i}
-              className={`flex items-center rounded-2xl overflow-hidden bg-white shadow-md border border-gray-100 w-[300px] sm:w-[360px] hover:shadow-lg transition-all duration-300 ${
-                isVisible ? "animate-popupCard" : "opacity-0 translate-y-8"
-              }`}
-              style={{
-                animationDelay: `${i * 150}ms`,
-              }}
+              key={`${loopIndex}-${i}`}
+              className="flex items-center rounded-2xl overflow-hidden bg-white shadow-md border border-gray-100 w-[280px] sm:w-[340px] flex-shrink-0"
             >
               <div
-                className={`${bgColor} flex items-center justify-center w-28 h-28 flex-shrink-0`}
+                className={`${bgColor} flex items-center justify-center w-24 h-24 flex-shrink-0`}
               >
                 <img
                   src={icon}
                   alt={text}
-                  className="w-16 h-16 sm:w-20 sm:h-20 object-contain transform transition-transform duration-300 hover:scale-105"
+                  className="w-14 h-14 sm:w-16 sm:h-16 object-contain transform transition-transform duration-300 hover:scale-105"
                 />
               </div>
 
-              <div className="px-5 py-3 text-left">
-                <h4 className="font-semibold text-gray-900 text-base sm:text-lg leading-snug">
+              <div className="px-4 py-3 text-left">
+                <h4 className="font-semibold text-gray-900 text-sm sm:text-base leading-snug">
                   {text}
                 </h4>
               </div>
             </div>
           ))}
         </div>
-      </section>
+      ))}
+    </div>
+  </div>
+</section>
 
       {/* 📞 Contact Form */}
       <section ref={formRef} className="bg-[#FFF8EE] py-12 px-4 sm:px-8 relative overflow-hidden">
@@ -410,36 +465,109 @@ export default function Workshop() {
         </div>
       )}
 
-      {/* 🎨 All Animation Styles */}
-      <style>{`
-        @keyframes rotateImage1 {
-          0% {opacity:1;z-index:30;transform:scale(1)rotate(0)translateX(0);}
-          33.33% {opacity:0.6;z-index:10;transform:scale(0.85)rotate(8deg)translateX(40px);}
-          66.66% {opacity:0.6;z-index:10;transform:scale(0.85)rotate(-8deg)translateX(-40px);}
-          100% {opacity:1;z-index:30;transform:scale(1)rotate(0)translateX(0);}
-        }
-        @keyframes rotateImage2 {
-          0% {opacity:0.6;z-index:10;transform:scale(0.85)rotate(8deg)translateX(40px);}
-          33.33% {opacity:0.6;z-index:10;transform:scale(0.85)rotate(-8deg)translateX(-40px);}
-          66.66% {opacity:1;z-index:30;transform:scale(1)rotate(0)translateX(0);}
-          100% {opacity:0.6;z-index:10;transform:scale(0.85)rotate(8deg)translateX(40px);}
-        }
-        @keyframes rotateImage3 {
-          0% {opacity:0.6;z-index:10;transform:scale(0.85)rotate(-8deg)translateX(-40px);}
-          33.33% {opacity:1;z-index:30;transform:scale(1)rotate(0)translateX(0);}
-          66.66% {opacity:0.6;z-index:10;transform:scale(0.85)rotate(8deg)translateX(40px);}
-          100% {opacity:0.6;z-index:10;transform:scale(0.85)rotate(-8deg)translateX(-40px);}
-        }
-        .animate-rotateImage1{animation:rotateImage1 9s infinite ease-in-out;}
-        .animate-rotateImage2{animation:rotateImage2 9s infinite ease-in-out;}
-        .animate-rotateImage3{animation:rotateImage3 9s infinite ease-in-out;}
-        @keyframes popupCard{
-          0%{opacity:0;transform:translateY(30px)scale(0.9);}
-          60%{transform:translateY(-8px)scale(1.02);}
-          100%{opacity:1;transform:translateY(0)scale(1);}
-        }
-        .animate-popupCard{animation:popupCard 0.6s ease-out forwards;}
-      `}</style>
+  <style>
+  {`
+    /* 🌟 Rotating Images Animation */
+    @keyframes rotateImage1 {
+      0% { 
+        opacity: 1; 
+        z-index: 30; 
+        transform: scale(1) rotate(0deg) translateX(0); 
+      }
+      33.33% { 
+        opacity: 0.6; 
+        z-index: 10; 
+        transform: scale(0.85) rotate(8deg) translateX(40px); 
+      }
+      66.66% { 
+        opacity: 0.6; 
+        z-index: 10; 
+        transform: scale(0.85) rotate(-8deg) translateX(-40px); 
+      }
+      100% { 
+        opacity: 1; 
+        z-index: 30; 
+        transform: scale(1) rotate(0deg) translateX(0); 
+      }
+    }
+
+    @keyframes rotateImage2 {
+      0% { 
+        opacity: 0.6; 
+        z-index: 10; 
+        transform: scale(0.85) rotate(8deg) translateX(40px); 
+      }
+      33.33% { 
+        opacity: 0.6; 
+        z-index: 10; 
+        transform: scale(0.85) rotate(-8deg) translateX(-40px); 
+      }
+      66.66% { 
+        opacity: 1; 
+        z-index: 30; 
+        transform: scale(1) rotate(0deg) translateX(0); 
+      }
+      100% { 
+        opacity: 0.6; 
+        z-index: 10; 
+        transform: scale(0.85) rotate(8deg) translateX(40px); 
+      }
+    }
+
+    @keyframes rotateImage3 {
+      0% { 
+        opacity: 0.6; 
+        z-index: 10; 
+        transform: scale(0.85) rotate(-8deg) translateX(-40px); 
+      }
+      33.33% { 
+        opacity: 1; 
+        z-index: 30; 
+        transform: scale(1) rotate(0deg) translateX(0); 
+      }
+      66.66% { 
+        opacity: 0.6; 
+        z-index: 10; 
+        transform: scale(0.85) rotate(8deg) translateX(40px); 
+      }
+      100% { 
+        opacity: 0.6; 
+        z-index: 10; 
+        transform: scale(0.85) rotate(-8deg) translateX(-40px); 
+      }
+    }
+
+    .animate-rotateImage1 {
+      animation: rotateImage1 9s infinite ease-in-out;
+    }
+    .animate-rotateImage2 {
+      animation: rotateImage2 9s infinite ease-in-out;
+    }
+    .animate-rotateImage3 {
+      animation: rotateImage3 9s infinite ease-in-out;
+    }
+
+    /* 💫 Popup Card Animation */
+    @keyframes popupCard {
+      0% {
+        opacity: 0;
+        transform: translateY(30px) scale(0.9);
+      }
+      60% {
+        transform: translateY(-8px) scale(1.02);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    .animate-popupCard {
+      animation: popupCard 0.6s ease-out forwards;
+    }
+  `}
+</style>
+
     </div>
   );
 }

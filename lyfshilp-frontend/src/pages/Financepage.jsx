@@ -1,6 +1,6 @@
 import { useState } from "react";
 import api from "../api/axios";
-import financeImg from "../assets/Olympiadimg/Financeimg.png";
+import financeImg from "../assets/Olympiadimg/Financeimg.jpg";
 
 export default function Financepage() {
   const [activeFaq, setActiveFaq] = useState(null);

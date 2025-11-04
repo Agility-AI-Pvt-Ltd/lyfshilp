@@ -1,6 +1,8 @@
 import Firstsection from "../ComponentCLAT/Firstsection.jsx";
 import Secondsection from "../ComponentCLAT/Secondsection.jsx";
 import Thirdsection from "../ComponentCLAT/Thirdsection.jsx";
+import CallBackForm from "../components/CallBackForm.jsx";
+import VerbalAbility from "../components/VerbalAbility.jsx";
 
 
 export default function ClatPage() {
@@ -9,6 +11,8 @@ export default function ClatPage() {
 
       <Firstsection />
       <Secondsection />
+      <VerbalAbility/>
+      <CallBackForm pageName="CLAT" />
       <Thirdsection/>  
     
       

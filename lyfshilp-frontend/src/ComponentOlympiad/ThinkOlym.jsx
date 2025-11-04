@@ -1,5 +1,5 @@
 
-import olympiadImg from "../assets/Olympiadimg/thinker.svg"; 
+import olympiadImg from "/thinker.svg"; 
 
 export default function ThinkOlym() {
   return (

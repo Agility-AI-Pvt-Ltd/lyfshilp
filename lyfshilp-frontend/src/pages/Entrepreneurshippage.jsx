@@ -1,6 +1,6 @@
 import { useState } from "react";
 import api from "../api/axios";
-import entrepreneurshipImg from "../assets/Olympiadimg/Entrepimg.png";
+import entrepreneurshipImg from "../assets/Olympiadimg/Entrepimg.jpg";
 
 export default function Entrepreneurshippage() {
   const [activeFaq, setActiveFaq] = useState(null);

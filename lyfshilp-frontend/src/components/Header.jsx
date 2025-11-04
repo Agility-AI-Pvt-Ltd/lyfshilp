@@ -55,7 +55,7 @@ export default function Header() {
 
           <Link to="/olympiad" className="hover:text-green-600 transition whitespace-nowrap">Olympiad</Link>
           <Link to="/podcast" className="hover:text-green-600 transition whitespace-nowrap">Podcast</Link>
-          <Link to="/workshop" className="hover:text-green-600 transition whitespace-nowrap">Workshop</Link>
+          <Link to="/workshop" className="hover:text-green-600 transition whitespace-nowrap">Workshops</Link>
 
           {/* Careers Dropdown */}
           <div className="relative">
