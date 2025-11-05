@@ -6,7 +6,7 @@ import jobLogo from "../assets/career/Lyfshilp-logo.svg";
 const jobs = [
   {
     id: 1,
-    title: "Graphic Designer & Vedio Editor Internship",
+    title: "Graphic Designer & Video Editor Internship",
     location: "Delhi",
     mode: "Full-Time",
     salary: "4–5 LPA",

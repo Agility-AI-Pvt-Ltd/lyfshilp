@@ -58,6 +58,17 @@ model Workshop {
   updatedAt      DateTime @updatedAt
 }
 
+model CallbackRequest {
+  id            Int      @id @default(autoincrement())
+  name          String
+  phone         String
+  studentClass  String
+  stream        String
+  school        String
+  pageName      String?
+  createdAt     DateTime @default(now())
+}
+
 model Course {
   id          Int       @id @default(autoincrement())
   title       String

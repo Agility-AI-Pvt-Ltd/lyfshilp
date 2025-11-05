@@ -1,5 +1,5 @@
 // src/components/RecognitionSection.jsx
-import recognitionImg from "../assets/Olympiadimg/recognition.svg"; // <-- apne image ka actual naam update karo
+import recognitionImg from "/recognition.svg"; // <-- apne image ka actual naam update karo
 
 export default function RecogSection() {
   return (

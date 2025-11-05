@@ -2,9 +2,9 @@ import { useState } from "react";
 
 const faqs = [
   {
-    question: "Why should I prepare for entrance exams after class 12?",
+    question: "Do I need coaching for CUET, IPMAT and CLAT?",
     answer:
-      "They help you get admission into top colleges and universities on merit",
+      "Yes, Coaching gives structures , Stratergies and Expert Guidance. It helps to build both accuracy and speed.",
   },
   {
     question: "When should I start preparing?",
@@ -12,14 +12,14 @@ const faqs = [
       "Ideally from class 11, but 6-8 months of focused study is enough",
   },
   {
+    question: "Why should I prepare for entrance exams after class 12?",
+    answer:
+      "They help you get admission into top colleges and universities on merit",
+  },
+  {
     question: "Are board exam marks important?",
     answer:
       "Yes, minimum eligibility (50-60%) is required along with the entrance exam.",
-  },
-  {
-    question: "Do I need coaching for CUET, IPMAT and CLAT?",
-    answer:
-      "Yes, coaching gives structures, strategies and expert guidance",
   },
   {
     question: "Why are mock test important?",
@@ -32,14 +32,19 @@ const faqs = [
       "With Expert faculty, small batches, study material, mocks and full admission support.",
   },
   {
-    question: "How does Edumaniax help student?",
+    question: " Will Lyshilp Academy also provide the counselling through out?",
     answer:
-      "Edumaniax helps students by building 21st-century skills like AI, finance , communication and leadership through hands-on learning, preparing them for future success",
+      " yes the mentors and counsellors do the hand holding till the the student is landed to college.",
   },
   {
     question: "How can I balance board and entrance preparation?",
     answer:
       "By following a timetable and practising smart study daily.",
+  },
+  {
+    question: "How does Edumaniax help student?",
+    answer:
+      "Edumaniax helps students by building 21st-century skills like AI, finance , communication and leadership through hands-on learning, preparing them for future success",
   },
 ];
 

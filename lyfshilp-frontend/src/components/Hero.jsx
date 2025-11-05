@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import heroImg from "../assets/hero-students.svg";
+import heroImg from "/hero-students.svg";
 import copoweredLogo from "../assets/copowered.png";
 
 export default function Hero() {

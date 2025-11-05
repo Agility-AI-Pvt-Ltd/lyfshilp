@@ -60,7 +60,7 @@ export default function ExploreYoutubeSection() {
             <div className="relative w-full aspect-video rounded-xl overflow-hidden">
               <iframe
                 className="absolute top-0 left-0 w-full h-full"
-                src="https://www.youtube.com/embed/mZzXvoVX_4c"
+                src="https://www.youtube.com/embed/1Bp5oBhTxf8?si=IqsW7vU73apdc1nQ"
                 title="Lyfshilp Academy Teaser"
                 frameBorder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
@@ -69,7 +69,6 @@ export default function ExploreYoutubeSection() {
               ></iframe>
             </div>
           </div>
-
         </div>
       </div>
     </section>

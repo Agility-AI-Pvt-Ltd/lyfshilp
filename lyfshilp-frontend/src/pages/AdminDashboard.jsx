@@ -40,18 +40,21 @@ export default function AdminDashboard() {
   const [applications, setApplications] = useState([]);
   const [olympiads, setOlympiads] = useState([]);
   const [workshops, setWorkshops] = useState([]);
+  const [callbacks, setCallbacks] = useState([]);
 
   // Search states
   const [userSearch, setUserSearch] = useState("");
   const [appSearch, setAppSearch] = useState("");
   const [olySearch, setOlySearch] = useState("");
   const [workSearch, setWorkSearch] = useState("");
+  const [callbackSearch, setCallbackSearch] = useState("");
 
   // Sort toggles
   const [userSortAsc, setUserSortAsc] = useState(true);
   const [appSortAsc, setAppSortAsc] = useState(true);
   const [olySortAsc, setOlySortAsc] = useState(true);
   const [workSortAsc, setWorkSortAsc] = useState(true);
+  const [callbackSortAsc, setCallbackSortAsc] = useState(true);
 
   // Modal and message
   const [showModal, setShowModal] = useState(false);
@@ -83,33 +86,34 @@ export default function AdminDashboard() {
     if (user && user.role?.toLowerCase() === "admin") fetchAllData();
   }, [user]);
 
-  const fetchAllData = async () => {
-    // Save scroll position before fetching
-    const scrollPosition = window.pageYOffset || document.documentElement.scrollTop;
-    
-    try {
-      const headers = { Authorization: `Bearer ${token}` };
-      const [olyRes, appRes, userRes, workRes] = await Promise.all([
-        api.get("/olympiad/all", { headers }),
-        api.get("/applications/all", { headers }),
-        api.get("/user/all", { headers }),
-        api.get("/workshop/all", { headers }),
-      ]);
+const fetchAllData = async () => {
+  const scrollPosition = window.pageYOffset || document.documentElement.scrollTop;
 
-      setOlympiads(olyRes.data.data || olyRes.data || []);
-      setApplications(appRes.data.data || appRes.data || []);
-      setUsers(userRes.data.users || userRes.data || []);
-      setWorkshops(workRes.data.data || workRes.data || []);
-      
-      // Restore scroll position after data is set
-      setTimeout(() => {
-        window.scrollTo(0, scrollPosition);
-      }, 0);
-    } catch (err) {
-      console.error(err);
-      showMessage("❌ Failed to load dashboard data", "error");
-    }
-  };
+  try {
+    const headers = { Authorization: `Bearer ${token}` };
+    const [olyRes, appRes, userRes, workRes, callbackRes] = await Promise.all([
+      api.get("/olympiad/all", { headers }),
+      api.get("/applications/all", { headers }),
+      api.get("/user/all", { headers }),
+      api.get("/workshop/all", { headers }),
+      api.get("/callback/all", { headers }),
+    ]);
+
+    setOlympiads(olyRes.data.data || olyRes.data || []);
+    setApplications(appRes.data.data || appRes.data || []);
+    setUsers(userRes.data.users || userRes.data || []);
+    setWorkshops(workRes.data.data || workRes.data || []);
+    setCallbacks(callbackRes.data.data || callbackRes.data || []);
+
+    setTimeout(() => {
+      window.scrollTo(0, scrollPosition);
+    }, 0);
+  } catch (err) {
+    console.error(err);
+    showMessage("❌ Failed to load dashboard data", "error");
+  }
+};
+
 
   if (loading) return <div className="text-center mt-10 text-gray-600">Loading Dashboard...</div>;
   if (!user || user.role?.toLowerCase() !== "admin") return <Navigate to="/login" replace />;
@@ -147,6 +151,15 @@ export default function AdminDashboard() {
       if (!modalData.id && (!modalData.password || modalData.password.length < 6)) 
         errors.password = "Password required (min 6 chars)";
     }
+    if (modalType === "callback") {
+      if (!validateName(modalData.name || "")) errors.name = "Valid name required";
+      if (!validatePhone(modalData.phone || "")) errors.phone = "Valid phone required";
+      if (!modalData.studentClass?.trim()) errors.studentClass = "Class required";
+      if (!modalData.stream?.trim()) errors.stream = "Stream required";
+      if (!modalData.school?.trim()) errors.school = "School required";
+      if (!modalData.pageName?.trim()) errors.pageName = "Page name required";
+}
+
 
     if (modalType === "workshop") {
       if (!validateName(modalData.name || "")) errors.name = "Valid name required";
@@ -273,7 +286,19 @@ export default function AdminDashboard() {
         role: "",
         password: "",
       };
-    } else if (type === "workshop") {
+      
+    } 
+    else if (type === "callback") {
+   defaultData = {
+    name: "",
+    phone: "",
+    studentClass: "",
+    stream: "",
+    school: "",
+    pageName: "",
+  };
+}
+  else if (type === "workshop") {
       defaultData = {
         name: "",
         phone: "",
@@ -337,6 +362,9 @@ export default function AdminDashboard() {
       password: { label: "Password (min 6 chars)", type: "password", required: true },
       organization: { label: "Organization", type: "text", required: true },
       message: { label: "Message", type: "textarea", required: true },
+      studentClass: { label: "Class", type: "text", required: true },
+      stream: { label: "Stream", type: "text", required: true },
+      pageName: { label: "Page Name", type: "text", required: true },
     };
     return configs[key] || { label: key, type: "text", required: false };
   };
@@ -418,6 +446,34 @@ export default function AdminDashboard() {
             </>
           )}
         />
+{/* 🧑‍🏫 Callback Requests */}
+  <DataTable
+  title="📞 Callback Requests"
+  data={filterData(callbacks, callbackSearch, callbackSortAsc, "createdAt", ["name", "phone", "pageName", "school"])}
+  searchValue={callbackSearch}
+  setSearch={setCallbackSearch}
+  sortAsc={callbackSortAsc}
+  setSortAsc={setCallbackSortAsc}
+  onAdd={() => openModal("callback")}
+  onExportExcel={() => exportToExcel(callbacks, "callback_requests")}
+  columns={["S.No", "Name", "Phone", "Class", "Stream", "School", "Page Name", "Created At", "Actions"]}
+  renderRow={(c, index) => (
+    <>
+      <td className="p-2 border">{index + 1}</td>
+      <td className="p-2 border">{c.name}</td>
+      <td className="p-2 border">{c.phone}</td>
+      <td className="p-2 border">{c.studentClass}</td>
+      <td className="p-2 border">{c.stream}</td>
+      <td className="p-2 border">{c.school}</td>
+      <td className="p-2 border">{c.pageName}</td>
+      <td className="p-2 border">{new Date(c.createdAt).toLocaleString()}</td>
+      <td className="p-2 border text-center space-x-2">
+        <button onClick={() => openModal("callback", c)} className="text-blue-600 hover:underline">Edit</button>
+        <button onClick={() => handleDelete("callback", c.id)} className="text-red-600 hover:underline">Delete</button>
+      </td>
+    </>
+  )}
+/>
 
         {/* 💼 Job Applications */}
         <DataTable
@@ -585,6 +641,8 @@ function DataTable({
   columns,
   renderRow,
 }) {
+  const [showAll, setShowAll] = useState(false);
+  const displayData = showAll ? data : data.slice(0, 4);
   return (
     <div className="bg-white shadow-md rounded-lg p-4 overflow-x-auto">
       <div className="flex flex-col sm:flex-row justify-between items-center mb-3 gap-3">
@@ -640,8 +698,8 @@ function DataTable({
             </tr>
           </thead>
           <tbody>
-            {data.length ? (
-              data.map((item, index) => <tr key={item.id}>{renderRow(item, index)}</tr>)
+            {displayData.length ? (
+              displayData.map((item, index) => <tr key={item.id}>{renderRow(item, index)}</tr>)
             ) : (
               <tr>
                 <td colSpan={columns.length} className="text-center p-3 text-gray-500">
@@ -652,6 +710,31 @@ function DataTable({
           </tbody>
         </table>
       </div>
-    </div>
+       {/* View All / Show Less Button */}
+      {data.length > 4 && (
+        <div className="flex justify-center mt-4">
+          <button
+            onClick={() => setShowAll(!showAll)}
+            className="bg-green-600 hover:bg-green-700 text-white px-6 py-2 rounded-lg font-medium transition-all duration-300 flex items-center gap-2"
+          >
+            {showAll ? (
+              <>
+                Show Less
+                <svg className="w-2 h-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 15l7-7 7 7" />
+                </svg>
+              </>
+            ) : (
+              <>
+                View All ({data.length} entries)
+                <svg className="w-2 h-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                </svg>
+              </>
+            )}
+          </button>
+        </div>
+      )}
+      </div>
   );
 }

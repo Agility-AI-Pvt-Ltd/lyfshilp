@@ -37,7 +37,7 @@ import Internships from "./pages/Internships";
 
 import Header from "./components/Header";
 import Footer from "./components/Footer";
-import ExploreYoutubeSection from "./components/ExploreYoutubeSection";
+
 
 import { AuthProvider } from "./contexts/AuthContext";
 import AdminDashboard from "./pages/AdminDashboard";
@@ -104,9 +104,6 @@ export default function App() {
             />
           </Routes>
         </main>
-
-        {/* ExploreYoutubeSection */}
-        <ExploreYoutubeSection />
 
         {/* Footer */}
         <Footer />
