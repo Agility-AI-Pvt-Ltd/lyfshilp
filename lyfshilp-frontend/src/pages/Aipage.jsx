@@ -1,5 +1,5 @@
 import { useState } from "react";
-import api from "../api/axios";
+import api from "../api/axios.js";
 import aiImg from "../assets/Olympiadimg/Aiimg.jpg";
 
 export default function Aipage() {

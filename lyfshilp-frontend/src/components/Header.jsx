@@ -1,7 +1,7 @@
 import { useState, useRef, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import logo from "../assets/logo.png";
-import { AuthContext } from "../contexts/AuthContext";
+import { AuthContext } from "../contexts/AuthContext.jsx";
 
 export default function Header() {
   const [careerOpen, setCareerOpen] = useState(false);

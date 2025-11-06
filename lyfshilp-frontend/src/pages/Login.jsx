@@ -1,5 +1,5 @@
 import { useState, useContext } from "react";
-import { AuthContext } from "../contexts/AuthContext";
+import { AuthContext } from "../contexts/AuthContext.jsx";
 import { useNavigate, Link } from "react-router-dom";
 import LightBulb from "../assets/Login_signup/light-bulb.svg";
 

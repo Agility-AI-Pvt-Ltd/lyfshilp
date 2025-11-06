@@ -1,9 +1,6 @@
-import { useEffect, useState } from "react";
-import api from "../api/axios";
-
-import AboutLyfshilp from "../ComponentsAboutus/AboutLyfshilp";
-import SuccessNumbers from "../ComponentsAboutus/SuccessNumbers";
-import FounderSection from "../ComponentsAboutus/FoundrerSection"
+import AboutLyfshilp from "../ComponentsAboutus/AboutLyfshilp.jsx";
+import SuccessNumbers from "../ComponentsAboutus/SuccessNumbers.jsx";
+import FounderSection from "../ComponentsAboutus/FoundrerSection.jsx"
 
 export default function AboutUs() {
   return (

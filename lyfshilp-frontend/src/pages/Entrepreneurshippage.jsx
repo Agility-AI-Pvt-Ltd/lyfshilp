@@ -1,5 +1,5 @@
 import { useState } from "react";
-import api from "../api/axios";
+import api from "../api/axios.js";
 import entrepreneurshipImg from "../assets/Olympiadimg/Entrepimg.jpg";
 
 export default function Entrepreneurshippage() {

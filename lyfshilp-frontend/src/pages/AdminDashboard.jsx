@@ -1,7 +1,7 @@
 import { useEffect, useState, useContext } from "react";
 import { Navigate } from "react-router-dom";
-import api from "../api/axios";
-import { AuthContext } from "../contexts/AuthContext";
+import api from "../api/axios.js";
+import { AuthContext } from "../contexts/AuthContext.jsx";
 import { CSVLink } from "react-csv";
 import * as XLSX from "xlsx";
 import { saveAs } from "file-saver";

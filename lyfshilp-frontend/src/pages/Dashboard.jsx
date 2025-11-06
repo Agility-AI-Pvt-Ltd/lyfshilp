@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from "react";
-import api from "../api/axios";
-import { AuthContext } from "../contexts/AuthContext";
+import api from "../api/axios.js";
+import { AuthContext } from "../contexts/AuthContext.jsx";
 import { useNavigate } from "react-router-dom";
 import profileEmoji from "../assets/career/Lyfshilp-logo.svg"; // 👈 apna emoji image ka path
 

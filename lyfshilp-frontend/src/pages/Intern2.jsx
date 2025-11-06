@@ -1,5 +1,5 @@
 import { useState } from "react";
-import api from "../api/axios";
+import api from "../api/axios.js";
 import jobLogo from "../assets/career/Lyfshilp-logo.svg";
 
 // Dummy data for jobs

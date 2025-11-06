@@ -1,7 +1,7 @@
 // src/components/Internships.jsx
-import InternIntro from "../componentInternships/InternIntro";
-import InternWhy from "../componentInternships/InternWhy";
-import Internshipcareer from "../componentInternships/Internshipcareer";
+import InternIntro from "../componentInternships/InternIntro.jsx";
+import InternWhy from "../componentInternships/InternWhy.jsx";
+import Internshipcareer from "../componentInternships/Internshipcareer.jsx";
 
 export default function Internships() {
   return (

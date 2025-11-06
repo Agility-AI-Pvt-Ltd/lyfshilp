@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { FaWhatsapp } from "react-icons/fa"; // ✅ React Icon used like in Footer
-import api from "../api/axios";
+import api from "../api/axios.js";
 
 import teacherIcon from "../assets/workshopimg/teacherIcon.svg";
 import studentIcon from "../assets/workshopimg/studentIcon.svg";
@@ -29,10 +29,10 @@ import img4 from "/images/workshopMain.svg";
 import img5 from "/images/workshopmain1.svg";
 import img6 from "/images/workshopmain6.svg";
 import img7 from "/images/workshopmain5.svg";
-import SchoolLogo from "../components/SchoolLogo";
+import SchoolLogo from "../components/SchoolLogo.jsx";
 
 //career Fair 
-import CareerFairSection from "../components/CareerFairSection";
+import CareerFairSection from "../components/CareerFairSection.jsx";
 
 export default function Workshop() {
   const handleWhatsAppClick = () => {
@@ -157,7 +157,7 @@ export default function Workshop() {
   return (
     <div className="font-sans mt-14 sm:mt-18 space-y-22 sm:space-y-24">
         {/* 🌟 Hero Section */}
-      <section className="text-center px-4 py-10 sm:py-8 bg-white">
+      <section className="bg-[#FFF8EE] text-center px-4 py-10 sm:py-8">
         <h1 className="text-2xl sm:text-6xl font-bold text-gray-900">
           Workshops that Inspire
         </h1>
@@ -166,7 +166,7 @@ export default function Workshop() {
         </p>
 
         {/* 🖼️ Main Image Section */}
-        <div className="mt-10 flex justify-center items-center relative px-2">
+        <div className="bg-[#FFF8EE] mt-10 flex justify-center items-center relative px-2">
           {!expanded && (
             <div className="absolute left-[8%] sm:left-[12%] md:left-[18%] top-1/2 -translate-y-1/2 flex flex-col items-center z-10">
               <p className="text-gray-700 text-sm sm:text-base font-semibold mb-2">

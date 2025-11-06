@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import laptopImg from "/laptop.svg";
 import academyLogo from "../assets/Lyfshilplogo.svg";
 import cursorImg from "../assets/podcastimg/cursor.png";
-import ExploreYoutubeSection from "../components/ExploreYoutubeSection";
+import ExploreYoutubeSection from "../components/ExploreYoutubeSection.jsx";
 
 export default function Podcast() {
   const [subscribed, setSubscribed] = useState(false);
