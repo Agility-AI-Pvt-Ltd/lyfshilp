@@ -12,7 +12,7 @@ import rspr from "../assets/workshopimg/rspr.svg";
 import saws from "../assets/workshopimg/saws.svg";
 import sths from "../assets/workshopimg/sths.svg";
 import tsrus from "../assets/workshopimg/tsrus.svg";
-import dps from "../assets/workshopimg/dps.svg"; // ✅ fixed path
+import dps from "../assets/workshopimg/dps.svg";
 
 export default function SchoolLogo() {
   const schools = [
