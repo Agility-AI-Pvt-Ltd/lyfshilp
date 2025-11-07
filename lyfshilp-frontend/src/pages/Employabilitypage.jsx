@@ -1,5 +1,5 @@
 import { useState } from "react";
-import api from "../api/axios";
+import api from "../api/axios.js";
 import employabilityImg from "../assets/Olympiadimg/Empimg.png";
 
 export default function Employabilitypage() {

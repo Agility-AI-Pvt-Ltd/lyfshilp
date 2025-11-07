@@ -15,7 +15,7 @@ export default function ExamPrep() {
       </h1>
 
       {/* 📚 Exam Buttons */}
-      <div className="flex flex-col sm:flex-row flex-wrap gap-4 sm:gap-6 w-full max-w-3xl justify-center mb-12">
+      <div className="flex flex-col sm:flex-row flex-wrap gap-4 sm:gap-6 w-full max-w-3xl justify-center mb-6">
         {["CUET", "CLAT", "IPMAT"].map((exam, i) => (
           <button
             key={i}
@@ -36,40 +36,17 @@ export default function ExamPrep() {
   <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-8">
     {[
       {
-        name: "Divy Singh",
-        exam: "BBA",
-        institute: "Delhi Technical University",
-        image: "/images/Divy.png",
+        name: "Trishaan Pandit",
+        exam: "IPM",
+        institute: "IIM Amritsar, NALSAR Hyderabad, NMIMS Mumbai",
+        image: "/images/Trishaan.png",
       },
+      
       {
         name: "Khushi Chaudhry",
-        exam: "B.Sc Statistics",
-        institute: "Hindu College, DU",
+        exam: "B.Sc Stats, IPM",
+        institute: "Hindu College (DU), IIM Sirmaur",
         image: "/images/Khushi.png",
-      },
-      {
-        name: "Aishani Bhargavi",
-        exam: "B.A. (H) Economics",
-        institute: "VIPS, IP University",
-        image: "/images/Aishani.png",
-      },
-      {
-        name: "Sukrit Sharma",
-        exam: "BBA",
-        institute: "Maharaja Surajmal Institute of Technology",
-        image: "/images/Sukrit.png",
-      },
-      {
-        name: "Manvi Malhotra",
-        exam: "B.A. Liberal Arts (Psychology)",
-        institute: "University Campus, IP University",
-        image: "/images/Manvi.png",
-      },
-      {
-        name: "Aadya Singh",
-        exam: "B.Sc HHA",
-        institute: "Indian Institute of Hotel Management, Mumbai",
-        image: "/images/Aadya.png",
       },
       {
         name: "Samriddhi Vadera",
@@ -77,17 +54,42 @@ export default function ExamPrep() {
         institute: "NALSAR Hyderabad, Symbiosis, Manipal",
         image: "/images/Samriddhi.png",
       },
+
       {
-        name: "Trishaan Pandit",
-        exam: "IPM",
-        institute: "IIM Amritsar, IIM Sirmaur, NALSAR Hyderabad, NMIMS Mumbai",
-        image: "/images/Trishaan.png",
+        name: "Divy Singh",
+        exam: "BBA",
+        institute: "Delhi Technical University (DTU), IIM Sambalpur",
+        image: "/images/Divy.png",
+      },
+      {
+        name: "Aishani Bhargavi",
+        exam: "B.A. (H) Economics",
+        institute: "Dyal Singh College (DU)",
+        image: "/images/Aishani.png",
+      },
+            {
+        name: "Prachi Agarwal",
+        exam: "BBA, BSc (CS)",
+        institute: "Netaji Subash University of Technology (NSUT), Atma ram Sanatan Dharma College (DU)",
+        image: "/images/Prachi.png",
       },
       {
         name: "Mokshad Garg",
-        exam: "B.Sc HHA",
+        exam: "BSc (HHA)",
         institute: "Indian Institute of Hotel Management, Pusa Road",
         image: "/images/Mokshad.png",
+      },
+      {
+        name: "Aadya Singh",
+        exam: "BSc (HHA)",
+        institute: "Indian Institute of Hotel Management, Mumbai",
+        image: "/images/Aadya.png",
+      },
+      {
+        name: "Manvi Malhotra",
+        exam: "BA Psychology",
+        institute: "Kamla Nahru College (DU)",
+        image: "/images/Manvi.png",
       },
     ].map((student, index) => (
       <div

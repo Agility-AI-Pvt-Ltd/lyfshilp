@@ -1,7 +1,7 @@
 // src/components/OlympiadSection.jsx
 import studentsImage from "/students-group.svg";
 
-export default function OlympiadSection() {
+export default function OlympiadSection1() {
   const stats = [
     { icon: "📚", value: "9/10", label: "Improved Exam Readiness" },
     { icon: "💡", value: "82%", label: "Boosted Confidence & Problem-Solving" },
@@ -9,7 +9,7 @@ export default function OlympiadSection() {
   ];
 
   return (
-    <section className="bg-white py-14 sm:py-16 md:py-20 relative overflow-hidden">
+    <section className="bg-[#FFF8EE] py-14 sm:py-16 md:py-20 relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 items-center gap-12 md:gap-16">
           
@@ -18,7 +18,7 @@ export default function OlympiadSection() {
             
             {/* Heading */}
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold leading-snug md:leading-tight mb-6">
-              <span className="text-green-600">Edumaniax</span>
+              <span className="text-green-600">The National FutureX Olympiad </span>
               <span className="text-gray-900">
                 {" "}
                 – Beat Levels, Build Skills, Gamified Learning{" "}
@@ -31,8 +31,7 @@ export default function OlympiadSection() {
 
             {/* Subheading */}
             <p className="text-gray-600 text-sm sm:text-base md:text-lg leading-relaxed mb-8 max-w-xl mx-auto lg:mx-0">
-              Test your knowledge, sharpen your skills, and compete with the best through 
-              our engaging, real-world Olympiads.
+            FutureX isn't just an exam it's a journey that conncts students with real-world mentors, hands-on learning experiences and opportunities to transform thier ideas into impact.
             </p>
 
             {/* Stats Section */}

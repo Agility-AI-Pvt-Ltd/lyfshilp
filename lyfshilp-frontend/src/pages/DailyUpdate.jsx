@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import api from "../api/axios";
-import DailyUpdateCard from "../components/DailyUpdateCard";
+import api from "../api/axios.js";
+import DailyUpdateCard from "../components/DailyUpdateCard.jsx";
 
 export default function DailyUpdate() {
   const [updates, setUpdates] = useState([]);

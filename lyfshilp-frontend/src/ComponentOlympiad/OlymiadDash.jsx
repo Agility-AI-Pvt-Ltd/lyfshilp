@@ -33,7 +33,7 @@ export default function OlympiadDash() {
   ];
 
   return (
-    <section className="bg-white py-16 px-6 md:px-12 lg:px-20 text-center">
+    <section className="bg-[#FFF8EE] py-16 px-6 md:px-12 lg:px-20 text-center">
       <h2 className="text-3xl md:text-4xl font-bold mb-12">
         Choose your <span className="text-green-600">Olympiad</span>
       </h2>

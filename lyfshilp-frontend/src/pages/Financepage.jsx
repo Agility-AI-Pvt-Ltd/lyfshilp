@@ -1,5 +1,5 @@
 import { useState } from "react";
-import api from "../api/axios";
+import api from "../api/axios.js";
 import financeImg from "../assets/Olympiadimg/Financeimg.jpg";
 
 export default function Financepage() {

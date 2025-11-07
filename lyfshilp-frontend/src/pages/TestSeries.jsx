@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import api from "../api/axios";
+import api from "../api/axios.js";
 
 export default function TestSeries() {
   const [tests, setTests] = useState([]);

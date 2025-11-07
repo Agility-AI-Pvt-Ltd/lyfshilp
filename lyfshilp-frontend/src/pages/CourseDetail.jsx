@@ -1,7 +1,7 @@
 // src/pages/CourseDetail.jsx
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import api from "../api/axios";
+import api from "../api/axios.js";
 
 export default function CourseDetail() {
   const { id } = useParams(); // extract course id from route

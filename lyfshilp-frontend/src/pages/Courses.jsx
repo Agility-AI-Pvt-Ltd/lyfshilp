@@ -1,7 +1,7 @@
 // src/pages/Courses.jsx
 import { useEffect, useState } from "react";
-import api from "../api/axios";
-import CourseCard from "../components/CourseCard"; // ✅ import card
+import api from "../api/axios.js";
+import CourseCard from "../components/CourseCard.jsx"; // ✅ import card
 
 export default function Courses() {
   const [courses, setCourses] = useState([]);

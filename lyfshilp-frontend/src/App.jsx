@@ -1,47 +1,47 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-import Home from "./pages/Home";
-import Courses from "./pages/Courses";
-import CourseDetail from "./pages/CourseDetail";
-import Login from "./pages/Login";
-import Register from "./pages/Register";
-import Dashboard from "./pages/Dashboard";
-import DailyUpdates from "./pages/DailyUpdate";
-import TestSeries from "./pages/TestSeries";
-import AboutUs from "./pages/AboutUs";
-import Careers from "./pages/Careers";
+import Home from "./pages/Home.jsx";
+import Courses from "./pages/Courses.jsx";
+import CourseDetail from "./pages/CourseDetail.jsx";
+import Login from "./pages/Login.jsx";
+import Register from "./pages/Register.jsx";
+import Dashboard from "./pages/Dashboard.jsx";
+import DailyUpdates from "./pages/DailyUpdate.jsx";
+import TestSeries from "./pages/TestSeries.jsx";
+import AboutUs from "./pages/AboutUs.jsx";
+import Careers from "./pages/Careers.jsx";
 import ExamPrep from "./pages/ExamPrep.jsx";
-import Olympiad from "./pages/Olympiad";
-import TermsConditions from "./pages/TermsConditions";
-import CuetPage from "./pages/CuetPage";
-import ClatPage from "./pages/ClatPage";
-import IpmatPage from "./pages/IpmatPage";
+import Olympiad from "./pages/Olympiad.jsx";
+import TermsConditions from "./pages/TermsConditions.jsx";
+import CuetPage from "./pages/CuetPage.jsx";
+import ClatPage from "./pages/ClatPage.jsx";
+import IpmatPage from "./pages/IpmatPage.jsx";
 
-import Job1 from "./pages/Job1";
-import Job2 from "./pages/Job2";
-import Job3 from "./pages/Job3";
-import Job4 from "./pages/Job4";
+import Job1 from "./pages/Job1.jsx";
+import Job2 from "./pages/Job2.jsx";
+import Job3 from "./pages/Job3.jsx";
+import Job4 from "./pages/Job4.jsx";
 
-import Intern1 from "./pages/Intern1";
-import Intern2 from "./pages/Intern2";
-import Intern3 from "./pages/Intern3";
+import Intern1 from "./pages/Intern1.jsx";
+import Intern2 from "./pages/Intern2.jsx";
+import Intern3 from "./pages/Intern3.jsx";
 
-import Financepage from "./pages/Financepage";
-import Aipage from "./pages/Aipage";
-import Employabilitypage from "./pages/Employabilitypage";
-import Entrepreneurshippage from "./pages/Entrepreneurshippage";
+import Financepage from "./pages/Financepage.jsx";
+import Aipage from "./pages/Aipage.jsx";
+import Employabilitypage from "./pages/Employabilitypage.jsx";
+import Entrepreneurshippage from "./pages/Entrepreneurshippage.jsx";
 import Workshop from "./pages/Workshop.jsx";
 
-import Podcast from "./pages/Podcast";
-import Internships from "./pages/Internships";
+import Podcast from "./pages/Podcast.jsx";
+import Internships from "./pages/Internships.jsx";
 
-import Header from "./components/Header";
-import Footer from "./components/Footer";
+import Header from "./components/Header.jsx";
+import Footer from "./components/Footer.jsx";
 
 
-import { AuthProvider } from "./contexts/AuthContext";
-import AdminDashboard from "./pages/AdminDashboard";
-import ProtectedRoute from "./components/ProtectedRoute";
+import { AuthProvider } from "./contexts/AuthContext.jsx";
+import AdminDashboard from "./pages/AdminDashboard.jsx";
+import ProtectedRoute from "./components/ProtectedRoute.jsx";
 
 export default function App() {
   return (

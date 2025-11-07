@@ -1,7 +1,7 @@
 // src/components/ProtectedRoute.jsx
 import { useContext } from "react";
 import { Navigate } from "react-router-dom";
-import { AuthContext } from "../contexts/AuthContext";
+import { AuthContext } from "../contexts/AuthContext.jsx";
 
 export default function ProtectedRoute({ children, requiredRole }) {
   const { user, loading } = useContext(AuthContext);
