@@ -111,7 +111,7 @@ export default function CareerFairSection() {
           At{" "}
           <span className="font-semibold text-green-600">Lyfshilp Academy</span>,
           career fairs have been an inspiring journey of engagement and impact.
-          We connect directly with students, parents & educators - guiding them
+          We connect directly with students, parents & educators guiding them
           toward informed academic and career choices.
           <br />
           <br />
@@ -123,7 +123,7 @@ export default function CareerFairSection() {
           <br />
           <br />
           During these fairs, we introduce{" "}
-          <span className="font-semibold text-green-600">Edumaniax</span> — a
+          <span className="font-semibold text-green-600">Edumaniax</span> a
           gamified 21st-century skill-building platform that makes learning fun,
           interactive, and purposeful. You too can explore Edumaniax and experience how it makes learning engaging and future-ready.
           <br />

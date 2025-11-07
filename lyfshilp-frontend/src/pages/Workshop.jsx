@@ -155,7 +155,7 @@ export default function Workshop() {
   };
 
   return (
-    <div className="font-sans mt-14 sm:mt-18 space-y-22 sm:space-y-24">
+    <div className="font-sans mt-14 sm:mt-18">
         {/* 🌟 Hero Section */}
       <section className="bg-[#FFF8EE] text-center px-4 py-10 sm:py-8">
         <h1 className="text-2xl sm:text-6xl font-bold text-gray-900">
