@@ -23,29 +23,32 @@ const app = express();
 // --- Middlewares ---
 app.use(helmet());
 
-// CORS configuration - allow multiple origins
+// ✅ CORS configuration - allow multiple origins
 const allowedOrigins = [
   "http://localhost:5173",
   "http://localhost:4000",
   "https://lyfshilp.vercel.app",
-  process.env.CLIENT_URL, // for any additional custom URL
-].filter(Boolean); // Remove undefined values
+  "https://www.lyfshilp.com", // ✅ added live domain
+  process.env.CLIENT_URL, // optional env variable
+].filter(Boolean); // remove undefined values
 
 app.use(
   cors({
     origin: (origin, callback) => {
       // Allow requests with no origin (like mobile apps or Postman)
       if (!origin) return callback(null, true);
-      
+
       if (allowedOrigins.includes(origin)) {
         callback(null, true);
       } else {
+        console.warn(`❌ Blocked by CORS: ${origin}`);
         callback(new Error("Not allowed by CORS"));
       }
     },
     credentials: true,
   })
 );
+
 app.use(express.json({ limit: "5mb" }));
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
@@ -57,13 +60,11 @@ app.use("/api/external-links", externalLinkRoutes);
 app.use("/api/tests", testRoutes);
 app.use("/api/testseries", testSeriesRoutes);
 app.use("/api/updates", updateRoutes);
-app.use("/api/user",userRoutes);
-
+app.use("/api/user", userRoutes);
 app.use("/api/applications", applicationRoutes);
-app.use("/api/olympiad",olympiadRoutes);
-app.use("/api/workshop",workshopRoutes);
+app.use("/api/olympiad", olympiadRoutes);
+app.use("/api/workshop", workshopRoutes);
 app.use("/api/callback", callbackRoutes);
-
 
 // --- Health check ---
 app.get("/api/health", (req, res) => {
