@@ -12,7 +12,7 @@ import rspr from "../assets/workshopimg/rspr.svg";
 import saws from "../assets/workshopimg/saws.svg";
 import sths from "../assets/workshopimg/sths.svg";
 import tsrus from "../assets/workshopimg/tsrus.svg";
-import dps from "../assets/workshopimg/dps.svg";
+import dps from "../assets/workshopimg/dps.svg"; 
 
 export default function SchoolLogo() {
   const schools = [
@@ -34,7 +34,7 @@ export default function SchoolLogo() {
   ];
 
   return (
-    <section className="py-12 sm:py-16 lg:py-12 px-4 sm:px-8 md:px-16 bg-pink-50 text-center">
+    <section className="py-12 sm:py-16 lg:py-12 px-4 sm:px-8 md:px-16 bg-white text-center">
       {/* 🏫 Section Title */}
       <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-gray-800 mb-8 sm:mb-10 lg:mb-14">
         Schools We’ve Conducted{" "}
@@ -48,7 +48,7 @@ export default function SchoolLogo() {
             key={index}
             className="flex flex-col items-center text-center group"
           >
-            <div className="w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 bg-white rounded-full flex items-center justify-center shadow-md hover:shadow-lg transition-all duration-300">
+            <div className="w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 bg-[#FFF8EE] rounded-full flex items-center justify-center shadow-md hover:shadow-lg transition-all duration-300">
               <img
                 src={school.logo}
                 alt={school.name}
@@ -64,3 +64,4 @@ export default function SchoolLogo() {
     </section>
   );
 }
+ 
