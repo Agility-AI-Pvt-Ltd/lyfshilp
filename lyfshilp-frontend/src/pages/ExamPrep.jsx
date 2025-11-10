@@ -1,4 +1,6 @@
 import { useNavigate } from "react-router-dom";
+import CallBackForm from "../components/CallBackForm.jsx";
+
 
 export default function ExamPrep() {
   const navigate = useNavigate();
@@ -27,8 +29,10 @@ export default function ExamPrep() {
         ))}
       </div>
 
-      {/* 🏆 Students with Success */}
-<div className="w-full max-w-6xl text-center mb-20 px-4">
+      <CallBackForm pageName="CUET/CLAT/IPMAT" />
+
+    {/* 🏆 Students with Success
+<div className="w-full max-w-6xl pt-10 text-center mb-20 px-4">
   <h2 className="text-2xl sm:text-3xl font-semibold text-gray-900 mb-10">
     Our Students with <span className="text-green-600">Success</span>
   </h2>
@@ -41,11 +45,10 @@ export default function ExamPrep() {
         institute: "IIM Amritsar, NALSAR Hyderabad, NMIMS Mumbai",
         image: "/images/Trishaan.png",
       },
-      
       {
         name: "Khushi Chaudhry",
         exam: "B.Sc Stats, IPM",
-        institute: "Hindu College (DU), IIM Sirmaur",
+        institute: "Hindu College (DU), LSR (DU), IIM Sirmaur",
         image: "/images/Khushi.png",
       },
       {
@@ -54,7 +57,6 @@ export default function ExamPrep() {
         institute: "NALSAR Hyderabad, Symbiosis, Manipal",
         image: "/images/Samriddhi.png",
       },
-
       {
         name: "Divy Singh",
         exam: "BBA",
@@ -62,22 +64,22 @@ export default function ExamPrep() {
         image: "/images/Divy.png",
       },
       {
-        name: "Aishani Bhargavi",
+        name: "Bhavya Verma",
         exam: "B.A. (H) Economics",
         institute: "Dyal Singh College (DU)",
-        image: "/images/Aishani.png",
+        image: "/images/Bhavya.png",
       },
-            {
+      {
         name: "Prachi Agarwal",
         exam: "BBA, BSc (CS)",
-        institute: "Netaji Subash University of Technology (NSUT), Atma ram Sanatan Dharma College (DU)",
+        institute: "Netaji Subash University of Technology (NSUT), Atma Ram Sanatan Dharma College (DU)",
         image: "/images/Prachi.png",
       },
       {
         name: "Mokshad Garg",
         exam: "BSc (HHA)",
         institute: "Indian Institute of Hotel Management, Pusa Road",
-        image: "/images/Mokshad.png",
+        image: "/images/Mokshad.jpg",
       },
       {
         name: "Aadya Singh",
@@ -86,10 +88,28 @@ export default function ExamPrep() {
         image: "/images/Aadya.png",
       },
       {
-        name: "Manvi Malhotra",
+        name: "Divyanshu Rawat",
         exam: "BA Psychology",
         institute: "Kamla Nahru College (DU)",
-        image: "/images/Manvi.png",
+        image: "/images/Divyanshu.png",
+      },
+      {
+        name: "Angela Tytler",
+        exam: "BSc (HHA)",
+        institute: "Indian Institute of Hotel Management, Mumbai",
+        image: "/images/Angela.png",
+      },
+      {
+        name: "Yug Swaroop",
+        exam: "BSc (HHA)",
+        institute: "Indian Institute of Hotel Management, Mumbai",
+        image: "/images/Yug.png",
+      },
+      {
+        name: "Sohalia Malhan",
+        exam: "BSc (HHA)",
+        institute: "Indian Institute of Hotel Management, Mumbai",
+        image: "/images/sohalia.png",
       },
     ].map((student, index) => (
       <div
@@ -114,9 +134,13 @@ export default function ExamPrep() {
         </div>
       </div>
     ))}
-  </div>
-</div>
-
+  </div> */}
+  {/* ✳️ Extra line at the bottom
+  <h3 className="text-2xl sm:text-3xl md:text-4xl font-extrabold mt-14">
+    <span className="text-black">and </span>
+    <span className="text-green-600">Many More...</span>
+  </h3>
+</div> */}
 
       {/* 🎬 Testimonials Section (YouTube Shorts) */}
       <div className="w-full max-w-6xl text-center">

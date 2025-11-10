@@ -4,42 +4,42 @@ const faqs = [
   {
     question: "Do I need coaching for CUET, IPMAT and CLAT?",
     answer:
-      "Yes, Coaching gives structures , Stratergies and Expert Guidance. It helps to build both accuracy and speed.",
+      "You don’t need coaching for CUET, IPMAT or CLAT but the right guidance can make a big difference.These exams are competitive and strategy-driven, not just syllabus-based.Structured coaching gives you clarity, speed practice and consistent improvement.Most top scorers rely on expert support to avoid guesswork and save time.At Lyfshilp Academy, we simply help you prepare smarter and perform with confidence.",
   },
   {
-    question: "When should I start preparing?",
+    question: "What services do you provide for cuet, ipmat and clat preparation?",
     answer:
-      "Ideally from class 11, but 6-8 months of focused study is enough",
+      "We offer complete CUET, IPMAT and CLAT preparation with top-notch faculty and small, focused batches.Students get one-to-one mentorship, personalised guidance and structured study plans. Our program includes high-quality books, class lecture notes in PDF form and detailed revision modules.You also get full access to our online test series with exam-level mocks and analytics.Simply put, Lyfshilp Academy gives you everything you need to prepare better, faster and smarter.",
   },
   {
-    question: "Why should I prepare for entrance exams after class 12?",
+    question: "how your institute helps us in counselling process?",
     answer:
-      "They help you get admission into top colleges and universities on merit",
+      "We guide you through the entire counselling process so you never feel lost.Our team helps you shortlist the right colleges, fill forms correctly and understand cutoffs and seat trends.We walk you through preference order, document preparation and all post-result steps.You also get personalised guidance based on your scores, career goals and course choices.Basically, we make sure your hard work in the exam actually converts into the best possible college.",
   },
   {
-    question: "Are board exam marks important?",
+    question: "How do you support students who feel academically weak? Do you have systems in place to help them catch up and improve?",
     answer:
-      "Yes, minimum eligibility (50-60%) is required along with the entrance exam.",
+      "We work closely with students who feel they’re starting from behind.Our small batches and one-to-one mentorship help us identify exactly where they struggle.We give them extra support through foundation classes, personalised doubt sessions and step-by-step practice.Their progress is tracked weekly so we can adjust the plan and keep them improving.With the right guidance and consistent support, even the so-called weak students end up performing brilliantly.",
   },
   {
-    question: "Why are mock test important?",
+    question: "How are mock tests important?",
     answer:
-      "They build speed, accuracy and confidance for the real exams",
+      "Mock tests are crucial because they turn your preparation into real exam performance.They help you understand the actual pattern, difficulty level and time pressure of CUET, IPMAT and CLAT.With every mock, you learn how to manage time, avoid mistakes and build speed and accuracy. They also show your weak areas so we can fix them with targeted revision.Simply put, mocks are the closest rehearsal to the real exam and a major reason why toppers score high.",
   },
   {
-    question: "How does Lyfshilp Academy help us in preparation of competitive exams?",
+    question: "Can I prepare for the CUET exam on my own without coaching?",
     answer:
-      "With Expert faculty, small batches, study material, mocks and full admission support.",
+      "Yes, you can prepare for CUET on your own, but self-study works only if you’re disciplined and know exactly what to study.CUET is highly competitive, and most students struggle with strategy, practice and consistency when preparing alone.At Lyfshilp Academy, we simplify the process with structured classes, mock tests, study plans and personalised mentorship.This helps you avoid confusion, save time and improve faster.Self-study is possible, but guided preparation gives you a far better chance of scoring high and getting your preferred college..",
   },
   {
-    question: " Will Lyshilp Academy also provide the counselling through out?",
+    question: " How can I balance my board exam preparation along with CUET, IPMAT or CLAT preparation?",
     answer:
-      " yes the mentors and counsellors do the hand holding till the the student is landed to college.",
+      "Balancing boards with entrance prep becomes easy when you follow the right structure.We help you create a timetable that aligns school topics with entrance concepts so your effort counts for both.Our classes focus on smart techniques, regular practice and quick revisions that don’t overload you.Weekly targets and doubt sessions keep you on track without disturbing your board studies.With proper planning and the right guidance, students comfortably manage both and score well in each..",
   },
   {
-    question: "How can I balance board and entrance preparation?",
+    question: "What is the right time to start preparing for CUET, IPMAT and CLAT??",
     answer:
-      "By following a timetable and practising smart study daily.",
+      "The best time to start preparing for CUET, IPMAT and CLAT is from Class 11 or the beginning of Class 12.Starting early helps you build strong basics and avoid last-minute pressure.But even if you start late, a focused 6–8 month plan works well with the right guidance.At Lyfshilp Academy, we create personalised timelines based on when you join so you never feel behind.The goal is simple: start as early as you can, and prepare smartly from day one.",
   },
   {
     question: "How does Edumaniax help student?",

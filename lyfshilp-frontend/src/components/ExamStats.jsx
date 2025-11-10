@@ -17,18 +17,19 @@ export default function ExamStats() {
   ];
 
   return (
-    <div className="relative -mt-6 md:-mt-10 mb-8 z-10">
+    <div className="relative -mt-2 md:-mt-10 mb-8 z-10">
       {/* Elevated Strip */}
+      
       <div className="bg-white rounded-2xl shadow-xl mx-4 sm:mx-8 md:mx-12 lg:mx-24 border border-gray-100">
-        <div className="px-4 sm:px-6 md:px-8 py-6">
+        <div className="px-4 sm:px-6 md:px-8 py-4">
           {/* Stats Text */}
-          <h3 className="text-center text-base sm:text-lg md:text-xl font-semibold text-gray-800 mb-6">
+          <h3 className="text-center text-base sm:text-lg md:text-xl font-semibold text-gray-800 mb-4">
             Helping <span className="text-green-600 font-bold">20K+</span> students crack their exams
           </h3>
 
           {/* 🎞️ Continuous Scrolling Exam Logos */}
           <div className="overflow-hidden relative">
-            <div className="flex animate-scrollRightToLeft hover:[animation-play-state:paused] space-x-6">
+            <div className="flex animate-scrollRightToLeft hover:[animation-play-state:paused] space-x-6 w-max">
               {[...Array(2)].map((_, loopIndex) => (
                 <div key={loopIndex} className="flex space-x-6">
                   {examData.map((exam, i) => (
