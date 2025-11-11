@@ -51,16 +51,14 @@ export default function Podcast() {
     fetchPodcasts();
   }, []);
 
-  // 🌍 Wait for full page load (images + iframes)
+  // 🌍 Wait for full page load
   useEffect(() => {
     const handleLoad = () => setPageLoaded(true);
-
     if (document.readyState === "complete") {
       setPageLoaded(true);
     } else {
       window.addEventListener("load", handleLoad);
     }
-
     return () => window.removeEventListener("load", handleLoad);
   }, []);
 
@@ -70,8 +68,25 @@ export default function Podcast() {
     return () => clearInterval(interval);
   }, []);
 
-  // ⏳ Combined Loading State
-  if (loading || !pageLoaded) {
+  // 🧠 Initial Check (scroll arrows visibility)
+  useEffect(() => {
+    const el = document.getElementById("relatedScroll");
+    const leftBtn = document.getElementById("scrollLeftBtn");
+    const rightBtn = document.getElementById("scrollRightBtn");
+
+    if (!el || !leftBtn || !rightBtn) return;
+
+    if (el.scrollWidth <= el.clientWidth) {
+      leftBtn.classList.add("opacity-0", "pointer-events-none");
+      rightBtn.classList.add("opacity-0", "pointer-events-none");
+    } else {
+      leftBtn.classList.add("opacity-0", "pointer-events-none");
+      rightBtn.classList.remove("opacity-0", "pointer-events-none");
+    }
+  }, [podcasts.length]);
+
+  // ⏳ Loading
+  if (loading) {
     return (
       <div className="flex items-center justify-center min-h-screen bg-white">
         <p className="text-gray-600 text-lg animate-pulse">Loading podcasts...</p>
@@ -84,7 +99,6 @@ export default function Podcast() {
       {/* 🎙️ Podcast Section */}
       <section className="w-full bg-white pt-24 pb-20 relative overflow-hidden">
         <div className="max-w-6xl mx-auto text-center px-4 sm:px-6 lg:px-8">
-          {/* Title */}
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-3">
             Lyfshilp Academy <span className="text-green-600">Podcast</span> 🎙️
           </h2>
@@ -100,7 +114,7 @@ export default function Podcast() {
             <img
               src={laptopImg}
               alt="Podcast Laptop"
-              className="w-[800px] max-w-full drop-shadow-2xl opacity-0 transition-opacity duration-500"
+              className="w-[800px] max-w-full drop-shadow-2xl opacity-0 transition-opacity duration-700 ease-in-out"
               onLoad={(e) => (e.currentTarget.style.opacity = 1)}
             />
             <div className="absolute top-[22%] left-1/2 -translate-x-1/2 w-[60%] sm:w-[50%] h-[35%] bg-white rounded-xl shadow-xl p-4 sm:p-6 flex flex-col items-center gap-4 transition-opacity duration-700 opacity-100">
@@ -178,14 +192,16 @@ export default function Podcast() {
 
                       if (el.scrollLeft <= 10)
                         leftBtn.classList.add("opacity-0", "pointer-events-none");
-                      else leftBtn.classList.remove("opacity-0", "pointer-events-none");
+                      else
+                        leftBtn.classList.remove("opacity-0", "pointer-events-none");
 
                       if (el.scrollWidth - el.clientWidth - el.scrollLeft <= 10)
                         rightBtn.classList.add("opacity-0", "pointer-events-none");
-                      else rightBtn.classList.remove("opacity-0", "pointer-events-none");
+                      else
+                        rightBtn.classList.remove("opacity-0", "pointer-events-none");
                     }}
                   >
-                    {podcasts.slice(1).map((podcast) => (
+                    {podcasts.slice(1,-1).map((podcast) => (
                       <iframe
                         key={podcast.id}
                         className="w-56 sm:w-64 h-36 sm:h-40 rounded-lg shadow-md flex-shrink-0"

@@ -443,7 +443,7 @@ const fetchAllData = async () => {
               <td className="p-2 border">{o.city}</td>
               <td className="p-2 border">{o.state}</td>
               <td className="p-2 border">{o.olympiad}</td>
-              <td className="p-2 border text-center space-x-2">
+              <td className="p-2 border text-left space-x-2">
                 <button onClick={() => openModal("olympiad", o)} className="text-blue-600 hover:underline">
                   Edit
                 </button>
@@ -474,7 +474,7 @@ const fetchAllData = async () => {
               <td className="p-2 border">{w.phone}</td>
               <td className="p-2 border">{w.organization}</td>
               <td className="p-2 border">{w.message}</td>
-              <td className="p-2 border space-x-2 text-center">
+              <td className="p-2 border space-x-2 text-left">
                 <button onClick={() => openModal("workshop", w)} className="text-blue-600 hover:underline">
                   Edit
                 </button>
@@ -506,7 +506,7 @@ const fetchAllData = async () => {
       <td className="p-2 border">{c.school}</td>
       <td className="p-2 border">{c.pageName}</td>
       <td className="p-2 border">{new Date(c.createdAt).toLocaleString()}</td>
-      <td className="p-2 border text-center space-x-2">
+      <td className="p-2 border text-left space-x-2">
         <button onClick={() => openModal("callback", c)} className="text-blue-600 hover:underline">Edit</button>
         <button onClick={() => handleDelete("callback", c.id)} className="text-red-600 hover:underline">Delete</button>
       </td>
@@ -605,7 +605,7 @@ const fetchAllData = async () => {
         )}
       </td>
       <td className="p-2 border">{new Date(p.createdAt).toLocaleDateString()}</td>
-      <td className="p-2 border space-x-2 text-center">
+      <td className="p-2 border space-x-2 text-left">
         <button onClick={() => openModal("podcast", p)} className="text-blue-600 hover:underline">
           Edit
         </button>
