@@ -107,14 +107,16 @@ export default function Register() {
               />
             </div>
 
-            <input
-              type="email"
-              name="email"
-              placeholder="E-mail or phone number"
-              value={form.email}
-              onChange={handleChange}
-              required
-              className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-green-500 outline-none"
+              <input
+                type="text"
+                name="email"
+                placeholder="E-mail or phone number"
+                value={form.email}
+                onChange={handleChange}
+                required
+                pattern="^(\d{10}|[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,})$"
+                title="Enter a valid email or 10-digit phone number"
+                className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-green-500 outline-none"
             />
 
             <input

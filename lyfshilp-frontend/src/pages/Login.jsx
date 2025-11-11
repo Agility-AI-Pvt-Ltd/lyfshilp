@@ -74,14 +74,17 @@ export default function Login() {
           {/* FORM */}
           <form onSubmit={handleSubmit} className="space-y-4">
             <input
-              type="email"
+              type="text"
               name="email"
               placeholder="E-mail or phone number"
               value={form.email}
               onChange={handleChange}
               required
+              pattern="^(\d{10}|[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,})$"
+              title="Enter a valid email or 10-digit phone number"
               className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-green-500 outline-none"
             />
+
             <input
               type="password"
               name="password"
