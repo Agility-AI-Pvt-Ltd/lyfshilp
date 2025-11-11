@@ -558,7 +558,7 @@ const fetchAllData = async () => {
           setSortAsc={setUserSortAsc}
           onAdd={() => openModal("user")}
           onExportExcel={() => exportToExcel(filteredUsers, "users")}
-          columns={["S.No", "Name", "Email", "Role", "Joined", "Actions"]}
+          columns={["S.No", "Name", "Email/Number", "Role", "Joined", "Actions"]}
           renderRow={(u, index) => (
             <>
               <td className="p-2 border">{index + 1}</td>

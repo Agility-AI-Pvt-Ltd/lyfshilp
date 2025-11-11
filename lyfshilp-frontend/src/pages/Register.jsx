@@ -1,7 +1,7 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import api from "../api/axios.js";
 import { useNavigate, Link } from "react-router-dom";
-import LightBulb from "../assets/Login_signup/light-bulb.svg"; 
+import LightBulb from "../assets/Login_signup/light-bulb.svg";
 
 export default function Register() {
   const navigate = useNavigate();
@@ -12,25 +12,45 @@ export default function Register() {
     password: "",
   });
   const [loading, setLoading] = useState(false);
-  const [success, setSuccess] = useState(""); 
-  const [error, setError] = useState("");    
+  const [success, setSuccess] = useState("");
+  const [error, setError] = useState("");
+  const [fade, setFade] = useState(false); // 👈 Added for fade-out control
 
   const handleChange = (e) =>
     setForm({ ...form, [e.target.name]: e.target.value });
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setLoading(true);
     setError("");
     setSuccess("");
+    setFade(false);
 
+    const { email } = form;
+    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    const phoneRegex = /^\d{10}$/;
+
+    // ✅ Manual validation (email or 10-digit phone only)
+    if (!emailRegex.test(email) && !phoneRegex.test(email)) {
+      setError("Enter a valid email or 10-digit phone number");
+      setFade(false);
+      setTimeout(() => setFade(true), 1000); // start fade after short delay
+      setTimeout(() => setError(""), 4000); // remove after 2 sec
+      return;
+    }
+
+    setLoading(true);
     try {
       const res = await api.post("/auth/register", form);
       setSuccess(res.data.message || "Registered successfully!");
+      setFade(false);
+      setTimeout(() => setFade(true), 1000);
+      setTimeout(() => setSuccess(""), 4000); // fade out after 2s
       setTimeout(() => navigate("/login"), 1500);
     } catch (err) {
-      // ✅ yahan fix kiya
       setError(err?.response?.data?.error || "Error during registration");
+      setFade(false);
+      setTimeout(() => setFade(true), 1000);
+      setTimeout(() => setError(""), 4000); // fade out after 2s
     } finally {
       setLoading(false);
     }
@@ -39,7 +59,6 @@ export default function Register() {
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100 px-4 pt-20 pb-5">
       <div className="flex w-full max-w-4xl bg-white rounded-2xl shadow-lg overflow-hidden h-[500px]">
-        
         {/* LEFT SECTION */}
         <div className="hidden md:flex flex-col justify-center items-center bg-yellow-50 w-1/2 p-10 text-center">
           <img
@@ -51,9 +70,9 @@ export default function Register() {
             Learn, Grow & Succeed For Free
           </h2>
           <p className="text-gray-600 text-sm leading-relaxed max-w-sm">
-            Join 15,000+ students for free and get access to competitive exam prep,
-            personalized mentorship, career clarity tools, and skill-building courses
-            that guide you every step of the way.
+            Join 15,000+ students for free and get access to competitive exam
+            prep, personalized mentorship, career clarity tools, and
+            skill-building courses that guide you every step of the way.
           </p>
         </div>
 
@@ -74,12 +93,20 @@ export default function Register() {
 
           {/* ✅ SUCCESS/ERROR MESSAGE */}
           {success && (
-            <p className="text-green-600 text-sm font-medium mb-3 text-center">
+            <p
+              className={`text-green-600 text-sm font-medium mb-3 text-center transition-opacity duration-1000 ${
+                fade ? "opacity-0" : "opacity-100"
+              }`}
+            >
               {success}
             </p>
           )}
           {error && (
-            <p className="text-red-500 text-sm font-medium mb-3 text-center">
+            <p
+              className={`text-red-500 text-sm font-medium mb-3 text-center transition-opacity duration-1000 ${
+                fade ? "opacity-0" : "opacity-100"
+              }`}
+            >
               {error}
             </p>
           )}
@@ -107,16 +134,16 @@ export default function Register() {
               />
             </div>
 
-              <input
-                type="text"
-                name="email"
-                placeholder="E-mail or phone number"
-                value={form.email}
-                onChange={handleChange}
-                required
-                pattern="^(\d{10}|[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,})$"
-                title="Enter a valid email or 10-digit phone number"
-                className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-green-500 outline-none"
+            <input
+              type="text"
+              name="email"
+              placeholder="E-mail or phone number"
+              value={form.email}
+              onChange={handleChange}
+              required
+              className={`w-full px-4 py-2 border rounded-lg focus:ring-2 outline-none ${
+                error ? "border-red-500 focus:ring-red-500" : "focus:ring-green-500"
+              }`}
             />
 
             <input
