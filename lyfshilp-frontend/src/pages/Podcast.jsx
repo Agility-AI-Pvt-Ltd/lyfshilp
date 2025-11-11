@@ -86,13 +86,14 @@ export default function Podcast() {
   }, [podcasts.length]);
 
   // ⏳ Loading
-  if (loading) {
-    return (
-      <div className="flex items-center justify-center min-h-screen bg-white">
-        <p className="text-gray-600 text-lg animate-pulse">Loading podcasts...</p>
-      </div>
-    );
-  }
+if (!pageLoaded || loading) {
+  return (
+    <div className="flex items-center justify-center min-h-screen bg-white">
+      <p className="text-gray-600 text-lg animate-pulse">Loading podcasts...</p>
+    </div>
+  );
+}
+
 
   return (
     <div className="min-h-screen bg-white">
