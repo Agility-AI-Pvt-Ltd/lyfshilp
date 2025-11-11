@@ -17,6 +17,9 @@ import applicationRoutes from "./routes/applicationRoutes.js";
 import olympiadRoutes from "./routes/olympiadRoutes.js";
 import workshopRoutes from "./routes/workshopRoutes.js";
 import callbackRoutes from "./routes/callbackRoutes.js";
+import podcastRoutes from "./routes/podcastRoutes.js";
+
+
 
 const app = express();
 
@@ -65,6 +68,7 @@ app.use("/api/applications", applicationRoutes);
 app.use("/api/olympiad", olympiadRoutes);
 app.use("/api/workshop", workshopRoutes);
 app.use("/api/callback", callbackRoutes);
+app.use("/api/podcast", podcastRoutes);
 
 // --- Health check ---
 app.get("/api/health", (req, res) => {

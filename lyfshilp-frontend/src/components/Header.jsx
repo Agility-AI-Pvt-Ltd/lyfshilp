@@ -53,7 +53,7 @@ export default function Header() {
             Exam Prep
           </Link>
 
-          <Link to="/olympiad" className="hover:text-green-600 transition whitespace-nowrap">Olympiad</Link>
+          <Link to="/olympiad" className="hover:text-green-600 transition whitespace-nowrap">FutureX</Link>
           <Link to="/podcast" className="hover:text-green-600 transition whitespace-nowrap">Podcast</Link>
           <Link to="/workshop" className="hover:text-green-600 transition whitespace-nowrap">Workshops</Link>
 

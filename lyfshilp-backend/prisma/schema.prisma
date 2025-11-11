@@ -69,6 +69,17 @@ model CallbackRequest {
   createdAt     DateTime @default(now())
 }
 
+model Podcast {
+  id          Int      @id @default(autoincrement())
+  title       String
+  description String?
+  videoUrl    String
+  thumbnail   String?
+  category    String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
 model Course {
   id          Int       @id @default(autoincrement())
   title       String

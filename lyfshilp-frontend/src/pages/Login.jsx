@@ -9,7 +9,8 @@ export default function Login() {
 
   const [form, setForm] = useState({ email: "", password: "" });
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(""); // ✅ error state
+  const [error, setError] = useState("");
+  const [fade, setFade] = useState(false); // 👈 added fade state
 
   const handleChange = (e) =>
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -17,12 +18,18 @@ export default function Login() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
-    setError(""); // clear old error
+    setError("");
+    setFade(false);
+
     try {
       await login(form.email, form.password);
       navigate("/dashboard");
     } catch (err) {
       setError(err?.response?.data?.message || "Invalid email or password");
+      // 👇 trigger fade after a short delay
+      setTimeout(() => setFade(true), 1000);
+      // 👇 fully remove after 2s
+      setTimeout(() => setError(""), 4000);
     } finally {
       setLoading(false);
     }
@@ -31,7 +38,6 @@ export default function Login() {
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100 px-4 pt-20 pb-5">
       <div className="flex w-full max-w-4xl bg-white rounded-2xl shadow-lg overflow-hidden h-[500px]">
-        
         {/* LEFT SECTION */}
         <div className="hidden md:flex flex-col justify-center items-center bg-yellow-50 w-1/2 p-10 text-center">
           <img
@@ -64,9 +70,13 @@ export default function Login() {
             </span>
           </div>
 
-          {/* ✅ ERROR MESSAGE */}
+          {/* ✅ ERROR MESSAGE WITH FADE */}
           {error && (
-            <p className="text-red-500 text-sm font-medium mb-3 text-center">
+            <p
+              className={`text-red-500 text-sm font-medium mb-3 text-center transition-opacity duration-1000 ${
+                fade ? "opacity-0" : "opacity-100"
+              }`}
+            >
               {error}
             </p>
           )}
@@ -74,14 +84,17 @@ export default function Login() {
           {/* FORM */}
           <form onSubmit={handleSubmit} className="space-y-4">
             <input
-              type="email"
+              type="text"
               name="email"
               placeholder="E-mail or phone number"
               value={form.email}
               onChange={handleChange}
               required
+              pattern="^(\d{10}|[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,})$"
+              title="Enter a valid email or 10-digit phone number"
               className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-green-500 outline-none"
             />
+
             <input
               type="password"
               name="password"

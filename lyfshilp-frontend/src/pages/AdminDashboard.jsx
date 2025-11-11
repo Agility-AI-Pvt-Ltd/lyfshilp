@@ -41,6 +41,8 @@ export default function AdminDashboard() {
   const [olympiads, setOlympiads] = useState([]);
   const [workshops, setWorkshops] = useState([]);
   const [callbacks, setCallbacks] = useState([]);
+  const [podcasts, setPodcasts] = useState([]);
+
 
   // Search states
   const [userSearch, setUserSearch] = useState("");
@@ -48,6 +50,7 @@ export default function AdminDashboard() {
   const [olySearch, setOlySearch] = useState("");
   const [workSearch, setWorkSearch] = useState("");
   const [callbackSearch, setCallbackSearch] = useState("");
+  const [podcastSearch, setPodcastSearch] = useState("");
 
   // Sort toggles
   const [userSortAsc, setUserSortAsc] = useState(true);
@@ -55,6 +58,7 @@ export default function AdminDashboard() {
   const [olySortAsc, setOlySortAsc] = useState(true);
   const [workSortAsc, setWorkSortAsc] = useState(true);
   const [callbackSortAsc, setCallbackSortAsc] = useState(true);
+  const [podcastSortAsc, setPodcastSortAsc] = useState(true);
 
   // Modal and message
   const [showModal, setShowModal] = useState(false);
@@ -65,6 +69,15 @@ export default function AdminDashboard() {
   const [message, setMessage] = useState({ text: "", type: "" });
 
   const token = localStorage.getItem("token");
+
+  const validateURL = (url) => {
+    try {
+      new URL(url);
+      return true;
+    } catch {
+      return false;
+    }
+  };
 
   const showMessage = (text, type = "success") => {
     // Save scroll position before showing message
@@ -91,12 +104,13 @@ const fetchAllData = async () => {
 
   try {
     const headers = { Authorization: `Bearer ${token}` };
-    const [olyRes, appRes, userRes, workRes, callbackRes] = await Promise.all([
+    const [olyRes, appRes, userRes, workRes, callbackRes, podcastRes] = await Promise.all([
       api.get("/olympiad/all", { headers }),
       api.get("/applications/all", { headers }),
       api.get("/user/all", { headers }),
       api.get("/workshop/all", { headers }),
       api.get("/callback/all", { headers }),
+      api.get("/podcast/all", { headers }),
     ]);
 
     setOlympiads(olyRes.data.data || olyRes.data || []);
@@ -104,6 +118,7 @@ const fetchAllData = async () => {
     setUsers(userRes.data.users || userRes.data || []);
     setWorkshops(workRes.data.data || workRes.data || []);
     setCallbacks(callbackRes.data.data || callbackRes.data || []);
+    setPodcasts(podcastRes.data.data || podcastRes.data || []);
 
     setTimeout(() => {
       window.scrollTo(0, scrollPosition);
@@ -158,7 +173,13 @@ const fetchAllData = async () => {
       if (!modalData.stream?.trim()) errors.stream = "Stream required";
       if (!modalData.school?.trim()) errors.school = "School required";
       if (!modalData.pageName?.trim()) errors.pageName = "Page name required";
-}
+    }
+    if (modalType === "podcast") {
+      if (!modalData.title?.trim()) errors.title = "Title is required";
+      if (!modalData.description?.trim()) errors.description = "Description required";
+      if (modalData.videoUrl && !validateURL(modalData.videoUrl)) errors.videoUrl = "Invalid video URL";
+      if (modalData.thumbnail && !validateURL(modalData.thumbnail)) errors.thumbnail = "Invalid thumbnail URL";
+    }
 
 
     if (modalType === "workshop") {
@@ -298,6 +319,16 @@ const fetchAllData = async () => {
     pageName: "",
   };
 }
+  else if (type === "podcast") {
+  defaultData = {
+    title: "",
+    description: "",
+    videoUrl: "",
+    thumbnail: "",
+    category: "",
+  };
+}
+
   else if (type === "workshop") {
       defaultData = {
         name: "",
@@ -332,6 +363,8 @@ const fetchAllData = async () => {
   const filteredApps = filterData(applications, appSearch, appSortAsc, "createdAt", ["fullName", "email"]);
   const filteredUsers = filterData(users, userSearch, userSortAsc, "id", ["name", "email"]);
   const filteredWork = filterData(workshops, workSearch, workSortAsc, "createdAt", ["name", "email", "organization"]);
+  const filteredPodcasts = filterData(podcasts, podcastSearch, podcastSortAsc, "createdAt", ["title", "category"]);
+
 
   const exportToExcel = (data, filename) => {
     const worksheet = XLSX.utils.json_to_sheet(data);
@@ -365,6 +398,12 @@ const fetchAllData = async () => {
       studentClass: { label: "Class", type: "text", required: true },
       stream: { label: "Stream", type: "text", required: true },
       pageName: { label: "Page Name", type: "text", required: true },
+      title: { label: "Title", type: "text", required: true },
+      description: { label: "Description", type: "textarea", required: true },
+      videoUrl: { label: "Video URL", type: "url", required: false },
+      thumbnail: { label: "Thumbnail URL", type: "url", required: false },
+      category: { label: "Category", type: "text", required: false },
+
     };
     return configs[key] || { label: key, type: "text", required: false };
   };
@@ -404,7 +443,7 @@ const fetchAllData = async () => {
               <td className="p-2 border">{o.city}</td>
               <td className="p-2 border">{o.state}</td>
               <td className="p-2 border">{o.olympiad}</td>
-              <td className="p-2 border text-center space-x-2">
+              <td className="p-2 border text-left space-x-2">
                 <button onClick={() => openModal("olympiad", o)} className="text-blue-600 hover:underline">
                   Edit
                 </button>
@@ -435,7 +474,7 @@ const fetchAllData = async () => {
               <td className="p-2 border">{w.phone}</td>
               <td className="p-2 border">{w.organization}</td>
               <td className="p-2 border">{w.message}</td>
-              <td className="p-2 border space-x-2 text-center">
+              <td className="p-2 border space-x-2 text-left">
                 <button onClick={() => openModal("workshop", w)} className="text-blue-600 hover:underline">
                   Edit
                 </button>
@@ -467,7 +506,7 @@ const fetchAllData = async () => {
       <td className="p-2 border">{c.school}</td>
       <td className="p-2 border">{c.pageName}</td>
       <td className="p-2 border">{new Date(c.createdAt).toLocaleString()}</td>
-      <td className="p-2 border text-center space-x-2">
+      <td className="p-2 border text-left space-x-2">
         <button onClick={() => openModal("callback", c)} className="text-blue-600 hover:underline">Edit</button>
         <button onClick={() => handleDelete("callback", c.id)} className="text-red-600 hover:underline">Delete</button>
       </td>
@@ -519,7 +558,7 @@ const fetchAllData = async () => {
           setSortAsc={setUserSortAsc}
           onAdd={() => openModal("user")}
           onExportExcel={() => exportToExcel(filteredUsers, "users")}
-          columns={["S.No", "Name", "Email", "Role", "Joined", "Actions"]}
+          columns={["S.No", "Name", "Email/Number", "Role", "Joined", "Actions"]}
           renderRow={(u, index) => (
             <>
               <td className="p-2 border">{index + 1}</td>
@@ -538,6 +577,45 @@ const fetchAllData = async () => {
             </>
           )}
         />
+        {/* 🎙️ Podcasts */}
+<DataTable
+  title="🎙️ Podcast Entries"
+  data={filterData(podcasts || [], podcastSearch, podcastSortAsc, "createdAt", ["title", "category", "description"])}
+  searchValue={podcastSearch}
+  setSearch={setPodcastSearch}
+  sortAsc={podcastSortAsc}
+  setSortAsc={setPodcastSortAsc}
+  onAdd={() => openModal("podcast")}
+  onExportExcel={() => exportToExcel(podcasts, "podcasts")}
+  columns={["S.No", "Title", "Category", "Description", "Video URL", "Thumbnail", "Created At", "Actions"]}
+  renderRow={(p, index) => (
+    <>
+      <td className="p-2 border">{index + 1}</td>
+      <td className="p-2 border">{p.title}</td>
+      <td className="p-2 border">{p.category || "—"}</td>
+      <td className="p-2 border">{p.description || "—"}</td>
+      <td className="p-2 border text-blue-600 underline">
+        {p.videoUrl ? <a href={p.videoUrl} target="_blank" rel="noopener noreferrer">View</a> : "N/A"}
+      </td>
+      <td className="p-2 border text-center">
+        {p.thumbnail ? (
+          <img src={p.thumbnail} alt="thumbnail" className="w-12 h-12 object-cover rounded" />
+        ) : (
+          "N/A"
+        )}
+      </td>
+      <td className="p-2 border">{new Date(p.createdAt).toLocaleDateString()}</td>
+      <td className="p-2 border space-x-2 text-left">
+        <button onClick={() => openModal("podcast", p)} className="text-blue-600 hover:underline">
+          Edit
+        </button>
+        <button onClick={() => handleDelete("podcast", p.id)} className="text-red-600 hover:underline">
+          Delete
+        </button>
+      </td>
+    </>
+  )}
+/>
       </section>
 
       {/* 🔒 Enhanced Modal with Validation */}
