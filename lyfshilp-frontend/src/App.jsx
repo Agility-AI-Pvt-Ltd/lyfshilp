@@ -16,6 +16,7 @@ import TermsConditions from "./pages/TermsConditions.jsx";
 import CuetPage from "./pages/CuetPage.jsx";
 import ClatPage from "./pages/ClatPage.jsx";
 import IpmatPage from "./pages/IpmatPage.jsx";
+import NotFound from "./pages/NotFound.jsx";
 
 import Job1 from "./pages/Job1.jsx";
 import Job2 from "./pages/Job2.jsx";
@@ -84,6 +85,7 @@ export default function App() {
             <Route path="/olympiad/ai" element={<Aipage />} />
             <Route path="/olympiad/employability" element={<Employabilitypage />} />
             <Route path="/olympiad/entrepreneurship" element={<Entrepreneurshippage />} />
+            <Route path="*" element={<NotFound />} />
             
             <Route 
                 path="/dashboard" 

@@ -12,7 +12,7 @@ export default function OlympiadSection1() {
         </h2>
         <p className="mt-3 sm:mt-4 text-gray-600 text-sm sm:text-base lg:text-lg max-w-2xl mx-auto px-2">
           This isn’t just a competition; it’s a complete learning journey. 
-          We’ve designed our Olympiad to support you, challenge you, and help you grow.
+          We’ve designed our Fellowship to support you, challenge you, and help you grow.
         </p>
       </div>
 

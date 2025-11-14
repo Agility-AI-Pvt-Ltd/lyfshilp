@@ -7,25 +7,25 @@ import entreImg from "../assets/Olympiadimg/Entrepimg.jpg";
 export default function OlympiadDash() {
   const olympiads = [
     {
-      title: "Finance Management Olympiad",
+      title: "Finance Management Fellowship",
       image: financeImg,
       desc: "28 Questions • Quiz Type • 20 minutes",
       link: "/olympiad/finance",
     },
     {
-      title: "Artificial Intelligence Olympiad",
+      title: "Artificial Intelligence Fellowship",
       image: aiImg,
       desc: "28 Questions • Quiz Type • 20 minutes",
       link: "/olympiad/ai",
     },
     {
-      title: "Employability Skills Olympiad",
+      title: "Employability Skills Fellowship",
       image: employImg,
       desc: "28 Questions • Quiz Type • 20 minutes",
       link: "/olympiad/employability",
     },
     {
-      title: "Entrepreneurship Olympiad",
+      title: "Entrepreneurship Fellowship",
       image: entreImg,
       desc: "28 Questions • Quiz Type • 20 minutes",
       link: "/olympiad/entrepreneurship",
@@ -35,7 +35,7 @@ export default function OlympiadDash() {
   return (
     <section className="bg-[#FFF8EE] py-16 px-6 md:px-12 lg:px-20 text-center">
       <h2 className="text-3xl md:text-4xl font-bold mb-12">
-        Choose your <span className="text-green-600">Olympiad</span>
+        Choose your <span className="text-green-600">Fellowship</span>
       </h2>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 max-w-7xl mx-auto">

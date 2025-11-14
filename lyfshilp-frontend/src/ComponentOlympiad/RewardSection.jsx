@@ -50,7 +50,7 @@ export default function RewardsSection() {
         <div className="text-center md:text-left">
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-gray-900 leading-snug">
             What you will get from this <br className="hidden sm:block" />
-            <span className="text-green-700">FutureX Olympiad?</span>
+            <span className="text-green-700">FutureX Fellowship?</span>
           </h2>
         </div>
         <p className="text-gray-600 text-xs sm:text-sm md:text-base mt-2 md:mt-0 md:w-1/2 text-center md:text-left leading-relaxed max-w-xl">

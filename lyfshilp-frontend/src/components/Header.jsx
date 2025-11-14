@@ -1,4 +1,4 @@
-import { useState, useRef, useContext } from "react";
+import { useState, useRef, useContext, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import logo from "../assets/logo.png";
 import { AuthContext } from "../contexts/AuthContext.jsx";
@@ -8,6 +8,7 @@ export default function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [mobileCareerOpen, setMobileCareerOpen] = useState(false);
   const closeTimeout = useRef(null);
+  const [showAdmin, setShowAdmin] = useState(false); // toggle for Admin link
 
   const { user, logout, loading } = useContext(AuthContext);
   const navigate = useNavigate();
@@ -30,6 +31,21 @@ export default function Header() {
     logout();
     navigate("/login");
   };
+
+  // ✅ works on Windows + Mac
+  useEffect(() => {
+    const handleKey = (e) => {
+      // Alt + A (Windows/Linux) or Option + A (Mac)
+      if (e.altKey && e.key.toLowerCase() === "a") {
+        console.log("triggered (Alt+A)");
+        e.preventDefault();
+        setShowAdmin((prev) => !prev);
+      }
+    };
+
+    window.addEventListener("keydown", handleKey);
+    return () => window.removeEventListener("keydown", handleKey);
+  }, []);
 
   return (
     <header className="w-full bg-white shadow-sm fixed top-0 left-0 z-50 font-sans transition-all duration-200">
@@ -107,18 +123,26 @@ export default function Header() {
               </>
             ) : (
               <>
-                <Link
+                {/* <Link
+                  to="/login"
+                  className="px-3 xl:px-4 py-1.5 xl:py-2 border border-green-600 rounded-full text-green-600 hover:bg-green-50 font-medium text-xs xl:text-sm transition whitespace-nowrap"
+                >
+                  Login
+                </Link> */}
+                {/* //make login for admin */}
+                {(showAdmin) &&(<Link
                   to="/login"
                   className="px-3 xl:px-4 py-1.5 xl:py-2 border border-green-600 rounded-full text-green-600 hover:bg-green-50 font-medium text-xs xl:text-sm transition whitespace-nowrap"
                 >
                   Login
                 </Link>
-                <Link
+                )}
+                {/* <Link
                   to="/register"
                   className="px-3 xl:px-4 py-1.5 xl:py-2 bg-green-600 rounded-full text-white hover:bg-green-700 font-medium text-xs xl:text-sm shadow-md transition whitespace-nowrap"
                 >
-                  Sign Up
-                </Link>
+                  Contact us
+                </Link> */}
               </>
             )}
           </div>

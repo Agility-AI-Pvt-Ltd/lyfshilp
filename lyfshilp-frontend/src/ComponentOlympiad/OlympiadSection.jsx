@@ -18,7 +18,7 @@ export default function OlympiadSection1() {
             
             {/* Heading */}
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold leading-snug md:leading-tight mb-6">
-              <span className="text-green-600">The National FutureX Olympiad </span>
+              <span className="text-green-600">The International FutureX Fellowship </span>
               <span className="text-gray-900">
                 {" "}
                 – Beat Levels, Build Skills, Gamified Learning{" "}

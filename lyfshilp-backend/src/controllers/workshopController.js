@@ -1,4 +1,5 @@
 import prisma from "../prismaClient.js";
+import { sendMailToAdmins, sendMailToUser } from "../utils/sendMail.js";
 
 /**
  * POST /workshop/register
@@ -15,6 +16,23 @@ export const registerWorkshop = async (req, res) => {
     const workshop = await prisma.workshop.create({
       data: { name, phone, email, organization, message },
     });
+      await sendMailToUser({
+          email,
+          name,
+          formName: "Olympiad Registration",
+        });
+      
+        await sendMailToAdmins({
+          formName: "Olympiad Registration",
+          name,
+          email,
+          formData: req.body,
+          meta: {
+            path: req.originalUrl,
+            userAgent: req.headers["user-agent"],
+            submittedAt: new Date(),
+          },
+        });
 
     res.status(201).json({ success: true, data: workshop });
   } catch (error) {

@@ -7,9 +7,10 @@ import * as XLSX from "xlsx";
 import { saveAs } from "file-saver";
 
 // 🔒 Validation Functions
-const validateEmail = (email) => {
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  return emailRegex.test(email);
+const validateEmail = (input) => {
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;  // ✅ valid email
+  const phoneRegex = /^\d{10}$/;                     // ✅ exactly 10 digits
+  return emailRegex.test(input) || phoneRegex.test(input);
 };
 
 const validatePhone = (phone) => {
@@ -380,7 +381,7 @@ const fetchAllData = async () => {
     const configs = {
       name: { label: "Name", type: "text", required: true },
       fullName: { label: "Full Name", type: "text", required: true },
-      email: { label: "Email", type: "email", required: true },
+      email: { label: "Email", type: "text", required: true },
       phone: { label: "Phone (10 digits)", type: "tel", required: true },
       className: { label: "Class", type: "text", required: true },
       school: { label: "School", type: "text", required: true },

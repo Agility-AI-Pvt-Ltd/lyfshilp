@@ -81,14 +81,14 @@ export default function Register() {
           {/* Tabs */}
           <div className="flex justify-center gap-8 mb-6 border-b pb-2">
             <span className="text-green-600 font-bold border-b-2 border-green-600 cursor-pointer">
-              Sign Up
+              Contact us
             </span>
-            <Link
+            {/* <Link
               to="/login"
               className="text-gray-500 hover:text-gray-800 cursor-pointer"
             >
-              Log In
-            </Link>
+              Login
+            </Link> */}
           </div>
 
           {/* ✅ SUCCESS/ERROR MESSAGE */}
@@ -161,17 +161,17 @@ export default function Register() {
               disabled={loading}
               className="w-full py-3 bg-green-600 text-white font-semibold rounded-lg hover:bg-green-700 transition disabled:opacity-50"
             >
-              {loading ? "Registering..." : "Sign Up"}
+              {loading ? "Registering..." : "Contact us"}
             </button>
           </form>
 
           {/* Already have account */}
-          <p className="text-center text-gray-600 mt-5">
-            Already have an account?{" "}
+          {/* <p className="text-center text-gray-600 mt-5">
+            Know more about FutureX {" "}
             <Link to="/login" className="text-green-600 font-semibold">
               Log In
             </Link>
-          </p>
+          </p> */}
         </div>
       </div>
     </div>
