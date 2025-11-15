@@ -61,11 +61,11 @@ export const addApplication = async (req, res) => {
       await sendMailToUser({
           email,
           name,
-          formName: "Olympiad Registration",
+          formName: "Application Registration",
         });
       
         await sendMailToAdmins({
-          formName: "Olympiad Registration",
+          formName: "Application Registration",
           name,
           email,
           formData: req.body,
