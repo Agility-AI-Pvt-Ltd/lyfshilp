@@ -17,7 +17,7 @@ export default function ExamStats() {
   ];
 
   return (
-    <div className="relative -mt-2 md:-mt-10 mb-8 z-10">
+    <div className="relative -mt-2 md:-mt-10  z-10">
       {/* Elevated Strip */}
       
       <div className="bg-white rounded-2xl shadow-xl mx-4 sm:mx-8 md:mx-12 lg:mx-24 border border-gray-100">
