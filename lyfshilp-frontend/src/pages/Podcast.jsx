@@ -112,13 +112,17 @@ if (!pageLoaded || loading) {
             className="relative flex justify-center items-center -mt-6 pb-12"
             style={{ minHeight: "400px" }}
           >
-            <img
-              src={laptopImg}
-              alt="Podcast Laptop"
-              className="w-[800px] max-w-full drop-shadow-2xl opacity-0 transition-opacity duration-700 ease-in-out"
-              onLoad={(e) => (e.currentTarget.style.opacity = 1)}
-            />
-            <div className="absolute top-[22%] left-1/2 -translate-x-1/2 w-[60%] sm:w-[50%] h-[35%] bg-white rounded-xl shadow-xl p-4 sm:p-6 flex flex-col items-center gap-4 transition-opacity duration-700 opacity-100">
+<img
+  src={laptopImg}
+  alt="Podcast Laptop"
+  className="w-[800px] max-w-full drop-shadow-2xl opacity-0 transition-opacity duration-700 ease-in-out"
+  style={{ height: "480px" }}   // ✅ FIX: Prevent layout shift
+  onLoad={(e) => (e.currentTarget.style.opacity = 1)}
+/>
+
+            <div className="absolute top-[22%] left-1/2 -translate-x-1/2 w-[50%] sm:w-[40%] h-[30%] bg-white rounded-xl shadow-xl p-4 sm:p-6 flex flex-col items-center gap-4 transition-opacity duration-700 opacity-100" style={{ minHeight: "180px" }} > 
+            {/* ✅ FIX: Prevent content shifting */}
+
               <div className="flex items-center justify-between w-full">
                 <div className="text-left w-full">
                   <h3 className="text-lg sm:text-xl font-bold">LYFSHILP ACADEMY</h3>
