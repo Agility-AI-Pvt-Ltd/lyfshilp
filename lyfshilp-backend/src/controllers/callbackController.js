@@ -24,11 +24,11 @@ export const registerCallback = async (req, res) => {
       await sendMailToUser({
           email,
           name,
-          formName: "Olympiad Registration",
+          formName: "Callback Registration",
         });
       
         await sendMailToAdmins({
-          formName: "Olympiad Registration",
+          formName: "Callback Registration",
           name,
           email,
           formData: req.body,
