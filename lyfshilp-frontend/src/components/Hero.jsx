@@ -4,7 +4,7 @@ import copoweredLogo from "../assets/copowered.png";
 
 export default function Hero() {
   return (
-    <section className="bg-white pt-16 sm:pt-18 md:pt-20 pb-4 sm:pb-6 md:pb-10 font-sans relative overflow-hidden flex items-center min-h-[70vh] sm:min-h-[75vh] md:min-h-[90vh]">
+    <section className="bg-white pt-16 sm:pt-0 md:pt-20 pb-4 sm:pb-0 md:pb-10 font-sans relative overflow-hidden flex items-center">
       <div className="container mx-auto px-4 sm:px-6 md:px-8 lg:px-10 grid grid-cols-1 md:grid-cols-2 items-center gap-4 sm:gap-6 md:gap-10 max-w-7xl">
 
         {/* Left Content */}

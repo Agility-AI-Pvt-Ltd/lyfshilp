@@ -59,12 +59,12 @@ export default function Login() {
         <div className="w-full md:w-1/2 p-10">
           {/* Tabs */}
           <div className="flex justify-center gap-8 mb-6 border-b pb-2">
-            <Link
+            {/* <Link
               to="/register"
               className="text-gray-500 hover:text-gray-800 cursor-pointer"
             >
-              Sign Up
-            </Link>
+              Contact us
+            </Link> */}
             <span className="text-green-600 font-bold border-b-2 border-green-600 cursor-pointer">
               Log In
             </span>
@@ -115,12 +115,12 @@ export default function Login() {
           </form>
 
           {/* Don't have account */}
-          <p className="text-center text-gray-600 mt-5">
-            Don’t have any account?{" "}
+          {/* <p className="text-center text-gray-600 mt-5">
+            Know more about FutureX Fellowship{" "}
             <Link to="/register" className="text-green-600 font-semibold">
-              Sign Up
+              Contact us
             </Link>
-          </p>
+          </p> */}
         </div>
       </div>
     </div>

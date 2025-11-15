@@ -1,4 +1,5 @@
 import prisma from "../prismaClient.js";
+import { sendMailToAdmins, sendMailToUser } from "../utils/sendMail.js";
 
 /**
  * 📝 Public: Create new application (Candidate form)
@@ -56,6 +57,24 @@ export const addApplication = async (req, res) => {
     const newApp = await prisma.application.create({
       data: { fullName, phone, email, about, resumeUrl, jobId, jobTitle },
     });
+
+      await sendMailToUser({
+          email,
+          name,
+          formName: "Olympiad Registration",
+        });
+      
+        await sendMailToAdmins({
+          formName: "Olympiad Registration",
+          name,
+          email,
+          formData: req.body,
+          meta: {
+            path: req.originalUrl,
+            userAgent: req.headers["user-agent"],
+            submittedAt: new Date(),
+          },
+        });
 
     res.status(201).json({ success: true, data: newApp });
   } catch (error) {

@@ -94,11 +94,10 @@ if (!pageLoaded || loading) {
   );
 }
 
-
   return (
     <div className="min-h-screen bg-white">
       {/* 🎙️ Podcast Section */}
-      <section className="w-full bg-white pt-24 pb-20 relative overflow-hidden">
+      <section className="w-full bg-white pt-16 pb-8 sm:pt-24 sm:pb-20 relative overflow-hidden">
         <div className="max-w-6xl mx-auto text-center px-4 sm:px-6 lg:px-8">
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-3">
             Lyfshilp Academy <span className="text-green-600">Podcast</span> 🎙️
@@ -109,16 +108,29 @@ if (!pageLoaded || loading) {
 
           {/* 💻 Laptop Section */}
           <div
-            className="relative flex justify-center items-center -mt-6 pb-12"
-            style={{ minHeight: "400px" }}
+            className="relative flex justify-center items-center -mt-6 pb-0"
+            style={{ minHeight: "410px" }}
           >
-            <img
-              src={laptopImg}
-              alt="Podcast Laptop"
-              className="w-[800px] max-w-full drop-shadow-2xl opacity-0 transition-opacity duration-700 ease-in-out"
-              onLoad={(e) => (e.currentTarget.style.opacity = 1)}
-            />
-            <div className="absolute top-[22%] left-1/2 -translate-x-1/2 w-[60%] sm:w-[50%] h-[35%] bg-white rounded-xl shadow-xl p-4 sm:p-6 flex flex-col items-center gap-4 transition-opacity duration-700 opacity-100">
+          <img
+            src={laptopImg}
+            alt="Podcast Laptop"
+            className="w-[98%] sm:w-[600px] md:w-[800px] max-w-900px drop-shadow-2xl"
+            style={{ height: "auto", maxHeight: "480px" }}
+            // ✅ FIX: Prevent layout shift
+            onLoad={(e) => (e.currentTarget.style.opacity = 1)}
+          />
+
+<div className="
+absolute top-[24%] sm:top-[22%] left-1/2 -translate-x-1/2
+w-[70%] sm:w-[56%] md:w-[38%] 
+scale-[0.60] sm:scale-100
+bg-white rounded-xl shadow-xl 
+p-3 sm:p-6 flex flex-col items-center gap-4
+"
+style={{ minHeight: "120px" }}
+> 
+            {/* ✅ FIX: Prevent content shifting */}
+
               <div className="flex items-center justify-between w-full">
                 <div className="text-left w-full">
                   <h3 className="text-lg sm:text-xl font-bold">LYFSHILP ACADEMY</h3>
@@ -202,7 +214,7 @@ if (!pageLoaded || loading) {
                         rightBtn.classList.remove("opacity-0", "pointer-events-none");
                     }}
                   >
-                    {podcasts.slice(1,-1).map((podcast) => (
+                    {podcasts.slice(1,-2).map((podcast) => (
                       <iframe
                         key={podcast.id}
                         className="w-56 sm:w-64 h-36 sm:h-40 rounded-lg shadow-md flex-shrink-0"

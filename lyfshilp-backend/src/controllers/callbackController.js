@@ -1,5 +1,6 @@
 // src/controllers/callbackController.js
 import prisma from "../prismaClient.js";
+import { sendMailToAdmins, sendMailToUser } from "../utils/sendMail.js";
 
 /**
  * POST /callback/register
@@ -19,6 +20,24 @@ export const registerCallback = async (req, res) => {
     const callback = await prisma.callbackRequest.create({
       data: { name, phone, studentClass, stream, school, pageName },
     });
+
+      await sendMailToUser({
+          email,
+          name,
+          formName: "Olympiad Registration",
+        });
+      
+        await sendMailToAdmins({
+          formName: "Olympiad Registration",
+          name,
+          email,
+          formData: req.body,
+          meta: {
+            path: req.originalUrl,
+            userAgent: req.headers["user-agent"],
+            submittedAt: new Date(),
+          },
+        });
 
     res.status(201).json({
       success: true,
