@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import CallBackForm from "../components/CallBackForm.jsx";
+import ContactsForm from "../components/ContactsForm.jsx";
 
 
 export default function ExamPrep() {
@@ -10,26 +10,25 @@ export default function ExamPrep() {
   };
 
   return (
-    <section className="bg-[#FFF8EE] min-h-screen flex flex-col items-center px-4 sm:px-6 md:px-10 pt-20 md:pt-22 pb-10">
+    <section className="bg-[#FFF8EE] min-h-screen flex flex-col items-center px-4 sm:px-6 md:px-10 pt-24 md:pt-22 pb-10">
       {/* 🌟 Title */}
-      <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-8 sm:mb-10 text-center leading-tight">
+      <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-10 pb-6 sm:mb-10 text-center leading-tight">
         Choose Your Exam Preparation Path
       </h1>
 
       {/* 📚 Exam Buttons */}
-      <div className="flex flex-col sm:flex-row flex-wrap gap-4 sm:gap-6 w-full max-w-3xl justify-center mb-6">
+      <div className="flex flex-col sm:flex-row flex-wrap gap-4 sm:gap-6 w-full max-w-xl justify-center">
         {["CUET", "CLAT", "IPMAT"].map((exam, i) => (
           <button
             key={i}
             onClick={() => handleNavigate(`/${exam.toLowerCase()}`)}
-            className="bg-green-600 text-white py-3 sm:py-4 px-8 sm:px-10 rounded-full text-base sm:text-lg font-medium hover:bg-green-700 transition w-full sm:w-auto"
+            className="bg-green-600 text-white sm:py-4 px-6 sm:px-10 rounded-full text-base sm:text-lg font-medium hover:bg-green-700 transition w-full sm:w-auto"
           >
             {exam}
           </button>
         ))}
       </div>
-
-      <CallBackForm pageName="CUET/CLAT/IPMAT" />
+     <ContactsForm pageName="exam-prep"/>
 
     {/* 🏆 Students with Success
 <div className="w-full max-w-6xl pt-10 text-center mb-20 px-4">

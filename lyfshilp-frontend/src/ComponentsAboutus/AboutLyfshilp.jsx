@@ -2,7 +2,7 @@ import AboutImage from "../assets/Aboutimg/LyfshilpStudents.svg";
 
 export default function AboutLyfshilp() {
   return (
-    <section className="relative py-16 pt-20 bg-white">
+    <section className="relative py-16 pt-20 bg-[#FFF8EE]">
       <div className="max-w-6xl mx-auto px-6">
         {/* Top Heading */}
         <div className="text-center mb-12">

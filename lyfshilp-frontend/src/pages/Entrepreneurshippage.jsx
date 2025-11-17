@@ -5,6 +5,10 @@ import entrepreneurshipImg from "../assets/Olympiadimg/Entrepimg.jpg";
 export default function Entrepreneurshippage() {
   const [activeFaq, setActiveFaq] = useState(null);
   const [showForm, setShowForm] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [statusMessage, setStatusMessage] = useState("");
+  const [statusType, setStatusType] = useState(""); // success or error
+
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -45,71 +49,87 @@ const faqs = [
   };
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    setError("");
-    setSuccess("");
+  e.preventDefault();
+  setError("");
+  setSuccess("");
+  setStatusMessage("");
+  setStatusType("");
+  setLoading(true);
 
-    const { name, email, phone, className, school, city, state } = formData;
+  const { name, email, phone, className, school, city, state } = formData;
 
-    // ✅ Frontend validation
-    if (!name || !email || !phone || !className || !school || !city || !state) {
-      setError("Please fill out all fields.");
-      return;
-    }
+  // Frontend validation
+  if (!name || !email || !phone || !className || !school || !city || !state) {
+    setLoading(false);
+    setError("Please fill out all fields.");
+    return;
+  }
 
-    const nameRegex = /^[a-zA-Z\s]{3,40}$/;
-    const phoneRegex = /^[0-9]{10}$/;
-    const textRegex = /^[a-zA-Z0-9\s.,'-]{2,50}$/;
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  const nameRegex = /^[a-zA-Z\s]{3,40}$/;
+  const phoneRegex = /^[0-9]{10}$/;
+  const textRegex = /^[a-zA-Z0-9\s.,'-]{1,50}$/;
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-    if (!nameRegex.test(name)) {
-      setError("Name can only contain letters and spaces (3–40 chars).");
-      return;
-    }
-    if (!emailRegex.test(email)) {
-      setError("Please enter a valid email address.");
-      return;
-    }
-    if (!phoneRegex.test(phone)) {
-      setError("Phone number must be 10 digits.");
-      return;
-    }
-    if (!textRegex.test(className) || !textRegex.test(school) || !textRegex.test(city) || !textRegex.test(state)) {
-      setError("Fields contain invalid characters.");
-      return;
-    }
+  if (!nameRegex.test(name)) {
+    setLoading(false);
+    setError("Name can only contain letters and spaces (3–40 chars).");
+    return;
+  }
+  if (!emailRegex.test(email)) {
+    setLoading(false);
+    setError("Please enter a valid email address.");
+    return;
+  }
+  if (!phoneRegex.test(phone)) {
+    setLoading(false);
+    setError("Phone number must be 10 digits.");
+    return;
+  }
+  if (!textRegex.test(className) || !textRegex.test(school) || !textRegex.test(city) || !textRegex.test(state)) {
+    setLoading(false);
+    setError("Fields contain invalid characters.");
+    return;
+  }
 
-    try {
-      // ✅ Send data to backend
-      const response = await api.post("/olympiad/register", {
-        ...formData,
-        olympiad: "Entrepreneurship",
+  try {
+    const response = await api.post("/olympiad/register", {
+      ...formData,
+      olympiad: "Entrepreneurship",
+    });
+
+    if (response.data.success) {
+      setSuccess("Registration successful! We’ll contact you soon.");
+      setStatusMessage("Registration successful!");
+      setStatusType("success");
+
+      setFormData({
+        name: "",
+        email: "",
+        phone: "",
+        className: "",
+        school: "",
+        city: "",
+        state: "",
       });
 
-      if (response.data.success) {
-        setSuccess("Registration successful! We’ll contact you soon.");
-        setFormData({
-          name: "",
-          email: "",
-          phone: "",
-          className: "",
-          school: "",
-          city: "",
-          state: "",
-        });
-
-        setTimeout(() => {
-          setShowForm(false);
-          setSuccess("");
-        }, 2000);
-      } else {
-        setError(response.data.message || "Something went wrong. Please try again.");
-      }
-    } catch (err) {
-      console.error(err);
-      setError(err.response?.data?.message || "Server error. Please try again later.");
+      setTimeout(() => {
+        setShowForm(false);
+        setSuccess("");
+      }, 2000);
+    } else {
+      setError(response.data.message || "Something went wrong. Please try again.");
+      setStatusMessage(response.data.message || "Something went wrong.");
+      setStatusType("error");
     }
-  };
+  } catch (err) {
+    console.error(err);
+    setError(err.response?.data?.message || "Server error. Please try again later.");
+    setStatusMessage(err.response?.data?.message || "Server error.");
+    setStatusType("error");
+  }
+
+  setLoading(false);
+};
 
   return (
     <section className="relative pb-16 pt-28 bg-white">
@@ -118,7 +138,7 @@ const faqs = [
         <div className="lg:col-span-2">
           <div className="bg-green-700 text-white rounded-2xl p-10 relative overflow-hidden">
             <h1 className="text-3xl md:text-4xl font-bold">
-              Entrepreneurship <span className="text-yellow-400">Olympiad</span>
+              Entrepreneurship <span className="text-yellow-400">Fellowship</span>
             </h1>
             <p className="mt-4 text-gray-100 leading-relaxed">
                Test your innovation mindset, business acumen, and problem-solving ability through practical startup-inspired scenarios.
@@ -200,7 +220,7 @@ const faqs = [
         {/* RIGHT REGISTER CARD */}
         <div className="bg-white rounded-2xl shadow-lg p-6 border text-center flex flex-col items-center self-start">
           <img src={entrepreneurshipImg} alt="Entrepreneurship Olympiad" className="w-full rounded-xl mb-4" />
-          <h3 className="text-lg font-semibold text-gray-900 mb-1">Entrepreneurship – Olympiad</h3>
+          <h3 className="text-lg font-semibold text-gray-900 mb-1">Entrepreneurship – Fellowship</h3>
           <div className="flex items-center justify-center gap-4 text-sm text-gray-500 mb-4">
             <span>👥 12K+ Learners</span>
             <span>⭐ 4.9 Rating</span>
@@ -225,7 +245,7 @@ const faqs = [
             >
               ×
             </button>
-            <h2 className="text-2xl font-bold text-green-700 mb-4 text-center">Register for Olympiad</h2>
+            <h2 className="text-2xl font-bold text-green-700 mb-4 text-center">Register for Entrepreneurship FutureX Fellowship</h2>
 
             {error && <p className="text-red-500 text-sm mb-3 text-center">{error}</p>}
             {success && <p className="text-green-600 text-sm mb-3 text-center font-medium">{success}</p>}
@@ -245,12 +265,25 @@ const faqs = [
                   className="w-full border rounded-lg px-4 py-2"
                 />
               ))}
-              <button
-                type="submit"
-                className="w-full bg-green-600 text-white py-2 rounded-lg font-semibold hover:bg-green-700"
-              >
-                Submit
-              </button>
+          <button
+          type="submit"
+          disabled={loading}
+          className={`${
+            loading ? "bg-green-400 cursor-not-allowed" : "bg-gradient-to-r from-green-600 to-green-700 hover:scale-[1.03]"
+          } text-white font-semibold px-10 py-2 rounded-full shadow-lg transition-all duration-300 text-lg`}
+         >
+          {loading ? "Submitting..." : "Submit"}
+        </button>
+
+        {statusMessage && (
+          <div
+            className={`mt-4 text-lg font-semibold transition-opacity duration-300 ${
+              statusType === "success" ? "text-green-600" : "text-red-600"
+            }`}
+          >
+            {statusMessage}
+          </div>
+        )}
             </form>
           </div>
         </div>

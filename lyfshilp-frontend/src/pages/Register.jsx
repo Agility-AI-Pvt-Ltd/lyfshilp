@@ -81,7 +81,7 @@ export default function Register() {
           {/* Tabs */}
           <div className="flex justify-center gap-8 mb-6 border-b pb-2">
             <span className="text-green-600 font-bold border-b-2 border-green-600 cursor-pointer">
-              Contact us
+             Sign Up
             </span>
             {/* <Link
               to="/login"
