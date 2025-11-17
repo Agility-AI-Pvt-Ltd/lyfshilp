@@ -88,16 +88,16 @@ export default function Podcast() {
   // ⏳ Loading
 if (!pageLoaded || loading) {
   return (
-    <div className="flex items-center justify-center min-h-screen bg-white">
+    <div className="flex items-center justify-center min-h-screen bg-[#FFF8EE]">
       <p className="text-gray-600 text-lg animate-pulse">Loading podcasts...</p>
     </div>
   );
 }
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-[#FFF8EE]">
       {/* 🎙️ Podcast Section */}
-      <section className="w-full bg-white pt-16 pb-8 sm:pt-24 sm:pb-20 relative overflow-hidden">
+      <section className="w-full bg-[#FFF8EE] pt-16 pb-8 sm:pt-24 sm:pb-20 relative overflow-hidden">
         <div className="max-w-6xl mx-auto text-center px-4 sm:px-6 lg:px-8">
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-3">
             Lyfshilp Academy <span className="text-green-600">Podcast</span> 🎙️
@@ -124,7 +124,7 @@ if (!pageLoaded || loading) {
 absolute top-[24%] sm:top-[22%] left-1/2 -translate-x-1/2
 w-[70%] sm:w-[56%] md:w-[38%] 
 scale-[0.60] sm:scale-100
-bg-white rounded-xl shadow-xl 
+bg-[#FFF8EE] rounded-xl shadow-xl 
 p-3 sm:p-6 flex flex-col items-center gap-4
 "
 style={{ minHeight: "120px" }}

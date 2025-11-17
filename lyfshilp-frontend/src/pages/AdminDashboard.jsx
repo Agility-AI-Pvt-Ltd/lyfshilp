@@ -43,6 +43,7 @@ export default function AdminDashboard() {
   const [workshops, setWorkshops] = useState([]);
   const [callbacks, setCallbacks] = useState([]);
   const [podcasts, setPodcasts] = useState([]);
+  const [contactus, setContactus] = useState([]);
 
 
   // Search states
@@ -52,6 +53,7 @@ export default function AdminDashboard() {
   const [workSearch, setWorkSearch] = useState("");
   const [callbackSearch, setCallbackSearch] = useState("");
   const [podcastSearch, setPodcastSearch] = useState("");
+  const [contactSearch, setContactSearch] = useState("");
 
   // Sort toggles
   const [userSortAsc, setUserSortAsc] = useState(true);
@@ -60,6 +62,7 @@ export default function AdminDashboard() {
   const [workSortAsc, setWorkSortAsc] = useState(true);
   const [callbackSortAsc, setCallbackSortAsc] = useState(true);
   const [podcastSortAsc, setPodcastSortAsc] = useState(true);
+  const [contactSortAsc, setContactSortAsc] = useState(true);
 
   // Modal and message
   const [showModal, setShowModal] = useState(false);
@@ -70,15 +73,6 @@ export default function AdminDashboard() {
   const [message, setMessage] = useState({ text: "", type: "" });
 
   const token = localStorage.getItem("token");
-
-  const validateURL = (url) => {
-    try {
-      new URL(url);
-      return true;
-    } catch {
-      return false;
-    }
-  };
 
   const showMessage = (text, type = "success") => {
     // Save scroll position before showing message
@@ -105,13 +99,14 @@ const fetchAllData = async () => {
 
   try {
     const headers = { Authorization: `Bearer ${token}` };
-    const [olyRes, appRes, userRes, workRes, callbackRes, podcastRes] = await Promise.all([
+    const [olyRes, appRes, userRes, workRes, callbackRes, podcastRes, contactRes] = await Promise.all([
       api.get("/olympiad/all", { headers }),
       api.get("/applications/all", { headers }),
       api.get("/user/all", { headers }),
       api.get("/workshop/all", { headers }),
       api.get("/callback/all", { headers }),
       api.get("/podcast/all", { headers }),
+      api.get("/contact/all", { headers }), 
     ]);
 
     setOlympiads(olyRes.data.data || olyRes.data || []);
@@ -120,6 +115,7 @@ const fetchAllData = async () => {
     setWorkshops(workRes.data.data || workRes.data || []);
     setCallbacks(callbackRes.data.data || callbackRes.data || []);
     setPodcasts(podcastRes.data.data || podcastRes.data || []);
+    setContactus(contactRes.data.data || contactRes.data || []);
 
     setTimeout(() => {
       window.scrollTo(0, scrollPosition);
@@ -175,6 +171,16 @@ const fetchAllData = async () => {
       if (!modalData.school?.trim()) errors.school = "School required";
       if (!modalData.pageName?.trim()) errors.pageName = "Page name required";
     }
+  if (modalType === "contactus") {
+      if (!validateName(modalData.name || "")) errors.name = "Valid name required";
+      if (!validateEmail(modalData.email || "")) errors.email = "Valid email required";
+      if (!validatePhone(modalData.phone || "")) errors.phone = "Valid phone required";
+      if (!modalData.exam?.trim()) errors.exam = "Exam required";
+      if (!modalData.studentClass?.trim()) errors.studentClass = "Class required";
+      if (!modalData.stream?.trim()) errors.stream = "Stream required";
+      if (!modalData.school?.trim()) errors.school = "School required";
+}
+
     if (modalType === "podcast") {
       if (!modalData.title?.trim()) errors.title = "Title is required";
       if (!modalData.description?.trim()) errors.description = "Description required";
@@ -320,6 +326,18 @@ const fetchAllData = async () => {
     pageName: "",
   };
 }
+  else if (type === "contactus") {
+  defaultData = {
+    name: "",
+    email: "",
+    exam: "",
+    phone: "",
+    studentClass: "",
+    stream: "",
+    school: "",
+    pageName: "",
+  };
+}
   else if (type === "podcast") {
   defaultData = {
     title: "",
@@ -365,6 +383,7 @@ const fetchAllData = async () => {
   const filteredUsers = filterData(users, userSearch, userSortAsc, "id", ["name", "email"]);
   const filteredWork = filterData(workshops, workSearch, workSortAsc, "createdAt", ["name", "email", "organization"]);
   const filteredPodcasts = filterData(podcasts, podcastSearch, podcastSortAsc, "createdAt", ["title", "category"]);
+  const filteredContacts = filterData(contactus, contactSearch, contactSortAsc, "createdAt", ["name", "email", "phone", "pageName"]);
 
 
   const exportToExcel = (data, filename) => {
@@ -403,6 +422,7 @@ const fetchAllData = async () => {
       description: { label: "Description", type: "textarea", required: true },
       videoUrl: { label: "Video URL", type: "url", required: false },
       thumbnail: { label: "Thumbnail URL", type: "url", required: false },
+      exam: { label: "Exam", type: "text", required: true },
       category: { label: "Category", type: "text", required: false },
 
     };
@@ -424,7 +444,7 @@ const fetchAllData = async () => {
       <section className="space-y-6 pt-16">
         {/* 🏆 Olympiad */}
         <DataTable
-          title="🏆 Olympiad Registrations"
+          title="🏆 FutureX Registrations"
           data={filteredOly}
           searchValue={olySearch}
           setSearch={setOlySearch}
@@ -486,7 +506,37 @@ const fetchAllData = async () => {
             </>
           )}
         />
-{/* 🧑‍🏫 Callback Requests */}
+        <DataTable
+          title="📩 Contact Us Submissions"
+          data={filterData(contactus, contactSearch, contactSortAsc, "createdAt", ["name", "email", "phone", "exam"])}
+          searchValue={contactSearch}
+          setSearch={setContactSearch}
+          sortAsc={contactSortAsc}
+          setSortAsc={setContactSortAsc}
+          onAdd={() => openModal("contactus")}
+          onExportExcel={() => exportToExcel(contactus, "contact_us_data")}
+          columns={["S.No", "Name", "Email", "Phone", "Exam", "Class", "Stream", "School", "Page Name", "Created", "Actions"]}
+          renderRow={(c, index) => (
+        <>
+            <td className="p-2 border">{index + 1}</td>
+            <td className="p-2 border">{c.name}</td>
+            <td className="p-2 border">{c.email}</td>
+            <td className="p-2 border">{c.phone}</td>
+            <td className="p-2 border">{c.exam}</td>
+            <td className="p-2 border">{c.studentClass}</td>
+            <td className="p-2 border">{c.stream}</td>
+            <td className="p-2 border">{c.school}</td>
+            <td className="p-2 border">{c.pageName}</td>
+            <td className="p-2 border">{new Date(c.createdAt).toLocaleString()}</td>
+
+            <td className="p-2 border text-left space-x-2">
+            <button onClick={() => openModal("contactus", c)} className="text-blue-600 hover:underline">Edit</button>
+            <button onClick={() => handleDelete("contactus", c.id)} className="text-red-600 hover:underline">Delete</button>
+            </td>
+        </>
+          )}
+        />
+{/* 🧑‍🏫 Callback Requests
   <DataTable
   title="📞 Callback Requests"
   data={filterData(callbacks, callbackSearch, callbackSortAsc, "createdAt", ["name", "phone", "pageName", "school"])}
@@ -513,7 +563,7 @@ const fetchAllData = async () => {
       </td>
     </>
   )}
-/>
+/> */}
 
         {/* 💼 Job Applications */}
         <DataTable

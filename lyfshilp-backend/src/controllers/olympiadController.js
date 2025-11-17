@@ -20,11 +20,11 @@ export const registerOlympiad = async (req, res) => {
   await sendMailToUser({
       email,
       name,
-      formName: "Olympiad Registration",
+      formName: "FutureX Fellowship Registration",
     });
   
     await sendMailToAdmins({
-      formName: "Olympiad Registration",
+      formName: "FutureX Fellowship Registration",
       name,
       email,
       formData: req.body,

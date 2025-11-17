@@ -69,6 +69,20 @@ model CallbackRequest {
   createdAt     DateTime @default(now())
 }
 
+model Contactus {
+  id           Int      @id @default(autoincrement())
+  name         String
+  email        String
+  exam         String
+  phone        String
+  studentClass String
+  stream       String
+  school       String
+  pageName     String?
+  createdAt    DateTime @default(now())
+}
+
+
 model Podcast {
   id          Int      @id @default(autoincrement())
   title       String

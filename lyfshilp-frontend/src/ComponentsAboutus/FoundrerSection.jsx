@@ -37,7 +37,7 @@ export default function FoundersSection() {
   ];
 
   return (
-    <section className="bg-white py-20">
+    <section className="bg-[#FFF8EE] py-20">
       <div className="max-w-7xl mx-auto px-6 text-center">
         {/* Heading */}
         <h2 className="text-4xl sm:text-5xl font-extrabold text-gray-900">

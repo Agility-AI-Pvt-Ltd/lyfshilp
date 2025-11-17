@@ -15,11 +15,30 @@ export const createApplication = async (req, res) => {
       });
     }
 
-    // ✅ Convert jobId to integer if present
     if (jobId) jobId = parseInt(jobId);
 
     const application = await prisma.application.create({
       data: { fullName, phone, email, about, resumeUrl, jobId, jobTitle },
+    });
+
+    // 🚀 SEND MAIL TO USER
+    await sendMailToUser({
+      email,
+      name: fullName,
+      formName: "Application Registration",
+    });
+
+    // 🚀 SEND MAIL TO ADMINS
+    await sendMailToAdmins({
+      formName: "Application Registration",
+      name: fullName,
+      email,
+      formData: req.body,
+      meta: {
+        path: req.originalUrl,
+        userAgent: req.headers["user-agent"],
+        submittedAt: new Date(),
+      },
     });
 
     res.status(201).json({ success: true, data: application });
@@ -51,30 +70,30 @@ export const addApplication = async (req, res) => {
   try {
     let { fullName, phone, email, about, resumeUrl, jobId, jobTitle } = req.body;
 
-    // ✅ Convert jobId to integer if present
     if (jobId) jobId = parseInt(jobId);
 
     const newApp = await prisma.application.create({
       data: { fullName, phone, email, about, resumeUrl, jobId, jobTitle },
     });
 
-      await sendMailToUser({
-          email,
-          name,
-          formName: "Olympiad Registration",
-        });
-      
-        await sendMailToAdmins({
-          formName: "Olympiad Registration",
-          name,
-          email,
-          formData: req.body,
-          meta: {
-            path: req.originalUrl,
-            userAgent: req.headers["user-agent"],
-            submittedAt: new Date(),
-          },
-        });
+    // 🔥 FIXED NAME FIELD
+    await sendMailToUser({
+      email,
+      name: fullName,
+      formName: "Application Registration",
+    });
+
+    await sendMailToAdmins({
+      formName: "Application Registration",
+      name: fullName,
+      email,
+      formData: req.body,
+      meta: {
+        path: req.originalUrl,
+        userAgent: req.headers["user-agent"],
+        submittedAt: new Date(),
+      },
+    });
 
     res.status(201).json({ success: true, data: newApp });
   } catch (error) {

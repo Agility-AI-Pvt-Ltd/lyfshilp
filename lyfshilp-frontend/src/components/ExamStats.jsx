@@ -13,7 +13,7 @@ export default function ExamStats() {
     { name: "CUET", color: "text-green-600", bgColor: "bg-green-50", logo: cuetLogo },
     { name: "CBSE", color: "text-red-600", bgColor: "bg-red-50", logo: cbseLogo },
     { name: "ICSE", color: "text-blue-600", bgColor: "bg-blue-50", logo: icseLogo },
-    { name: "OLYMPIAD", color: "text-yellow-600", bgColor: "bg-yellow-50", logo: olympiadLogo },
+    { name: "FutureX Fellowship", color: "text-yellow-600", bgColor: "bg-yellow-50", logo: olympiadLogo },
   ];
 
   return (

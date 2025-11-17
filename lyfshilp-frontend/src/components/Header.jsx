@@ -34,18 +34,27 @@ export default function Header() {
 
   // ✅ works on Windows + Mac
   useEffect(() => {
-    const handleKey = (e) => {
-      // Alt + A (Windows/Linux) or Option + A (Mac)
-      if (e.altKey && e.key.toLowerCase() === "a") {
-        console.log("triggered (Alt+A)");
-        e.preventDefault();
-        setShowAdmin((prev) => !prev);
-      }
-    };
+  const handleKey = (e) => {
+    const key = e.key?.toLowerCase() || "";
 
-    window.addEventListener("keydown", handleKey);
-    return () => window.removeEventListener("keydown", handleKey);
-  }, []);
+    // Windows/Linux → Alt + A
+    if (e.altKey && key === "a") {
+      e.preventDefault();
+      setShowAdmin((prev) => !prev);
+      return;
+    }
+
+    // Mac → Command + A (⌘ + A)
+    if (e.metaKey && key === "a") {
+      e.preventDefault();
+      setShowAdmin((prev) => !prev);
+      return;
+    }
+  };
+
+  window.addEventListener("keydown", handleKey);
+  return () => window.removeEventListener("keydown", handleKey);
+}, []);
 
   return (
     <header className="w-full bg-white shadow-sm fixed top-0 left-0 z-50 font-sans transition-all duration-200">
@@ -137,11 +146,18 @@ export default function Header() {
                   Login
                 </Link>
                 )}
+                <Link
+                  to="/contact"
+                  className="px-3 xl:px-4 py-1.5 xl:py-2 bg-green-600 rounded-full text-white hover:bg-green-700 font-medium text-xs xl:text-sm shadow-md transition whitespace-nowrap"
+                >
+                  Contact Us
+                </Link>
+                
                 {/* <Link
                   to="/register"
                   className="px-3 xl:px-4 py-1.5 xl:py-2 bg-green-600 rounded-full text-white hover:bg-green-700 font-medium text-xs xl:text-sm shadow-md transition whitespace-nowrap"
                 >
-                  Contact us
+                  Sign Up
                 </Link> */}
               </>
             )}
@@ -174,7 +190,7 @@ export default function Header() {
             </Link>
 
             <Link to="/olympiad" onClick={() => setMobileOpen(false)} className="hover:text-green-600">
-              Olympiad
+              FutureX
             </Link>
             <Link to="/podcast" onClick={() => setMobileOpen(false)} className="hover:text-green-600">
               Podcast
@@ -232,7 +248,7 @@ export default function Header() {
               </>
             ) : (
               <>
-                <Link
+                {/* <Link
                   to="/login"
                   onClick={() => setMobileOpen(false)}
                   className="px-4 py-2 border border-green-600 rounded-full text-center text-green-600 hover:bg-green-50 font-medium text-sm transition"
@@ -245,7 +261,7 @@ export default function Header() {
                   className="px-4 py-2 bg-green-600 rounded-full text-center text-white hover:bg-green-700 font-medium text-sm shadow-md transition"
                 >
                   Sign Up
-                </Link>
+                </Link> */}
               </>
             )}
           </div>

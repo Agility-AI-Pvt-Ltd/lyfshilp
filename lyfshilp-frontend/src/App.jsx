@@ -43,6 +43,7 @@ import Footer from "./components/Footer.jsx";
 import { AuthProvider } from "./contexts/AuthContext.jsx";
 import AdminDashboard from "./pages/AdminDashboard.jsx";
 import ProtectedRoute from "./components/ProtectedRoute.jsx";
+import ContactsForm from "./components/ContactsForm.jsx";
 
 export default function App() {
   return (
@@ -85,6 +86,7 @@ export default function App() {
             <Route path="/olympiad/ai" element={<Aipage />} />
             <Route path="/olympiad/employability" element={<Employabilitypage />} />
             <Route path="/olympiad/entrepreneurship" element={<Entrepreneurshippage />} />
+            <Route path="/contact" element={<ContactsForm />} />
             <Route path="*" element={<NotFound />} />
             
             <Route 

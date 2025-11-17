@@ -18,6 +18,7 @@ import olympiadRoutes from "./routes/olympiadRoutes.js";
 import workshopRoutes from "./routes/workshopRoutes.js";
 import callbackRoutes from "./routes/callbackRoutes.js";
 import podcastRoutes from "./routes/podcastRoutes.js";
+import contactRoutes from "./routes/contactRoutes.js";
 
 
 
@@ -69,6 +70,7 @@ app.use("/api/olympiad", olympiadRoutes);
 app.use("/api/workshop", workshopRoutes);
 app.use("/api/callback", callbackRoutes);
 app.use("/api/podcast", podcastRoutes);
+app.use("/api/contact", contactRoutes);
 
 // --- Health check ---
 app.get("/api/health", (req, res) => {

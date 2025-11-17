@@ -59,7 +59,7 @@ export default function Testimonials() {
   };
 
   return (
-    <section className="py-12 sm:py-16 md:py-16 bg-gray-50">
+    <section className="py-12 sm:py-16 md:py-16 bg-white">
       <div className="container mx-auto px-4 sm:px-6 md:px-8 lg:px-12">
         {/* Section Title */}
         <div className="mb-8 sm:mb-10 md:mb-12 text-center md:text-left max-w-4xl mx-auto md:mx-0">
