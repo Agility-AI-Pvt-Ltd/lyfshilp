@@ -32,6 +32,7 @@ const allowedOrigins = [
   "http://localhost:5173",
   "http://localhost:4000",
   "https://lyfshilp.vercel.app",
+  "https://lyfshilp.com",
   "https://www.lyfshilp.com", // ✅ added live domain
   process.env.CLIENT_URL, // optional env variable
 ].filter(Boolean); // remove undefined values
