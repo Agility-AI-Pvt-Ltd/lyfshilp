@@ -247,22 +247,32 @@ export default function Header() {
                 </button>
               </>
             ) : (
-              <>
-                {/* <Link
-                  to="/login"
+                <>
+                <Link
+                  to="/contact"
                   onClick={() => setMobileOpen(false)}
                   className="px-4 py-2 border border-green-600 rounded-full text-center text-green-600 hover:bg-green-50 font-medium text-sm transition"
                 >
-                  Login
+                  Contact us
                 </Link>
-                <Link
-                  to="/register"
-                  onClick={() => setMobileOpen(false)}
-                  className="px-4 py-2 bg-green-600 rounded-full text-center text-white hover:bg-green-700 font-medium text-sm shadow-md transition"
-                >
-                  Sign Up
-                </Link> */}
-              </>
+                </> 
+              
+              // <>
+              //   <Link
+              //     to="/login"
+              //     onClick={() => setMobileOpen(false)}
+              //     className="px-4 py-2 border border-green-600 rounded-full text-center text-green-600 hover:bg-green-50 font-medium text-sm transition"
+              //   >
+              //     Login
+              //   </Link>
+              //   <Link
+              //     to="/register"
+              //     onClick={() => setMobileOpen(false)}
+              //     className="px-4 py-2 bg-green-600 rounded-full text-center text-white hover:bg-green-700 font-medium text-sm shadow-md transition"
+              //   >
+              //     Sign Up
+              //   </Link>
+              // </>
             )}
           </div>
         </div>

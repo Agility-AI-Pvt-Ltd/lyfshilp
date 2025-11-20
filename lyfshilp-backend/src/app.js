@@ -26,7 +26,13 @@ const app = express();
 
 // --- Middlewares ---
 app.use(helmet());
-
+app.use((req, res, next) => {
+  res.setHeader(
+    "Permissions-Policy",
+    "compute-pressure=(), picture-in-picture=()"
+  );
+  next();
+});
 // ✅ CORS configuration - allow multiple origins
 const allowedOrigins = [
   "http://localhost:5173",
