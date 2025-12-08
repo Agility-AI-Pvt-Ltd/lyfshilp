@@ -444,7 +444,7 @@ const fetchAllData = async () => {
       <section className="space-y-6 pt-16">
         {/* 🏆 Olympiad */}
         <DataTable
-          title="🏆 FutureX Registrations"
+          title="🏆 International FutureX Fellowship Registrations"
           data={filteredOly}
           searchValue={olySearch}
           setSearch={setOlySearch}

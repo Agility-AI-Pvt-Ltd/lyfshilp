@@ -245,7 +245,7 @@ const faqs = [
             >
               ×
             </button>
-            <h2 className="text-2xl font-bold text-green-700 mb-4 text-center">Register for Entrepreneurship FutureX Fellowship</h2>
+            <h2 className="text-2xl font-bold text-green-700 mb-4 text-center">Register for International Entrepreneurship FutureX Fellowship</h2>
 
             {error && <p className="text-red-500 text-sm mb-3 text-center">{error}</p>}
             {success && <p className="text-green-600 text-sm mb-3 text-center font-medium">{success}</p>}

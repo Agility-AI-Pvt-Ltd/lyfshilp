@@ -13,7 +13,7 @@ export default function ExamStats() {
     { name: "CUET", color: "text-green-600", bgColor: "bg-green-50", logo: cuetLogo },
     { name: "CBSE", color: "text-red-600", bgColor: "bg-red-50", logo: cbseLogo },
     { name: "ICSE", color: "text-blue-600", bgColor: "bg-blue-50", logo: icseLogo },
-    { name: "FutureX Fellowship", color: "text-yellow-600", bgColor: "bg-yellow-50", logo: olympiadLogo },
+    { name: "International FutureX Fellowship", color: "text-yellow-600", bgColor: "bg-yellow-50", logo: olympiadLogo },
   ];
 
   return (
@@ -24,7 +24,7 @@ export default function ExamStats() {
         <div className="px-4 sm:px-6 md:px-8 py-4">
           {/* Stats Text */}
           <h3 className="text-center text-base sm:text-lg md:text-xl font-semibold text-gray-800 mb-4">
-            Helping <span className="text-green-600 font-bold">20K+</span> students crack their exams
+            Helping <span className="text-green-600 font-bold">20K+</span> students futureproof their careers
           </h3>
 
           {/* 🎞️ Continuous Scrolling Exam Logos */}

@@ -33,7 +33,7 @@ export default function OlympiadSection5() {
       <div className="relative container mx-auto px-6 text-center">
         {/* Heading */}
         <h2 className="text-3xl md:text-4xl font-bold text-gray-900">
-          Why <span className="text-green-600">FutureX?</span>
+          Why <span className="text-green-600">International FutureX Fellowhilp?</span>
         </h2>
         <p className="mt-4 text-gray-600 max-w-2xl mx-auto">
           Where Students Meet the Real World Problems and solve it using their

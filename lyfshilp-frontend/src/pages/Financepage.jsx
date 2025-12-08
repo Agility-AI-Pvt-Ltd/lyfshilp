@@ -254,7 +254,7 @@ export default function Financepage() {
             >
               ×
             </button>
-            <h2 className="text-2xl font-bold text-green-700 mb-4 text-center">Register for Finance FutureX Fellowship</h2>
+            <h2 className="text-2xl font-bold text-green-700 mb-4 text-center">Register for International Finance FutureX Fellowship</h2>
 
             {/* Show error/success */}
             {error && <p className="text-red-500 text-sm mb-3 text-center">{error}</p>}
