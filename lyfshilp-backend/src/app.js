@@ -19,6 +19,7 @@ import workshopRoutes from "./routes/workshopRoutes.js";
 import callbackRoutes from "./routes/callbackRoutes.js";
 import podcastRoutes from "./routes/podcastRoutes.js";
 import contactRoutes from "./routes/contactRoutes.js";
+import partnerSchoolRoutes from "./routes/partnerSchoolRoutes.js"
 
 
 
@@ -73,7 +74,8 @@ app.use("/api/testseries", testSeriesRoutes);
 app.use("/api/updates", updateRoutes);
 app.use("/api/user", userRoutes);
 app.use("/api/applications", applicationRoutes);
-app.use("/api/olympiad", olympiadRoutes);
+app.use("/api/futureX", olympiadRoutes);
+app.use("/api/partner-school", partnerSchoolRoutes);
 app.use("/api/workshop", workshopRoutes);
 app.use("/api/callback", callbackRoutes);
 app.use("/api/podcast", podcastRoutes);

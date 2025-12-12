@@ -1,63 +1,104 @@
-import { Lightbulb, UsersRound, Briefcase } from "lucide-react";
-import WaveBg from "../assets/career/wave-bg.svg";
+import React from "react";
 
 export default function OlympiadSection5() {
-  const features = [
-    {
-      icon: <Lightbulb className="w-8 h-8 text-green-600 mx-auto" />,
-      title:
-        "Discover their X-Factor their unique strengths, passions, and capabilities",
-    },
-    {
-      icon: <UsersRound className="w-8 h-8 text-green-600 mx-auto" />,
-      title:
-        "Gain exposure to real-world problem-solving and innovation-driven learning",
-    },
-    {
-      icon: <Briefcase className="w-8 h-8 text-green-600 mx-auto" />,
-      title:
-        "Build career readiness and verified credentials for higher education and global opportunities",
-    },
-  ];
-
   return (
-    <section className="relative py-20 bg-[#faedd9] overflow-hidden">
-      {/* 🌊 Wave Background */}
-      <img
-        src={WaveBg}
-        alt="wave background"
-        className="absolute top-0 left-0 w-full h-full object-cover pointer-events-none select-none opacity-25"
-      />
+    <section className="relative py-16 px-6 sm:px-10 md:px-16 lg:px-24 bg-[#FFF8EE] overflow-hidden">
 
-      {/* 💡 Content Section */}
-      <div className="relative container mx-auto px-6 text-center">
-        {/* Heading */}
-        <h2 className="text-3xl md:text-4xl font-bold text-gray-900">
-          Why <span className="text-green-600">International FutureX Fellowhilp?</span>
-        </h2>
-        <p className="mt-4 text-gray-600 max-w-2xl mx-auto">
-          Where Students Meet the Real World Problems and solve it using their
-          practical thoughts. The Olympiad enables students to:
-        </p>
+      <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
 
-        {/* 🌟 Features Grid */}
-        <div className="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-          {features.map((feature, i) => (
-            <div
-              key={i}
-              className="bg-white rounded-2xl shadow-md p-8 text-center flex flex-col items-center justify-center hover:shadow-lg hover:-translate-y-1 transition duration-300 min-h-[180px]"
-            >
-              {/* Icon */}
-              <div className="mb-4">{feature.icon}</div>
+        {/* ===================== LEFT IMAGE BLOCK ===================== */}
+        <div className="relative flex justify-center lg:justify-start min-h-[480px]">
 
-              {/* Title */}
-              <h4 className="font-semibold text-base text-gray-800 leading-relaxed max-w-[280px]">
-                {feature.title}
-              </h4>
-            </div>
-          ))}
+          {/* Glow Circles */}
+          <div className="absolute top-16 left-10 w-72 h-72 bg-green-200 opacity-30 blur-3xl rounded-full"></div>
+          <div className="absolute bottom-10 left-20 w-64 h-64 bg-emerald-200 opacity-25 blur-2xl rounded-full"></div>
+
+          {/* Illustration */}
+          <img
+            src="/images/6.svg"
+            alt="partner"
+            className="relative z-10 w-72 sm:w-[26rem] lg:w-[30rem] object-contain drop-shadow-xl"
+          />
         </div>
+
+        {/* ===================== RIGHT TEXT BLOCK ===================== */}
+        <div className="leading-tight space-y-8 max-w-xl relative z-10">
+
+          <div>
+            <h3 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold uppercase leading-snug">
+              Why Partner With <span className="text-green-600 italic">FutureX?</span>
+            </h3>
+
+            <p className="mt-3 font-semibold text-sm sm:text-base bg-yellow-100 inline-block px-4 py-1 rounded">
+              Zero Load. Maximum Impact.
+            </p>
+          </div>
+
+          {/* Benefits Card */}
+          <div className="bg-white rounded-xl p-6 shadow-md border-l-4 border-green-500 hover:shadow-lg transition-all">
+
+            <ul className="space-y-6 text-gray-700 text-sm sm:text-base leading-snug">
+
+              {/* Benefit Item */}
+              <li className="flex items-start gap-4">
+                <span className="w-8 h-8 bg-green-500 text-white rounded-full flex items-center justify-center text-sm font-bold">
+                  ✓
+                </span>
+                <div>
+                  <strong className="text-gray-900">Zero Administrative Load</strong>
+                  <p className="mt-1 text-sm leading-snug">
+                    We manage sessions, content, assessments and communication.
+                  </p>
+                </div>
+              </li>
+
+              <li className="flex items-start gap-4">
+                <span className="w-8 h-8 bg-green-500 text-white rounded-full flex items-center justify-center text-sm font-bold">
+                  ✓
+                </span>
+                <div>
+                  <strong className="text-gray-900">Enhance School Reputation</strong>
+                  <p className="mt-1 text-sm leading-snug">
+                    Recognition as a certified “FutureX Partner School”.
+                  </p>
+                </div>
+              </li>
+
+              <li className="flex items-start gap-4">
+                <span className="w-8 h-8 bg-green-500 text-white rounded-full flex items-center justify-center text-sm font-bold">
+                  ✓
+                </span>
+                <div>
+                  <strong className="text-gray-900">Co-Branded Certificates</strong>
+                  <p className="mt-1 text-sm leading-snug">
+                    Each student certificate carries your school's name.
+                  </p>
+                </div>
+              </li>
+
+              <li className="flex items-start gap-4">
+                <span className="w-8 h-8 bg-green-500 text-white rounded-full flex items-center justify-center text-sm font-bold">
+                  ✓
+                </span>
+                <div>
+                  <strong className="text-gray-900">Seamless Implementation</strong>
+                  <p className="mt-1 text-sm leading-snug">
+                    Dedicated school co-ordinator provided.
+                  </p>
+                </div>
+              </li>
+
+            </ul>
+
+          </div>
+        </div>
+
       </div>
+
+      {/* Decorative Floating Circles */}
+      <div className="absolute top-10 right-10 w-24 h-24 bg-green-300 opacity-20 blur-xl rounded-full"></div>
+      <div className="absolute bottom-20 left-10 w-32 h-32 bg-emerald-300 opacity-20 blur-2xl rounded-full"></div>
+
     </section>
   );
 }

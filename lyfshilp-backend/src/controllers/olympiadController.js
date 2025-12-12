@@ -2,7 +2,7 @@ import prisma from "../prismaClient.js";
 import { sendMailToAdmins, sendMailToUser } from "../utils/sendMail.js";
 
 /**
- * POST /olympiad/register
+ * POST /futureX/register
  * Public: Register a new student for Olympiad
  */
 export const registerOlympiad = async (req, res) => {
@@ -43,7 +43,7 @@ export const registerOlympiad = async (req, res) => {
 };
 
 /**
- * GET /olympiad/all
+ * GET /futureX/all
  * Admin: Get all Olympiad registrations
  */
 export const getAllOlympiadRegistrations = async (req, res) => {
@@ -60,7 +60,7 @@ export const getAllOlympiadRegistrations = async (req, res) => {
 };
 
 /**
- * POST /olympiad/add
+ * POST /futureX/add
  * Admin: Add a new Olympiad entry
  */
 export const addOlympiadEntry = async (req, res) => {
@@ -83,7 +83,7 @@ export const addOlympiadEntry = async (req, res) => {
 };
 
 /**
- * PUT /olympiad/update/:id
+ * PUT /futureX/update/:id
  * Admin: Update Olympiad entry
  */
 export const updateOlympiadEntry = async (req, res) => {
@@ -103,7 +103,7 @@ export const updateOlympiadEntry = async (req, res) => {
 };
 
 /**
- * DELETE /olympiad/delete/:id
+ * DELETE /futureX/delete/:id
  * Admin: Delete Olympiad entry
  */
 export const deleteOlympiadEntry = async (req, res) => {

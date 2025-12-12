@@ -93,7 +93,7 @@ const handleSubmit = async (e) => {
   }
 
   try {
-    const response = await api.post("/olympiad/register", {
+    const response = await api.post("/futureX/register", {
       ...formData,
       olympiad: "Employability",
     });

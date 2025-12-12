@@ -1,54 +1,122 @@
-import olympiadImg2 from "/images/chargirl2.svg";
-import green02 from "/images/pink04.svg";
+import React from "react";
 
 export default function OlympiadSection4() {
   return (
-    <section className="py-4 sm:py-10 md:py-14 px-4 sm:px-6 md:px-12 lg:px-16 bg-[#FFF8EE]">
-      {/* 🧩 Step 2 Section */}
-      <div className="grid grid-cols-1 md:grid-cols-2 items-center gap-6 sm:gap-8 md:gap-0 max-w-7xl mx-auto">
-        
-        {/* 📝 Text Left Side */}
-        <div className="text-center md:text-left order-2 md:order-1 mt-4 sm:mt-0 md:-mt-10 md:pl-20 lg:pl-40">
-          <h3 className="text-green-600 text-xl sm:text-2xl md:text-3xl lg:text-4xl italic font-extrabold leading-snug px-4 sm:px-0">
-            National & Global{" "}
-            <span className="text-gray-900 font-extrabold not-italic">
-              Assessment
-            </span>
-          </h3>
+    <section className="relative py-16 px-6 sm:px-10 md:px-16 lg:px-24 bg-[#FFF8EE] overflow-hidden">
 
-          <p className="mt-2 sm:mt-3 text-gray-600 text-xs sm:text-sm md:text-base max-w-md mx-auto md:mx-0 px-4 sm:px-0">
-            A nationwide test identifies India's most future-
-            <br className="hidden sm:block" />
-            <span className="sm:hidden"> </span>
-            ready minds.
-          </p>
+      <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+
+        {/* ===================== LEFT TEXT BLOCK ===================== */}
+        <div className="leading-tight space-y-8 max-w-xl relative z-10">
+
+          <div>
+            <h3 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold uppercase leading-snug">
+              Assessment & <span className="text-green-600 italic">Rewards</span>
+            </h3>
+
+            <p className="mt-3 font-semibold text-gray-900 text-sm sm:text-base bg-yellow-100 inline-block px-4 py-1 rounded">
+              Measuring Impact Through Rigorous Assessment
+            </p>
+          </div>
+
+          {/* Evaluation Framework Card */}
+          <div className="bg-white rounded-xl p-6 shadow-md border-l-4 border-blue-500 hover:shadow-lg transition-all">
+            <h4 className="font-bold text-gray-900 text-base sm:text-lg mb-3">
+              Evaluation Framework
+            </h4>
+
+            <p className="text-gray-700 text-sm sm:text-base mb-2 leading-snug">
+              <strong>Total:</strong> 100 Marks
+            </p>
+
+            <ul className="space-y-2 text-gray-700 text-sm sm:text-base leading-snug">
+              {[
+                "Weekly Quizzes – 20%",
+                "Monthly Quizzes – 20%",
+                "Capstone Project – 20%",
+                "Final Assessment – 40%",
+              ].map((item, i) => (
+                <li key={i} className="flex gap-3">
+                  <span className="w-2 h-2 bg-blue-500 rounded-full mt-2"></span>
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Rewards Card */}
+          <div className="bg-white rounded-xl p-6 shadow-md border-l-4 border-yellow-500 hover:shadow-lg transition-all">
+            <h4 className="font-bold text-gray-900 text-base sm:text-lg mb-3">
+              Rewards & Recognition
+            </h4>
+
+            <ul className="space-y-2 text-gray-700 text-sm sm:text-base leading-snug">
+              <li className="flex items-start gap-3">
+                <span className="text-yellow-600 text-xl">🥇</span>
+                <span><strong>1st Prize:</strong> ₹50,000</span>
+              </li>
+              <li className="flex items-start gap-3">
+                <span className="text-gray-400 text-xl">🥈</span>
+                <span><strong>2nd Prize:</strong> ₹25,000</span>
+              </li>
+              <li className="flex items-start gap-3">
+                <span className="text-orange-600 text-xl">🥉</span>
+                <span><strong>3rd Prize:</strong> ₹10,000</span>
+              </li>
+            </ul>
+          </div>
+
+          {/* Elite Opportunities Card */}
+{/* Elite Opportunities Card */}
+<div className="bg-white rounded-xl p-6 shadow-md border-l-4 border-purple-500 hover:shadow-lg transition-all">
+  <h4 className="font-bold text-gray-900 text-base sm:text-lg mb-3">
+    Elite Opportunities
+  </h4>
+
+  <ul className="space-y-2 text-gray-700 text-sm sm:text-base leading-snug">
+    <li className="flex gap-3">
+      <span className="w-2 h-2 bg-purple-500 rounded-full mt-2"></span>
+      <span>
+        <strong>Top 25 All-India Rankers:</strong> Internship opportunities with partner startups.
+      </span>
+    </li>
+    <li className="flex gap-3">
+      <span className="w-2 h-2 bg-purple-500 rounded-full mt-2"></span>
+      <span>
+        <strong>Top 3%:</strong> Lifetime mentorship through International FutureX Fellows Cohort.
+      </span>
+    </li>
+    <li className="flex gap-3">
+      <span className="w-2 h-2 bg-purple-500 rounded-full mt-2"></span>
+      <span>
+        <strong>Guided incubation and mentorship:</strong> to help students evolve into entrepreneurs and solopreneurs.
+      </span>
+    </li>
+  </ul>
+</div>
+
         </div>
 
-        {/* 🖼️ Image Right Side */}
-        <div className="flex justify-center relative order-1 md:order-2 md:-ml-28 lg:-ml-52">
-          {/* Background shape */}
+        {/* ===================== RIGHT IMAGE BLOCK ===================== */}
+        <div className="relative flex justify-center lg:justify-end min-h-[480px]">
+
+          {/* Glow Elements */}
+          <div className="absolute top-24 right-10 w-72 h-72 bg-pink-300 opacity-30 blur-3xl rounded-full"></div>
+
+          {/* Image */}
           <img
-            src={green02}
-            alt="Step background"
-            className="w-40 sm:w-48 md:w-56 lg:w-72"
-          />
-          
-          {/* Girl image - Responsive positioning */}
-          <img
-            src={olympiadImg2}
-            alt="Olympiad step illustration"
-            className="
-              absolute
-              w-36 sm:w-44 md:w-52 lg:w-[18rem]
-              bottom-0 
-              -top-6 sm:-top-8 md:-top-10 lg:-top-12
-              left-[175px] -translate-x-1/2
-              md:left-auto md:translate-x-0
-              md:right-40 lg:right-48
-            "
+            src="/images/5.svg"
+            alt="girl"
+            className="relative z-10 w-72 sm:w-[26rem] lg:w-[32rem] object-contain drop-shadow-xl"
           />
         </div>
+
       </div>
+
+      {/* Floating Deco */}
+      <div className="absolute top-10 right-10 w-24 h-24 bg-pink-300 opacity-20 blur-2xl rounded-full"></div>
+      <div className="absolute bottom-20 left-10 w-32 h-32 bg-yellow-300 opacity-20 blur-2xl rounded-full"></div>
+
     </section>
   );
 }

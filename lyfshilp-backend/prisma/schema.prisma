@@ -46,6 +46,15 @@ model OlympiadRegistration {
   createdAt  DateTime @default(now())
 }
 
+model PartnerSchoolForm {
+  id             Int      @id @default(autoincrement())
+  schoolName     String
+  contactPerson  String
+  designation    String
+  phone          String
+  email          String
+  createdAt      DateTime @default(now())
+}
 
 model Workshop {
   id             Int      @id @default(autoincrement())

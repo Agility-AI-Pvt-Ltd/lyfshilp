@@ -26,6 +26,14 @@ export default function OlympiadSection1() {
 <span className="inline-block bg-green-600 text-white px-4 py-2 rounded mt-3 sm:mt-2 text-lg sm:text-xl md:text-2xl font-semibold shadow-md">
   Earn the International FutureX Fellowship
 </span>
+<a
+  href="/International_FutureX_Fellowship.pdf"
+  download
+  className="btn inline-block mt-4 px-3 py-1 bg-yellow-600 text-white text-lg font-medium rounded-md hover:bg-green-700 transition blink-stop-hover"
+  style={{ animation: "blinkReal 2s infinite" }}
+>
+  Download Brochure
+</a>
             </h2>
             {/* Subheading */}
             <p className="text-gray-600 text-sm sm:text-base md:text-lg leading-relaxed mb-8 max-w-xl mx-auto lg:mx-0">

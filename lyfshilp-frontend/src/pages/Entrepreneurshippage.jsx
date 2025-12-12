@@ -92,7 +92,7 @@ const faqs = [
   }
 
   try {
-    const response = await api.post("/olympiad/register", {
+    const response = await api.post("/futureX/register", {
       ...formData,
       olympiad: "Entrepreneurship",
     });

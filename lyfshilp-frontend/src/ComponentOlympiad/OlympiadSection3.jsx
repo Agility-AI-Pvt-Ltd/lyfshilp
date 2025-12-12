@@ -1,53 +1,94 @@
-import olympiadImg from "/images/charboyfather.svg";
-import green01 from "/images/blue03.svg";
+import React from "react";
 
 export default function OlympiadSection3() {
   return (
-    <section className="py-14 px-4 md:px-16 bg-[#FFF8EE]">
-      {/* 🧩 Step 1 Section */}
-      <div className="grid md:grid-cols-2 items-center gap-10">
-        
-        {/* Left Side - Background + Image */}
-        <div className="flex justify-center relative">
-          <img
-            src={green01}
-            alt="Step background"
-            className="w-56 md:w-72"
-          />
+    <section className="relative py-16 px-6 sm:px-10 md:px-16 lg:px-24 bg-[#FFF8EE] overflow-hidden">
 
+      <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+
+        {/* ===================== LEFT IMAGE BLOCK ===================== */}
+        <div className="relative flex justify-center lg:justify-start min-h-[450px]">
+
+          {/* Soft Glows */}
+          <div className="absolute top-20 left-0 w-72 h-72 bg-indigo-300 opacity-25 rounded-full blur-3xl"></div>
+          <div className="absolute bottom-10 left-10 w-64 h-64 bg-purple-300 opacity-25 rounded-full blur-2xl"></div>
+
+          {/* Illustration */}
           <img
-            src={olympiadImg}
-            alt="Olympiad character"
-            className="
-              absolute 
-              w-52 sm:w-44 md:w-72 lg:w-[18rem]         /* ✅ made bigger */
-              bottom-0 
-              -top-8 sm:-top-10 md:-top-20 lg:-top-22
-              left-[175px] -translate-x-1/2
-              md:left-auto md:translate-x-0
-              md:right-28 lg:right-32         /* ✅ shifted slightly right */
-            "
+            src="/images/4.svg"
+            alt="mentor"
+            className="relative z-10 w-72 sm:w-[26rem] lg:w-[30rem] object-contain drop-shadow-xl"
           />
         </div>
 
-        {/* Right Side - Text */}
-        <div className="text-center md:text-left  md:-mt-10">
-          <h3 className="text-green-600 text-2xl md:text-4xl italic font-extrabold leading-snug">
-            {/* ✅ removed italic from entire heading */}
-            Mentorship & Study<br/> Material{" "}
-            <span className="text-gray-900 font-extrabold not-italic">
-              {/* ✅ ensured span is NOT italic */}
-              Support
-            </span>
-          </h3>
+        {/* ===================== RIGHT TEXT BLOCK ===================== */}
+        <div className="leading-tight space-y-8 max-w-xl">
 
-          <p className="mt-3 text-gray-600 text-sm md:text-base max-w-md">
-            Participants are guided by mentors throughout the
-            preparation journey and are provided with time
-            to time study resources and reading material.
-          </p>
+          {/* Title */}
+          <div>
+            <h3 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-gray-900 uppercase leading-snug">
+              PEDAGOGY & <span className="text-green-600 italic">MENTORSHIP</span>
+            </h3>
+
+            <p className="mt-3 font-semibold text-gray-900 text-sm sm:text-base bg-yellow-100 inline-block px-4 py-1 rounded">
+              Learning from Industry Leaders
+            </p>
+
+            <p className="text-gray-700 text-sm sm:text-base leading-snug mt-4">
+              We go beyond textbooks, students are mentored by experts bringing real-world insights into the classroom.
+            </p>
+          </div>
+
+          {/* Mentors Card */}
+          <div className="bg-white rounded-xl p-6 shadow-md border-l-4 border-indigo-500 hover:shadow-lg transition-all">
+            <h4 className="font-bold text-gray-900 text-base sm:text-lg mb-3">Mentors Include:</h4>
+
+            <ul className="space-y-2 text-gray-700 text-sm sm:text-base leading-snug">
+              {[
+                "IIT & IIM Alumni",
+                "Industry Experts & Startup Founders",
+                "Former IAS Officers",
+              ].map((item, i) => (
+                <li key={i} className="flex gap-3">
+                  <span className="w-2 h-2 bg-indigo-500 rounded-full mt-2"></span>
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Gamified Learning */}
+          <div className="bg-white rounded-xl p-6 shadow-md border-l-4 border-pink-500 hover:shadow-lg transition-all">
+            <h4 className="font-bold text-gray-900 text-base sm:text-lg mb-3">
+              Gamified Learning Elements:
+            </h4>
+
+            <ul className="space-y-2 text-gray-700 text-sm sm:text-base leading-snug">
+              <li className="flex gap-3">
+                <span className="w-2 h-2 bg-pink-500 rounded-full mt-2"></span>
+                <span><strong>XP System:</strong> Points, Levels, Badges, Leaderboards</span>
+              </li>
+
+              <li className="flex gap-3">
+                <span className="w-2 h-2 bg-pink-500 rounded-full mt-2"></span>
+                <span><strong>Simulations:</strong> Real-world business & tech scenarios</span>
+              </li>
+
+              <li className="flex gap-3">
+                <span className="w-2 h-2 bg-pink-500 rounded-full mt-2"></span>
+                <span><strong>Live Projects:</strong> Applied, hands-on experience</span>
+              </li>
+            </ul>
+          </div>
+
         </div>
+
       </div>
+
+      {/* Floating Decorations */}
+      <div className="absolute top-12 right-12 w-28 h-28 bg-indigo-300 opacity-20 rounded-full blur-2xl"></div>
+      <div className="absolute bottom-16 left-10 w-36 h-36 bg-pink-300 opacity-20 rounded-full blur-2xl"></div>
+
     </section>
   );
 }
