@@ -56,13 +56,13 @@ export default function AdminDashboard() {
   const [contactSearch, setContactSearch] = useState("");
 
   // Sort toggles
-  const [userSortAsc, setUserSortAsc] = useState(true);
-  const [appSortAsc, setAppSortAsc] = useState(true);
-  const [olySortAsc, setOlySortAsc] = useState(true);
-  const [workSortAsc, setWorkSortAsc] = useState(true);
-  const [callbackSortAsc, setCallbackSortAsc] = useState(true);
-  const [podcastSortAsc, setPodcastSortAsc] = useState(true);
-  const [contactSortAsc, setContactSortAsc] = useState(true);
+  const [userSortAsc, setUserSortAsc] = useState(false);
+  const [appSortAsc, setAppSortAsc] = useState(false);
+  const [olySortAsc, setOlySortAsc] = useState(false);
+  const [workSortAsc, setWorkSortAsc] = useState(false);
+  const [callbackSortAsc, setCallbackSortAsc] = useState(false);
+  const [podcastSortAsc, setPodcastSortAsc] = useState(false);
+  const [contactSortAsc, setContactSortAsc] = useState(false);
 
   // Modal and message
   const [showModal, setShowModal] = useState(false);
@@ -444,7 +444,7 @@ const fetchAllData = async () => {
       <section className="space-y-6 pt-16">
         {/* 🏆 Olympiad */}
         <DataTable
-          title="🏆 FutureX Registrations"
+          title="🏆 International FutureX Fellowship Registrations"
           data={filteredOly}
           searchValue={olySearch}
           setSearch={setOlySearch}
@@ -452,7 +452,8 @@ const fetchAllData = async () => {
           setSortAsc={setOlySortAsc}
           onAdd={() => openModal("olympiad")}
           onExportExcel={() => exportToExcel(filteredOly, "olympiad_registrations")}
-          columns={["S.No", "Name", "Email", "Phone", "Class", "School", "City", "State", "Olympiad", "Actions"]}
+          columns={["S.No","Name","Email","Phone","Class","School","City", "State","Olympiad", "Registered On", "Actions"]}
+
           renderRow={(o, index) => (
             <>
               <td className="p-2 border">{index + 1}</td>
@@ -464,6 +465,8 @@ const fetchAllData = async () => {
               <td className="p-2 border">{o.city}</td>
               <td className="p-2 border">{o.state}</td>
               <td className="p-2 border">{o.olympiad}</td>
+              <td className="p-2 border">{new Date(o.createdAt).toLocaleString()}</td>
+
               <td className="p-2 border text-left space-x-2">
                 <button onClick={() => openModal("olympiad", o)} className="text-blue-600 hover:underline">
                   Edit
@@ -486,7 +489,7 @@ const fetchAllData = async () => {
           setSortAsc={setWorkSortAsc}
           onAdd={() => openModal("workshop")}
           onExportExcel={() => exportToExcel(filteredWork, "workshop_registrations")}
-          columns={["S.No", "Name", "Email", "Phone", "Organization", "Message", "Actions"]}
+          columns={["S.No", "Name", "Email", "Phone", "Organization", "Message","Registered On", "Actions"]}
           renderRow={(w, index) => (
             <>
               <td className="p-2 border">{index + 1}</td>
@@ -495,6 +498,7 @@ const fetchAllData = async () => {
               <td className="p-2 border">{w.phone}</td>
               <td className="p-2 border">{w.organization}</td>
               <td className="p-2 border">{w.message}</td>
+              <td className="p-2 border">{new Date(w.createdAt).toLocaleString()}</td>
               <td className="p-2 border space-x-2 text-left">
                 <button onClick={() => openModal("workshop", w)} className="text-blue-600 hover:underline">
                   Edit
@@ -515,7 +519,7 @@ const fetchAllData = async () => {
           setSortAsc={setContactSortAsc}
           onAdd={() => openModal("contactus")}
           onExportExcel={() => exportToExcel(contactus, "contact_us_data")}
-          columns={["S.No", "Name", "Email", "Phone", "Exam", "Class", "Stream", "School", "Page Name", "Created", "Actions"]}
+          columns={["S.No", "Name", "Email", "Phone", "Exam", "Class", "Stream", "School", "Page Name", "Created On", "Actions"]}
           renderRow={(c, index) => (
         <>
             <td className="p-2 border">{index + 1}</td>
@@ -528,7 +532,6 @@ const fetchAllData = async () => {
             <td className="p-2 border">{c.school}</td>
             <td className="p-2 border">{c.pageName}</td>
             <td className="p-2 border">{new Date(c.createdAt).toLocaleString()}</td>
-
             <td className="p-2 border text-left space-x-2">
             <button onClick={() => openModal("contactus", c)} className="text-blue-600 hover:underline">Edit</button>
             <button onClick={() => handleDelete("contactus", c.id)} className="text-red-600 hover:underline">Delete</button>
@@ -575,7 +578,7 @@ const fetchAllData = async () => {
           setSortAsc={setAppSortAsc}
           onAdd={() => openModal("applications")}
           onExportExcel={() => exportToExcel(filteredApps, "job_applications")}
-          columns={["S.No", "Full Name", "Email", "Phone", "About", "Job Title", "Resume", "Actions"]}
+          columns={["S.No", "Full Name", "Email", "Phone", "About", "Job Title", "Resume","Applied On" ,"Actions"]}
           renderRow={(a, index) => (
             <>
               <td className="p-2 border">{index + 1}</td>
@@ -587,6 +590,7 @@ const fetchAllData = async () => {
               <td className="p-2 border text-blue-600 underline text-center">
                 {a.resumeUrl ? <a href={a.resumeUrl}>View</a> : "N/A"}
               </td>
+              <td className="p-2 border">{new Date(a.createdAt).toLocaleString()}</td>
               <td className="p-2 border">
                 <button onClick={() => openModal("applications", a)} className="text-blue-600 hover:underline mr-2">
                   Edit
@@ -616,7 +620,7 @@ const fetchAllData = async () => {
               <td className="p-2 border">{u.name}</td>
               <td className="p-2 border">{u.email}</td>
               <td className="p-2 border">{u.role}</td>
-              <td className="p-2 border">{new Date(u.createdAt).toLocaleDateString()}</td>
+              <td className="p-2 border">{new Date(u.createdAt).toLocaleString()}</td>
               <td className="p-2 border space-x-2">
                 <button onClick={() => openModal("user", u)} className="text-blue-600 hover:underline">
                   Edit
@@ -791,7 +795,7 @@ function DataTable({
             onClick={() => setSortAsc(!sortAsc)}
             className="bg-green-500 text-white px-3 py-1 rounded text-sm hover:bg-green-600"
           >
-            Sort {sortAsc ? "↑" : "↓"}
+            Sort {sortAsc ? "↓" : "↑"}
           </button>
           <button
             onClick={onAdd}

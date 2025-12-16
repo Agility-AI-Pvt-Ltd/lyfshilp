@@ -78,7 +78,7 @@ export default function Header() {
             Exam Prep
           </Link>
 
-          <Link to="/olympiad" className="hover:text-green-600 transition whitespace-nowrap">FutureX</Link>
+          <Link to="/futureX" className="hover:text-green-600 transition whitespace-nowrap">FutureX</Link>
           <Link to="/podcast" className="hover:text-green-600 transition whitespace-nowrap">Podcast</Link>
           <Link to="/workshop" className="hover:text-green-600 transition whitespace-nowrap">Workshops</Link>
 
@@ -189,7 +189,7 @@ export default function Header() {
               Exam Prep
             </Link>
 
-            <Link to="/olympiad" onClick={() => setMobileOpen(false)} className="hover:text-green-600">
+            <Link to="/futureX" onClick={() => setMobileOpen(false)} className="hover:text-green-600">
               FutureX
             </Link>
             <Link to="/podcast" onClick={() => setMobileOpen(false)} className="hover:text-green-600">

@@ -10,25 +10,25 @@ export default function OlympiadDash() {
       title: "Finance Management Fellowship",
       image: financeImg,
       desc: "28 Questions • Quiz Type • 20 minutes",
-      link: "/olympiad/finance",
+      link: "/furureX/finance",
     },
     {
       title: "Artificial Intelligence Fellowship",
       image: aiImg,
       desc: "28 Questions • Quiz Type • 20 minutes",
-      link: "/olympiad/ai",
+      link: "/futureX/ai",
     },
     {
       title: "Employability Skills Fellowship",
       image: employImg,
       desc: "28 Questions • Quiz Type • 20 minutes",
-      link: "/olympiad/employability",
+      link: "/futureX/employability",
     },
     {
       title: "Entrepreneurship Fellowship",
       image: entreImg,
       desc: "28 Questions • Quiz Type • 20 minutes",
-      link: "/olympiad/entrepreneurship",
+      link: "/futureX/entrepreneurship",
     },
   ];
 

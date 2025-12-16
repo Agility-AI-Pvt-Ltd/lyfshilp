@@ -93,7 +93,7 @@ const handleSubmit = async (e) => {
   }
 
   try {
-    const response = await api.post("/olympiad/register", {
+    const response = await api.post("/futureX/register", {
       ...formData,
       olympiad: "Employability",
     });
@@ -249,7 +249,7 @@ const handleSubmit = async (e) => {
             >
               ×
             </button>
-            <h2 className="text-2xl font-bold text-green-700 mb-4 text-center">Register for Employability FutureX Fellowship</h2>
+            <h2 className="text-2xl font-bold text-green-700 mb-4 text-center">Register for Employability International FutureX Fellowship</h2>
 
             {error && <p className="text-red-500 text-sm mb-3 text-center">{error}</p>}
             {success && <p className="text-green-600 text-sm mb-3 text-center font-medium">{success}</p>}

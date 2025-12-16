@@ -26,7 +26,7 @@ export default function RewardsSection() {
         { rank: "Top 3 Winners:", desc: "₹50K–₹1L Grant, Trophy, Mentorship, Media Feature" },
         { rank: "Top 10:", desc: "Mentorship + Tablet + 2-Year Edumaniax Access" },
         { rank: "Top 50:", desc: "Elite Certificate + 3-Day Bootcamp" },
-        { rank: "Top 100:", desc: "Featured in FutureX National Talent Report" },
+        { rank: "Top 100:", desc: "Featured in FutureX Internationalnational Talent Report" },
       ],
       strokeColor: "text-[#B47C00]",
     },
@@ -50,7 +50,7 @@ export default function RewardsSection() {
         <div className="text-center md:text-left">
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-gray-900 leading-snug">
             What you will get from this <br className="hidden sm:block" />
-            <span className="text-green-700">FutureX Fellowship?</span>
+            <span className="text-green-700">International FutureX Fellowship?</span>
           </h2>
         </div>
         <p className="text-gray-600 text-xs sm:text-sm md:text-base mt-2 md:mt-0 md:w-1/2 text-center md:text-left leading-relaxed max-w-xl">

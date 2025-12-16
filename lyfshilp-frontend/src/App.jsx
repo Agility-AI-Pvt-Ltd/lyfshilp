@@ -77,15 +77,15 @@ export default function App() {
             <Route path="/podcast" element={<Podcast />} />
             <Route path="/internships" element={<Internships />} />
             <Route path="/exam-prep" element={<ExamPrep />} />
-            <Route path="/olympiad" element={<Olympiad />} />
+            <Route path="/futureX" element={<Olympiad />} />
             <Route path="/termsconditions" element={<TermsConditions />} />
             <Route path="/cuet" element={<CuetPage />} />
             <Route path="/clat" element={<ClatPage />} />
             <Route path="/ipmat" element={<IpmatPage />} />
-            <Route path="/olympiad/finance" element={<Financepage />} />
-            <Route path="/olympiad/ai" element={<Aipage />} />
-            <Route path="/olympiad/employability" element={<Employabilitypage />} />
-            <Route path="/olympiad/entrepreneurship" element={<Entrepreneurshippage />} />
+            <Route path="/futureX/finance" element={<Financepage />} />
+            <Route path="/futureX/ai" element={<Aipage />} />
+            <Route path="/futureX/employability" element={<Employabilitypage />} />
+            <Route path="/futureX/entrepreneurship" element={<Entrepreneurshippage />} />
             <Route path="/contact" element={<ContactsForm />} />
             <Route path="*" element={<NotFound />} />
             

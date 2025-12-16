@@ -116,7 +116,7 @@ export default function Login() {
 
           {/* Don't have account */}
           {/* <p className="text-center text-gray-600 mt-5">
-            Know more about FutureX Fellowship{" "}
+            Know more about International FutureX Fellowship{" "}
             <Link to="/register" className="text-green-600 font-semibold">
               Contact us
             </Link>

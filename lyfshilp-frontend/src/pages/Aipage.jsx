@@ -102,7 +102,7 @@ const faqs = [
   }
 
   try {
-    const response = await api.post("/olympiad/register", {
+    const response = await api.post("/futureX/register", {
       ...formData,
       olympiad: "Artificial Intelligence",
     });
@@ -254,7 +254,7 @@ const faqs = [
             >
               ×
             </button>
-            <h2 className="text-2xl font-bold text-green-700 mb-4 text-center">Register for AI FutureX Fellowship</h2>
+            <h2 className="text-2xl font-bold text-green-700 mb-4 text-center">Register for AI International FutureX Fellowship</h2>
 
             {/* Show error/success */}
             {error && <p className="text-red-500 text-sm mb-3 text-center">{error}</p>}

@@ -167,7 +167,7 @@ export default function Register() {
 
           {/* Already have account */}
           {/* <p className="text-center text-gray-600 mt-5">
-            Know more about FutureX {" "}
+            Know more about International FutureX {" "}
             <Link to="/login" className="text-green-600 font-semibold">
               Log In
             </Link>

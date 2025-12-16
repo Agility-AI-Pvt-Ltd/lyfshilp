@@ -1,52 +1,92 @@
-import olympiadImg2 from "/images/chargirl.svg";
-import green02 from "/images/yellow02.svg";
+import React from "react";
 
 export default function OlympiadSection2() {
   return (
-    <section className="py-8 sm:py-10 md:py-14 px-4 sm:px-6 md:px-12 lg:px-16 bg-[#FFF8EE]">
-      <div className="grid grid-cols-1 md:grid-cols-2 items-center gap-6 sm:gap-8 md:gap-0 max-w-7xl mx-auto">
-        
-        {/* 📝 Text Left Side */}
-        <div className="text-center md:text-left order-2 md:order-1 mt-4 sm:mt-0 md:-mt-10 md:pl-20 lg:pl-40">
-          <h3 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-extrabold text-gray-900 leading-snug px-4 sm:px-0">
-            6-Months{" "}
-            <span className="text-green-600 font-extrabold italic">
-              Free Subscription
-            </span>
+    <section className="relative py-16 px-6 sm:px-10 md:px-16 lg:px-24 bg-[#FFF8EE] overflow-hidden">
+
+      <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+
+        {/* LEFT TEXT BLOCK — BOOKLET STYLE */}
+        <div className="leading-tight">
+
+          <h3 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-gray-900 uppercase leading-snug">
+            THE 3 PILLARS OF THE <br /> <span className="text-green-600 italic">CURRICULUM</span>
           </h3>
-          <p className="mt-2 sm:mt-3 text-gray-600 text-xs sm:text-sm md:text-base max-w-md mx-auto md:mx-0 px-4 sm:px-0">
-            Every Participant receives a 6-month 
-            <br className="hidden sm:block" />
-            <span className="sm:hidden"> </span>
-            free Edumaniax learning access.
+
+          <p className="mt-3 font-semibold text-gray-900 text-sm sm:text-base bg-yellow-100 inline-block px-4 py-1 rounded">
+            A Multidisciplinary Approach (NCF 2023 Aligned)
           </p>
+
+          <div className="mt-8 space-y-6">
+
+            {/* Pillar 1 */}
+            <div className="bg-white rounded-xl p-6 shadow-md border-l-4 border-blue-500 hover:shadow-lg transition-all">
+              <h4 className="font-bold text-gray-900 text-base sm:text-lg flex items-center gap-3">
+                <span className="w-8 h-8 bg-blue-500 text-white rounded-full flex items-center justify-center text-sm font-bold">
+                  1
+                </span>
+                AI & Future Tech
+              </h4>
+              <p className="mt-3 text-sm sm:text-base text-gray-700 leading-snug">
+                <strong>Focus:</strong> Computational Thinking & Digital Competencies <br />
+                <strong>Alignment:</strong> National Digital Education Mission, Skill India <br />
+                <strong>Outcome:</strong> Tech-literate students ready for the AI era
+              </p>
+            </div>
+
+            {/* Pillar 2 */}
+            <div className="bg-white rounded-xl p-6 shadow-md border-l-4 border-green-500 hover:shadow-lg transition-all">
+              <h4 className="font-bold text-gray-900 text-base sm:text-lg flex items-center gap-3">
+                <span className="w-8 h-8 bg-green-500 text-white rounded-full flex items-center justify-center text-sm font-bold">
+                  2
+                </span>
+                Finance & Wealth Skills
+              </h4>
+              <p className="mt-3 text-sm sm:text-base text-gray-700 leading-snug">
+                <strong>Focus:</strong> Financial literacy & wealth creation basics <br />
+                <strong>Alignment:</strong> NEP Financial Literacy Mandates <br />
+                <strong>Outcome:</strong> Financially aware young citizens
+              </p>
+            </div>
+
+            {/* Pillar 3 */}
+            <div className="bg-white rounded-xl p-6 shadow-md border-l-4 border-purple-500 hover:shadow-lg transition-all">
+              <h4 className="font-bold text-gray-900 text-base sm:text-lg flex items-center gap-3">
+                <span className="w-8 h-8 bg-purple-500 text-white rounded-full flex items-center justify-center text-sm font-bold">
+                  3
+                </span>
+                Digital Marketing & Branding
+              </h4>
+              <p className="mt-3 text-sm sm:text-base text-gray-700 leading-snug">
+                <strong>Focus:</strong> Design Thinking, Communication & Digital Citizenship <br />
+                <strong>Alignment:</strong> Socio-Emotional Learning (NCF) <br />
+                <strong>Outcome:</strong> Confident communicators & strategic thinkers
+              </p>
+            </div>
+
+          </div>
         </div>
 
-        {/* 🖼️ Image Right Side */}
-        <div className="flex justify-center relative order-1 md:order-2 md:-ml-28 lg:-ml-56">
-          {/* Background shape */}
+        {/* RIGHT IMAGE BLOCK — MATCHED STYLE */}
+        <div className="relative flex justify-center lg:justify-end">
+
+          {/* Soft Glow */}
+          <div className="absolute bottom-0 right-0 w-72 h-72 bg-yellow-200 rounded-full opacity-30 blur-2xl"></div>
+
+          {/* Character Illustration */}
           <img
-            src={green02}
-            alt="Step background"
-            className="w-40 sm:w-48 md:w-56 lg:w-72"
-          />
-          
-          {/* Girl image - Responsive positioning */}
-          <img
-            src={olympiadImg2}
-            alt="Olympiad step illustration"
-            className="
-              absolute
-              w-36 sm:w-44 md:w-52 lg:w-[18rem]
-              bottom-0 
-              -top-6 sm:-top-8 md:-top-10 lg:-top-12
-              left-[170px] -translate-x-1/2
-              md:left-auto md:translate-x-0
-              md:right-[10rem] lg:right-[14.5rem]
-            "
+            src="/images/3.svg"
+            alt="girl"
+            className="relative z-10 w-96 sm:w-[30rem] lg:w-[36rem] object-contain drop-shadow-xl"
           />
         </div>
+
       </div>
+
+      {/* Floating Decorations */}
+      <div className="absolute top-16 right-16 w-24 h-24 bg-yellow-300 opacity-20 rounded-full blur-2xl"></div>
+      <div className="absolute bottom-10 left-12 w-32 h-32 bg-orange-300 opacity-20 rounded-full blur-2xl"></div>
+
     </section>
   );
 }
