@@ -6,13 +6,7 @@ import { sendMailToAdmins, sendMailToUser } from "../utils/sendMail.js";
  */
 export const submitPartnerSchoolForm = async (req, res) => {
   try {
-    const {
-      schoolName,
-      contactPerson,
-      designation,
-      phone,
-      email,
-    } = req.body;
+    const { schoolName, contactPerson, designation, phone, email } = req.body;
 
     // 🔍 Validation
     if (!schoolName || !contactPerson || !designation || !phone || !email) {
@@ -24,23 +18,17 @@ export const submitPartnerSchoolForm = async (req, res) => {
 
     // 📦 Save to DB
     const form = await prisma.partnerSchoolForm.create({
-      data: {
-        schoolName,
-        contactPerson,
-        designation,
-        phone,
-        email,
-      },
+      data: { schoolName, contactPerson, designation, phone, email },
     });
 
-    // 📧 SEND EMAIL TO USER
+    // 📧 Mail to user
     await sendMailToUser({
       email,
       name: contactPerson,
       formName: "Partner School Enrollment",
     });
 
-    // 📧 SEND EMAIL TO ADMINS
+    // 📧 Mail to admins
     await sendMailToAdmins({
       formName: "Partner School Enrollment",
       name: contactPerson,
@@ -64,7 +52,6 @@ export const submitPartnerSchoolForm = async (req, res) => {
   }
 };
 
-
 /**
  * 👑 Admin: Get All Partner School Forms
  */
@@ -81,29 +68,37 @@ export const getAllPartnerSchoolForms = async (req, res) => {
   }
 };
 
-
 /**
  * ➕ Admin: Add New Form Manually
  */
 export const addPartnerSchoolForm = async (req, res) => {
   try {
-    const data = req.body;
+    const { schoolName, contactPerson, designation, phone, email } = req.body;
 
-    const newForm = await prisma.partnerSchoolForm.create({ data });
+    if (!schoolName || !contactPerson || !designation || !phone || !email) {
+      return res.status(400).json({
+        success: false,
+        message: "All fields are required",
+      });
+    }
 
-    // 📧 SEND MAIL TO USER
+    const newForm = await prisma.partnerSchoolForm.create({
+      data: { schoolName, contactPerson, designation, phone, email },
+    });
+
+    // 📧 Mail to user
     await sendMailToUser({
-      email: data.email,
-      name: data.contactPerson,
+      email,
+      name: contactPerson,
       formName: "Partner School Enrollment",
     });
 
-    // 📧 SEND MAIL TO ADMIN
+    // 📧 Mail to admins
     await sendMailToAdmins({
       formName: "Partner School Enrollment",
-      name: data.contactPerson,
-      email: data.email,
-      formData: data,
+      name: contactPerson,
+      email,
+      formData: req.body,
       meta: {
         path: req.originalUrl,
         userAgent: req.headers["user-agent"],
@@ -111,13 +106,16 @@ export const addPartnerSchoolForm = async (req, res) => {
       },
     });
 
-    res.status(201).json({ success: true, data: newForm });
+    return res.status(201).json({
+      success: true,
+      message: "Partner school form added successfully",
+      data: newForm,
+    });
   } catch (error) {
     console.error("❌ Error adding partner school form:", error);
-    res.status(500).json({ success: false, message: "Error adding form" });
+    res.status(500).json({ success: false, message: "Server error" });
   }
 };
-
 
 /**
  * ✏️ Admin: Update Form
@@ -137,7 +135,6 @@ export const updatePartnerSchoolForm = async (req, res) => {
     res.status(500).json({ success: false, message: "Error updating form" });
   }
 };
-
 
 /**
  * 🗑️ Admin: Delete Form

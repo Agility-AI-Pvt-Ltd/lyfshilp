@@ -7,13 +7,13 @@ import jobLogo from "../assets/career/Lyfshilp-logo.svg";
 const jobs = [
   {
     id: 1,
-    title: "Business Developement Manager",
+    title: "Business Development Manager",
     location: "Delhi",
     mode: "Full-Time",
     salary: "4–5 LPA",
     category: "Management",
     postedOn: "Apr 23, 2025",
-    summary: `Lyfshilp Academy is looking for a detail-oriented and dynamic Business Developement Manager 
+    summary: `Lyfshilp Academy is looking for a detail-oriented and dynamic Business Development Manager 
     to lead and coordinate key education, training, and technology-driven projects.`,
     requirements: [
       "Bachelor's degree required; MBA/PG in Management or Education preferred.",

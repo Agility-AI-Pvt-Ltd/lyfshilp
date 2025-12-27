@@ -1,7 +1,13 @@
 import { useState, useEffect } from "react";
+
+import AadyaImg from "../assets/CLatCimg/Aadya.png";
+import AryanshiImg from "../assets/CLatCimg/Aryanshi.png";
+import LavanyaImg from "../assets/CLatCimg/Lavanya.png";
+
 import AadyaImg from "../assets/ClatCimg/Aadya.png";
 import AryanshiImg from "../assets/ClatCimg/Aryanshi.png";
 import ChhaviImg from "../assets/ClatCimg/Chhavi.png";
+
 
 export default function Testimonials() {
   const testimonials = [
@@ -16,9 +22,9 @@ export default function Testimonials() {
       img: AryanshiImg,
     },
     {
-      text: "I joined Lyfshilp Academy for their 2-year CLAT course, and honestly, it turned out to be a great decision. The teachers are really supportive and know how to make even tough concepts easy to understand. Their doubt sessions, mocks, and guidance throughout the preparation kept me consistent and confident. The study material is well-structured, and the regular tests helped me track my progress clearly.!",
-      name: "Chhavi Choudhary",
-      img: ChhaviImg,
+      text: "The experience till yet has been really good. The teachers are really passionate towards their subject, they motivate their students and help them when required. Lyfshilp Academy is really beneficial and fruitful",
+      name: "Lavanya",
+      img: LavanyaImg,
     },
   ];
 
