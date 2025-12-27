@@ -7,7 +7,7 @@ import jobLogo from "../assets/career/Lyfshilp-logo.svg";
 const jobs = [
   {
     id: 1,
-    title: "Business Developement Executive",
+    title: "Business Development Executive",
     location: "Delhi",
     mode: "Full-Time",
     salary: "4–5 LPA",

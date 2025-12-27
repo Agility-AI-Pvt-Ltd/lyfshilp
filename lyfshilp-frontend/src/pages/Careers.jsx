@@ -9,8 +9,8 @@ import WaveBg from "../assets/career/wave-bg.svg"; // <-- wave background
 
 export default function Careers() {
   const jobs = [
-    { title: "Business Developement Executive", link: "/career/job1" },
-    { title: "Business Developement Manager", link: "/career/job2" },
+    { title: "Business Development Executive", link: "/career/job1" },
+    { title: "Business Development Manager", link: "/career/job2" },
     { title: "Quant & Logical Reasoning Faculty", link: "/career/job3" },
     { title: "English Faculty", link: "/career/job4" },
   ];

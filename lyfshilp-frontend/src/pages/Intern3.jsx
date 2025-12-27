@@ -9,7 +9,7 @@ const jobs = [
     title: "Graphic Designer & Video Editor Internship",
     location: "Delhi",
     mode: "Full-Time",
-    salary: "4–5 LPA",
+    stipend: "10K/month",
     category: "Management",
     postedOn: "Apr 23, 2025",
     summary: `Lyfshilp Academy is looking for a detail-oriented and dynamic Project Manager 
@@ -36,7 +36,7 @@ const jobs = [
     title: "Business Development Internship",
     location: "Ghaziabad",
     mode: "Full-Time",
-    salary: "3–4 LPA",
+    stipend: "10K/month",
     category: "Sales",
     postedOn: "May 1, 2025",
     summary: `We are looking for a BDE to expand Lyfshilp Academy’s footprint 
@@ -175,7 +175,7 @@ const ApplicationForm = ({ jobId, jobTitle }) => {
           <div className="bg-green-700 text-white rounded-2xl p-10 relative overflow-hidden">
             <h1 className="text-3xl md:text-4xl font-bold">{job.title}</h1>
             <div className="flex flex-wrap gap-4 mt-6">
-              {[job.location, job.mode, job.salary, job.category].map((tag, i) => (
+              {[job.location, job.mode, job.stipend, job.category].map((tag, i) => (
                 <span
                   key={i}
                   className="px-5 py-2 rounded-full bg-white/10 border border-white/30 text-white font-medium"

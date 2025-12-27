@@ -5,7 +5,7 @@ import careerImg from "../assets/career/job-search.svg";
 
 // Example jobs array (can be fetched from API later)
 const jobs = [
-  { title: "Business Developement Internship", link: "/career/frontend" },
+  { title: "Business Development Internship", link: "/career/frontend" },
   { title: "UI/UX Designer Internship", link: "/career/ui-ux" },
   { title: "Marketing Internship", link: "/career/marketing" },
 ];
