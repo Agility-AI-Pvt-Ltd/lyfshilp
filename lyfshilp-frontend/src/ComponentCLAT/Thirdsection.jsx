@@ -1,7 +1,13 @@
 import { useState, useEffect } from "react";
+
 import AadyaImg from "../assets/CLatCimg/Aadya.png";
 import AryanshiImg from "../assets/CLatCimg/Aryanshi.png";
 import LavanyaImg from "../assets/CLatCimg/Lavanya.png";
+
+import AadyaImg from "../assets/ClatCimg/Aadya.png";
+import AryanshiImg from "../assets/ClatCimg/Aryanshi.png";
+import ChhaviImg from "../assets/ClatCimg/Chhavi.png";
+
 
 export default function Testimonials() {
   const testimonials = [
