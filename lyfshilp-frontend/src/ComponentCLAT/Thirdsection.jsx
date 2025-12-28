@@ -4,10 +4,10 @@ import AadyaImg from "../assets/CLatCimg/Aadya.png";
 import AryanshiImg from "../assets/CLatCimg/Aryanshi.png";
 import LavanyaImg from "../assets/CLatCimg/Lavanya.png";
 
-import AadyaImg from "../assets/ClatCimg/Aadya.png";
-import AryanshiImg from "../assets/ClatCimg/Aryanshi.png";
-import ChhaviImg from "../assets/ClatCimg/Chhavi.png";
-
+// import AadyaImg from "../assets/ClatCimg/Aadya.png";
+// import AryanshiImg from "../assets/ClatCimg/Aryanshi.png";
+// // import ChhaviImg from "../assets/ClatCimg/Chhavi.png";
+// import LavanyaImg from "../assets/ClatCimg/Lavanya.png";
 
 export default function Testimonials() {
   const testimonials = [
