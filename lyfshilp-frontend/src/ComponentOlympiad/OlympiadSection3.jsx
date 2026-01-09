@@ -69,14 +69,14 @@ export default function OlympiadSection3() {
                 <span><strong>XP System:</strong> Points, Levels, Badges, Leaderboards</span>
               </li>
 
-              <li className="flex gap-3">
-                <span className="w-2 h-2 bg-pink-500 rounded-full mt-2"></span>
-                <span><strong>Simulations:</strong> Real-world business & tech scenarios</span>
+              <li className="flex gap-3 ">
+                <span className="w-2 h-2 bg-pink-500 rounded-full mt-[0.50rem] flex-shrink-0"></span>
+                <span><strong>Students learn business and tech:</strong> by building a live venture, managing finance, operations, marketing and sales with expert mentorship.</span>
               </li>
 
               <li className="flex gap-3">
-                <span className="w-2 h-2 bg-pink-500 rounded-full mt-2"></span>
-                <span><strong>Live Projects:</strong> Applied, hands-on experience</span>
+                <span className="w-2 h-2 bg-pink-500 rounded-full mt-2 flex-shrink-0"></span>
+                <span><strong>Live Lectures by Industry Experts:</strong> Interactive sessions with founders and leaders</span>
               </li>
             </ul>
           </div>

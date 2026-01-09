@@ -31,10 +31,10 @@ export default function OlympiadSection4() {
 
             <ul className="space-y-2 text-gray-700 text-sm sm:text-base leading-snug">
               {[
-                "Weekly Quizzes – 20%",
-                "Monthly Quizzes – 20%",
-                "Capstone Project – 20%",
-                "Final Assessment – 40%",
+                "Weekly Quizzes – 15%",
+                "Case Analysis – 25%",
+                "Venture Performance – 30%",
+                "Final Pitch(Demo Day) – 30%",
               ].map((item, i) => (
                 <li key={i} className="flex gap-3">
                   <span className="w-2 h-2 bg-blue-500 rounded-full mt-2"></span>
@@ -53,15 +53,15 @@ export default function OlympiadSection4() {
             <ul className="space-y-2 text-gray-700 text-sm sm:text-base leading-snug">
               <li className="flex items-start gap-3">
                 <span className="text-yellow-600 text-xl">🥇</span>
-                <span><strong>1st Prize:</strong> ₹50,000</span>
+                <span><strong>1st Prize:</strong> ₹75,000</span>
               </li>
               <li className="flex items-start gap-3">
                 <span className="text-gray-400 text-xl">🥈</span>
-                <span><strong>2nd Prize:</strong> ₹25,000</span>
+                <span><strong>2nd Prize:</strong> ₹50,000</span>
               </li>
               <li className="flex items-start gap-3">
                 <span className="text-orange-600 text-xl">🥉</span>
-                <span><strong>3rd Prize:</strong> ₹10,000</span>
+                <span><strong>3rd Prize:</strong> ₹25,000</span>
               </li>
             </ul>
           </div>
@@ -83,7 +83,7 @@ export default function OlympiadSection4() {
     <li className="flex gap-3">
       <span className="w-2 h-2 bg-purple-500 rounded-full mt-2"></span>
       <span>
-        <strong>Top 3%:</strong> Lifetime mentorship through International FutureX Fellows Cohort.
+        <strong>Top 3%:</strong> Lifetime mentorship through The International FutureX Fellows Cohort.
       </span>
     </li>
     <li className="flex gap-3">

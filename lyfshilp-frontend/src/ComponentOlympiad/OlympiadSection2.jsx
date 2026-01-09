@@ -10,7 +10,7 @@ export default function OlympiadSection2() {
         <div className="leading-tight">
 
           <h3 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-gray-900 uppercase leading-snug">
-            THE 3 PILLARS OF THE <br /> <span className="text-green-600 italic">CURRICULUM</span>
+            THE 4 PILLARS OF THE <br /> <span className="text-green-600 italic">CURRICULUM</span>
           </h3>
 
           <p className="mt-3 font-semibold text-gray-900 text-sm sm:text-base bg-yellow-100 inline-block px-4 py-1 rounded">
@@ -64,20 +64,35 @@ export default function OlympiadSection2() {
               </p>
             </div>
 
+            {/* Pillar 4 */}
+            <div className="bg-white rounded-xl p-6 shadow-md border-l-4 border-yellow-500 hover:shadow-lg transition-all">
+              <h4 className="font-bold text-gray-900 text-base sm:text-lg flex items-center gap-3">
+                <span className="w-8 h-8 bg-yellow-500 text-white rounded-full flex items-center justify-center text-sm font-bold">
+                  4
+                </span>
+                Business Communication
+              </h4>
+              <p className="mt-3 text-sm sm:text-base text-gray-700 leading-snug">
+                <strong>Focus:</strong>  Negotiation, influence, conflict resolution, storytelling, networking and personal branding <br />
+                <strong>Alignment:</strong> Entrepreneurial soft skills aligned with NEP, Skill India <br />
+                <strong>Outcome:</strong>Persuasive negotiators, storytellers, networkers, brand-builders
+              </p>
+            </div>
+
           </div>
         </div>
 
         {/* RIGHT IMAGE BLOCK — MATCHED STYLE */}
-        <div className="relative flex justify-center lg:justify-end">
+        <div className="relative flex justify-center lg:justify-end items-center">
 
           {/* Soft Glow */}
           <div className="absolute bottom-0 right-0 w-72 h-72 bg-yellow-200 rounded-full opacity-30 blur-2xl"></div>
 
           {/* Character Illustration */}
           <img
-            src="/images/3.svg"
-            alt="girl"
-            className="relative z-10 w-96 sm:w-[30rem] lg:w-[36rem] object-contain drop-shadow-xl"
+            src="/images/10.svg"
+            alt="Laddder"
+            className="relative z-10 w-72 sm:w-[30rem] lg:w-[36rem] object-contain drop-shadow-xl"
           />
         </div>
 

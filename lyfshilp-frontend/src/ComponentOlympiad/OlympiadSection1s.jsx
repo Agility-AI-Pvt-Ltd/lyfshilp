@@ -41,9 +41,10 @@ export default function OlympiadSection1s() {
               </p>
 
               <p className="mt-4 text-gray-700 text-sm sm:text-base leading-relaxed max-w-lg">
-                The International FutureX Fellowship is a 6-month immersive program 
-                equipping Classes 6–9 with global competencies. Designed to mirror 
-                Ivy League school standards, it positions your students on a global stage.
+Students don’tjustlearn about business -they build one.
+Each participantlearn business,tech and communication
+by building a live venture, managing finance, operations,
+marketing, sales and stakeholder communication.
               </p>
             </div>
 
@@ -68,8 +69,8 @@ export default function OlympiadSection1s() {
                 <li className="flex gap-3">
                   <span className="w-2 h-2 bg-purple-500 rounded-full mt-2"></span>
                   <span>
-                    <strong>Methodology:</strong> Experiential & Practice-Based 
-                    (Aligned with NEP Section 4.4)
+                    <strong>Methodology:</strong>  Student builds a working startup
+alongside learning business concepts (NEP Section 4.4)
                   </span>
                 </li>
 

@@ -1,6 +1,6 @@
 // src/components/JoinLearnSection.jsx 
 import handshakeIcon from "../assets/Olympiadimg/join.svg";
-import edumaniaxLogo from "../assets/Olympiadimg/edumaniax-logo.svg";
+import LyfshilpLogo from "../assets/LyfshilpLogo.png";
 import agilityLogo from "../assets/Olympiadimg/agility-logo.svg";
 
 export default function JoinLearnSection() {
@@ -19,26 +19,27 @@ export default function JoinLearnSection() {
         </div>
 
         {/* Right - Info Box */}
-        <div className="bg-white p-6 flex flex-col justify-center border border-black rounded-md w-full">
-          <h2 className="text-lg sm:text-4xl font-extrabold text-gray-900 mb-4 text-center md:text-left">
-            In Collaboration With:
+ <div className="bg-white p-6 flex flex-col justify-center border border-black rounded-md w-full">
+          <h2 className="text-lg sm:text-3xl font-extrabold text-gray-900 mb-4 text-center md:text-left">
+            A Purpose-Built Partnership of :
           </h2>
 
           {/* Logos Row */}
-          <div className="flex flex-wrap items-center justify-center md:justify-start gap-6 mb-4">
+          <div className="flex flex-wrap items-center justify-center md:justify-start gap-4 mb-4">
             
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-0">
               <img
-                src={edumaniaxLogo}
-                alt="Edumaniax logo"
-                className="h-16 w-auto object-contain"
+                src={LyfshilpLogo}
+                alt="Lyfshilp logo"
+                className="h-22 w-20 object-contain"
               />
-              <span className="text-green-600 font-extrabold text-base">
-                Edumaniax
+              <span className="text-gray-600 font-extrabold text-base">
+                Lyfshilp Academy
               </span>
             </div>
 
-            <div className="h-6 w-px bg-gray-300"></div>
+            {/* Divider */}
+            <span className="font-extrabold text-gray-400">&</span>
 
             <div className="flex items-center gap-2">
               <img
@@ -46,15 +47,14 @@ export default function JoinLearnSection() {
                 alt="Agility AI logo"
                 className="h-12 w-auto object-contain"
               />
-              <span className="text-gray-900 font-extrabold text-base">
+              <span className="text-gray-600 font-extrabold text-base">
                 Agility AI
               </span>
             </div>
           </div>
 
-          <p className="text-gray-600 text-sm sm:text-base leading-relaxed max-w-md text-center md:text-left mx-auto md:mx-0">
-            Together, we’re redefining the Future of Education where students
-            don’t just prepare for exams, they prepare for life.
+          <p className="text-black text-sm sm:text-base leading-relaxed max-w-md text-center md:text-left mx-auto md:mx-0">
+            A Rare Convergence of Education and Industry Leadership with Long-Term Impact
           </p>
         </div>
       </div>
