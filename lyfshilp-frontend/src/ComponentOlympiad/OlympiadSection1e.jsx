@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function OlympiadSection1() {
+export default function OlympiadSection1e() {
   return (
     <section className="relative py-16 px-6 sm:px-10 md:px-16 lg:px-24 bg-[#FFF8EE] overflow-hidden">
 

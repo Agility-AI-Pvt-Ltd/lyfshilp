@@ -3,7 +3,7 @@ import stars from "../assets/Olympiadimg/stars.svg";
 import trophy from "../assets/Olympiadimg/trophy.svg";
 import certificate from "../assets/Olympiadimg/certificate.svg";
 
-export default function RewardsSection() {
+export default function RewardSection() {
   const rewards = [
     {
       title: "Rewards For Every Participant",
