@@ -100,7 +100,7 @@ const fetchAllData = async () => {
   try {
     const headers = { Authorization: `Bearer ${token}` };
     const [olyRes, appRes, userRes, workRes, callbackRes, podcastRes, contactRes] = await Promise.all([
-      api.get("/olympiad/all", { headers }),
+      api.get("/futureX/all", { headers }),
       api.get("/applications/all", { headers }),
       api.get("/user/all", { headers }),
       api.get("/workshop/all", { headers }),
