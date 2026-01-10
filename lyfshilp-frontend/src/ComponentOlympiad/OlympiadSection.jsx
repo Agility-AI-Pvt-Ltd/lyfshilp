@@ -1,7 +1,7 @@
 // src/components/OlympiadSection.jsx
 import studentsImage from "/students-group.svg";
 
-export default function OlympiadSection1() {
+export default function OlympiadSection() {
   const stats = [
     { icon: "📚", value: "9/10", label: "Improved Exam Readiness" },
     { icon: "💡", value: "82%", label: "Boosted Confidence & Problem-Solving" },

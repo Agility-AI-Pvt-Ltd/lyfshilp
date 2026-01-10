@@ -1,7 +1,7 @@
 import { Lightbulb, UsersRound, Briefcase } from "lucide-react";
 import WaveBg from "../assets/career/wave-bg.svg";
 
-export default function OlympiadSection5() {
+export default function OlympiadSection7() {
   const features = [
     {
       icon: <Lightbulb className="w-8 h-8 text-green-600 mx-auto" />,

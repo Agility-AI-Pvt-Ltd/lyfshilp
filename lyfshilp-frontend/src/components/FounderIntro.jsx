@@ -1,7 +1,7 @@
 // src/components/Founder.jsx
 import founderImg from "../assets/SharadSir.svg";
 
-export default function Founderintro() {
+export default function FounderIntro() {
   return (
     <section className="py-16 bg-green-1000"> {/* <-- Background green */}
       <div className="container mx-auto px-5 flex flex-col md:flex-row items-center gap-10">

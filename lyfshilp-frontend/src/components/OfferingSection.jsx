@@ -7,7 +7,7 @@ import circleImg from "../assets/circleImg.png";
 import edumaniaxBig from "../assets/EdumaniaxBig.png";
 import competitiveImg from "../assets/CompetitiveImg.png"; 
 
-export default function OfferingsSection() {
+export default function OfferingSection() {
   return (
     <section className="w-full bg-white">
       <div className="mx-auto max-w-7xl px-4 pt-10 pb-20 sm:px-6 lg:px-8">
