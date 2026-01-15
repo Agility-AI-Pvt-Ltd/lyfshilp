@@ -80,6 +80,7 @@ export default function Header() {
 
           <Link to="/futureX" className="hover:text-green-600 transition whitespace-nowrap">FutureX</Link>
           <Link to="/podcast" className="hover:text-green-600 transition whitespace-nowrap">Podcast</Link>
+          <Link to="/free-content" className="hover:text-green-600 transition whitespace-nowrap">Free Content</Link>
           <Link to="/workshop" className="hover:text-green-600 transition whitespace-nowrap">Workshops</Link>
 
           {/* Careers Dropdown */}
@@ -195,6 +196,7 @@ export default function Header() {
             <Link to="/podcast" onClick={() => setMobileOpen(false)} className="hover:text-green-600">
               Podcast
             </Link>
+           <Link to="/free-content" onClick={() => setMobileOpen(false)} className="hover:text-green-600">Free Content</Link>
             <Link to="/workshop" onClick={() => setMobileOpen(false)} className="hover:text-green-600">
               Workshop
             </Link>

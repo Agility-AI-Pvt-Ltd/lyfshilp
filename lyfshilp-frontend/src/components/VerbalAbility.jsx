@@ -2,6 +2,18 @@ import { ArrowRight } from "lucide-react";
 import { useEffect, useState } from "react";
 import api from "../api/axios.js";
 
+const toWatchUrl = (embedUrl) => {
+  if (!embedUrl) return "#";
+
+  // embed → watch
+  if (embedUrl.includes("/embed/")) {
+    const id = embedUrl.split("/embed/")[1].split("?")[0];
+    return `https://www.youtube.com/watch?v=${id}`;
+  }
+
+  return embedUrl;
+};
+
 const getEmbedUrl = (url) => {
   if (!url) return "";
   if (!url.startsWith("http")) return `https://www.youtube.com/embed/${url}`;
@@ -82,15 +94,16 @@ export default function VerbalAbility() {
           grammar, reading, and exam preparation for CUET, IPMAT, and CLAT.
         </p>
 
-        <a
-          href={video ? video.videoUrl : "#"}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-flex items-center bg-green-600 text-white font-semibold px-6 py-3 rounded-full shadow-md hover:bg-green-700 transition-all"
-        >
-          Watch Full Playlist
-          <ArrowRight className="ml-2" size={20} />
-        </a>
+<a
+  href={video ? toWatchUrl(video.videoUrl) : "#"}
+  target="_blank"
+  rel="noopener noreferrer"
+  className="inline-flex items-center bg-green-600 text-white font-semibold px-6 py-3 rounded-full shadow-md hover:bg-green-700 transition-all"
+>
+  Watch Full Playlist
+  <ArrowRight className="ml-2" size={20} />
+</a>
+
       </div>
     </section>
   );

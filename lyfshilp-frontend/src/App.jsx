@@ -17,6 +17,7 @@ import CuetPage from "./pages/CuetPage.jsx";
 import ClatPage from "./pages/ClatPage.jsx";
 import IpmatPage from "./pages/IpmatPage.jsx";
 import NotFound from "./pages/NotFound.jsx";
+import FreeContent from "./pages/FreeContent.jsx";
 
 import Job1 from "./pages/Job1.jsx";
 import Job2 from "./pages/Job2.jsx";
@@ -93,6 +94,7 @@ export default function App() {
             <Route path="/futureX/employability" element={<Employabilitypage />} />
             <Route path="/futureX/entrepreneurship" element={<Entrepreneurshippage />} />
             <Route path="/contact" element={<ContactsForm />} />
+            <Route path="/free-content" element={<FreeContent />} /> 
             <Route path="*" element={<NotFound />} />
             
             <Route 
