@@ -20,7 +20,7 @@ import callbackRoutes from "./routes/callbackRoutes.js";
 import podcastRoutes from "./routes/podcastRoutes.js";
 import contactRoutes from "./routes/contactRoutes.js";
 import partnerSchoolRoutes from "./routes/partnerSchoolRoutes.js"
-
+import dailyPdfRoutes from "./routes/dailyPdfRoutes.js";
 
 
 const app = express();
@@ -80,6 +80,7 @@ app.use("/api/workshop", workshopRoutes);
 app.use("/api/callback", callbackRoutes);
 app.use("/api/podcast", podcastRoutes);
 app.use("/api/contact", contactRoutes);
+app.use("/api/daily-pdf", dailyPdfRoutes);
 
 // --- Health check ---
 app.get("/api/health", (req, res) => {

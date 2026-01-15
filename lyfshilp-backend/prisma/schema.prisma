@@ -103,6 +103,15 @@ model Podcast {
   updatedAt   DateTime @updatedAt
 }
 
+model DailyPdfRequest {
+  id        Int      @id @default(autoincrement())
+  name      String
+  phone     String
+  email     String
+  courses   String   // "CUET,CLAT,IPMAT"
+  createdAt DateTime @default(now())
+}
+
 model Course {
   id          Int       @id @default(autoincrement())
   title       String
