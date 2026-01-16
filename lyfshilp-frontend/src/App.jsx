@@ -46,6 +46,7 @@ import AdminDashboard from "./pages/AdminDashboard.jsx";
 import ProtectedRoute from "./components/ProtectedRoute.jsx";
 import ContactsForm from "./components/ContactsForm.jsx";
 
+import GoogleAnalyticsTracker from "./utils/GoogleAnalyticsTracker.jsx";
 import MetaPixelTracker from "./utils/MetaPixelTracker.jsx";
 
 export default function App() {
@@ -58,7 +59,8 @@ export default function App() {
         {/* Main content */}
         <main className="flex-grow">
 
-          {/* 🔥 Meta Pixel PageView Tracker */}
+          <GoogleAnalyticsTracker />
+          {/* Meta Pixel PageView Tracker */}
           <MetaPixelTracker />
           
           {/* Page Routes */}
