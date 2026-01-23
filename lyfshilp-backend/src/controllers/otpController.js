@@ -1,6 +1,9 @@
 import { generateOtp, storeOtp, verifyOtpService } from '../services/otpService.js';
 
 export const sendOtpController = async (req, res) => {
+    // Debug: Log incoming request to verify traffic reaches backend
+    console.log(`[API] Received Send OTP Request:`, req.body);
+
     try {
         const { phone } = req.body;
         if (!phone || !/^[6-9]\d{9}$/.test(phone)) {
@@ -24,7 +27,9 @@ export const sendOtpController = async (req, res) => {
             // 502 Bad Gateway - Upstream SMS provider failed (Refused connection or non-200)
             return res.status(502).json({
                 success: false,
-                message: 'Failed to send OTP via SMS provider. Please check the number or try again later.'
+                message: 'Failed to send OTP via SMS provider. Please check the number or try again later.',
+                // CRITICAL: Return OTP in error too if in DEV/TEST mode to unblock frontend
+                devOtp: process.env.DEV_OTP_MODE === 'true' ? otp : undefined
             });
         }
 
