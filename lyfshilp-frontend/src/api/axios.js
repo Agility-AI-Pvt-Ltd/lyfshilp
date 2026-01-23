@@ -1,9 +1,11 @@
 import axios from "axios";
 
-// Base URL for local development
+// Base URL for local development vs production
+// Uses VITE_API_URL if set, otherwise switches based on environment mode
+const isProd = import.meta.env.PROD;
 const api = axios.create({
-  baseURL: "http://localhost:4000/api",
-  withCredentials: true, // agar cookies / jwt use ho raha ho
+  baseURL: "https://lyfshilp-backend-210425516679.asia-south1.run.app/api", // Production backend URL from Google Cloud Run
+  withCredentials: true,
 });
 
 
