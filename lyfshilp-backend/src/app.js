@@ -21,6 +21,8 @@ import podcastRoutes from "./routes/podcastRoutes.js";
 import contactRoutes from "./routes/contactRoutes.js";
 import partnerSchoolRoutes from "./routes/partnerSchoolRoutes.js"
 import dailyPdfRoutes from "./routes/dailyPdfRoutes.js";
+import careerGuidanceRoutes from "./routes/careerGuidanceRoutes.js";
+
 
 
 const app = express();
@@ -37,6 +39,7 @@ app.use((req, res, next) => {
 // ✅ CORS configuration - allow multiple origins
 const allowedOrigins = [
   "http://localhost:5173",
+  "http://localhost:5174", // ✅ Added for Vite alternate port
   "http://localhost:4000",
   "https://lyfshilp.vercel.app",
   "https://lyfshilp.com",
@@ -81,6 +84,8 @@ app.use("/api/callback", callbackRoutes);
 app.use("/api/podcast", podcastRoutes);
 app.use("/api/contact", contactRoutes);
 app.use("/api/daily-pdf", dailyPdfRoutes);
+app.use("/api/career-guidance", careerGuidanceRoutes);
+
 
 // --- Health check ---
 app.get("/api/health", (req, res) => {
