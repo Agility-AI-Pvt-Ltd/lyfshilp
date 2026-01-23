@@ -44,6 +44,7 @@ export default function AdminDashboard() {
   const [callbacks, setCallbacks] = useState([]);
   const [podcasts, setPodcasts] = useState([]);
   const [contactus, setContactus] = useState([]);
+  const [verifiedPhones, setVerifiedPhones] = useState([]);
 
 
   // Search states
@@ -54,6 +55,7 @@ export default function AdminDashboard() {
   const [callbackSearch, setCallbackSearch] = useState("");
   const [podcastSearch, setPodcastSearch] = useState("");
   const [contactSearch, setContactSearch] = useState("");
+  const [phoneSearch, setPhoneSearch] = useState("");
 
   // Sort toggles
   const [userSortAsc, setUserSortAsc] = useState(false);
@@ -63,6 +65,7 @@ export default function AdminDashboard() {
   const [callbackSortAsc, setCallbackSortAsc] = useState(false);
   const [podcastSortAsc, setPodcastSortAsc] = useState(false);
   const [contactSortAsc, setContactSortAsc] = useState(false);
+  const [phoneSortAsc, setPhoneSortAsc] = useState(false);
 
   // Modal and message
   const [showModal, setShowModal] = useState(false);
@@ -77,14 +80,14 @@ export default function AdminDashboard() {
   const showMessage = (text, type = "success") => {
     // Save scroll position before showing message
     const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
-    
+
     setMessage({ text, type });
-    
+
     // Restore scroll immediately
     requestAnimationFrame(() => {
       window.scrollTo(0, currentScroll);
     });
-    
+
     setTimeout(() => {
       setMessage({ text: "", type: "" });
     }, 3000);
@@ -94,37 +97,39 @@ export default function AdminDashboard() {
     if (user && user.role?.toLowerCase() === "admin") fetchAllData();
   }, [user]);
 
-const fetchAllData = async () => {
-  const scrollPosition = window.pageYOffset || document.documentElement.scrollTop;
+  const fetchAllData = async () => {
+    const scrollPosition = window.pageYOffset || document.documentElement.scrollTop;
 
-  try {
-    const headers = { Authorization: `Bearer ${token}` };
-    const [olyRes, appRes, userRes, workRes, callbackRes, podcastRes, contactRes] = await Promise.all([
-      api.get("/futureX/all", { headers }),
-      api.get("/applications/all", { headers }),
-      api.get("/user/all", { headers }),
-      api.get("/workshop/all", { headers }),
-      api.get("/callback/all", { headers }),
-      api.get("/podcast/all", { headers }),
-      api.get("/contact/all", { headers }), 
-    ]);
+    try {
+      const headers = { Authorization: `Bearer ${token}` };
+      const [olyRes, appRes, userRes, workRes, callbackRes, podcastRes, contactRes, verifiedRes] = await Promise.all([
+        api.get("/futureX/all", { headers }),
+        api.get("/applications/all", { headers }),
+        api.get("/user/all", { headers }),
+        api.get("/workshop/all", { headers }),
+        api.get("/callback/all", { headers }),
+        api.get("/podcast/all", { headers }),
+        api.get("/contact/all", { headers }),
+        api.get("/career-guidance/verified-numbers", { headers }),
+      ]);
 
-    setOlympiads(olyRes.data.data || olyRes.data || []);
-    setApplications(appRes.data.data || appRes.data || []);
-    setUsers(userRes.data.users || userRes.data || []);
-    setWorkshops(workRes.data.data || workRes.data || []);
-    setCallbacks(callbackRes.data.data || callbackRes.data || []);
-    setPodcasts(podcastRes.data.data || podcastRes.data || []);
-    setContactus(contactRes.data.data || contactRes.data || []);
+      setOlympiads(olyRes.data.data || olyRes.data || []);
+      setApplications(appRes.data.data || appRes.data || []);
+      setUsers(userRes.data.users || userRes.data || []);
+      setWorkshops(workRes.data.data || workRes.data || []);
+      setCallbacks(callbackRes.data.data || callbackRes.data || []);
+      setPodcasts(podcastRes.data.data || podcastRes.data || []);
+      setContactus(contactRes.data.data || contactRes.data || []);
+      setVerifiedPhones(verifiedRes.data.data || []);
 
-    setTimeout(() => {
-      window.scrollTo(0, scrollPosition);
-    }, 0);
-  } catch (err) {
-    console.error(err);
-    showMessage("❌ Failed to load dashboard data", "error");
-  }
-};
+      setTimeout(() => {
+        window.scrollTo(0, scrollPosition);
+      }, 0);
+    } catch (err) {
+      console.error(err);
+      showMessage("❌ Failed to load dashboard data", "error");
+    }
+  };
 
 
   if (loading) return <div className="text-center mt-10 text-gray-600">Loading Dashboard...</div>;
@@ -149,10 +154,10 @@ const fetchAllData = async () => {
       if (!validateName(modalData.fullName || "")) errors.fullName = "Valid full name required";
       if (!validateEmail(modalData.email || "")) errors.email = "Valid email required";
       if (!validatePhone(modalData.phone || "")) errors.phone = "Valid 10-digit phone required";
-      if (!modalData.about?.trim() || modalData.about.length < 10) 
+      if (!modalData.about?.trim() || modalData.about.length < 10)
         errors.about = "About section required (min 10 chars)";
       if (!modalData.jobTitle?.trim()) errors.jobTitle = "Job title required";
-      if (modalData.resumeUrl && !validateURL(modalData.resumeUrl)) 
+      if (modalData.resumeUrl && !validateURL(modalData.resumeUrl))
         errors.resumeUrl = "Valid URL required";
     }
 
@@ -160,7 +165,7 @@ const fetchAllData = async () => {
       if (!validateName(modalData.name || "")) errors.name = "Valid name required";
       if (!validateEmail(modalData.email || "")) errors.email = "Valid email required";
       if (!modalData.role?.trim()) errors.role = "Role is required";
-      if (!modalData.id && (!modalData.password || modalData.password.length < 6)) 
+      if (!modalData.id && (!modalData.password || modalData.password.length < 6))
         errors.password = "Password required (min 6 chars)";
     }
     if (modalType === "callback") {
@@ -171,7 +176,7 @@ const fetchAllData = async () => {
       if (!modalData.school?.trim()) errors.school = "School required";
       if (!modalData.pageName?.trim()) errors.pageName = "Page name required";
     }
-  if (modalType === "contactus") {
+    if (modalType === "contactus") {
       if (!validateName(modalData.name || "")) errors.name = "Valid name required";
       if (!validateEmail(modalData.email || "")) errors.email = "Valid email required";
       if (!validatePhone(modalData.phone || "")) errors.phone = "Valid phone required";
@@ -179,7 +184,7 @@ const fetchAllData = async () => {
       if (!modalData.studentClass?.trim()) errors.studentClass = "Class required";
       if (!modalData.stream?.trim()) errors.stream = "Stream required";
       if (!modalData.school?.trim()) errors.school = "School required";
-}
+    }
 
     if (modalType === "podcast") {
       if (!modalData.title?.trim()) errors.title = "Title is required";
@@ -207,13 +212,13 @@ const fetchAllData = async () => {
   const confirmDelete = async () => {
     // Save current scroll position BEFORE any async operations
     const scrollPosition = window.pageYOffset || document.documentElement.scrollTop;
-    
+
     try {
       const headers = { Authorization: `Bearer ${token}` };
       await api.delete(`/${confirmData.type}/delete/${confirmData.id}`, { headers });
-      
+
       setConfirmData({ show: false, type: "", id: null });
-      
+
       showMessage("🗑️ Record deleted successfully!", "success");
       await fetchAllData();
 
@@ -257,14 +262,14 @@ const fetchAllData = async () => {
         await api.post(`/${modalType}/add`, sanitizedData, { headers });
         showMessage("✅ Record added successfully!", "success");
       }
-      
+
       // Re-enable body scroll
       document.body.style.overflow = 'unset';
-      
+
       setShowModal(false);
       setModalData({});
       setValidationErrors({});
-      
+
       await fetchAllData();
 
       // Restore scroll position with requestAnimationFrame
@@ -281,7 +286,7 @@ const fetchAllData = async () => {
   const openModal = (type, data = {}) => {
     // Prevent body scroll when modal opens
     document.body.style.overflow = 'hidden';
-    
+
     setModalType(type);
     setValidationErrors({});
     let defaultData = {};
@@ -314,41 +319,41 @@ const fetchAllData = async () => {
         role: "",
         password: "",
       };
-      
-    } 
-    else if (type === "callback") {
-   defaultData = {
-    name: "",
-    phone: "",
-    studentClass: "",
-    stream: "",
-    school: "",
-    pageName: "",
-  };
-}
-  else if (type === "contactus") {
-  defaultData = {
-    name: "",
-    email: "",
-    exam: "",
-    phone: "",
-    studentClass: "",
-    stream: "",
-    school: "",
-    pageName: "",
-  };
-}
-  else if (type === "podcast") {
-  defaultData = {
-    title: "",
-    description: "",
-    videoUrl: "",
-    thumbnail: "",
-    category: "",
-  };
-}
 
-  else if (type === "workshop") {
+    }
+    else if (type === "callback") {
+      defaultData = {
+        name: "",
+        phone: "",
+        studentClass: "",
+        stream: "",
+        school: "",
+        pageName: "",
+      };
+    }
+    else if (type === "contactus") {
+      defaultData = {
+        name: "",
+        email: "",
+        exam: "",
+        phone: "",
+        studentClass: "",
+        stream: "",
+        school: "",
+        pageName: "",
+      };
+    }
+    else if (type === "podcast") {
+      defaultData = {
+        title: "",
+        description: "",
+        videoUrl: "",
+        thumbnail: "",
+        category: "",
+      };
+    }
+
+    else if (type === "workshop") {
       defaultData = {
         name: "",
         phone: "",
@@ -366,16 +371,16 @@ const fetchAllData = async () => {
   const filterData = (data = [], search = "", asc = true, dateKey = "createdAt", textKeys = []) =>
     Array.isArray(data)
       ? data
-          .filter((item) =>
-            textKeys.some((key) =>
-              item[key]?.toString().toLowerCase().includes(search.toLowerCase())
-            )
+        .filter((item) =>
+          textKeys.some((key) =>
+            item[key]?.toString().toLowerCase().includes(search.toLowerCase())
           )
-          .sort((a, b) =>
-            asc
-              ? new Date(a[dateKey]) - new Date(b[dateKey])
-              : new Date(b[dateKey]) - new Date(a[dateKey])
-          )
+        )
+        .sort((a, b) =>
+          asc
+            ? new Date(a[dateKey]) - new Date(b[dateKey])
+            : new Date(b[dateKey]) - new Date(a[dateKey])
+        )
       : [];
 
   const filteredOly = filterData(olympiads, olySearch, olySortAsc, "createdAt", ["name", "email"]);
@@ -433,9 +438,8 @@ const fetchAllData = async () => {
     <div className="p-4 md:p-8 space-y-6 bg-gray-50 min-h-screen">
       {message.text && (
         <div
-          className={`fixed top-5 right-5 px-4 py-2 rounded shadow-lg transition-all duration-300 ${
-            message.type === "success" ? "bg-green-500" : "bg-red-500"
-          } text-white z-50`}
+          className={`fixed top-5 right-5 px-4 py-2 rounded shadow-lg transition-all duration-300 ${message.type === "success" ? "bg-green-500" : "bg-red-500"
+            } text-white z-50`}
         >
           {message.text}
         </div>
@@ -452,7 +456,7 @@ const fetchAllData = async () => {
           setSortAsc={setOlySortAsc}
           onAdd={() => openModal("olympiad")}
           onExportExcel={() => exportToExcel(filteredOly, "olympiad_registrations")}
-          columns={["S.No","Name","Email","Phone","Class","School","City", "State","Olympiad", "Registered On", "Actions"]}
+          columns={["S.No", "Name", "Email", "Phone", "Class", "School", "City", "State", "Olympiad", "Registered On", "Actions"]}
 
           renderRow={(o, index) => (
             <>
@@ -489,7 +493,7 @@ const fetchAllData = async () => {
           setSortAsc={setWorkSortAsc}
           onAdd={() => openModal("workshop")}
           onExportExcel={() => exportToExcel(filteredWork, "workshop_registrations")}
-          columns={["S.No", "Name", "Email", "Phone", "Organization", "Message","Registered On", "Actions"]}
+          columns={["S.No", "Name", "Email", "Phone", "Organization", "Message", "Registered On", "Actions"]}
           renderRow={(w, index) => (
             <>
               <td className="p-2 border">{index + 1}</td>
@@ -521,25 +525,25 @@ const fetchAllData = async () => {
           onExportExcel={() => exportToExcel(contactus, "contact_us_data")}
           columns={["S.No", "Name", "Email", "Phone", "Exam", "Class", "Stream", "School", "Page Name", "Created On", "Actions"]}
           renderRow={(c, index) => (
-        <>
-            <td className="p-2 border">{index + 1}</td>
-            <td className="p-2 border">{c.name}</td>
-            <td className="p-2 border">{c.email}</td>
-            <td className="p-2 border">{c.phone}</td>
-            <td className="p-2 border">{c.exam}</td>
-            <td className="p-2 border">{c.studentClass}</td>
-            <td className="p-2 border">{c.stream}</td>
-            <td className="p-2 border">{c.school}</td>
-            <td className="p-2 border">{c.pageName}</td>
-            <td className="p-2 border">{new Date(c.createdAt).toLocaleString()}</td>
-            <td className="p-2 border text-left space-x-2">
-            <button onClick={() => openModal("contactus", c)} className="text-blue-600 hover:underline">Edit</button>
-            <button onClick={() => handleDelete("contactus", c.id)} className="text-red-600 hover:underline">Delete</button>
-            </td>
-        </>
+            <>
+              <td className="p-2 border">{index + 1}</td>
+              <td className="p-2 border">{c.name}</td>
+              <td className="p-2 border">{c.email}</td>
+              <td className="p-2 border">{c.phone}</td>
+              <td className="p-2 border">{c.exam}</td>
+              <td className="p-2 border">{c.studentClass}</td>
+              <td className="p-2 border">{c.stream}</td>
+              <td className="p-2 border">{c.school}</td>
+              <td className="p-2 border">{c.pageName}</td>
+              <td className="p-2 border">{new Date(c.createdAt).toLocaleString()}</td>
+              <td className="p-2 border text-left space-x-2">
+                <button onClick={() => openModal("contactus", c)} className="text-blue-600 hover:underline">Edit</button>
+                <button onClick={() => handleDelete("contactus", c.id)} className="text-red-600 hover:underline">Delete</button>
+              </td>
+            </>
           )}
         />
-{/* 🧑‍🏫 Callback Requests
+        {/* 🧑‍🏫 Callback Requests
   <DataTable
   title="📞 Callback Requests"
   data={filterData(callbacks, callbackSearch, callbackSortAsc, "createdAt", ["name", "phone", "pageName", "school"])}
@@ -578,7 +582,7 @@ const fetchAllData = async () => {
           setSortAsc={setAppSortAsc}
           onAdd={() => openModal("applications")}
           onExportExcel={() => exportToExcel(filteredApps, "job_applications")}
-          columns={["S.No", "Full Name", "Email", "Phone", "About", "Job Title", "Resume","Applied On" ,"Actions"]}
+          columns={["S.No", "Full Name", "Email", "Phone", "About", "Job Title", "Resume", "Applied On", "Actions"]}
           renderRow={(a, index) => (
             <>
               <td className="p-2 border">{index + 1}</td>
@@ -633,131 +637,156 @@ const fetchAllData = async () => {
           )}
         />
         {/* 🎙️ Podcasts */}
-<DataTable
-  title="🎙️ Podcast Entries"
-  data={filterData(podcasts || [], podcastSearch, podcastSortAsc, "createdAt", ["title", "category", "description"])}
-  searchValue={podcastSearch}
-  setSearch={setPodcastSearch}
-  sortAsc={podcastSortAsc}
-  setSortAsc={setPodcastSortAsc}
-  onAdd={() => openModal("podcast")}
-  onExportExcel={() => exportToExcel(podcasts, "podcasts")}
-  columns={["S.No", "Title", "Category", "Description", "Video URL", "Thumbnail", "Created At", "Actions"]}
-  renderRow={(p, index) => (
-    <>
-      <td className="p-2 border">{index + 1}</td>
-      <td className="p-2 border">{p.title}</td>
-      <td className="p-2 border">{p.category || "—"}</td>
-      <td className="p-2 border">{p.description || "—"}</td>
-      <td className="p-2 border text-blue-600 underline">
-        {p.videoUrl ? <a href={p.videoUrl} target="_blank" rel="noopener noreferrer">View</a> : "N/A"}
-      </td>
-      <td className="p-2 border text-center">
-        {p.thumbnail ? (
-          <img src={p.thumbnail} alt="thumbnail" className="w-12 h-12 object-cover rounded" />
-        ) : (
-          "N/A"
-        )}
-      </td>
-      <td className="p-2 border">{new Date(p.createdAt).toLocaleDateString()}</td>
-      <td className="p-2 border space-x-2 text-left">
-        <button onClick={() => openModal("podcast", p)} className="text-blue-600 hover:underline">
-          Edit
-        </button>
-        <button onClick={() => handleDelete("podcast", p.id)} className="text-red-600 hover:underline">
-          Delete
-        </button>
-      </td>
-    </>
-  )}
-/>
+        <DataTable
+          title="🎙️ Podcast Entries"
+          data={filterData(podcasts || [], podcastSearch, podcastSortAsc, "createdAt", ["title", "category", "description"])}
+          searchValue={podcastSearch}
+          setSearch={setPodcastSearch}
+          sortAsc={podcastSortAsc}
+          setSortAsc={setPodcastSortAsc}
+          onAdd={() => openModal("podcast")}
+          onExportExcel={() => exportToExcel(podcasts, "podcasts")}
+          columns={["S.No", "Title", "Category", "Description", "Video URL", "Thumbnail", "Created At", "Actions"]}
+          renderRow={(p, index) => (
+            <>
+              <td className="p-2 border">{index + 1}</td>
+              <td className="p-2 border">{p.title}</td>
+              <td className="p-2 border">{p.category || "—"}</td>
+              <td className="p-2 border">{p.description || "—"}</td>
+              <td className="p-2 border text-blue-600 underline">
+                {p.videoUrl ? <a href={p.videoUrl} target="_blank" rel="noopener noreferrer">View</a> : "N/A"}
+              </td>
+              <td className="p-2 border text-center">
+                {p.thumbnail ? (
+                  <img src={p.thumbnail} alt="thumbnail" className="w-12 h-12 object-cover rounded" />
+                ) : (
+                  "N/A"
+                )}
+              </td>
+              <td className="p-2 border">{new Date(p.createdAt).toLocaleDateString()}</td>
+              <td className="p-2 border space-x-2 text-left">
+                <button onClick={() => openModal("podcast", p)} className="text-blue-600 hover:underline">
+                  Edit
+                </button>
+                <button onClick={() => handleDelete("podcast", p.id)} className="text-red-600 hover:underline">
+                  Delete
+                </button>
+              </td>
+            </>
+          )}
+        />
+
+        {/* 📱 Verified Phone Numbers */}
+        <DataTable
+          title="📱 Verified Phone Numbers"
+          data={filterData(verifiedPhones, phoneSearch, phoneSortAsc, "firstVerifiedAt", ["phoneNumber"])}
+          searchValue={phoneSearch}
+          setSearch={setPhoneSearch}
+          sortAsc={phoneSortAsc}
+          setSortAsc={setPhoneSortAsc}
+          // No Add/Edit/Delete for verified phones, they are automated
+          onAdd={null}
+          onExportExcel={() => exportToExcel(verifiedPhones, "verified_phones")}
+          columns={["S.No", "Phone Number", "First Verified On", "Last Activity"]}
+          renderRow={(p, index) => (
+            <>
+              <td className="p-2 border">{index + 1}</td>
+              <td className="p-2 border font-mono">{p.phoneNumber}</td>
+              <td className="p-2 border">{new Date(p.firstVerifiedAt).toLocaleString()}</td>
+              <td className="p-2 border">{new Date(p.lastActivityAt).toLocaleString()}</td>
+            </>
+          )}
+        />
+
       </section>
 
       {/* 🔒 Enhanced Modal with Validation */}
-      {showModal && (
-        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-40 z-50 overflow-y-auto">
-          <div className="bg-white p-6 rounded-lg shadow-lg w-11/12 sm:w-3/4 md:w-1/2 lg:w-1/3 my-8 max-h-[85vh] overflow-y-auto">
-            <h2 className="text-xl font-semibold mb-3 text-center">
-              {modalData.id ? "Edit" : "Add"} {modalType}
-            </h2>
-            {Object.keys(modalData).map((key) => {
-              if (key === "id" || key === "createdAt" || key === "updatedAt") return null;
-              const config = getFieldConfig(key);
-              return (
-                <div key={key} className="mb-3">
-                  <label className="block text-sm font-medium mb-1 text-gray-700">
-                    {config.label} {config.required && <span className="text-red-500">*</span>}
-                  </label>
-                  {config.type === "textarea" ? (
-                    <textarea
-                      value={modalData[key] || ""}
-                      onChange={(e) => setModalData({ ...modalData, [key]: e.target.value })}
-                      className={`border p-2 rounded w-full text-sm focus:outline-none focus:ring-2 ${
-                        validationErrors[key] ? "border-red-500 focus:ring-red-400" : "focus:ring-green-400"
-                      }`}
-                      rows="3"
-                    />
-                  ) : (
-                    <input
-                      type={config.type}
-                      value={modalData[key] || ""}
-                      onChange={(e) => setModalData({ ...modalData, [key]: e.target.value })}
-                      className={`border p-2 rounded w-full text-sm focus:outline-none focus:ring-2 ${
-                        validationErrors[key] ? "border-red-500 focus:ring-red-400" : "focus:ring-green-400"
-                      }`}
-                    />
-                  )}
-                  {validationErrors[key] && (
-                    <p className="text-red-500 text-xs mt-1">{validationErrors[key]}</p>
-                  )}
-                </div>
-              );
-            })}
-            <div className="flex justify-end gap-3 mt-3">
-              <button
-                onClick={handleSave}
-                className="bg-green-600 hover:bg-green-700 text-white px-4 py-1.5 rounded"
-              >
-                Save
-              </button>
-              <button
-                onClick={() => {
-                  document.body.style.overflow = 'unset';
-                  setShowModal(false);
-                  setValidationErrors({});
-                }}
-                className="bg-gray-400 hover:bg-gray-500 text-white px-4 py-1.5 rounded"
-              >
-                Cancel
-              </button>
+      {
+        showModal && (
+          <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-40 z-50 overflow-y-auto">
+            <div className="bg-white p-6 rounded-lg shadow-lg w-11/12 sm:w-3/4 md:w-1/2 lg:w-1/3 my-8 max-h-[85vh] overflow-y-auto">
+              <h2 className="text-xl font-semibold mb-3 text-center">
+                {modalData.id ? "Edit" : "Add"} {modalType}
+              </h2>
+              {Object.keys(modalData).map((key) => {
+                if (key === "id" || key === "createdAt" || key === "updatedAt") return null;
+                const config = getFieldConfig(key);
+                return (
+                  <div key={key} className="mb-3">
+                    <label className="block text-sm font-medium mb-1 text-gray-700">
+                      {config.label} {config.required && <span className="text-red-500">*</span>}
+                    </label>
+                    {config.type === "textarea" ? (
+                      <textarea
+                        value={modalData[key] || ""}
+                        onChange={(e) => setModalData({ ...modalData, [key]: e.target.value })}
+                        className={`border p-2 rounded w-full text-sm focus:outline-none focus:ring-2 ${validationErrors[key] ? "border-red-500 focus:ring-red-400" : "focus:ring-green-400"
+                          }`}
+                        rows="3"
+                      />
+                    ) : (
+                      <input
+                        type={config.type}
+                        value={modalData[key] || ""}
+                        onChange={(e) => setModalData({ ...modalData, [key]: e.target.value })}
+                        className={`border p-2 rounded w-full text-sm focus:outline-none focus:ring-2 ${validationErrors[key] ? "border-red-500 focus:ring-red-400" : "focus:ring-green-400"
+                          }`}
+                      />
+                    )}
+                    {validationErrors[key] && (
+                      <p className="text-red-500 text-xs mt-1">{validationErrors[key]}</p>
+                    )}
+                  </div>
+                );
+              })}
+              <div className="flex justify-end gap-3 mt-3">
+                <button
+                  onClick={handleSave}
+                  className="bg-green-600 hover:bg-green-700 text-white px-4 py-1.5 rounded"
+                >
+                  Save
+                </button>
+                <button
+                  onClick={() => {
+                    document.body.style.overflow = 'unset';
+                    setShowModal(false);
+                    setValidationErrors({});
+                  }}
+                  className="bg-gray-400 hover:bg-gray-500 text-white px-4 py-1.5 rounded"
+                >
+                  Cancel
+                </button>
+              </div>
             </div>
           </div>
-        </div>
-      )}
+        )
+      }
 
       {/* Delete Confirmation */}
-      {confirmData.show && (
-        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-40 z-50 p-4">
-          <div className="bg-white p-6 rounded-lg shadow-lg w-80 max-w-full">
-            <p className="mb-4 text-gray-700 text-center">Are you sure you want to delete this record?</p>
-            <div className="flex justify-center gap-3">
-              <button
-                onClick={confirmDelete}
-                className="bg-red-600 hover:bg-red-700 text-white px-4 py-1.5 rounded"
-              >
-                Yes
-              </button>
-              <button
-                onClick={() => setConfirmData({ show: false, type: "", id: null })}
-                className="bg-gray-400 hover:bg-gray-500 text-white px-4 py-1.5 rounded"
-              >
-                Cancel
-              </button>
+      {
+        confirmData.show && (
+          <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-40 z-50 p-4">
+            <div className="bg-white p-6 rounded-lg shadow-lg w-80 max-w-full">
+              <p className="mb-4 text-gray-700 text-center">Are you sure you want to delete this record?</p>
+              <div className="flex justify-center gap-3">
+                <button
+                  onClick={confirmDelete}
+                  className="bg-red-600 hover:bg-red-700 text-white px-4 py-1.5 rounded"
+                >
+                  Yes
+                </button>
+                <button
+                  onClick={() => setConfirmData({ show: false, type: "", id: null })}
+                  className="bg-gray-400 hover:bg-gray-500 text-white px-4 py-1.5 rounded"
+                >
+                  Cancel
+                </button>
+              </div>
             </div>
           </div>
-        </div>
-      )}
-    </div>
+        )
+      }
+    </div >
   );
 }
 
@@ -843,7 +872,7 @@ function DataTable({
           </tbody>
         </table>
       </div>
-       {/* View All / Show Less Button */}
+      {/* View All / Show Less Button */}
       {data.length > 4 && (
         <div className="flex justify-center mt-4">
           <button
@@ -868,6 +897,6 @@ function DataTable({
           </button>
         </div>
       )}
-      </div>
+    </div>
   );
 }

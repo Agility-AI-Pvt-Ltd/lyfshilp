@@ -1,0 +1,676 @@
+{
+    "universities": [
+        {
+            "id": "du",
+            "name": "University of Delhi",
+            "state": "Delhi",
+            "type": "Central University",
+            "courses": [
+                {
+                    "id": "du_ba_hons_economics",
+                    "name": "B.A. (Hons) Economics",
+                    "type": "undergraduate",
+                    "category": "arts",
+                    "compulsorySubjects": [
+                        "Economics"
+                    ],
+                    "allowedCombinations": [
+                        {
+                            "type": "option1",
+                            "description": "1 Language from List A + 3 Subjects from List B",
+                            "languagesRequired": 1,
+                            "domainSubjectsRequired": 3,
+                            "listA": [
+                                "English",
+                                "Hindi",
+                                "Assamese",
+                                "Bengali",
+                                "Gujarati",
+                                "Kannada",
+                                "Malayalam",
+                                "Marathi",
+                                "Odia",
+                                "Punjabi",
+                                "Tamil",
+                                "Telugu",
+                                "Urdu",
+                                "French",
+                                "German",
+                                "Italian",
+                                "Spanish",
+                                "Japanese",
+                                "Russian",
+                                "Persian",
+                                "Arabic",
+                                "Nepali",
+                                "Sanskrit"
+                            ],
+                            "listB": [
+                                "Accountancy",
+                                "Anthropology",
+                                "Biology",
+                                "Business Studies",
+                                "Chemistry",
+                                "Computer Science",
+                                "Economics",
+                                "Engineering Graphics",
+                                "Entrepreneurship",
+                                "Environmental Science",
+                                "Fine Arts",
+                                "Geography",
+                                "History",
+                                "Home Science",
+                                "Knowledge Tradition",
+                                "Legal Studies",
+                                "Mass Media",
+                                "Mathematics",
+                                "Physical Education",
+                                "Physics",
+                                "Political Science",
+                                "Psychology",
+                                "Sociology",
+                                "Teaching Aptitude"
+                            ]
+                        },
+                        {
+                            "type": "option2",
+                            "description": "2 Languages from List A + 2 Subjects from List B",
+                            "languagesRequired": 2,
+                            "domainSubjectsRequired": 2,
+                            "listA": [
+                                "English",
+                                "Hindi",
+                                "Assamese",
+                                "Bengali",
+                                "Gujarati",
+                                "Kannada",
+                                "Malayalam",
+                                "Marathi",
+                                "Odia",
+                                "Punjabi",
+                                "Tamil",
+                                "Telugu",
+                                "Urdu",
+                                "French",
+                                "German",
+                                "Italian",
+                                "Spanish",
+                                "Japanese",
+                                "Russian",
+                                "Persian",
+                                "Arabic",
+                                "Nepali",
+                                "Sanskrit"
+                            ],
+                            "listB": [
+                                "Accountancy",
+                                "Anthropology",
+                                "Biology",
+                                "Business Studies",
+                                "Chemistry",
+                                "Computer Science",
+                                "Economics",
+                                "Engineering Graphics",
+                                "Entrepreneurship",
+                                "Environmental Science",
+                                "Fine Arts",
+                                "Geography",
+                                "History",
+                                "Home Science",
+                                "Knowledge Tradition",
+                                "Legal Studies",
+                                "Mass Media",
+                                "Mathematics",
+                                "Physical Education",
+                                "Physics",
+                                "Political Science",
+                                "Psychology",
+                                "Sociology",
+                                "Teaching Aptitude"
+                            ]
+                        }
+                    ],
+                    "specialConditions": [
+                        "Merit calculated using best valid CUET combination",
+                        "Must have Economics in Class 12 or CUET"
+                    ]
+                },
+                {
+                    "id": "du_ba_hons_psychology",
+                    "name": "B.A. (Hons) Psychology",
+                    "type": "undergraduate",
+                    "category": "arts",
+                    "compulsorySubjects": [
+                        "Psychology"
+                    ],
+                    "allowedCombinations": [
+                        {
+                            "type": "option1",
+                            "description": "1 Language from List A + 3 Subjects from List B",
+                            "languagesRequired": 1,
+                            "domainSubjectsRequired": 3,
+                            "listA": [
+                                "English",
+                                "Hindi",
+                                "Assamese",
+                                "Bengali",
+                                "Gujarati",
+                                "Kannada",
+                                "Malayalam",
+                                "Marathi",
+                                "Odia",
+                                "Punjabi",
+                                "Tamil",
+                                "Telugu",
+                                "Urdu",
+                                "French",
+                                "German",
+                                "Italian",
+                                "Spanish",
+                                "Japanese",
+                                "Russian",
+                                "Persian",
+                                "Arabic",
+                                "Nepali",
+                                "Sanskrit"
+                            ],
+                            "listB": [
+                                "Accountancy",
+                                "Anthropology",
+                                "Biology",
+                                "Business Studies",
+                                "Chemistry",
+                                "Computer Science",
+                                "Economics",
+                                "Engineering Graphics",
+                                "Entrepreneurship",
+                                "Environmental Science",
+                                "Fine Arts",
+                                "Geography",
+                                "History",
+                                "Home Science",
+                                "Knowledge Tradition",
+                                "Legal Studies",
+                                "Mass Media",
+                                "Mathematics",
+                                "Physical Education",
+                                "Physics",
+                                "Political Science",
+                                "Psychology",
+                                "Sociology",
+                                "Teaching Aptitude"
+                            ]
+                        },
+                        {
+                            "type": "option2",
+                            "description": "2 Languages from List A + 2 Subjects from List B",
+                            "languagesRequired": 2,
+                            "domainSubjectsRequired": 2,
+                            "listA": [
+                                "English",
+                                "Hindi",
+                                "Assamese",
+                                "Bengali",
+                                "Gujarati",
+                                "Kannada",
+                                "Malayalam",
+                                "Marathi",
+                                "Odia",
+                                "Punjabi",
+                                "Tamil",
+                                "Telugu",
+                                "Urdu",
+                                "French",
+                                "German",
+                                "Italian",
+                                "Spanish",
+                                "Japanese",
+                                "Russian",
+                                "Persian",
+                                "Arabic",
+                                "Nepali",
+                                "Sanskrit"
+                            ],
+                            "listB": [
+                                "Accountancy",
+                                "Anthropology",
+                                "Biology",
+                                "Business Studies",
+                                "Chemistry",
+                                "Computer Science",
+                                "Economics",
+                                "Engineering Graphics",
+                                "Entrepreneurship",
+                                "Environmental Science",
+                                "Fine Arts",
+                                "Geography",
+                                "History",
+                                "Home Science",
+                                "Knowledge Tradition",
+                                "Legal Studies",
+                                "Mass Media",
+                                "Mathematics",
+                                "Physical Education",
+                                "Physics",
+                                "Political Science",
+                                "Psychology",
+                                "Sociology",
+                                "Teaching Aptitude"
+                            ]
+                        }
+                    ],
+                    "specialConditions": [
+                        "Merit calculated using best valid CUET combination",
+                        "Must have Psychology in Class 12 or CUET"
+                    ]
+                },
+                {
+                    "id": "du_ba_hons_history",
+                    "name": "B.A. (Hons) History",
+                    "type": "undergraduate",
+                    "category": "arts",
+                    "compulsorySubjects": [
+                        "History"
+                    ],
+                    "allowedCombinations": [
+                        {
+                            "type": "option1",
+                            "description": "1 Language from List A + 3 Subjects from List B",
+                            "languagesRequired": 1,
+                            "domainSubjectsRequired": 3,
+                            "listA": [
+                                "English",
+                                "Hindi",
+                                "Assamese",
+                                "Bengali",
+                                "Gujarati",
+                                "Kannada",
+                                "Malayalam",
+                                "Marathi",
+                                "Odia",
+                                "Punjabi",
+                                "Tamil",
+                                "Telugu",
+                                "Urdu",
+                                "French",
+                                "German",
+                                "Italian",
+                                "Spanish",
+                                "Japanese",
+                                "Russian",
+                                "Persian",
+                                "Arabic",
+                                "Nepali",
+                                "Sanskrit"
+                            ],
+                            "listB": [
+                                "Accountancy",
+                                "Anthropology",
+                                "Biology",
+                                "Business Studies",
+                                "Chemistry",
+                                "Computer Science",
+                                "Economics",
+                                "Engineering Graphics",
+                                "Entrepreneurship",
+                                "Environmental Science",
+                                "Fine Arts",
+                                "Geography",
+                                "History",
+                                "Home Science",
+                                "Knowledge Tradition",
+                                "Legal Studies",
+                                "Mass Media",
+                                "Mathematics",
+                                "Physical Education",
+                                "Physics",
+                                "Political Science",
+                                "Psychology",
+                                "Sociology",
+                                "Teaching Aptitude"
+                            ]
+                        },
+                        {
+                            "type": "option2",
+                            "description": "2 Languages from List A + 2 Subjects from List B",
+                            "languagesRequired": 2,
+                            "domainSubjectsRequired": 2,
+                            "listA": [
+                                "English",
+                                "Hindi",
+                                "Assamese",
+                                "Bengali",
+                                "Gujarati",
+                                "Kannada",
+                                "Malayalam",
+                                "Marathi",
+                                "Odia",
+                                "Punjabi",
+                                "Tamil",
+                                "Telugu",
+                                "Urdu",
+                                "French",
+                                "German",
+                                "Italian",
+                                "Spanish",
+                                "Japanese",
+                                "Russian",
+                                "Persian",
+                                "Arabic",
+                                "Nepali",
+                                "Sanskrit"
+                            ],
+                            "listB": [
+                                "Accountancy",
+                                "Anthropology",
+                                "Biology",
+                                "Business Studies",
+                                "Chemistry",
+                                "Computer Science",
+                                "Economics",
+                                "Engineering Graphics",
+                                "Entrepreneurship",
+                                "Environmental Science",
+                                "Fine Arts",
+                                "Geography",
+                                "History",
+                                "Home Science",
+                                "Knowledge Tradition",
+                                "Legal Studies",
+                                "Mass Media",
+                                "Mathematics",
+                                "Physical Education",
+                                "Physics",
+                                "Political Science",
+                                "Psychology",
+                                "Sociology",
+                                "Teaching Aptitude"
+                            ]
+                        }
+                    ],
+                    "specialConditions": [
+                        "Merit calculated using best valid CUET combination"
+                    ]
+                },
+                {
+                    "id": "du_ba_hons_political_science",
+                    "name": "B.A. (Hons) Political Science",
+                    "type": "undergraduate",
+                    "category": "arts",
+                    "compulsorySubjects": [
+                        "Political Science"
+                    ],
+                    "allowedCombinations": [
+                        {
+                            "type": "option1",
+                            "description": "1 Language from List A + 3 Subjects from List B",
+                            "languagesRequired": 1,
+                            "domainSubjectsRequired": 3,
+                            "listA": [
+                                "English",
+                                "Hindi",
+                                "Assamese",
+                                "Bengali",
+                                "Gujarati",
+                                "Kannada",
+                                "Malayalam",
+                                "Marathi",
+                                "Odia",
+                                "Punjabi",
+                                "Tamil",
+                                "Telugu",
+                                "Urdu",
+                                "French",
+                                "German",
+                                "Italian",
+                                "Spanish",
+                                "Japanese",
+                                "Russian",
+                                "Persian",
+                                "Arabic",
+                                "Nepali",
+                                "Sanskrit"
+                            ],
+                            "listB": [
+                                "Accountancy",
+                                "Anthropology",
+                                "Biology",
+                                "Business Studies",
+                                "Chemistry",
+                                "Computer Science",
+                                "Economics",
+                                "Engineering Graphics",
+                                "Entrepreneurship",
+                                "Environmental Science",
+                                "Fine Arts",
+                                "Geography",
+                                "History",
+                                "Home Science",
+                                "Knowledge Tradition",
+                                "Legal Studies",
+                                "Mass Media",
+                                "Mathematics",
+                                "Physical Education",
+                                "Physics",
+                                "Political Science",
+                                "Psychology",
+                                "Sociology",
+                                "Teaching Aptitude"
+                            ]
+                        },
+                        {
+                            "type": "option2",
+                            "description": "2 Languages from List A + 2 Subjects from List B",
+                            "languagesRequired": 2,
+                            "domainSubjectsRequired": 2,
+                            "listA": [
+                                "English",
+                                "Hindi",
+                                "Assamese",
+                                "Bengali",
+                                "Gujarati",
+                                "Kannada",
+                                "Malayalam",
+                                "Marathi",
+                                "Odia",
+                                "Punjabi",
+                                "Tamil",
+                                "Telugu",
+                                "Urdu",
+                                "French",
+                                "German",
+                                "Italian",
+                                "Spanish",
+                                "Japanese",
+                                "Russian",
+                                "Persian",
+                                "Arabic",
+                                "Nepali",
+                                "Sanskrit"
+                            ],
+                            "listB": [
+                                "Accountancy",
+                                "Anthropology",
+                                "Biology",
+                                "Business Studies",
+                                "Chemistry",
+                                "Computer Science",
+                                "Economics",
+                                "Engineering Graphics",
+                                "Entrepreneurship",
+                                "Environmental Science",
+                                "Fine Arts",
+                                "Geography",
+                                "History",
+                                "Home Science",
+                                "Knowledge Tradition",
+                                "Legal Studies",
+                                "Mass Media",
+                                "Mathematics",
+                                "Physical Education",
+                                "Physics",
+                                "Political Science",
+                                "Psychology",
+                                "Sociology",
+                                "Teaching Aptitude"
+                            ]
+                        }
+                    ],
+                    "specialConditions": [
+                        "Merit calculated using best valid CUET combination"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "bhu",
+            "name": "Banaras Hindu University",
+            "state": "Uttar Pradesh",
+            "type": "Central University",
+            "courses": [
+                {
+                    "id": "bhu_ba_hons_economics",
+                    "name": "B.A. (Hons) Economics",
+                    "type": "undergraduate",
+                    "category": "arts",
+                    "compulsorySubjects": [],
+                    "class12Requirements": [],
+                    "class10Requirements": [
+                        "Mathematics"
+                    ],
+                    "minimumPercentage": 50,
+                    "cuetSubjects": [
+                        "English",
+                        "Hindi",
+                        "General Test"
+                    ],
+                    "specialConditions": [
+                        "Mathematics MUST be studied at High School (Class 10) level",
+                        "Minimum 50% marks in 10+2"
+                    ]
+                },
+                {
+                    "id": "bhu_ba_hons_history",
+                    "name": "B.A. (Hons) History",
+                    "type": "undergraduate",
+                    "category": "arts",
+                    "compulsorySubjects": [],
+                    "class12Requirements": [],
+                    "minimumPercentage": 50,
+                    "cuetSubjects": [
+                        "English",
+                        "Hindi",
+                        "General Test"
+                    ],
+                    "specialConditions": [
+                        "Minimum 50% marks in 10+2"
+                    ]
+                },
+                {
+                    "id": "bhu_ba_hons_political_science",
+                    "name": "B.A. (Hons) Political Science",
+                    "type": "undergraduate",
+                    "category": "arts",
+                    "compulsorySubjects": [],
+                    "class12Requirements": [],
+                    "minimumPercentage": 50,
+                    "cuetSubjects": [
+                        "English",
+                        "Hindi",
+                        "General Test"
+                    ],
+                    "specialConditions": [
+                        "Minimum 50% marks in 10+2"
+                    ]
+                },
+                {
+                    "id": "bhu_bsc_math",
+                    "name": "B.Sc. (Hons) Mathematics",
+                    "type": "undergraduate",
+                    "category": "science",
+                    "compulsorySubjects": [
+                        "Physics",
+                        "Chemistry",
+                        "Mathematics"
+                    ],
+                    "class12Requirements": [
+                        "Physics",
+                        "Chemistry",
+                        "Mathematics"
+                    ],
+                    "minimumPercentage": 50,
+                    "cuetSubjects": [
+                        "Physics",
+                        "Chemistry",
+                        "Mathematics"
+                    ],
+                    "specialConditions": [
+                        "Minimum 50% marks in Physics, Chemistry, and Mathematics",
+                        "Must have passed in each subject individually"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "aktu",
+            "name": "Dr. A.P.J. Abdul Kalam Technical University",
+            "state": "Uttar Pradesh",
+            "type": "State University",
+            "courses": [
+                {
+                    "id": "aktu_btech",
+                    "name": "B.Tech",
+                    "type": "undergraduate",
+                    "category": "engineering",
+                    "compulsorySubjects": [
+                        "Physics",
+                        "Mathematics"
+                    ],
+                    "class12Requirements": [
+                        "Physics",
+                        "Mathematics"
+                    ],
+                    "minimumPercentage": 45,
+                    "cuetSubjects": [
+                        "Physics",
+                        "Chemistry",
+                        "Mathematics"
+                    ],
+                    "specialConditions": [
+                        "Physics and Mathematics are COMPULSORY in Class 12",
+                        "Minimum 45% marks (40% for SC/ST)",
+                        "Third subject can be Chemistry/Biology/Computer Science"
+                    ]
+                },
+                {
+                    "id": "aktu_bca",
+                    "name": "BCA (Bachelor of Computer Applications)",
+                    "type": "undergraduate",
+                    "category": "computer_science",
+                    "compulsorySubjects": [],
+                    "class12Requirements": [],
+                    "minimumPercentage": 45,
+                    "cuetSubjects": [
+                        "General Aptitude Test",
+                        "English"
+                    ],
+                    "specialConditions": [
+                        "Passed 10+2 examination",
+                        "Minimum 45% marks"
+                    ]
+                }
+            ]
+        }
+    ],
+    "metadata": {
+        "version": "1.0.0",
+        "lastUpdated": "2026-01-17",
+        "description": "Eligibility matrix for Career Guidance Tool - Phase 1",
+        "notes": [
+            "This is Phase 1 focusing on eligibility validation only",
+            "Marks-based merit calculation deferred to later phase",
+            "Full DU List A and List B included",
+            "Class 10 requirements tracked separately from Class 12"
+        ]
+    }
+}
