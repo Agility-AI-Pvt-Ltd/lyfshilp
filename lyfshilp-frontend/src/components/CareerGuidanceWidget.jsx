@@ -65,6 +65,8 @@ const COURSE_CATEGORIES = [
     "Vocational"
 ].sort();
 
+import HowToSearchModal from "./HowToSearchModal";
+
 export default function CareerGuidanceWidget() {
     // Form state
     const [formData, setFormData] = useState({
@@ -111,8 +113,11 @@ export default function CareerGuidanceWidget() {
     const [showClass12Dropdown, setShowClass12Dropdown] = useState(false);
     const [showInterestedDropdown, setShowInterestedDropdown] = useState(false);
 
-    // PERSISTENCE: Check for existing session on mount
-    useEffect(() => {
+    // Help Modal State
+    const [showHelpModal, setShowHelpModal] = useState(false);
+
+    // Helper to check and restore session
+    const checkSession = () => {
         const storedToken = localStorage.getItem('otpSessionToken');
         const tokenTime = localStorage.getItem('otpSessionTime');
 
@@ -130,13 +135,21 @@ export default function CareerGuidanceWidget() {
                 if (storedPhone) {
                     setFormData(prev => ({ ...prev, phone: storedPhone }));
                 }
+                return true;
             } else {
                 // Expired
                 localStorage.removeItem('otpSessionToken');
                 localStorage.removeItem('otpSessionTime');
                 localStorage.removeItem('otpPhone');
+                return false;
             }
         }
+        return false;
+    };
+
+    // PERSISTENCE: Check for existing session on mount
+    useEffect(() => {
+        checkSession();
     }, []);
 
     // Debounce search query (Phase 5)
@@ -156,7 +169,7 @@ export default function CareerGuidanceWidget() {
                 try {
                     setLoading(true);
                     const response = await api.post("/career-guidance/eligible-courses", {
-                        phone: formData.phone || "0000000000",
+                        // Phone removed - backend infers from session token
                         state: formData.state,
                         preferredCategory: formData.preferredCategory,
                         class12Subjects: formData.class12Subjects,
@@ -166,6 +179,10 @@ export default function CareerGuidanceWidget() {
                         page: 1,
                         pageSize: pageSize,
                         tab: activeTab
+                    }, {
+                        headers: {
+                            'x-otp-session-token': sessionToken
+                        }
                     });
 
                     if (response.data.success) {
@@ -179,6 +196,31 @@ export default function CareerGuidanceWidget() {
                     }
                 } catch (error) {
                     console.error("Error searching:", error);
+                    // Robust error handling matching handleSubmit
+                    if (error.response && error.response.status === 401) {
+                        const isSessionExpired = error.response.data?.code === 'SESSION_EXPIRED' ||
+                            error.response.data?.message?.includes('expired') ||
+                            error.response.data?.message?.includes('Session token missing');
+
+                        if (isSessionExpired) {
+                            setMessage({ type: "error", text: "Session expired. Please verify your phone again." });
+                        } else {
+                            setMessage({ type: "error", text: "Authentication failed. Please verify again." });
+                        }
+
+                        // NUCLEAR OPTION: Wipe everything related to session
+                        setOtpVerified(false);
+                        setSessionToken(null);
+                        setOtpSent(false);
+                        setShowResults(false);
+
+                        // PERSISTENCE: Clear storage completely
+                        localStorage.removeItem('otpSessionToken');
+                        localStorage.removeItem('otpSessionTime');
+                        localStorage.removeItem('otpPhone');
+                    } else {
+                        setMessage({ type: "error", text: error.response?.data?.message || "Something went wrong. Please try again." });
+                    }
                 } finally {
                     setLoading(false);
                 }
@@ -341,14 +383,25 @@ export default function CareerGuidanceWidget() {
             }
         } catch (error) {
             console.error("Error getting eligible courses:", error);
+            // Strict handling: If backend says session is invalid (401), force re-verification.
             if (error.response && error.response.status === 401) {
-                setMessage({ type: "error", text: "Session expired. Please verify phone again." });
+                const isSessionExpired = error.response.data?.code === 'SESSION_EXPIRED' ||
+                    error.response.data?.message?.includes('expired') ||
+                    error.response.data?.message?.includes('Session token missing');
+
+                if (isSessionExpired) {
+                    setMessage({ type: "error", text: "Session expired. Please verify your phone again." });
+                } else {
+                    setMessage({ type: "error", text: "Authentication failed. Please verify again." });
+                }
+
+                // NUCLEAR OPTION: Wipe everything related to session
                 setOtpVerified(false);
                 setSessionToken(null);
                 setOtpSent(false);
                 setShowResults(false);
 
-                // PERSISTENCE: Clear storage
+                // PERSISTENCE: Clear storage completely
                 localStorage.removeItem('otpSessionToken');
                 localStorage.removeItem('otpSessionTime');
                 localStorage.removeItem('otpPhone');
@@ -424,8 +477,6 @@ export default function CareerGuidanceWidget() {
         });
         setOtp("");
         setOtpSent(false);
-        setOtpVerified(false);
-        setSessionToken(null);
         setDevOtp("");
         setShowResults(false);
         setResults(null);
@@ -440,13 +491,33 @@ export default function CareerGuidanceWidget() {
         setSearchQuery('');
         setDebouncedSearch('');
         setMessage({ type: "", text: "" });
+
+        // Try to restore session if valid
+        // This ensures "New Search" doesn't force re-login if session is active
+        const restored = checkSession();
+        if (!restored) {
+            setOtpVerified(false);
+            setSessionToken(null);
+        }
     };
 
     return (
         <div className="w-full">
             {!showResults ? (
                 // FORM VIEW
-                <form onSubmit={handleSubmit} className="space-y-6">
+                <form onSubmit={handleSubmit} className="space-y-6 relative">
+                    {/* Header / Help Config */}
+                    <div className="flex justify-between items-center mb-2">
+                        <h3 className="text-xl font-bold text-gray-800">Find Your Path</h3>
+                        <button
+                            type="button"
+                            onClick={() => setShowHelpModal(true)}
+                            className="text-sm font-semibold text-blue-600 hover:text-blue-800 hover:bg-blue-50 px-3 py-1 rounded-full transition flex items-center gap-1"
+                        >
+                            <span>💡</span> How to Search
+                        </button>
+                    </div>
+
                     {/* Name */}
                     <div>
                         <label className="block text-sm font-semibold text-gray-700 mb-2">
@@ -917,6 +988,11 @@ export default function CareerGuidanceWidget() {
                     </div>
                 </div>
             )}
+            {/* Help Modal */}
+            <HowToSearchModal
+                isOpen={showHelpModal}
+                onClose={() => setShowHelpModal(false)}
+            />
         </div>
     );
 }
