@@ -27,6 +27,7 @@ export const validateOtpSession = async (req, res, next) => {
             await prisma.otpSession.delete({ where: { token } });
             return res.status(401).json({
                 success: false,
+                code: 'SESSION_EXPIRED',
                 message: 'Session expired. Please verify phone again.',
             });
         }

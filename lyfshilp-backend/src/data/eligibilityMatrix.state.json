@@ -373,639 +373,167 @@
       "type": "State University",
       "courses": [
         {
-          "id": "dtu_ba_hons_economics",
-          "name": "B.A. (Hons.) Economics",
-          "type": "undergraduate",
-          "category": "arts",
-          "compulsorySubjects": [],
+          "university": "Delhi Technological University",
+          "state": "Delhi",
+          "category": "Science",
+          "courseName": "Integrated B.Sc. & M.Sc. in Physics",
+          "duration": "5 Years",
+          "class12Subjects": [
+            "Physics",
+            "Chemistry",
+            "Mathematics"
+          ],
+          "requiredSubjects": [
+            "Physics"
+          ],
           "allowedCombinations": [
-            {
-              "type": "option1",
-              "description": "1 Language from List A + 3 Subjects from List B",
-              "languagesRequired": 1,
-              "domainSubjectsRequired": 3,
-              "listA": [
-                "English",
-                "Hindi",
-                "Assamese",
-                "Bengali",
-                "Gujarati",
-                "Kannada",
-                "Malayalam",
-                "Marathi",
-                "Odia",
-                "Punjabi",
-                "Tamil",
-                "Telugu",
-                "Urdu",
-                "Sanskrit"
-              ],
-              "listB": [
-                "Accountancy",
-                "Anthropology",
-                "Biology",
-                "Business Studies",
-                "Chemistry",
-                "Computer Science",
-                "Economics",
-                "Engineering Graphics",
-                "Entrepreneurship",
-                "Environmental Science",
-                "Fine Arts",
-                "Geography",
-                "History",
-                "Home Science",
-                "Knowledge Tradition",
-                "Legal Studies",
-                "Mass Media",
-                "Mathematics",
-                "Physical Education",
-                "Physics",
-                "Political Science",
-                "Psychology",
-                "Sociology",
-                "Teaching Aptitude"
-              ]
-            },
-            {
-              "type": "option2",
-              "description": "2 Languages from List A + 2 Subjects from List B",
-              "languagesRequired": 2,
-              "domainSubjectsRequired": 2,
-              "listA": [
-                "English",
-                "Hindi",
-                "Assamese",
-                "Bengali",
-                "Gujarati",
-                "Kannada",
-                "Malayalam",
-                "Marathi",
-                "Odia",
-                "Punjabi",
-                "Tamil",
-                "Telugu",
-                "Urdu",
-                "Sanskrit"
-              ],
-              "listB": [
-                "Accountancy",
-                "Anthropology",
-                "Biology",
-                "Business Studies",
-                "Chemistry",
-                "Computer Science",
-                "Economics",
-                "Engineering Graphics",
-                "Entrepreneurship",
-                "Environmental Science",
-                "Fine Arts",
-                "Geography",
-                "History",
-                "Home Science",
-                "Knowledge Tradition",
-                "Legal Studies",
-                "Mass Media",
-                "Mathematics",
-                "Physical Education",
-                "Physics",
-                "Political Science",
-                "Psychology",
-                "Sociology",
-                "Teaching Aptitude"
-              ]
-            }
-          ],
-          "specialConditions": [
-            "Merit based on best CUET combination"
+            [
+              "Physics",
+              "Chemistry",
+              "Mathematics"
+            ]
           ]
         },
         {
-          "id": "dtu_ba_hons_history",
-          "name": "B.A. (Hons.) History",
-          "type": "undergraduate",
-          "category": "arts",
-          "compulsorySubjects": [],
-          "allowedCombinations": [
-            {
-              "type": "option1",
-              "description": "1 Language from List A + 3 Subjects from List B",
-              "languagesRequired": 1,
-              "domainSubjectsRequired": 3,
-              "listA": [
-                "English",
-                "Hindi",
-                "Assamese",
-                "Bengali",
-                "Gujarati",
-                "Kannada",
-                "Malayalam",
-                "Marathi",
-                "Odia",
-                "Punjabi",
-                "Tamil",
-                "Telugu",
-                "Urdu",
-                "Sanskrit"
-              ],
-              "listB": [
-                "Accountancy",
-                "Anthropology",
-                "Biology",
-                "Business Studies",
-                "Chemistry",
-                "Computer Science",
-                "Economics",
-                "Engineering Graphics",
-                "Entrepreneurship",
-                "Environmental Science",
-                "Fine Arts",
-                "Geography",
-                "History",
-                "Home Science",
-                "Knowledge Tradition",
-                "Legal Studies",
-                "Mass Media",
-                "Mathematics",
-                "Physical Education",
-                "Physics",
-                "Political Science",
-                "Psychology",
-                "Sociology",
-                "Teaching Aptitude"
-              ]
-            },
-            {
-              "type": "option2",
-              "description": "2 Languages from List A + 2 Subjects from List B",
-              "languagesRequired": 2,
-              "domainSubjectsRequired": 2,
-              "listA": [
-                "English",
-                "Hindi",
-                "Assamese",
-                "Bengali",
-                "Gujarati",
-                "Kannada",
-                "Malayalam",
-                "Marathi",
-                "Odia",
-                "Punjabi",
-                "Tamil",
-                "Telugu",
-                "Urdu",
-                "Sanskrit"
-              ],
-              "listB": [
-                "Accountancy",
-                "Anthropology",
-                "Biology",
-                "Business Studies",
-                "Chemistry",
-                "Computer Science",
-                "Economics",
-                "Engineering Graphics",
-                "Entrepreneurship",
-                "Environmental Science",
-                "Fine Arts",
-                "Geography",
-                "History",
-                "Home Science",
-                "Knowledge Tradition",
-                "Legal Studies",
-                "Mass Media",
-                "Mathematics",
-                "Physical Education",
-                "Physics",
-                "Political Science",
-                "Psychology",
-                "Sociology",
-                "Teaching Aptitude"
-              ]
-            }
-          ],
-          "specialConditions": [
-            "Merit based on best CUET combination"
-          ]
-        },
-        {
-          "id": "dtu_ba_hons_political_science",
-          "name": "B.A. (Hons.) Political Science",
-          "type": "undergraduate",
-          "category": "arts",
-          "compulsorySubjects": [],
-          "allowedCombinations": [
-            {
-              "type": "option1",
-              "description": "1 Language from List A + 3 Subjects from List B",
-              "languagesRequired": 1,
-              "domainSubjectsRequired": 3,
-              "listA": [
-                "English",
-                "Hindi",
-                "Assamese",
-                "Bengali",
-                "Gujarati",
-                "Kannada",
-                "Malayalam",
-                "Marathi",
-                "Odia",
-                "Punjabi",
-                "Tamil",
-                "Telugu",
-                "Urdu",
-                "Sanskrit"
-              ],
-              "listB": [
-                "Accountancy",
-                "Anthropology",
-                "Biology",
-                "Business Studies",
-                "Chemistry",
-                "Computer Science",
-                "Economics",
-                "Engineering Graphics",
-                "Entrepreneurship",
-                "Environmental Science",
-                "Fine Arts",
-                "Geography",
-                "History",
-                "Home Science",
-                "Knowledge Tradition",
-                "Legal Studies",
-                "Mass Media",
-                "Mathematics",
-                "Physical Education",
-                "Physics",
-                "Political Science",
-                "Psychology",
-                "Sociology",
-                "Teaching Aptitude"
-              ]
-            },
-            {
-              "type": "option2",
-              "description": "2 Languages from List A + 2 Subjects from List B",
-              "languagesRequired": 2,
-              "domainSubjectsRequired": 2,
-              "listA": [
-                "English",
-                "Hindi",
-                "Assamese",
-                "Bengali",
-                "Gujarati",
-                "Kannada",
-                "Malayalam",
-                "Marathi",
-                "Odia",
-                "Punjabi",
-                "Tamil",
-                "Telugu",
-                "Urdu",
-                "Sanskrit"
-              ],
-              "listB": [
-                "Accountancy",
-                "Anthropology",
-                "Biology",
-                "Business Studies",
-                "Chemistry",
-                "Computer Science",
-                "Economics",
-                "Engineering Graphics",
-                "Entrepreneurship",
-                "Environmental Science",
-                "Fine Arts",
-                "Geography",
-                "History",
-                "Home Science",
-                "Knowledge Tradition",
-                "Legal Studies",
-                "Mass Media",
-                "Mathematics",
-                "Physical Education",
-                "Physics",
-                "Political Science",
-                "Psychology",
-                "Sociology",
-                "Teaching Aptitude"
-              ]
-            }
-          ],
-          "specialConditions": [
-            "Merit based on best CUET combination"
-          ]
-        },
-        {
-          "id": "dtu_ba_hons_english",
-          "name": "B.A. (Hons.) English",
-          "type": "undergraduate",
-          "category": "arts",
-          "compulsorySubjects": [],
-          "allowedCombinations": [
-            {
-              "type": "option1",
-              "description": "1 Language from List A + 3 Subjects from List B",
-              "languagesRequired": 1,
-              "domainSubjectsRequired": 3,
-              "listA": [
-                "English",
-                "Hindi",
-                "Assamese",
-                "Bengali",
-                "Gujarati",
-                "Kannada",
-                "Malayalam",
-                "Marathi",
-                "Odia",
-                "Punjabi",
-                "Tamil",
-                "Telugu",
-                "Urdu",
-                "Sanskrit"
-              ],
-              "listB": [
-                "Accountancy",
-                "Anthropology",
-                "Biology",
-                "Business Studies",
-                "Chemistry",
-                "Computer Science",
-                "Economics",
-                "Engineering Graphics",
-                "Entrepreneurship",
-                "Environmental Science",
-                "Fine Arts",
-                "Geography",
-                "History",
-                "Home Science",
-                "Knowledge Tradition",
-                "Legal Studies",
-                "Mass Media",
-                "Mathematics",
-                "Physical Education",
-                "Physics",
-                "Political Science",
-                "Psychology",
-                "Sociology",
-                "Teaching Aptitude"
-              ]
-            },
-            {
-              "type": "option2",
-              "description": "2 Languages from List A + 2 Subjects from List B",
-              "languagesRequired": 2,
-              "domainSubjectsRequired": 2,
-              "listA": [
-                "English",
-                "Hindi",
-                "Assamese",
-                "Bengali",
-                "Gujarati",
-                "Kannada",
-                "Malayalam",
-                "Marathi",
-                "Odia",
-                "Punjabi",
-                "Tamil",
-                "Telugu",
-                "Urdu",
-                "Sanskrit"
-              ],
-              "listB": [
-                "Accountancy",
-                "Anthropology",
-                "Biology",
-                "Business Studies",
-                "Chemistry",
-                "Computer Science",
-                "Economics",
-                "Engineering Graphics",
-                "Entrepreneurship",
-                "Environmental Science",
-                "Fine Arts",
-                "Geography",
-                "History",
-                "Home Science",
-                "Knowledge Tradition",
-                "Legal Studies",
-                "Mass Media",
-                "Mathematics",
-                "Physical Education",
-                "Physics",
-                "Political Science",
-                "Psychology",
-                "Sociology",
-                "Teaching Aptitude"
-              ]
-            }
-          ],
-          "specialConditions": [
-            "Merit based on best CUET combination"
-          ]
-        },
-        {
-          "id": "dtu_ba_hons_sociology",
-          "name": "B.A. (Hons.) Sociology",
-          "type": "undergraduate",
-          "category": "arts",
-          "compulsorySubjects": [],
-          "allowedCombinations": [
-            {
-              "type": "option1",
-              "description": "1 Language from List A + 3 Subjects from List B",
-              "languagesRequired": 1,
-              "domainSubjectsRequired": 3,
-              "listA": [
-                "English",
-                "Hindi",
-                "Assamese",
-                "Bengali",
-                "Gujarati",
-                "Kannada",
-                "Malayalam",
-                "Marathi",
-                "Odia",
-                "Punjabi",
-                "Tamil",
-                "Telugu",
-                "Urdu",
-                "Sanskrit"
-              ],
-              "listB": [
-                "Accountancy",
-                "Anthropology",
-                "Biology",
-                "Business Studies",
-                "Chemistry",
-                "Computer Science",
-                "Economics",
-                "Engineering Graphics",
-                "Entrepreneurship",
-                "Environmental Science",
-                "Fine Arts",
-                "Geography",
-                "History",
-                "Home Science",
-                "Knowledge Tradition",
-                "Legal Studies",
-                "Mass Media",
-                "Mathematics",
-                "Physical Education",
-                "Physics",
-                "Political Science",
-                "Psychology",
-                "Sociology",
-                "Teaching Aptitude"
-              ]
-            },
-            {
-              "type": "option2",
-              "description": "2 Languages from List A + 2 Subjects from List B",
-              "languagesRequired": 2,
-              "domainSubjectsRequired": 2,
-              "listA": [
-                "English",
-                "Hindi",
-                "Assamese",
-                "Bengali",
-                "Gujarati",
-                "Kannada",
-                "Malayalam",
-                "Marathi",
-                "Odia",
-                "Punjabi",
-                "Tamil",
-                "Telugu",
-                "Urdu",
-                "Sanskrit"
-              ],
-              "listB": [
-                "Accountancy",
-                "Anthropology",
-                "Biology",
-                "Business Studies",
-                "Chemistry",
-                "Computer Science",
-                "Economics",
-                "Engineering Graphics",
-                "Entrepreneurship",
-                "Environmental Science",
-                "Fine Arts",
-                "Geography",
-                "History",
-                "Home Science",
-                "Knowledge Tradition",
-                "Legal Studies",
-                "Mass Media",
-                "Mathematics",
-                "Physical Education",
-                "Physics",
-                "Political Science",
-                "Psychology",
-                "Sociology",
-                "Teaching Aptitude"
-              ]
-            }
-          ],
-          "specialConditions": [
-            "Merit based on best CUET combination"
-          ]
-        },
-        {
-          "id": "dtu_bsc_hons_physics",
-          "name": "B.Sc. (Hons.) Physics",
-          "type": "undergraduate",
-          "category": "science",
-          "compulsorySubjects": [
-            "Physics",
+          "university": "Delhi Technological University",
+          "state": "Delhi",
+          "category": "Science",
+          "courseName": "Integrated B.Sc. & M.Sc. in Biotechnology",
+          "duration": "5 Years",
+          "class12Subjects": [
+            "Biology",
             "Chemistry",
+            "Physics",
             "Mathematics"
           ],
-          "cuetSubjects": [
-            "Physics",
-            "Chemistry",
-            "Mathematics"
-          ],
-          "minimumPercentage": 50,
-          "specialConditions": [
-            "Must have Physics, Chemistry, Mathematics in Class 12"
-          ]
-        },
-        {
-          "id": "dtu_bsc_hons_chemistry",
-          "name": "B.Sc. (Hons.) Chemistry",
-          "type": "undergraduate",
-          "category": "science",
-          "compulsorySubjects": [
-            "Physics",
-            "Chemistry",
-            "Mathematics"
-          ],
-          "cuetSubjects": [
-            "Physics",
-            "Chemistry",
-            "Mathematics"
-          ],
-          "minimumPercentage": 50,
-          "specialConditions": [
-            "Must have Physics, Chemistry in Class 12"
-          ]
-        },
-        {
-          "id": "dtu_bsc_hons_mathematics",
-          "name": "B.Sc. (Hons.) Mathematics",
-          "type": "undergraduate",
-          "category": "science",
-          "compulsorySubjects": [
-            "Physics",
-            "Chemistry",
-            "Mathematics"
-          ],
-          "cuetSubjects": [
-            "Physics",
-            "Chemistry",
-            "Mathematics"
-          ],
-          "minimumPercentage": 50,
-          "specialConditions": [
-            "Must have Mathematics in Class 12"
-          ]
-        },
-        {
-          "id": "dtu_bsc_hons_biology",
-          "name": "B.Sc. (Hons.) Biology",
-          "type": "undergraduate",
-          "category": "science",
-          "compulsorySubjects": [
-            "Physics",
-            "Chemistry",
+          "requiredSubjects": [
             "Biology"
           ],
-          "cuetSubjects": [
-            "Physics",
-            "Chemistry",
-            "Biology"
-          ],
-          "minimumPercentage": 50,
-          "specialConditions": [
-            "Must have Biology in Class 12"
+          "allowedCombinations": [
+            [
+              "Biology",
+              "Chemistry",
+              "Physics"
+            ],
+            [
+              "Biology",
+              "Chemistry",
+              "Mathematics"
+            ]
           ]
         },
         {
-          "id": "dtu_bcom_hons",
-          "name": "B.Com. (Hons.)",
-          "type": "undergraduate",
-          "category": "commerce",
-          "compulsorySubjects": [],
-          "cuetSubjects": [
-            "Accountancy",
+          "university": "Delhi Technological University",
+          "state": "Delhi",
+          "category": "Science",
+          "courseName": "Integrated B.Sc. & M.Sc. in Chemistry",
+          "duration": "5 Years",
+          "class12Subjects": [
+            "Chemistry",
+            "Physics",
+            "Mathematics"
+          ],
+          "requiredSubjects": [
+            "Chemistry"
+          ],
+          "allowedCombinations": [
+            [
+              "Chemistry",
+              "Physics",
+              "Mathematics"
+            ]
+          ]
+        },
+        {
+          "university": "Delhi Technological University",
+          "state": "Delhi",
+          "category": "Science",
+          "courseName": "Integrated B.Sc. & M.Sc. in Economics",
+          "duration": "5 Years",
+          "class12Subjects": [
+            "Mathematics",
+            "Economics",
             "Business Studies",
-            "Economics"
+            "Accountancy"
           ],
-          "minimumPercentage": 50,
-          "specialConditions": [
-            "Commerce/Economics/Mathematics recommended in Class 12"
+          "requiredSubjects": [
+            "Mathematics"
+          ],
+          "allowedCombinations": [
+            [
+              "Mathematics",
+              "Economics",
+              "Business Studies"
+            ],
+            [
+              "Mathematics",
+              "Economics",
+              "Accountancy"
+            ]
+          ]
+        },
+        {
+          "university": "Delhi Technological University",
+          "state": "Delhi",
+          "category": "Science",
+          "courseName": "Integrated B.Sc. & M.Sc. in Geospatial Science",
+          "duration": "5 Years",
+          "class12Subjects": [
+            "Geography",
+            "Mathematics",
+            "Physics"
+          ],
+          "requiredSubjects": [
+            "Geography"
+          ],
+          "allowedCombinations": [
+            [
+              "Geography",
+              "Mathematics",
+              "Physics"
+            ]
+          ]
+        },
+        {
+          "university": "Delhi Technological University",
+          "state": "Delhi",
+          "category": "Management",
+          "courseName": "B.A. (Hons.) Economics",
+          "duration": "3 Years",
+          "class12Subjects": [
+            "Mathematics",
+            "Economics",
+            "English"
+          ],
+          "requiredSubjects": [
+            "Mathematics"
+          ],
+          "allowedCombinations": [
+            [
+              "Mathematics",
+              "Economics",
+              "English"
+            ]
+          ]
+        },
+        {
+          "university": "Delhi Technological University",
+          "state": "Delhi",
+          "category": "Management",
+          "courseName": "Bachelor of Business Administration (BBA)",
+          "duration": "3 Years",
+          "class12Subjects": [
+            "English",
+            "General Test"
+          ],
+          "requiredSubjects": [
+            "English"
+          ],
+          "allowedCombinations": [
+            [
+              "English",
+              "General Test"
+            ]
           ]
         }
       ]

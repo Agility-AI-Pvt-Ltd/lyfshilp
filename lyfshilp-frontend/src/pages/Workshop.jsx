@@ -130,7 +130,7 @@ export default function Workshop() {
     setStatus({ success: null, message: "" });
 
     try {
-      await api.post("/workshop/register", {
+      const response = await api.post("/workshop/register", {
         ...formData,
         name: formData.name.trim(),
         phone: formData.phone.trim(),
@@ -139,10 +139,16 @@ export default function Workshop() {
         message: formData.message.trim(),
       });
 
-      setStatus({ success: true, message: "Workshop request submitted successfully!" });
-      setFormData({ name: "", phone: "", email: "", organization: "", message: "" });
-
-      setTimeout(() => setStatus({ success: null, message: "" }), 2000);
+      if (response.data.success) {
+        setStatus({ success: true, message: "Workshop request submitted successfully!" });
+        setFormData({ name: "", phone: "", email: "", organization: "", message: "" });
+        setTimeout(() => setStatus({ success: null, message: "" }), 2000);
+      } else {
+        setStatus({
+          success: false,
+          message: response.data.message || "Submission failed. Please try again.",
+        });
+      }
     } catch (error) {
       console.error("Error submitting form:", error);
       setStatus({
@@ -156,7 +162,7 @@ export default function Workshop() {
 
   return (
     <div className="font-sans mt-14 sm:mt-18">
-        {/* 🌟 Hero Section */}
+      {/* 🌟 Hero Section */}
       <section className="bg-[#FFF8EE] text-center px-4 py-10 sm:py-8">
         <h1 className="text-2xl sm:text-6xl font-bold text-gray-900">
           Workshops that Inspire
@@ -219,19 +225,18 @@ export default function Workshop() {
                 src={img}
                 alt={`Workshop ${i + 1}`}
                 onClick={() => handleImageClick(img)}
-                className={`w-20 sm:w-24 md:w-28 h-20 sm:h-24 md:h-28 object-cover rounded-xl cursor-pointer border-4 transition-all duration-300 hover:scale-110 ${
-                  mainImage === img
+                className={`w-20 sm:w-24 md:w-28 h-20 sm:h-24 md:h-28 object-cover rounded-xl cursor-pointer border-4 transition-all duration-300 hover:scale-110 ${mainImage === img
                     ? "border-green-600 scale-110 shadow-lg"
                     : "border-gray-200"
-                }`}
+                  }`}
               />
             ))}
           </div>
         )}
       </section>
 
-      <div> <CareerFairSection /> </div> 
-      <div> <SchoolLogo/> </div> 
+      <div> <CareerFairSection /> </div>
+      <div> <SchoolLogo /> </div>
 
       {/* 🌱 Empower Section */}
       <section className="bg-[#FFF8EE] py-10 px-4 sm:px-8 flex flex-col md:flex-row items-center justify-center gap-8 sm:gap-12 relative overflow-hidden">
@@ -281,108 +286,108 @@ export default function Workshop() {
         </div>
       </section>
 
-{/* 💡 Trending Topics — Infinite Right-to-Left Scroll */}
-<section className="py-10 px-4 sm:px-8 bg-white">
- <h3 className="text-center text-xl sm:text-4xl font-bold text-gray-900 mb-10">
-  Most Trending Topics from <span className="text-green-700">Workshops</span>
-</h3>
+      {/* 💡 Trending Topics — Infinite Right-to-Left Scroll */}
+      <section className="py-10 px-4 sm:px-8 bg-white">
+        <h3 className="text-center text-xl sm:text-4xl font-bold text-gray-900 mb-10">
+          Most Trending Topics from <span className="text-green-700">Workshops</span>
+        </h3>
 
-  <div className="overflow-hidden relative">
-    <div className="flex animate-scrollLoop hover:[animation-play-state:paused] space-x-6 w-max">
-      {/* 🔁 Repeat twice for seamless infinite scroll */}
-      {[...Array(2)].map((_, loopIndex) => (
-        <div key={loopIndex} className="flex space-x-6">
-          {[
-            {
-              icon: inculcationIcon,
-              bgColor: "bg-[#D8F3DC]",
-              text: "Inculcation of AI to improve student learning outcome",
-            },
-            {
-              icon: studySmartIcon,
-              bgColor: "bg-[#FFF3B0]",
-              text: "Study Smart to excel in exam",
-            },
-            {
-              icon: communicationIcon,
-              bgColor: "bg-[#FFE5B4]",
-              text: "Communication workshop on Conflict Resolution",
-            },
-            {
-              icon: creativityIcon,
-              bgColor: "bg-[#D8F3DC]",
-              text: "AI-User Capacity Building",
-            },
-            {
-              icon: inculcationIcon,
-              bgColor: "bg-[#FFE5B4]",
-              text: "Career Exploration in the New Age",
-            },
-            {
-              icon: logicIcon,
-              bgColor: "bg-[#D8F3DC]",
-              text: "Future Skills for the AI Age",
-            },
-            {
-              icon: studySmartIcon,
-              bgColor: "bg-[#FFF3B0]",
-              text: "Smart Preparation for CUET, CLAT & IPMAT",
-            },            {
-              icon: creativityIcon,
-              bgColor: "bg-[#FFE5B4]",
-              text: "Learn How to Learn: Scientific Study Techniques",
-            },            {
-              icon: communicationIcon,
-              bgColor: "bg-[#D8F3DC]",
-              text: "Communication, Collaboration & Conflict Resolution",
-            },            {
-              icon: logicIcon,
-              bgColor: "bg-[#FFF3B0]",
-              text: "AI in Education: From Tools to Transformation",
-            },            {
-              icon: creativityIcon,
-              bgColor: "bg-[#FFE5B4]",
-              text: "Entrepreneurship & Innovation for Teens",
-            },            {
-              icon: gamingIcon,
-              bgColor: "bg-[#FFF3B0]",
-              text: "Critical Thinking & Problem Solving MasterClass",
-            },            {
-              icon: inculcationIcon,
-              bgColor: "bg-[#D8F3DC]",
-              text: "Building Growth Mindset in Classrooms",
-            },            {
-              icon: logicIcon,
-              bgColor: "bg-[#FFF3D0]",
-              text: "Building a Growth Mindset in Classrooms",
-            },
-          ].map(({ icon, bgColor, text }, i) => (
-            <div
-              key={`${loopIndex}-${i}`}
-              className="flex items-center rounded-2xl overflow-hidden bg-white shadow-md border border-gray-100 w-[280px] sm:w-[340px] flex-shrink-0"
-            >
-              <div
-                className={`${bgColor} flex items-center justify-center w-24 h-24 flex-shrink-0`}
-              >
-                <img
-                  src={icon}
-                  alt={text}
-                  className="w-14 h-14 sm:w-16 sm:h-16 object-contain transform transition-transform duration-300 hover:scale-105"
-                />
-              </div>
+        <div className="overflow-hidden relative">
+          <div className="flex animate-scrollLoop hover:[animation-play-state:paused] space-x-6 w-max">
+            {/* 🔁 Repeat twice for seamless infinite scroll */}
+            {[...Array(2)].map((_, loopIndex) => (
+              <div key={loopIndex} className="flex space-x-6">
+                {[
+                  {
+                    icon: inculcationIcon,
+                    bgColor: "bg-[#D8F3DC]",
+                    text: "Inculcation of AI to improve student learning outcome",
+                  },
+                  {
+                    icon: studySmartIcon,
+                    bgColor: "bg-[#FFF3B0]",
+                    text: "Study Smart to excel in exam",
+                  },
+                  {
+                    icon: communicationIcon,
+                    bgColor: "bg-[#FFE5B4]",
+                    text: "Communication workshop on Conflict Resolution",
+                  },
+                  {
+                    icon: creativityIcon,
+                    bgColor: "bg-[#D8F3DC]",
+                    text: "AI-User Capacity Building",
+                  },
+                  {
+                    icon: inculcationIcon,
+                    bgColor: "bg-[#FFE5B4]",
+                    text: "Career Exploration in the New Age",
+                  },
+                  {
+                    icon: logicIcon,
+                    bgColor: "bg-[#D8F3DC]",
+                    text: "Future Skills for the AI Age",
+                  },
+                  {
+                    icon: studySmartIcon,
+                    bgColor: "bg-[#FFF3B0]",
+                    text: "Smart Preparation for CUET, CLAT & IPMAT",
+                  }, {
+                    icon: creativityIcon,
+                    bgColor: "bg-[#FFE5B4]",
+                    text: "Learn How to Learn: Scientific Study Techniques",
+                  }, {
+                    icon: communicationIcon,
+                    bgColor: "bg-[#D8F3DC]",
+                    text: "Communication, Collaboration & Conflict Resolution",
+                  }, {
+                    icon: logicIcon,
+                    bgColor: "bg-[#FFF3B0]",
+                    text: "AI in Education: From Tools to Transformation",
+                  }, {
+                    icon: creativityIcon,
+                    bgColor: "bg-[#FFE5B4]",
+                    text: "Entrepreneurship & Innovation for Teens",
+                  }, {
+                    icon: gamingIcon,
+                    bgColor: "bg-[#FFF3B0]",
+                    text: "Critical Thinking & Problem Solving MasterClass",
+                  }, {
+                    icon: inculcationIcon,
+                    bgColor: "bg-[#D8F3DC]",
+                    text: "Building Growth Mindset in Classrooms",
+                  }, {
+                    icon: logicIcon,
+                    bgColor: "bg-[#FFF3D0]",
+                    text: "Building a Growth Mindset in Classrooms",
+                  },
+                ].map(({ icon, bgColor, text }, i) => (
+                  <div
+                    key={`${loopIndex}-${i}`}
+                    className="flex items-center rounded-2xl overflow-hidden bg-white shadow-md border border-gray-100 w-[280px] sm:w-[340px] flex-shrink-0"
+                  >
+                    <div
+                      className={`${bgColor} flex items-center justify-center w-24 h-24 flex-shrink-0`}
+                    >
+                      <img
+                        src={icon}
+                        alt={text}
+                        className="w-14 h-14 sm:w-16 sm:h-16 object-contain transform transition-transform duration-300 hover:scale-105"
+                      />
+                    </div>
 
-              <div className="px-4 py-3 text-left">
-                <h4 className="font-semibold text-gray-900 text-sm sm:text-base leading-snug">
-                  {text}
-                </h4>
+                    <div className="px-4 py-3 text-left">
+                      <h4 className="font-semibold text-gray-900 text-sm sm:text-base leading-snug">
+                        {text}
+                      </h4>
+                    </div>
+                  </div>
+                ))}
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
-      ))}
-    </div>
-  </div>
-</section>
+      </section>
 
       {/* 📞 Contact Form */}
       <section ref={formRef} className="bg-[#FFF8EE] py-12 px-4 sm:px-8 relative overflow-hidden">
@@ -465,8 +470,8 @@ export default function Workshop() {
         </div>
       )}
 
-  <style>
-  {`
+      <style>
+        {`
     /* 🌟 Rotating Images Animation */
     @keyframes rotateImage1 {
       0% { 
@@ -566,7 +571,7 @@ export default function Workshop() {
       animation: popupCard 0.6s ease-out forwards;
     }
   `}
-</style>
+      </style>
 
     </div>
   );
