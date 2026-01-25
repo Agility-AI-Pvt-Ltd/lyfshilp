@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import api from "../api/axios.js";
 
+import HowToSearchModal from "./HowToSearchModal.jsx";
+
 // Indian states list
 const INDIAN_STATES = [
     "Andhra Pradesh", "Arunachal Pradesh", "Assam", "Bihar", "Chhattisgarh",
@@ -65,7 +67,6 @@ const COURSE_CATEGORIES = [
     "Vocational"
 ].sort();
 
-import HowToSearchModal from "./HowToSearchModal";
 
 export default function CareerGuidanceWidget() {
     // Form state
