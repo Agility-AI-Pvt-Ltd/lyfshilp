@@ -222,7 +222,7 @@ export default function OlympiadSection6() {
                 <span className="text-blue-500 text-xl">📞</span>
                 <div>
                   <strong>Phone:</strong>
-                  <p>8595034205 | 7042149608</p>
+                  <p>7042671115 | 7042672300</p>
                 </div>
               </div>
 
