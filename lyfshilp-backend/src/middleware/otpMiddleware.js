@@ -7,6 +7,7 @@ export const validateOtpSession = async (req, res, next) => {
         if (!token) {
             return res.status(401).json({
                 success: false,
+                code: 'SESSION_MISSING',
                 message: 'Session token missing. Please verify phone number.',
             });
         }
@@ -18,13 +19,14 @@ export const validateOtpSession = async (req, res, next) => {
         if (!session) {
             return res.status(401).json({
                 success: false,
-                message: 'Invalid session.',
+                code: 'SESSION_INVALID',
+                message: 'Invalid session. Please login again.',
             });
         }
 
         if (new Date() > session.expiresAt) {
             // Clean up expired session
-            await prisma.otpSession.delete({ where: { token } });
+            await prisma.otpSession.delete({ where: { token } }).catch(() => { }); // Safe delete
             return res.status(401).json({
                 success: false,
                 code: 'SESSION_EXPIRED',

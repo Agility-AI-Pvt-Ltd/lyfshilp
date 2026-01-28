@@ -148,6 +148,7 @@ const INTEREST_TO_DOMAINS = {
  * @returns {string[]} Array of domain identifiers
  */
 function classifyCourse(courseName, courseCategory = null) {
+    if (!courseName || typeof courseName !== 'string') return ['ARTS_HUMANITIES'];
     const lowerName = courseName.toLowerCase();
     const domains = [];
 
@@ -160,13 +161,16 @@ function classifyCourse(courseName, courseCategory = null) {
 
     // Fallback: Category-based classification (if no keyword match)
     if (domains.length === 0 && courseCategory) {
+        // DEFENSIVE: Ensure category is string
+        const safeCategory = typeof courseCategory === 'string' ? courseCategory : String(courseCategory);
+
         const categoryMap = {
             'arts': 'ARTS_HUMANITIES',
             'science': 'SCIENCE',
             'commerce': 'COMMERCE',
             'management': 'MANAGEMENT'
         };
-        const mappedDomain = categoryMap[courseCategory.toLowerCase()];
+        const mappedDomain = categoryMap[safeCategory.toLowerCase()];
         if (mappedDomain) {
             domains.push(mappedDomain);
         }
@@ -270,10 +274,18 @@ export const getEligibleCourses = async (req, res) => {
         const phone = req.userPhone;
 
         // Validate input
-        if (!state || !preferredCategory || !class12Subjects || !interestedSubjects) {
+        if (!state || !preferredCategory) {
             return res.status(400).json({
                 success: false,
-                message: 'State, preferredCategory, class12Subjects, and interestedSubjects are required',
+                message: 'State and preferredCategory are required',
+            });
+        }
+
+        // Strict Array Validation for subjects
+        if (!Array.isArray(class12Subjects) || !Array.isArray(interestedSubjects)) {
+            return res.status(400).json({
+                success: false,
+                message: 'class12Subjects and interestedSubjects must be arrays',
             });
         }
 
@@ -284,49 +296,126 @@ export const getEligibleCourses = async (req, res) => {
         const allEligibleCourses = [];
 
         for (const university of universities) {
-            for (const course of university.courses) {
-                const eligibility = checkEligibility(course, class12Subjects, interestedSubjects, university);
+            // Defensive check for university structure
+            if (!university || !Array.isArray(university.courses)) {
+                console.warn(`Skipping malformed university entry: ${university?.id || 'unknown'}`);
+                continue;
+            }
 
-                // STRICT FILTERING: Only include if eligible
-                if (eligibility.eligible) {
-                    allEligibleCourses.push({
-                        university: {
-                            id: university.id,
-                            name: university.name,
-                            state: university.state,
-                            type: university.type,
-                        },
-                        course: {
-                            id: course.id,
-                            name: course.name,
-                            type: course.type,
-                            category: course.category,
-                        },
-                        reason: eligibility.reason,
-                        matchedCombination: eligibility.matchedCombination,
-                        specialConditions: course.specialConditions || [],
+            for (const course of university.courses) {
+                // Per USER REQUEST: "Log exact course object that causes failure"
+                // "Log which step failed (normalization / eligibility / filter / sort)"
+                // "Log stack trace before returning 500" - actually we log and SKIP to avoid 500.
+
+                let currentStep = 'init';
+                try {
+                    // NORMALIZE COURSE DATA (Handle valid schema variations)
+                    currentStep = 'normalization';
+
+                    // VALIDATION CATCH: Ensure critical fields exist
+                    if (!course) throw new Error("Course object is null/undefined");
+
+                    // DTU uses 'courseName', others use 'name'
+                    const standardizedCourse = {
+                        ...course,
+                        id: course.id || (course.courseName || course.name || 'unknown').replace(/\s+/g, '_').toLowerCase(),
+                        name: course.name || course.courseName || 'Unknown Course',
+                        category: course.category || 'General',
+                        type: course.type || 'undergraduate',
+                    };
+
+                    currentStep = 'eligibility_check';
+                    // Pass to eligibility checker
+                    const eligibility = checkEligibility(standardizedCourse, class12Subjects, interestedSubjects, university);
+
+                    // STRICT FILTERING: Only include if eligible
+                    if (eligibility && eligibility.eligible) {
+                        currentStep = 'result_formatting';
+                        allEligibleCourses.push({
+                            university: {
+                                id: university.id,
+                                name: university.name,
+                                state: university.state,
+                                type: university.type,
+                            },
+                            course: {
+                                id: standardizedCourse.id,
+                                name: standardizedCourse.name,
+                                type: standardizedCourse.type,
+                                // FORCE STRING to strictly prevent downstream crashes
+                                category: String(standardizedCourse.category || 'General'),
+                            },
+                            reason: eligibility.reason,
+                            matchedCombination: eligibility.matchedCombination,
+                            specialConditions: course.specialConditions || [],
+                        });
+                    }
+                } catch (err) {
+                    // LOG EXACT COMPONENT & ERROR FOR DEBUGGING
+                    console.error("[ELIGIBILITY_CRASH]", {
+                        course: course?.name || course?.courseName || "Unknown",
+                        university: university.id,
+                        step: currentStep,
+                        error: err?.stack || err
                     });
+                    // CRITICAL: SKIP IT, never crash the request.
+                    continue;
                 }
             }
         }
 
         // STEP 2: Apply STRICT CATEGORY filter (MANDATORY - NO FALLBACK)
+        // Wrapped in explicit try-catch per "STEP 2 — ADD REAL CRASH LOGGING"
         const categoryFilteredCourses = allEligibleCourses.filter(result => {
-            const courseCategory = result.course.category.toLowerCase();
-            const selectedCategory = preferredCategory.toLowerCase();
-            return courseCategory === selectedCategory;
+            try {
+                // Defensive check: handle missing or non-string category
+                const cat = result.course.category;
+                if (!cat || typeof cat !== 'string') return false;
+
+                const courseCategory = cat.toLowerCase();
+                const selectedCategory = (preferredCategory || '').toLowerCase();
+                return courseCategory === selectedCategory;
+            } catch (err) {
+                console.error("[ELIGIBILITY_CRASH]", {
+                    course: result.course.name,
+                    university: result.university.name,
+                    step: "post-filter (category)",
+                    error: err?.stack || err
+                });
+                return false; // Skip on error
+            }
         });
 
         // STEP 3: Apply RELEVANCE filter (subject-based filtering)
-        const relevantCourses = categoryFilteredCourses.filter(result =>
-            isCourseRelevant(result.course.name, result.course.category, interestedSubjects)
-        );
+        const relevantCourses = categoryFilteredCourses.filter(result => {
+            try {
+                return isCourseRelevant(result.course.name, result.course.category, interestedSubjects);
+            } catch (err) {
+                console.error("[ELIGIBILITY_CRASH]", {
+                    course: result.course.name,
+                    university: result.university.name,
+                    step: "post-filter (relevance)",
+                    error: err?.stack || err
+                });
+                return true; // Default to showing if check fails (fail open for relevance)
+            }
+        });
 
-        // STEP 3: Sort by relevance (NEW - interest-first prioritization)
+        // STEP 3.5: Sort by relevance (NEW - interest-first prioritization)
         relevantCourses.sort((a, b) => {
-            const scoreA = calculateRelevanceScore(a.course.name, a.course.category, interestedSubjects);
-            const scoreB = calculateRelevanceScore(b.course.name, b.course.category, interestedSubjects);
-            return scoreB - scoreA; // Higher score first
+            try {
+                const scoreA = calculateRelevanceScore(a.course.name, a.course.category, interestedSubjects);
+                const scoreB = calculateRelevanceScore(b.course.name, b.course.category, interestedSubjects);
+                return scoreB - scoreA; // Higher score first
+            } catch (err) {
+                console.error("[ELIGIBILITY_CRASH]", {
+                    courseA: a.course.name,
+                    courseB: b.course.name,
+                    step: "sort (relevance)",
+                    error: err?.stack || err
+                });
+                return 0;
+            }
         });
 
         // STEP 4: Apply search filter (AFTER relevance, BEFORE pagination)
@@ -393,7 +482,12 @@ export const getEligibleCourses = async (req, res) => {
             },
         });
     } catch (error) {
-        console.error('Error calculating eligibility:', error);
+        // LOG EXACT COMPONENT & ERROR FOR DEBUGGING
+        console.error('[ELIGIBILITY_CRASH]', {
+            message: error.message,
+            stack: error.stack
+        }, error);
+
         res.status(500).json({
             success: false,
             message: 'Failed to calculate eligibility',
@@ -406,9 +500,15 @@ export const getEligibleCourses = async (req, res) => {
  */
 function checkEligibility(course, class12Subjects, interestedSubjects, university) {
     // Normalize subject names (case-insensitive matching)
-    const normalizeSubject = (s) => s.toLowerCase().trim();
-    const class12Set = new Set(class12Subjects.map(normalizeSubject));
-    const interestedSet = new Set(interestedSubjects.map(normalizeSubject));
+    // Normalize subject names (case-insensitive matching)
+    // Defensive coding: ensure inputs are arrays and filter out non-strings
+    const safeClass12 = Array.isArray(class12Subjects) ? class12Subjects : [];
+    const safeInterested = Array.isArray(interestedSubjects) ? interestedSubjects : [];
+
+    const normalizeSubject = (s) => (typeof s === 'string' ? s.toLowerCase().trim() : '');
+
+    const class12Set = new Set(safeClass12.map(normalizeSubject).filter(s => s));
+    const interestedSet = new Set(safeInterested.map(normalizeSubject).filter(s => s));
 
     // University-specific logic for legacy data structure
     if (university.id === 'du') {
@@ -427,9 +527,10 @@ function checkEligibility(course, class12Subjects, interestedSubjects, universit
  * Generic eligibility checker for universities using new data structure
  */
 function checkGenericEligibility(course, class12Subjects, class12Set) {
-    const normalizeSubject = (s) => s.toLowerCase().trim();
+    // SAFE NORMALIZER (Prevent crashes on non-string subjects)
+    const normalizeSubject = (s) => (typeof s === 'string' ? s.toLowerCase().trim() : '');
     // Check specific subject requirements (legacy support)
-    if (course.requiredSubjects && course.requiredSubjects.length > 0) {
+    if (Array.isArray(course.requiredSubjects) && course.requiredSubjects.length > 0) {
         // Filter out "General Test" from required subjects check as it's not in Class 12 subjects
         const requiredAcademicSubjects = course.requiredSubjects.filter(
             s => normalizeSubject(s) !== 'general test'
@@ -454,9 +555,29 @@ function checkGenericEligibility(course, class12Subjects, class12Set) {
     }
 
     // Check allowed combinations (if specified)
-    if (course.allowedCombinations && course.allowedCombinations.length > 0) {
+    if (Array.isArray(course.allowedCombinations) && course.allowedCombinations.length > 0) {
         // Try to match any combination
         for (const combination of course.allowedCombinations) {
+
+            // SUPPORT FOR SIMPLE ARRAY FORMAT (e.g. DTU: ["Physics", "Math"])
+            if (Array.isArray(combination)) {
+                const allRequiredPresent = combination.every(subject =>
+                    class12Set.has(normalizeSubject(subject))
+                );
+
+                if (allRequiredPresent) {
+                    return {
+                        eligible: true,
+                        reason: 'Meets requirements (Simple Combination matched)',
+                        matchedCombination: {
+                            description: combination.join(' + '),
+                            subjects: combination
+                        }
+                    };
+                }
+                continue; // Try next combination
+            }
+
             // Handle JNU/Certificate style: listA + General Test (no listB)
             // OR standard CUET: listA + listB
 
@@ -476,7 +597,7 @@ function checkGenericEligibility(course, class12Subjects, class12Set) {
 
             // Check domains (List B) - Optional if domainSubjectsRequired is 0
             let domainCount = 0;
-            if (combination.listB && combination.listB.length > 0) {
+            if (Array.isArray(combination.listB) && combination.listB.length > 0) {
                 const listBSet = new Set(combination.listB.map(normalizeSubject));
                 // We've already counted languages, but some subjects might be in both lists? 
                 // Usually lists are distinct like Languages vs Domain. 
@@ -519,11 +640,12 @@ function checkGenericEligibility(course, class12Subjects, class12Set) {
  * DU-specific eligibility (CUET List A/B logic)
  */
 function checkDUEligibility(course, class12Subjects) {
-    const normalizeSubject = (s) => s.toLowerCase().trim();
+    // SAFE NORMALIZER (Prevent crashes on non-string subjects)
+    const normalizeSubject = (s) => (typeof s === 'string' ? s.toLowerCase().trim() : '');
     const class12Set = new Set(class12Subjects.map(normalizeSubject));
 
     // Check compulsory subjects first
-    if (course.compulsorySubjects && course.compulsorySubjects.length > 0) {
+    if (Array.isArray(course.compulsorySubjects) && course.compulsorySubjects.length > 0) {
         const missingCompulsory = course.compulsorySubjects.filter(
             subject => !class12Set.has(normalizeSubject(subject))
         );
@@ -537,7 +659,7 @@ function checkDUEligibility(course, class12Subjects) {
     }
 
     // Check allowed combinations (List A + List B)
-    if (!course.allowedCombinations || course.allowedCombinations.length === 0) {
+    if (!Array.isArray(course.allowedCombinations) || course.allowedCombinations.length === 0) {
         return { eligible: true, reason: 'All requirements met' };
     }
 
@@ -554,7 +676,7 @@ function checkDUEligibility(course, class12Subjects) {
         const matchedDomains = [];
 
         // Check List A
-        if (combination.listA) {
+        if (Array.isArray(combination.listA)) {
             const listASet = new Set(combination.listA.map(normalizeSubject));
             for (const subject of class12Subjects) {
                 if (listASet.has(normalizeSubject(subject))) {
@@ -565,7 +687,7 @@ function checkDUEligibility(course, class12Subjects) {
         }
 
         // Check List B
-        if (combination.listB) {
+        if (Array.isArray(combination.listB)) {
             const listBSet = new Set(combination.listB.map(normalizeSubject));
             for (const subject of class12Subjects) {
                 if (listBSet.has(normalizeSubject(subject))) {
@@ -603,11 +725,12 @@ function checkDUEligibility(course, class12Subjects) {
  * BHU-specific eligibility
  */
 function checkBHUEligibility(course, class12Subjects) {
-    const normalizeSubject = (s) => s.toLowerCase().trim();
+    // SAFE NORMALIZER (Prevent crashes on non-string subjects)
+    const normalizeSubject = (s) => (typeof s === 'string' ? s.toLowerCase().trim() : '');
     const class12Set = new Set(class12Subjects.map(normalizeSubject));
 
     // Check Class 12 requirements
-    if (course.class12Requirements && course.class12Requirements.length > 0) {
+    if (Array.isArray(course.class12Requirements) && course.class12Requirements.length > 0) {
         const missingClass12 = course.class12Requirements.filter(
             subject => !class12Set.has(normalizeSubject(subject))
         );
@@ -632,7 +755,7 @@ function checkBHUEligibility(course, class12Subjects) {
     }
 
     // Check compulsory subjects
-    if (course.compulsorySubjects && course.compulsorySubjects.length > 0) {
+    if (Array.isArray(course.compulsorySubjects) && course.compulsorySubjects.length > 0) {
         const missingCompulsory = course.compulsorySubjects.filter(
             subject => !class12Set.has(normalizeSubject(subject))
         );
@@ -646,7 +769,7 @@ function checkBHUEligibility(course, class12Subjects) {
     }
 
     // CHECK ALLOWED COMBINATIONS (Essential for Science/Arts requiring specific sets)
-    if (course.allowedCombinations && course.allowedCombinations.length > 0) {
+    if (Array.isArray(course.allowedCombinations) && course.allowedCombinations.length > 0) {
         // Reuse similar logic to generic/DU check
         for (const combination of course.allowedCombinations) {
             const languagesRequired = combination.languagesRequired || 0;
@@ -656,7 +779,7 @@ function checkBHUEligibility(course, class12Subjects) {
             let domainCount = 0;
 
             // Check List A
-            if (combination.listA) {
+            if (Array.isArray(combination.listA)) {
                 const listASet = new Set(combination.listA.map(normalizeSubject));
                 for (const subject of class12Subjects) {
                     if (listASet.has(normalizeSubject(subject))) {
@@ -666,7 +789,7 @@ function checkBHUEligibility(course, class12Subjects) {
             }
 
             // Check List B
-            if (combination.listB) {
+            if (Array.isArray(combination.listB)) {
                 const listBSet = new Set(combination.listB.map(normalizeSubject));
                 for (const subject of class12Subjects) {
                     if (listBSet.has(normalizeSubject(subject))) {
@@ -699,7 +822,8 @@ function checkBHUEligibility(course, class12Subjects) {
  * AKTU-specific eligibility
  */
 function checkAKTUEligibility(course, class12Subjects) {
-    const normalizeSubject = (s) => s.toLowerCase().trim();
+    // SAFE NORMALIZER (Prevent crashes on non-string subjects)
+    const normalizeSubject = (s) => (typeof s === 'string' ? s.toLowerCase().trim() : '');
     const class12Set = new Set(class12Subjects.map(normalizeSubject));
 
     // For B.Tech: Physics and Mathematics are COMPULSORY
@@ -735,7 +859,7 @@ function checkAKTUEligibility(course, class12Subjects) {
     }
 
     // For other courses, check compulsory subjects
-    if (course.compulsorySubjects && course.compulsorySubjects.length > 0) {
+    if (Array.isArray(course.compulsorySubjects) && course.compulsorySubjects.length > 0) {
         const missingCompulsory = course.compulsorySubjects.filter(
             subject => !class12Set.has(normalizeSubject(subject))
         );
