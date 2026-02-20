@@ -63,7 +63,7 @@ marketing, sales and stakeholder communication.
 
                 <li className="flex gap-3">
                   <span className="w-2 h-2 bg-purple-500 rounded-full mt-2"></span>
-                  <span><strong>Target Group:</strong> Classes 6–9</span>
+                  <span><strong>Target Group:</strong> Classes 6–12</span>
                 </li>
 
                 <li className="flex gap-3">
