@@ -1,6 +1,23 @@
+@import url("https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Playfair+Display:wght@600;700;800;900&display=swap");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+:root {
+  /* Brand color palette */
+  --color-bg-primary: #0C2D1E;
+  --color-surface: #1A5C3A;
+  --color-accent: #2E6B52;
+  --color-gold: #C9A84C;
+  --color-gold-hover: #E8C96A;
+  --color-text-body: #FAFDF8;
+  --color-text-muted: #7A9E8A;
+
+  /* Global typography */
+  --font-heading: "Playfair Display", Georgia, serif;
+  --font-body: "Outfit", Arial, sans-serif;
+}
 
 html, body {
   overflow-x: hidden;
@@ -9,9 +26,32 @@ html, body {
 
 body {
   margin: 0;
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  background-color: #ffffff;  /* Default White Background */
-  color: #213547;             /* Default text color */
+  font-family: var(--font-body);
+  background-color: var(--color-bg-primary);
+  color: var(--color-text-body);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+}
+
+/* Reusable tokens for new components */
+.bg-brand-primary { background-color: var(--color-bg-primary); }
+.bg-brand-surface { background-color: var(--color-surface); }
+.bg-brand-accent { background-color: var(--color-accent); }
+
+.text-brand-gold { color: var(--color-gold); }
+.text-brand-muted { color: var(--color-text-muted); }
+.text-brand-body { color: var(--color-text-body); }
+
+.hover-brand-gold:hover { color: var(--color-gold-hover); }
+.hover-brand-accent:hover { background-color: var(--color-accent); }
+
+.font-brand-heading { font-family: var(--font-heading); }
+.font-brand-body { font-family: var(--font-body); }
+.card-brand-surface {
+  background-color: var(--color-surface);
+  color: var(--color-text-body);
 }
 @keyframes scrollUp {
   0% {

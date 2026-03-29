@@ -7,15 +7,16 @@ import Logo from "../assets/Lyfshilplogo.svg";
 
 export default function Footer() {
   return (
-    <footer className="bg-green-800 text-white">
-      {/* 🌿 Main Container */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <footer
+      style={{
+        background: "linear-gradient(180deg,#071a11,#030c07)",
+        borderTop: "1px solid rgba(0,200,150,.1)",
+      }}
+      className="text-white"
+    >
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
         <div className="flex flex-col sm:flex-row justify-between items-start gap-12">
-          
-          {/* 🌿 Left Section: Brand + Navigate side by side */}
           <div className="flex flex-col sm:flex-row items-start gap-16 w-full sm:w-auto">
-            
-            {/* 🏫 Brand Section */}
             <div className="flex flex-col items-start text-left">
               <a
                 href="https://lyfshilpacademy.co.in/"
@@ -27,17 +28,20 @@ export default function Footer() {
                 <h2 className="text-lg font-semibold">Lyfshilp Academy</h2>
               </a>
 
-              <p className="text-gray-200 text-sm leading-relaxed mb-6">
+              <p
+                className="text-sm leading-relaxed mb-6"
+                style={{ color: "rgba(255,255,255,.55)" }}
+              >
                 Join Lyfshilp Academy and experience <br /> the future of education.
               </p>
 
-              {/* 🌿 Social Icons */}
               <div className="flex flex-wrap gap-3">
                 <a
                   href="https://www.facebook.com/LyfShilpAcademy/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-9 h-9 flex items-center justify-center border border-white rounded-full hover:bg-white hover:text-green-800 transition"
+                  className="w-9 h-9 flex items-center justify-center rounded-full transition"
+                  style={{ border: "1px solid rgba(0,200,150,.35)" }}
                 >
                   <FaFacebookF size={14} />
                 </a>
@@ -45,7 +49,8 @@ export default function Footer() {
                   href="https://www.instagram.com/lyfshilpacademy/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-9 h-9 flex items-center justify-center border border-white rounded-full hover:bg-white hover:text-green-800 transition"
+                  className="w-9 h-9 flex items-center justify-center rounded-full transition"
+                  style={{ border: "1px solid rgba(0,200,150,.35)" }}
                 >
                   <FaInstagram size={14} />
                 </a>
@@ -53,7 +58,8 @@ export default function Footer() {
                   href="https://x.com/agilityai564?t=VOuMBE1FriLj77VXi-P7Cw&s=08"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-9 h-9 flex items-center justify-center border border-white rounded-full hover:bg-white hover:text-green-800 transition"
+                  className="w-9 h-9 flex items-center justify-center rounded-full transition"
+                  style={{ border: "1px solid rgba(0,200,150,.35)" }}
                 >
                   <FaXTwitter size={14} />
                 </a>
@@ -61,7 +67,8 @@ export default function Footer() {
                   href="https://www.linkedin.com/company/lyfshilp-academy/?viewAsMember=true"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-9 h-9 flex items-center justify-center border border-white rounded-full hover:bg-white hover:text-green-800 transition"
+                  className="w-9 h-9 flex items-center justify-center rounded-full transition"
+                  style={{ border: "1px solid rgba(0,200,150,.35)" }}
                 >
                   <FaLinkedinIn size={14} />
                 </a>
@@ -69,7 +76,8 @@ export default function Footer() {
                   href="https://www.youtube.com/@LyfShilpAcademy"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-9 h-9 flex items-center justify-center border border-white rounded-full hover:bg-white hover:text-green-800 transition"
+                  className="w-9 h-9 flex items-center justify-center rounded-full transition"
+                  style={{ border: "1px solid rgba(0,200,150,.35)" }}
                 >
                   <SiYoutube size={14} />
                 </a>
@@ -77,19 +85,21 @@ export default function Footer() {
                   href="https://wa.me/919990581573"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-9 h-9 flex items-center justify-center border border-white rounded-full hover:bg-white hover:text-green-800 transition"
+                  className="w-9 h-9 flex items-center justify-center rounded-full transition"
+                  style={{ border: "1px solid rgba(0,200,150,.35)" }}
                 >
                   <FaWhatsapp size={14} />
                 </a>
               </div>
             </div>
 
-            {/* 🧭 Navigate Section */}
             <div className="text-pretty sm:ml-24">
               <h3 className="font-semibold mb-4 text-lg">Navigate</h3>
 
-              {/* Grid of Links */}
-              <ul className="grid grid-cols-3 sm:grid-cols-3 gap-y-3 gap-x-6 text-gray-200 text-sm">
+              <ul
+                className="grid grid-cols-3 sm:grid-cols-3 gap-y-3 gap-x-6 text-sm"
+                style={{ color: "rgba(255,255,255,.62)" }}
+              >
                 <li><Link to="/" className="hover:text-white">Home</Link></li>
                 <li><Link to="/about" className="hover:text-white">About Us</Link></li>
                 <li><Link to="/exam-prep" className="hover:text-white">Exam Prep</Link></li>
@@ -129,9 +139,27 @@ export default function Footer() {
         </div>
       </div>
 
-      {/* 🌿 Divider + Copyright */}
-      <div className="border-t border-gray-400/30 mt-6">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 py-4 text-center text-xs sm:text-sm text-gray-300">
+      <div
+        style={{
+          borderTop: "1px solid rgba(0,200,150,.07)",
+          padding: "28px 24px",
+          textAlign: "center",
+        }}
+      >
+        <p
+          style={{
+            color: "rgba(255,255,255,.22)",
+            fontFamily: "'DM Sans',sans-serif",
+            fontSize: ".73rem",
+          }}
+        >
+          © 2025 International FutureX Fellowship · Powered by Lyfshilp Academy
+          &amp; Agility AI · Global Standards | International Impact
+        </p>
+        <div
+          className="text-center text-xs sm:text-sm mt-2"
+          style={{ color: "rgba(255,255,255,.32)" }}
+        >
           © Copyright 2025, All Rights Reserved by Lyfshilp Academy
         </div>
       </div>

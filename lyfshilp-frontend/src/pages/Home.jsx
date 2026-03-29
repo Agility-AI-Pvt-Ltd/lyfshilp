@@ -6,7 +6,7 @@ import Founder from "../components/Founder.jsx";
 import VideoMap from "../components/VideoMap.jsx";
 import CourseCard from "../components/CourseCard.jsx";
 import Exams from "../components/Exams.jsx";
-import DailyUpdate from "../pages/DailyUpdate.jsx";
+import DailyUpdate from "./DailyUpdate.jsx";
 import ExamStats from "../components/ExamStats.jsx";
 import OfferingSection from "../components/OfferingSection.jsx";
 import FounderIntro from "../components/FounderIntro.jsx";
