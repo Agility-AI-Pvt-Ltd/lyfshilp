@@ -1543,6 +1543,9 @@ export default function HomeNew() {
                   style={{
                     background: "rgba(255,255,255,.055)",
                     border: "1px solid rgba(0,200,150,.14)",
+                    minHeight: 220,
+                    display: "flex",
+                    flexDirection: "column",
                   }}
                 >
                   <div
@@ -1606,6 +1609,10 @@ export default function HomeNew() {
                       fontFamily: "'DM Sans',sans-serif",
                       fontSize: ".76rem",
                       lineHeight: 1.65,
+                      display: "-webkit-box",
+                      WebkitLineClamp: 3,
+                      WebkitBoxOrient: "vertical",
+                      overflow: "hidden",
                     }}
                   >
                     {role}
