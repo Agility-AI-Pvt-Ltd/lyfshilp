@@ -1,267 +1,246 @@
-import { useState, useEffect } from "react";
-import laptopImg from "/laptop.svg";
-import academyLogo from "../assets/Lyfshilplogo.svg";
-import cursorImg from "../assets/podcastimg/cursor.png";
+import { useEffect, useRef, useState } from "react";
 import ExploreYoutubeSection from "../components/ExploreYoutubeSection.jsx";
-import api from "../api/axios.js";
 
-// 🧠 Helper — convert any YouTube URL to embeddable format
-const getEmbedUrl = (url) => {
-  if (!url) return "";
+const PLAYLIST_ID  = "PL8bYh1-B5eAbnEI_GEPCpWEorMafGBuT0";
+const PLAYLIST_URL = `https://www.youtube.com/playlist?list=${PLAYLIST_ID}`;
 
-  if (!url.startsWith("http")) {
-    return `https://www.youtube.com/embed/${url}`;
-  }
-  if (url.includes("youtu.be")) {
-    const id = url.split("youtu.be/")[1].split("?")[0];
-    return `https://www.youtube.com/embed/${id}`;
-  }
-  if (url.includes("youtube.com/watch?v=")) {
-    const id = url.split("v=")[1].split("&")[0];
-    return `https://www.youtube.com/embed/${id}`;
-  }
-  if (url.includes("youtube.com/embed/")) {
-    return url;
-  }
-  return url;
+/* 5 individual episodes */
+const EPISODES = [
+  { id: "CKoszLxWnfU", ep: "EP 01" },
+  { id: "M58tGvdkrTM", ep: "EP 02" },
+  { id: "QmqcBfIl5ws", ep: "EP 03" },
+  { id: "4Uk1_vlvJFE", ep: "EP 04" },
+  { id: "45zd4FUG0UQ", ep: "EP 05" },
+];
+
+/* ── scroll reveal ── */
+const useInView = (threshold = 0.06) => {
+  const ref = useRef(null);
+  const [inView, setInView] = useState(false);
+  useEffect(() => {
+    const obs = new IntersectionObserver(
+      ([e]) => { if (e.isIntersecting) setInView(true); },
+      { threshold }
+    );
+    if (ref.current) obs.observe(ref.current);
+    return () => obs.disconnect();
+  }, [threshold]);
+  return [ref, inView];
 };
 
-export default function Podcast() {
-  const [subscribed, setSubscribed] = useState(false);
-  const [podcasts, setPodcasts] = useState([]);
-  const [mainVideo, setMainVideo] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [pageLoaded, setPageLoaded] = useState(false);
-
-  // 🟢 Fetch podcasts
-  useEffect(() => {
-    const fetchPodcasts = async () => {
-      try {
-        const res = await api.get("/podcast/all");
-        if (res.data?.success && Array.isArray(res.data.data)) {
-          setPodcasts(res.data.data);
-          setMainVideo(res.data.data[0] || null);
-        }
-      } catch (err) {
-        console.error("Error fetching podcasts:", err);
-      } finally {
-        setLoading(false);
-      }
-    };
-    fetchPodcasts();
-  }, []);
-
-  // 🌍 Wait for full page load
-  useEffect(() => {
-    const handleLoad = () => setPageLoaded(true);
-    if (document.readyState === "complete") {
-      setPageLoaded(true);
-    } else {
-      window.addEventListener("load", handleLoad);
-    }
-    return () => window.removeEventListener("load", handleLoad);
-  }, []);
-
-  // 🔁 Subscribe animation
-  useEffect(() => {
-    const interval = setInterval(() => setSubscribed((prev) => !prev), 3000);
-    return () => clearInterval(interval);
-  }, []);
-
-  // 🧠 Initial Check (scroll arrows visibility)
-  useEffect(() => {
-    const el = document.getElementById("relatedScroll");
-    const leftBtn = document.getElementById("scrollLeftBtn");
-    const rightBtn = document.getElementById("scrollRightBtn");
-
-    if (!el || !leftBtn || !rightBtn) return;
-
-    if (el.scrollWidth <= el.clientWidth) {
-      leftBtn.classList.add("opacity-0", "pointer-events-none");
-      rightBtn.classList.add("opacity-0", "pointer-events-none");
-    } else {
-      leftBtn.classList.add("opacity-0", "pointer-events-none");
-      rightBtn.classList.remove("opacity-0", "pointer-events-none");
-    }
-  }, [podcasts.length]);
-
-  // ⏳ Loading
-if (!pageLoaded || loading) {
+const Reveal = ({ children, delay = 0, className = "", style = {} }) => {
+  const [ref, inView] = useInView();
   return (
-    <div className="flex items-center justify-center min-h-screen bg-[#FFF8EE]">
-      <p className="text-gray-600 text-lg animate-pulse">Loading podcasts...</p>
+    <div ref={ref} className={className} style={{ opacity: inView ? 1 : 0, transform: inView ? "translateY(0)" : "translateY(22px)", transition: `opacity 0.65s ease ${delay}s, transform 0.65s ease ${delay}s`, ...style }}>
+      {children}
     </div>
   );
-}
+};
+
+const YTIcon = ({ size = 18 }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor">
+    <path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+  </svg>
+);
+
+export default function Podcast() {
+  const [featured, setFeatured] = useState(EPISODES[0]);
+
+  useEffect(() => {
+    document.title = "Lyfshilp Podcast | Unlecture Podcast Series on YouTube";
+    const setMeta = (name, content) => {
+      let tag = document.querySelector(`meta[name="${name}"]`);
+      if (!tag) { tag = document.createElement("meta"); tag.setAttribute("name", name); document.head.appendChild(tag); }
+      tag.setAttribute("content", content);
+    };
+    setMeta("description", "Watch the Lyfshilp Unlecture Podcast Series on YouTube — conversations with educators, founders, IIT/IIM alumni and mentors on AI, entrepreneurship, and the future of learning in India.");
+  }, []);
 
   return (
-    <div className="min-h-screen bg-[#FFF8EE]">
-      {/* 🎙️ Podcast Section */}
-      <section className="w-full bg-[#FFF8EE] pt-16 pb-8 sm:pt-24 sm:pb-20 relative overflow-hidden">
-        <div className="max-w-6xl mx-auto text-center px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-3">
-            Lyfshilp Academy <span className="text-green-600">Podcast</span> 🎙️
-          </h2>
-          <p className="text-gray-600 text-base sm:text-lg mb-8 leading-relaxed">
-            Conversations that inspire learning, growth & future readiness.
-          </p>
+    <div
+      className="min-h-screen"
+      style={{ background: "var(--color-bg-primary, #0C2D1E)", color: "var(--color-text-body, #FAFDF8)", fontFamily: "var(--font-body,'DM Sans',sans-serif)" }}
+    >
+      <style>{`
+        .pod-divider { height: 1px; background: rgba(0,200,150,.1); }
+        .pod-accent  { color: #00c896; }
+        .pod-badge {
+          display: inline-flex; align-items: center; gap: 8px;
+          background: rgba(0,200,150,.09); border: 1px solid rgba(0,200,150,.25);
+          color: #00c896; padding: 5px 16px; border-radius: 50px;
+          font-size: .7rem; font-weight: 700; letter-spacing: 2px;
+          text-transform: uppercase; margin-bottom: 22px;
+        }
+        .pod-pulse { width: 7px; height: 7px; border-radius: 50%; background: #00c896; display: inline-block; animation: pod-pulse 1.6s infinite; }
+        @keyframes pod-pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.5;transform:scale(1.4)} }
+        .pod-yt-btn {
+          display: inline-flex; align-items: center; gap: 9px;
+          background: #FF0000; color: #fff; font-weight: 700;
+          padding: 13px 28px; border-radius: 50px; text-decoration: none;
+          font-size: .9rem; box-shadow: 0 6px 22px rgba(255,0,0,.28);
+          transition: transform .2s, box-shadow .2s;
+        }
+        .pod-yt-btn:hover { transform: translateY(-2px); box-shadow: 0 12px 32px rgba(255,0,0,.4); }
+        .pod-sub-btn {
+          display: inline-flex; align-items: center; gap: 8px;
+          border: 1.5px solid rgba(0,200,150,.38); color: #00c896;
+          padding: 12px 26px; border-radius: 50px; text-decoration: none;
+          font-size: .9rem; font-weight: 600; transition: background .2s;
+        }
+        .pod-sub-btn:hover { background: rgba(0,200,150,.09); }
+        .pod-thumb {
+          position: relative; cursor: pointer;
+          border-radius: 12px; overflow: hidden;
+          border: 2px solid rgba(0,200,150,.15);
+          transition: border-color .25s, transform .25s;
+        }
+        .pod-thumb:hover { border-color: rgba(0,200,150,.5); transform: translateY(-3px); }
+        .pod-thumb.active { border-color: #00c896; box-shadow: 0 0 0 2px rgba(0,200,150,.25); }
+        .pod-thumb img { width: 100%; aspect-ratio: 16/9; object-fit: cover; display: block; }
+        .pod-play-overlay {
+          position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
+          background: rgba(0,0,0,.28); transition: background .2s;
+        }
+        .pod-thumb:hover .pod-play-overlay { background: rgba(0,0,0,.1); }
+        .pod-play-circle {
+          width: 42px; height: 42px; border-radius: 50%; background: rgba(255,0,0,.85);
+          display: flex; align-items: center; justify-content: center;
+          box-shadow: 0 4px 16px rgba(0,0,0,.4);
+        }
+        .pod-ep-badge {
+          position: absolute; top: 8px; left: 8px;
+          background: rgba(0,0,0,.7); color: #fff;
+          font-size: .62rem; font-weight: 700; letter-spacing: 1px;
+          padding: 3px 9px; border-radius: 50px;
+        }
+      `}</style>
 
-          {/* 💻 Laptop Section */}
-          <div
-            className="relative flex justify-center items-center -mt-6 pb-0"
-            style={{ minHeight: "410px" }}
-          >
-          <img
-            src={laptopImg}
-            alt="Podcast Laptop"
-            className="w-[98%] sm:w-[600px] md:w-[800px] max-w-900px drop-shadow-2xl"
-            style={{ height: "auto", maxHeight: "480px" }}
-            // ✅ FIX: Prevent layout shift
-            onLoad={(e) => (e.currentTarget.style.opacity = 1)}
-          />
-
-<div className="
-absolute top-[24%] sm:top-[22%] left-1/2 -translate-x-1/2
-w-[70%] sm:w-[56%] md:w-[38%] 
-scale-[0.60] sm:scale-100
-bg-[#FFF8EE] rounded-xl shadow-xl 
-p-3 sm:p-6 flex flex-col items-center gap-4
-"
-style={{ minHeight: "120px" }}
-> 
-            {/* ✅ FIX: Prevent content shifting */}
-
-              <div className="flex items-center justify-between w-full">
-                <div className="text-left w-full">
-                  <h3 className="text-lg sm:text-xl font-bold">LYFSHILP ACADEMY</h3>
-                  <p className="text-gray-500 text-sm tracking-wide">EDUCATION</p>
-                  <div className="border-t border-gray-300 my-2"></div>
-                </div>
-                <img
-                  src={academyLogo}
-                  alt="Academy Logo"
-                  className="w-10 h-10 sm:w-14 sm:h-14"
-                  loading="lazy"
-                />
-              </div>
-
-              {/* Subscribe Button */}
-              <div
-                className={`relative px-6 sm:px-12 py-3 sm:py-4 rounded-md text-white font-bold text-base sm:text-xl transition-all duration-700 ${
-                  subscribed ? "bg-green-600" : "bg-red-600"
-                }`}
-              >
-                {subscribed ? "SUBSCRIBED" : "SUBSCRIBE NOW"}
-                {!subscribed && (
-                  <img
-                    src={cursorImg}
-                    alt="Cursor"
-                    className="absolute -right-4 sm:-right-6 top-1/2 w-6 sm:w-8 h-6 sm:h-8 animate-bounce"
-                    loading="lazy"
-                  />
-                )}
-              </div>
-            </div>
-          </div>
-
-          {/* 🌟 Featured Episodes */}
-          <div className="text-left mt-10">
-            <h2 className="text-2xl sm:text-3xl font-bold mb-2">
-              Featured <span className="text-green-600">Episodes</span>
-            </h2>
-            <p className="text-gray-600 text-base sm:text-lg mb-6 leading-relaxed">
-              Our podcast features top educators, leaders, and learners discussing
-              education, careers, and future skills with stories, insights, and inspiration.
+      {/* ── HERO ── */}
+      <section style={{ padding: "116px 24px 72px", position: "relative", overflow: "hidden" }}>
+        <div style={{ position: "absolute", inset: 0, pointerEvents: "none", background: "radial-gradient(ellipse at 12% 55%, rgba(0,200,150,.1), transparent 50%), radial-gradient(ellipse at 86% 20%, rgba(255,0,0,.05), transparent 42%)" }} />
+        <div className="max-w-4xl mx-auto text-center" style={{ position: "relative", zIndex: 2 }}>
+          <Reveal>
+            <div className="pod-badge"><span className="pod-pulse" />Unlecture Podcast Series · YouTube Only</div>
+            <h1 style={{ fontFamily: "var(--font-body)", fontWeight: 800, fontSize: "clamp(2.1rem,5.5vw,3.8rem)", lineHeight: 1.08, color: "var(--color-text-body)", marginBottom: 20, letterSpacing: "-.015em" }}>
+              Ideas That Shape the<br />
+              <span className="pod-accent">Future of Learning.</span>
+            </h1>
+            <p style={{ fontSize: "clamp(.97rem,2vw,1.12rem)", color: "var(--color-text-muted, #7A9E8A)", lineHeight: 1.8, maxWidth: 580, margin: "0 auto 36px" }}>
+              The Lyfshilp Unlecture Podcast Series — conversations with educators, founders, IIT &amp; Stanford alumni, and school leaders on AI, entrepreneurship, and the future of learning in India.
             </p>
-
-            {/* 🎬 Main Video */}
-            {mainVideo && (
-              <div className="w-full mb-6">
-                <iframe
-                  className="w-full h-[220px] sm:h-[400px] md:h-[500px] rounded-lg shadow-lg border-4 border-yellow-400"
-                  src={`${getEmbedUrl(mainVideo.videoUrl)}?autoplay=0`}
-                  title={mainVideo.title}
-                  frameBorder="0"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowFullScreen
-                ></iframe>
-              </div>
-            )}
-
-            {/* 🎥 Related Videos */}
-            {podcasts.length > 1 && (
-              <>
-                <h3 className="text-lg sm:text-xl font-semibold mb-3">
-                  Related Videos
-                </h3>
-                <div className="relative">
-                  <div
-                    id="relatedScroll"
-                    className="flex gap-4 overflow-x-auto pb-4 scroll-smooth no-scrollbar"
-                    onScroll={(e) => {
-                      const el = e.target;
-                      const leftBtn = document.getElementById("scrollLeftBtn");
-                      const rightBtn = document.getElementById("scrollRightBtn");
-
-                      if (el.scrollLeft <= 10)
-                        leftBtn.classList.add("opacity-0", "pointer-events-none");
-                      else
-                        leftBtn.classList.remove("opacity-0", "pointer-events-none");
-
-                      if (el.scrollWidth - el.clientWidth - el.scrollLeft <= 10)
-                        rightBtn.classList.add("opacity-0", "pointer-events-none");
-                      else
-                        rightBtn.classList.remove("opacity-0", "pointer-events-none");
-                    }}
-                  >
-                    {podcasts.slice(1,-2).map((podcast) => (
-                      <iframe
-                        key={podcast.id}
-                        className="w-56 sm:w-64 h-36 sm:h-40 rounded-lg shadow-md flex-shrink-0"
-                        src={getEmbedUrl(podcast.videoUrl)}
-                        title={podcast.title}
-                        frameBorder="0"
-                        allowFullScreen
-                      ></iframe>
-                    ))}
-                  </div>
-
-                  {/* ⬅️ Left */}
-                  <button
-                    id="scrollLeftBtn"
-                    onClick={() =>
-                      document.getElementById("relatedScroll").scrollBy({
-                        left: -300,
-                        behavior: "smooth",
-                      })
-                    }
-                    className="absolute left-2 top-1/2 -translate-y-1/2 bg-gray-800/60 hover:bg-gray-800 text-white p-3 rounded-full shadow-md z-10 transition-all duration-300 hidden sm:flex opacity-0 pointer-events-none"
-                  >
-                    <span className="text-lg">❮</span>
-                  </button>
-
-                  {/* ➡️ Right */}
-                  <button
-                    id="scrollRightBtn"
-                    onClick={() =>
-                      document.getElementById("relatedScroll").scrollBy({
-                        left: 300,
-                        behavior: "smooth",
-                      })
-                    }
-                    className="absolute right-2 top-1/2 -translate-y-1/2 bg-gray-800/60 hover:bg-gray-800 text-white p-3 rounded-full shadow-md z-10 transition-all duration-300 hidden sm:flex"
-                  >
-                    <span className="text-lg">❯</span>
-                  </button>
-                </div>
-              </>
-            )}
-          </div>
+            <div style={{ display: "flex", gap: 14, justifyContent: "center", flexWrap: "wrap" }}>
+              <a href={PLAYLIST_URL} target="_blank" rel="noopener noreferrer" className="pod-yt-btn">
+                <YTIcon />
+                Watch Full Playlist
+              </a>
+              <a href={`https://www.youtube.com/channel/UCPjZ8bYh1-B5eAbnEI_GEPCpWEorMafGBuT0?sub_confirmation=1`} target="_blank" rel="noopener noreferrer" className="pod-sub-btn">
+                Subscribe to Channel
+              </a>
+            </div>
+          </Reveal>
         </div>
       </section>
 
-      {/* 🌿 Explore Youtube Section */}
-      <ExploreYoutubeSection />
+      <div className="pod-divider" />
+
+      {/* ── FEATURED PLAYER ── */}
+      <section style={{ padding: "64px 24px" }}>
+        <div className="max-w-5xl mx-auto">
+          <Reveal style={{ marginBottom: 28 }}>
+            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end", flexWrap: "wrap", gap: 12 }}>
+              <div>
+                <div style={{ fontSize: ".7rem", fontWeight: 700, letterSpacing: "2.5px", textTransform: "uppercase", color: "#00c896", marginBottom: 8 }}>Now Playing</div>
+                <h2 style={{ fontFamily: "var(--font-body)", fontWeight: 800, fontSize: "clamp(1.5rem,3vw,2.1rem)", color: "var(--color-text-body)", lineHeight: 1.15 }}>
+                  {featured.ep} — <span className="pod-accent">Unlecture Podcast</span>
+                </h2>
+              </div>
+              <a href={`https://youtu.be/${featured.id}`} target="_blank" rel="noopener noreferrer" style={{ display: "inline-flex", alignItems: "center", gap: 7, color: "#FF0000", fontSize: ".84rem", fontWeight: 700, textDecoration: "none" }}>
+                <YTIcon size={14} /> Open in YouTube
+              </a>
+            </div>
+          </Reveal>
+
+          {/* 16:9 main player */}
+          <Reveal delay={0.06}>
+            <div style={{ position: "relative", paddingBottom: "56.25%", height: 0, borderRadius: 16, overflow: "hidden", border: "1px solid rgba(0,200,150,.22)", boxShadow: "0 24px 60px rgba(0,0,0,.45)" }}>
+              <iframe
+                key={featured.id}
+                style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%", border: "none" }}
+                src={`https://www.youtube.com/embed/${featured.id}?rel=0&modestbranding=1`}
+                title={`Lyfshilp Podcast ${featured.ep}`}
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowFullScreen
+              />
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
+      <div className="pod-divider" />
+
+      {/* ── EPISODE GRID ── */}
+      <section style={{ padding: "56px 24px" }}>
+        <div className="max-w-5xl mx-auto">
+          <Reveal style={{ marginBottom: 28 }}>
+            <div style={{ fontSize: ".7rem", fontWeight: 700, letterSpacing: "2.5px", textTransform: "uppercase", color: "#00c896", marginBottom: 8 }}>All Episodes</div>
+            <h2 style={{ fontFamily: "var(--font-body)", fontWeight: 800, fontSize: "clamp(1.5rem,3vw,2.1rem)", color: "var(--color-text-body)" }}>
+              Browse <span className="pod-accent">Episodes</span>
+            </h2>
+            <p style={{ color: "var(--color-text-muted, #7A9E8A)", fontSize: ".85rem", marginTop: 8 }}>Click any episode to play it above.</p>
+          </Reveal>
+
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
+            {EPISODES.map(({ id, ep }, i) => (
+              <Reveal key={id} delay={i * 0.07}>
+                <div
+                  className={`pod-thumb ${featured.id === id ? "active" : ""}`}
+                  onClick={() => { setFeatured({ id, ep }); window.scrollTo({ top: document.getElementById("player-section")?.offsetTop - 100 || 0, behavior: "smooth" }); }}
+                  role="button"
+                  tabIndex={0}
+                  onKeyDown={(e) => e.key === "Enter" && setFeatured({ id, ep })}
+                  aria-label={`Play ${ep}`}
+                >
+                  <img
+                    src={`https://img.youtube.com/vi/${id}/hqdefault.jpg`}
+                    alt={`${ep} thumbnail`}
+                    loading="lazy"
+                  />
+                  <div className="pod-play-overlay">
+                    <div className="pod-play-circle">
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="#fff"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+                    </div>
+                  </div>
+                  <span className="pod-ep-badge">{ep}</span>
+                </div>
+                {/* "Open in YT" below each thumb */}
+                <a
+                  href={`https://youtu.be/${id}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{ display: "flex", alignItems: "center", gap: 5, marginTop: 8, color: "var(--color-text-muted, #7A9E8A)", fontSize: ".7rem", fontWeight: 600, textDecoration: "none" }}
+                >
+                  <YTIcon size={11} />
+                  YouTube
+                </a>
+              </Reveal>
+            ))}
+          </div>
+
+          <Reveal delay={0.2} style={{ marginTop: 36, textAlign: "center" }}>
+            <a href={PLAYLIST_URL} target="_blank" rel="noopener noreferrer" className="pod-yt-btn" style={{ fontSize: ".85rem", padding: "11px 24px" }}>
+              <YTIcon size={15} />
+              View All Episodes on YouTube
+            </a>
+          </Reveal>
+        </div>
+      </section>
+
+      <div className="pod-divider" />
+
+      {/* ── EXPLORE YOUTUBE ── */}
+      <div className="mb-16 sm:mb-20">
+        <ExploreYoutubeSection />
+      </div>
     </div>
   );
 }

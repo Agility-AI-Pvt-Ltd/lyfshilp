@@ -1,89 +1,335 @@
-import { Link } from "react-router-dom";
-import heroImg from "/hero-students.svg";
-import copoweredLogo from "../assets/copowered.png";
+import { useEffect, useRef, useState } from "react";
+
+/* ── Scroll-reveal hooks (used by Counter) ── */
+const useInView = (threshold = 0.15) => {
+  const ref = useRef(null);
+  const [inView, setInView] = useState(false);
+
+  useEffect(() => {
+    const obs = new IntersectionObserver(
+      ([e]) => {
+        if (e.isIntersecting) setInView(true);
+      },
+      { threshold }
+    );
+
+    if (ref.current) obs.observe(ref.current);
+    return () => obs.disconnect();
+  }, [threshold]);
+
+  return [ref, inView];
+};
+
+const Counter = ({ end, suffix = "" }) => {
+  const [val, setVal] = useState(0);
+  const [ref, inView] = useInView();
+
+  useEffect(() => {
+    if (!inView) return;
+
+    let s = 0;
+    const step = end / 50;
+    const t = setInterval(() => {
+      s += step;
+      if (s >= end) {
+        setVal(end);
+        clearInterval(t);
+      } else {
+        setVal(Math.floor(s));
+      }
+    }, 28);
+
+    return () => clearInterval(t);
+  }, [inView, end]);
+
+  return (
+    <span ref={ref}>
+      {val}
+      {suffix}
+    </span>
+  );
+};
 
 export default function Hero() {
   return (
-    <section className="bg-white pt-16 sm:pt-0 md:pt-20 pb-4 sm:pb-0 md:pb-10 font-sans relative overflow-hidden flex items-center">
-      <div className="container mx-auto px-4 sm:px-6 md:px-8 lg:px-10 grid grid-cols-1 md:grid-cols-2 items-center gap-4 sm:gap-6 md:gap-10 max-w-7xl">
+    <section
+      style={{
+        minHeight: "100vh",
+        display: "flex",
+        alignItems: "center",
+        position: "relative",
+        overflow: "hidden",
+        background:
+          "linear-gradient(135deg,#061510 0%,#0d3d2f 45%,#1a5c46 100%)",
+      }}
+    >
+      <style>{`
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,400&family=DM+Sans:wght@300;400;500;600;700&display=swap');
 
-        {/* Left Content */}
-        <div className="max-w-xl mx-auto md:mx-0 text-center md:text-left order-2 md:order-1">
-          
-          {/* Co-powered */}
-          <div className="flex justify-center md:justify-start items-center mb-2 sm:mb-3 md:mb-4 space-x-2">
-            <span className="text-xs sm:text-sm font-medium text-gray-600 bg-gray-100 px-2.5 py-1 rounded-full border">
-              Co-Powered by:
-            </span>
+        @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-14px)}}
+        @keyframes float2{0%,100%{transform:translateY(0)}50%{transform:translateY(-9px)}}
+        @keyframes heroFade{from{opacity:0;transform:translateY(32px)}to{opacity:1;transform:translateY(0)}}
+        @keyframes scrollBounce{0%,100%{transform:translateY(0)}50%{transform:translateY(8px)}}
+        @keyframes shimmer{0%{background-position:-200% 0}100%{background-position:200% 0}}
+        @keyframes gridMove{0%{background-position:0 0}100%{background-position:60px 60px}}
+        @keyframes pulseRing{0%{transform:scale(1);opacity:.7}100%{transform:scale(1.8);opacity:0}}
+
+        .ha1{animation:heroFade .9s ease .1s both;}
+        .ha2{animation:heroFade .9s ease .3s both;}
+        .ha3{animation:heroFade .9s ease .5s both;}
+        .ha4{animation:heroFade .9s ease .7s both;}
+        .ha5{animation:heroFade .9s ease .9s both;}
+
+        .floating{animation:float 5.5s ease-in-out infinite;}
+        .floating2{animation:float2 7s ease-in-out 1.5s infinite;}
+        .scroll-bounce{animation:scrollBounce 1.8s ease-in-out infinite;}
+        .grid-bg{background-image:linear-gradient(rgba(0,200,150,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(0,200,150,.035) 1px,transparent 1px);background-size:60px 60px;animation:gridMove 9s linear infinite;}
+
+        .pulse-dot{animation:pulseRing 1.6s infinite;}
+
+        .shimmer-btn{
+          background:linear-gradient(90deg,#00c896 0%,#00e8ad 40%,#d4af37 60%,#00c896 100%);
+          background-size:200% 100%;
+          animation:shimmer 2.8s linear infinite;
+          color:#0a2a1f;
+          font-weight:700;
+          border-radius:50px;
+          cursor:pointer;
+          transition:transform .25s,box-shadow .25s;
+        }
+        .shimmer-btn:hover{transform:translateY(-2px);box-shadow:0 10px 32px rgba(0,200,150,.35);}
+      `}</style>
+
+      <div className="grid-bg absolute inset-0 pointer-events-none" />
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          background:
+            "radial-gradient(circle at 15% 55%,rgba(0,200,150,.12) 0%,transparent 45%),radial-gradient(circle at 80% 20%,rgba(212,175,55,.07) 0%,transparent 38%),radial-gradient(circle at 65% 80%,rgba(0,200,150,.06) 0%,transparent 40%)",
+        }}
+      />
+
+      {/* Floating rings */}
+      <div
+        className="floating absolute pointer-events-none"
+        style={{
+          right: 60,
+          top: 100,
+          width: 280,
+          height: 280,
+          borderRadius: "50%",
+          border: "1px solid rgba(0,200,150,.08)",
+        }}
+      />
+      <div
+        className="floating2 absolute pointer-events-none"
+        style={{
+          right: 120,
+          top: 170,
+          width: 160,
+          height: 160,
+          borderRadius: "50%",
+          border: "1px solid rgba(0,200,150,.06)",
+        }}
+      />
+      <div
+        className="floating absolute pointer-events-none"
+        style={{
+          left: 30,
+          bottom: 100,
+          width: 200,
+          height: 200,
+          borderRadius: "50%",
+          border: "1px solid rgba(212,175,55,.06)",
+        }}
+      />
+
+      <div
+        className="max-w-7xl mx-auto px-6 w-full"
+        style={{
+          paddingTop: 120,
+          paddingBottom: 80,
+          position: "relative",
+          zIndex: 2,
+        }}
+      >
+        <div style={{ maxWidth: 620 }}>
+          {/* Badge */}
+          <div
+            className="ha1 inline-flex items-center gap-2 mb-8"
+            style={{
+              background: "rgba(0,200,150,.11)",
+              border: "1px solid rgba(0,200,150,.28)",
+              color: "#00c896",
+              padding: "6px 18px",
+              borderRadius: 50,
+              fontFamily: "'DM Sans',sans-serif",
+              fontSize: ".75rem",
+              fontWeight: 700,
+              letterSpacing: "2px",
+              textTransform: "uppercase",
+            }}
+          >
+            <span
+              className="pulse-dot"
+              style={{
+                display: "inline-block",
+                width: 8,
+                height: 8,
+                borderRadius: "50%",
+                background: "#00c896",
+              }}
+            />
+            Global Standards · International Impact
+          </div>
+
+          <h1
+            className="ha2"
+            style={{
+              fontSize: "clamp(2.8rem,6vw,5.4rem)",
+              fontFamily: "'Playfair Display',serif",
+              color: "#fff",
+              fontWeight: 900,
+              lineHeight: 1.04,
+              marginBottom: 16,
+            }}
+          >
+            International
+            <br />
+            <span style={{ color: "#00c896" }}>FutureX</span>{" "}
+            <em style={{ color: "rgba(255,255,255,.8)", fontStyle: "italic" }}>
+              Fellowship
+            </em>
+          </h1>
+
+          <p
+            className="ha3"
+            style={{
+              fontFamily: "'Playfair Display',serif",
+              fontStyle: "italic",
+              color: "rgba(255,255,255,.58)",
+              fontSize: "clamp(1rem,2vw,1.25rem)",
+              marginBottom: 20,
+            }}
+          >
+            Developing thinkers, builders & leaders for an AI-driven world.
+          </p>
+
+          <p
+            className="ha4"
+            style={{
+              fontFamily: "'DM Sans',sans-serif",
+              color: "rgba(255,255,255,.5)",
+              fontSize: "1rem",
+              lineHeight: 1.8,
+              marginBottom: 40,
+              maxWidth: 500,
+            }}
+          >
+            A 6-month transformative fellowship integrating MIT Sloan School
+            of Management principles with experiential, NEP 2020-aligned
+            entrepreneurship education.
+          </p>
+
+          <div className="ha4 flex flex-wrap gap-4 mb-14">
             <a
-              href="https://agilityai.co.in/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="bg-black rounded-full p-1 hover:scale-110 transition-transform"
+              href="#contact"
+              className="shimmer-btn px-8 py-4 text-sm"
+              style={{
+                textDecoration: "none",
+                fontFamily: "'DM Sans',sans-serif",
+                letterSpacing: ".4px",
+              }}
             >
-              <img
-                src={copoweredLogo}
-                alt="Co Powered"
-                className="h-5 w-5 sm:h-6 sm:w-6 md:h-7 md:w-7"
-              />
+              Apply for Fellowship →
+            </a>
+            <a
+              href="#about"
+              style={{
+                display: "inline-block",
+                border: "2px solid rgba(255,255,255,.25)",
+                color: "#fff",
+                padding: "14px 32px",
+                borderRadius: 50,
+                fontFamily: "'DM Sans',sans-serif",
+                fontSize: ".9rem",
+                fontWeight: 500,
+                textDecoration: "none",
+                transition: "border-color .3s,color .3s",
+              }}
+              onMouseEnter={(e) => {
+                e.target.style.borderColor = "#00c896";
+                e.target.style.color = "#00c896";
+              }}
+              onMouseLeave={(e) => {
+                e.target.style.borderColor = "rgba(255,255,255,.25)";
+                e.target.style.color = "#fff";
+              }}
+            >
+              Learn More
             </a>
           </div>
 
-          {/* Heading */}
-          <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold leading-tight text-gray-900 mb-2 sm:mb-3 md:mb-4">
-            Mentorship that Builds{" "}
-            <span className="bg-green-500 text-white px-2 py-0.5 rounded inline-block transform -rotate-1 text-xl sm:text-2xl md:text-3xl lg:text-5xl">
-              Minds
-            </span>{" "}
-            <span className="text-gray-900 inline-block align-middle">
-              Skills that
-            </span>
-            <br />
-            <span
-              className="text-green-600 font-bold italic inline-block mt-1"
-              style={{ fontFamily: "cursive" }}
-            >
-              Future Ready
-            </span>
-          </h1>
-
-          {/* Subheading */}
-          <p className="text-gray-600 text-xs sm:text-sm md:text-base leading-relaxed mb-4 sm:mb-5 md:mb-6 text-center md:text-left max-w-lg mx-auto md:mx-0">
-            Edumaniax is where learning meets play. We guide students from
-            gamified skill-building and learning to cracking exams such as{" "}
-            <strong>CUET, IPMAT & CLAT</strong>, discovering careers and
-            organizing hands-on workshops for school and college students that
-            prepare them for the future.
-          </p>
-
-          {/* CTA */}
-          <div className="flex justify-center md:justify-start mt-3 sm:mt-4 md:mt-6">
-            <Link
-              to="/exam-prep"
-              className="inline-flex items-center bg-green-600 text-white px-6 sm:px-7 md:px-8 py-2.5 sm:py-3 md:py-3.5 rounded-full font-semibold shadow-lg hover:bg-green-700 hover:shadow-xl transform hover:scale-105 transition duration-300 group text-sm sm:text-base"
-            >
-              Start Learning
-              <span className="ml-2 text-base sm:text-lg group-hover:translate-x-1 transition-transform duration-300">
-                →
-              </span>
-            </Link>
+          {/* Stats */}
+          <div className="ha5 flex flex-wrap gap-10">
+            {[
+              { end: 6, suf: " Mo", label: "Program Duration" },
+              { end: 4, suf: "", label: "Certifications" },
+              { end: 8, suf: " Students", label: "Per Mentor" },
+              { end: 100, suf: "K+", label: "Prize Pool ₹" },
+            ].map(({ end, suf, label }) => (
+              <div key={label}>
+                <div
+                  style={{
+                    fontFamily: "'Playfair Display',serif",
+                    fontSize: "2rem",
+                    fontWeight: 900,
+                    color: "#00c896",
+                    lineHeight: 1,
+                  }}
+                >
+                  <Counter end={end} suffix={suf} />
+                </div>
+                <div
+                  style={{
+                    fontFamily: "'DM Sans',sans-serif",
+                    fontSize: ".72rem",
+                    color: "rgba(255,255,255,.4)",
+                    textTransform: "uppercase",
+                    letterSpacing: "1.5px",
+                    marginTop: 5,
+                  }}
+                >
+                  {label}
+                </div>
+              </div>
+            ))}
           </div>
         </div>
+      </div>
 
-        {/* Right Image */}
-        <div className="flex justify-center md:justify-end items-center relative order-1 md:order-2">
-          <div className="relative w-full sm:w-[90%] md:w-[100%] max-w-[580px] mx-auto aspect-auto md:aspect-[4/3]">
-            <img
-              src={heroImg}
-              alt="Boy and girl students with backpacks and books giving thumbs up"
-              loading="eager"
-              decoding="sync"
-              className="w-full h-auto md:h-full object-contain md:object-cover drop-shadow-xl transition-transform duration-500 hover:scale-105"
-            />
-            <div className="absolute -z-10 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[160%] h-[160%] bg-gradient-to-br from-green-100/40 via-transparent to-blue-100/30 rounded-full blur-3xl"></div>
-          </div>
-        </div>
-
+      <div
+        className="scroll-bounce absolute flex flex-col items-center gap-2"
+        style={{ bottom: 28, left: "50%", transform: "translateX(-50%)" }}
+      >
+        <span
+          style={{
+            fontFamily: "'DM Sans',sans-serif",
+            fontSize: ".68rem",
+            color: "rgba(255,255,255,.3)",
+            letterSpacing: "2px",
+          }}
+        >
+          SCROLL
+        </span>
+        <div
+          style={{
+            width: 1,
+            height: 32,
+            background: "linear-gradient(to bottom,rgba(0,200,150,.6),transparent)",
+            borderRadius: 1,
+          }}
+        />
       </div>
     </section>
   );

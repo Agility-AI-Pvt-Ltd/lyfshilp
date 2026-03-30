@@ -1,97 +1,120 @@
-import React from "react";
+import { useEffect, useRef, useState } from "react";
+
+const useInView = (threshold = 0.12) => {
+  const ref = useRef(null);
+  const [inView, setInView] = useState(false);
+  useEffect(() => {
+    const obs = new IntersectionObserver(
+      ([e]) => { if (e.isIntersecting) setInView(true); },
+      { threshold }
+    );
+    if (ref.current) obs.observe(ref.current);
+    return () => obs.disconnect();
+  }, [threshold]);
+  return [ref, inView];
+};
+
+const structureItems = [
+  { label: "Duration", value: "6 Months" },
+  { label: "Target Group", value: "Classes 6–12" },
+  { label: "Methodology", value: "Build a working startup alongside learning business concepts (NEP Section 4.4)" },
+  { label: "Framework", value: "Integrates MIT Sloan School of Management principles with FutureX's experiential learning" },
+];
 
 export default function OlympiadSection1s() {
+  const [leftRef, leftInView] = useInView(0.1);
+  const [rightRef, rightInView] = useInView(0.1);
+
   return (
-    <section className="relative py-16 px-6 sm:px-10 md:px-16 lg:px-24 bg-[#FFF8EE] overflow-hidden">
+    <section style={{
+      background: "#061510",
+      padding: "88px 24px", position: "relative", overflow: "hidden",
+    }}>
+      <div style={{
+        position: "absolute", inset: 0, pointerEvents: "none",
+        background: "radial-gradient(circle at 80% 30%,rgba(0,200,150,.12),transparent 45%)",
+      }} />
 
-      <div className="max-w-7xl mx-auto w-full">
+      <div className="max-w-7xl mx-auto" style={{ position: "relative", zIndex: 2 }}>
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
 
-        {/* GRID (IMAGE LEFT) */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-stretch">
-
-          {/* ===================== IMAGE BLOCK (LEFT) ===================== */}
-          <div className="relative flex items-center justify-center min-h-full h-full">
-
-            {/* Glow 1 */}
-            <div className="absolute top-1/4 left-0 w-72 h-72 bg-green-200 rounded-full opacity-30 blur-3xl"></div>
-
-            {/* Glow 2 */}
-            <div className="absolute bottom-1/4 left-10 w-60 h-60 bg-blue-200 rounded-full opacity-20 blur-2xl"></div>
-
-            {/* Main Illustration */}
+          {/* Left image */}
+          <div
+            ref={leftRef}
+            className="flex justify-center"
+            style={{
+              opacity: leftInView ? 1 : 0,
+              transform: leftInView ? "translateX(0)" : "translateX(-40px)",
+              transition: "opacity .8s ease, transform .8s ease",
+              position: "relative",
+            }}
+          >
+            <div style={{
+              position: "absolute", inset: "5%",
+              background: "radial-gradient(circle,rgba(0,200,150,.15),transparent 65%)",
+              filter: "blur(20px)", borderRadius: "50%",
+            }} />
             <img
-              src="/images/2.svg"
-              alt="student"
-              className="relative z-10 w-full max-w-[34rem] object-contain drop-shadow-xl"
+              src="/images/2.svg" alt="World-class learning"
+              style={{ position: "relative", zIndex: 1, width: "85%", maxWidth: 420, filter: "drop-shadow(0 20px 48px rgba(0,0,0,.4))" }}
             />
           </div>
 
-          {/* ===================== TEXT BLOCK (RIGHT) ===================== */}
-          <div className="leading-tight space-y-8 flex flex-col justify-center">
+          {/* Right text */}
+          <div
+            ref={rightRef}
+            style={{
+              opacity: rightInView ? 1 : 0,
+              transform: rightInView ? "translateX(0)" : "translateX(40px)",
+              transition: "opacity .8s ease .15s, transform .8s ease .15s",
+            }}
+          >
+            <div style={{
+              fontFamily: "'DM Sans',sans-serif", fontSize: ".72rem", fontWeight: 700,
+              letterSpacing: "2.5px", textTransform: "uppercase", color: "#00c896", marginBottom: 14,
+            }}>Ivy League Standards · Delivered Locally</div>
+            <h2 style={{
+              fontFamily: "'Playfair Display',serif",
+              fontSize: "clamp(2rem,4vw,3rem)", fontWeight: 900,
+              color: "#fff", lineHeight: 1.15, marginBottom: 16,
+            }}>
+              World-Class Learning, <br />
+              <span style={{ color: "#00c896" }}>Delivered Locally</span>
+            </h2>
+            <p style={{
+              fontFamily: "'DM Sans',sans-serif", color: "rgba(255,255,255,.55)",
+              fontSize: ".95rem", lineHeight: 1.85, marginBottom: 28,
+            }}>
+              Students don't just learn about business — they build one. Each participant learns business,
+              tech and communication by building a live venture, managing finance, operations, marketing, and sales.
+            </p>
 
-            {/* Heading */}
-            <div>
-              <h3 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-gray-900 uppercase leading-snug">
-                WORLD-CLASS LEARNING, <br />
-                <span className="text-green-600 italic">DELIVERED LOCALLY</span>
-              </h3>
-
-              <p className="mt-3 font-semibold text-gray-900 text-sm sm:text-base bg-yellow-100 px-4 py-1 inline-block rounded">
-                Curriculum Benchmarked with Ivy League Standards
-              </p>
-
-              <p className="mt-4 text-gray-700 text-sm sm:text-base leading-relaxed max-w-lg">
-Students don’tjustlearn about business -they build one.
-Each participantlearn business,tech and communication
-by building a live venture, managing finance, operations,
-marketing, sales and stakeholder communication.
-              </p>
+            <div style={{
+              background: "rgba(255,255,255,.05)", border: "1px solid rgba(0,200,150,.18)",
+              borderRadius: 16, padding: "22px 20px",
+            }}>
+              <div style={{
+                fontFamily: "'DM Sans',sans-serif", fontWeight: 700, color: "#00c896",
+                fontSize: ".8rem", textTransform: "uppercase", letterSpacing: "1.5px", marginBottom: 18,
+              }}>Program Structure</div>
+              <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
+                {structureItems.map(({ label, value }) => (
+                  <div key={label} style={{ display: "flex", gap: 14, alignItems: "flex-start" }}>
+                    <span style={{
+                      width: 6, height: 6, borderRadius: "50%", background: "#00c896",
+                      flexShrink: 0, marginTop: 7,
+                    }} />
+                    <span style={{ fontFamily: "'DM Sans',sans-serif", fontSize: ".88rem", color: "rgba(255,255,255,.75)", lineHeight: 1.55 }}>
+                      <strong style={{ color: "#fff" }}>{label}:</strong> {value}
+                    </span>
+                  </div>
+                ))}
+              </div>
             </div>
-
-            {/* Program Structure Card */}
-            <div className="bg-white rounded-xl p-6 shadow-md border-l-4 border-purple-500 hover:shadow-lg transition-all">
-              <p className="font-bold text-gray-900 text-base sm:text-lg mb-3">
-                Program Structure:
-              </p>
-
-              <ul className="space-y-2 text-gray-700 text-sm sm:text-base leading-snug">
-
-                <li className="flex gap-3">
-                  <span className="w-2 h-2 bg-purple-500 rounded-full mt-2"></span>
-                  <span><strong>Duration:</strong> 6 Months</span>
-                </li>
-
-                <li className="flex gap-3">
-                  <span className="w-2 h-2 bg-purple-500 rounded-full mt-2"></span>
-                  <span><strong>Target Group:</strong> Classes 6–12</span>
-                </li>
-
-                <li className="flex gap-3">
-                  <span className="w-2 h-2 bg-purple-500 rounded-full mt-2"></span>
-                  <span>
-                    <strong>Methodology:</strong>  Student builds a working startup
-alongside learning business concepts (NEP Section 4.4)
-                  </span>
-                </li>
-
-                <li className="flex gap-3">
-                  <span className="w-2 h-2 bg-purple-500 rounded-full mt-2"></span>
-                  <span>
-                    Integrates MIT Sloan School of Management principles with 
-                    FutureX's experiential learning.
-                  </span>
-                </li>
-              </ul>
-            </div>
-
           </div>
+
         </div>
       </div>
-
-      {/* FLOATING DECORATIONS */}
-      <div className="absolute top-20 right-20 w-32 h-32 bg-yellow-300 opacity-20 rounded-full blur-3xl"></div>
-      <div className="absolute bottom-20 left-10 w-40 h-40 bg-orange-300 opacity-15 rounded-full blur-2xl"></div>
-
     </section>
   );
 }

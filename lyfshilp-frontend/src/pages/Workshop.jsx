@@ -15,7 +15,6 @@ import inculcationIcon from "../assets/workshopimg/Micon1.svg";
 import logicIcon from "../assets/workshopimg/Micon5.svg";
 import gamingIcon from "../assets/workshopimg/Micon6.svg";
 
-
 import empowerMan1 from "../assets/workshopimg/empowerman1.svg";
 import empowerMan2 from "../assets/workshopimg/empowerman2.svg";
 import empowerMan3 from "../assets/workshopimg/empowerman3.svg";
@@ -31,7 +30,7 @@ import img6 from "/images/workshopmain6.svg";
 import img7 from "/images/workshopmain5.svg";
 import SchoolLogo from "../components/SchoolLogo.jsx";
 
-//career Fair 
+//career Fair
 import CareerFairSection from "../components/CareerFairSection.jsx";
 
 export default function Workshop() {
@@ -54,7 +53,7 @@ export default function Workshop() {
       ([entry]) => {
         if (entry.isIntersecting) setIsVisible(true);
       },
-      { threshold: 0.2 }
+      { threshold: 0.2 },
     );
     if (sectionRef.current) observer.observe(sectionRef.current);
     return () => {
@@ -68,7 +67,7 @@ export default function Workshop() {
       ([entry]) => {
         setShowFloatingButtons(!entry.isIntersecting);
       },
-      { threshold: 0.3 }
+      { threshold: 0.3 },
     );
     if (formRef.current) observer.observe(formRef.current);
     return () => {
@@ -99,12 +98,16 @@ export default function Workshop() {
     const orgRegex = /^[A-Za-z0-9\s&.,'-]{2,100}$/;
     const msgRegex = /^.{0,500}$/;
 
-    if (!nameRegex.test(formData.name.trim())) return "Please enter a valid full name.";
-    if (!phoneRegex.test(formData.phone.trim())) return "Please enter a valid 10-digit phone number.";
-    if (!emailRegex.test(formData.email.trim())) return "Please enter a valid email address.";
+    if (!nameRegex.test(formData.name.trim()))
+      return "Please enter a valid full name.";
+    if (!phoneRegex.test(formData.phone.trim()))
+      return "Please enter a valid 10-digit phone number.";
+    if (!emailRegex.test(formData.email.trim()))
+      return "Please enter a valid email address.";
     if (formData.organization && !orgRegex.test(formData.organization.trim()))
       return "Organization name contains invalid characters.";
-    if (!msgRegex.test(formData.message.trim())) return "Message must be under 500 characters.";
+    if (!msgRegex.test(formData.message.trim()))
+      return "Message must be under 500 characters.";
     return null;
   };
 
@@ -140,20 +143,32 @@ export default function Workshop() {
       });
 
       if (response.data.success) {
-        setStatus({ success: true, message: "Workshop request submitted successfully!" });
-        setFormData({ name: "", phone: "", email: "", organization: "", message: "" });
+        setStatus({
+          success: true,
+          message: "Workshop request submitted successfully!",
+        });
+        setFormData({
+          name: "",
+          phone: "",
+          email: "",
+          organization: "",
+          message: "",
+        });
         setTimeout(() => setStatus({ success: null, message: "" }), 2000);
       } else {
         setStatus({
           success: false,
-          message: response.data.message || "Submission failed. Please try again.",
+          message:
+            response.data.message || "Submission failed. Please try again.",
         });
       }
     } catch (error) {
       console.error("Error submitting form:", error);
       setStatus({
         success: false,
-        message: error.response?.data?.message || "Failed to submit form. Please try again.",
+        message:
+          error.response?.data?.message ||
+          "Failed to submit form. Please try again.",
       });
     } finally {
       setLoading(false);
@@ -162,8 +177,12 @@ export default function Workshop() {
 
   return (
     <div className="font-sans mt-14 sm:mt-18">
+      <style>{`
+        .workshop-theme-bg { background: var(--color-text-body); }
+        .workshop-theme-card { background: var(--color-text-body); }
+      `}</style>
       {/* 🌟 Hero Section */}
-      <section className="bg-[#FFF8EE] text-center px-4 py-10 sm:py-8">
+      <section className="workshop-theme-bg text-center px-4 py-10 sm:py-8">
         <h1 className="text-2xl sm:text-6xl font-bold text-gray-900">
           Workshops that Inspire
         </h1>
@@ -172,7 +191,7 @@ export default function Workshop() {
         </p>
 
         {/* 🖼️ Main Image Section */}
-        <div className="bg-[#FFF8EE] mt-10 flex justify-center items-center relative px-2">
+        <div className="workshop-theme-bg mt-10 flex justify-center items-center relative px-2">
           {!expanded && (
             <div className="absolute left-[8%] sm:left-[12%] md:left-[18%] top-1/2 -translate-y-1/2 flex flex-col items-center z-10">
               <p className="text-gray-700 text-sm sm:text-base font-semibold mb-2">
@@ -225,28 +244,37 @@ export default function Workshop() {
                 src={img}
                 alt={`Workshop ${i + 1}`}
                 onClick={() => handleImageClick(img)}
-                className={`w-20 sm:w-24 md:w-28 h-20 sm:h-24 md:h-28 object-cover rounded-xl cursor-pointer border-4 transition-all duration-300 hover:scale-110 ${mainImage === img
+                className={`w-20 sm:w-24 md:w-28 h-20 sm:h-24 md:h-28 object-cover rounded-xl cursor-pointer border-4 transition-all duration-300 hover:scale-110 ${
+                  mainImage === img
                     ? "border-green-600 scale-110 shadow-lg"
                     : "border-gray-200"
-                  }`}
+                }`}
               />
             ))}
           </div>
         )}
       </section>
 
-      <div> <CareerFairSection /> </div>
-      <div> <SchoolLogo /> </div>
+      <div>
+        {" "}
+        <CareerFairSection />{" "}
+      </div>
+      <div>
+        {" "}
+        <SchoolLogo />{" "}
+      </div>
 
       {/* 🌱 Empower Section */}
-      <section className="bg-[#FFF8EE] py-10 px-4 sm:px-8 flex flex-col md:flex-row items-center justify-center gap-8 sm:gap-12 relative overflow-hidden">
+      <section className="workshop-theme-bg py-10 px-4 sm:px-8 flex flex-col md:flex-row items-center justify-center gap-8 sm:gap-12 relative overflow-hidden">
         {/* Left Side Text */}
         <div className="max-w-lg">
           <h2 className="text-xl sm:text-3xl font-bold text-gray-900">
-            Workshops That <span className="text-green-600">Empower</span> Every Learner
+            Workshops That <span className="text-green-600">Empower</span> Every
+            Learner
           </h2>
           <p className="mt-2 text-gray-600 text-sm sm:text-base">
-            Teacher, Student or Corporate we design growth-driven learning experiences for all.
+            Teacher, Student or Corporate we design growth-driven learning
+            experiences for all.
           </p>
 
           <div className="mt-5 space-y-3">
@@ -257,10 +285,12 @@ export default function Workshop() {
             ].map(({ icon, text }, i) => (
               <div
                 key={i}
-                className="flex items-center gap-3 bg-white p-3 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300"
+                className="flex items-center gap-3 workshop-theme-card p-3 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300"
               >
                 <img src={icon} alt={text} className="h-7 w-7 sm:h-8 sm:w-8" />
-                <span className="font-medium text-gray-800 text-sm sm:text-base">{text}</span>
+                <span className="font-medium text-gray-800 text-sm sm:text-base">
+                  {text}
+                </span>
               </div>
             ))}
           </div>
@@ -287,9 +317,10 @@ export default function Workshop() {
       </section>
 
       {/* 💡 Trending Topics — Infinite Right-to-Left Scroll */}
-      <section className="py-10 px-4 sm:px-8 bg-white">
+      <section className="py-10 px-4 sm:px-8 workshop-theme-bg">
         <h3 className="text-center text-xl sm:text-4xl font-bold text-gray-900 mb-10">
-          Most Trending Topics from <span className="text-green-700">Workshops</span>
+          Most Trending Topics from{" "}
+          <span className="text-green-700">Workshops</span>
         </h3>
 
         <div className="overflow-hidden relative">
@@ -332,31 +363,38 @@ export default function Workshop() {
                     icon: studySmartIcon,
                     bgColor: "bg-[#FFF3B0]",
                     text: "Smart Preparation for CUET, CLAT & IPMAT",
-                  }, {
+                  },
+                  {
                     icon: creativityIcon,
                     bgColor: "bg-[#FFE5B4]",
                     text: "Learn How to Learn: Scientific Study Techniques",
-                  }, {
+                  },
+                  {
                     icon: communicationIcon,
                     bgColor: "bg-[#D8F3DC]",
                     text: "Communication, Collaboration & Conflict Resolution",
-                  }, {
+                  },
+                  {
                     icon: logicIcon,
                     bgColor: "bg-[#FFF3B0]",
                     text: "AI in Education: From Tools to Transformation",
-                  }, {
+                  },
+                  {
                     icon: creativityIcon,
                     bgColor: "bg-[#FFE5B4]",
                     text: "Entrepreneurship & Innovation for Teens",
-                  }, {
+                  },
+                  {
                     icon: gamingIcon,
                     bgColor: "bg-[#FFF3B0]",
                     text: "Critical Thinking & Problem Solving MasterClass",
-                  }, {
+                  },
+                  {
                     icon: inculcationIcon,
                     bgColor: "bg-[#D8F3DC]",
                     text: "Building Growth Mindset in Classrooms",
-                  }, {
+                  },
+                  {
                     icon: logicIcon,
                     bgColor: "bg-[#FFF3D0]",
                     text: "Building a Growth Mindset in Classrooms",
@@ -364,7 +402,7 @@ export default function Workshop() {
                 ].map(({ icon, bgColor, text }, i) => (
                   <div
                     key={`${loopIndex}-${i}`}
-                    className="flex items-center rounded-2xl overflow-hidden bg-white shadow-md border border-gray-100 w-[280px] sm:w-[340px] flex-shrink-0"
+                    className="flex items-center rounded-2xl overflow-hidden workshop-theme-card shadow-md border border-gray-100 w-[280px] sm:w-[340px] flex-shrink-0"
                   >
                     <div
                       className={`${bgColor} flex items-center justify-center w-24 h-24 flex-shrink-0`}
@@ -390,48 +428,100 @@ export default function Workshop() {
       </section>
 
       {/* 📞 Contact Form */}
-      <section ref={formRef} className="bg-[#FFF8EE] py-12 px-4 sm:px-8 relative overflow-hidden">
+      <section
+        ref={formRef}
+        className="workshop-theme-bg py-12 px-4 sm:px-8 relative overflow-hidden"
+      >
         <h2 className="text-center text-xl sm:text-3xl font-bold text-gray-900 mb-6">
           Reach <span className="text-green-600">Out Now!</span>
         </h2>
         <p className="text-center text-gray-600 text-sm mb-8">
-          Want to book a workshop? Contact us now we'll answer your query as soon as possible.
+          Want to book a workshop? Contact us now we'll answer your query as
+          soon as possible.
         </p>
 
         <div className="flex flex-col md:flex-row justify-center items-center relative gap-0">
           <div className="hidden md:flex justify-end w-1/3 relative z-20 -mr-4">
-            <img src={boyLeft} alt="Left character" className="h-64 md:h-72 object-cover rounded-2xl scale-110 -translate-x-3" />
+            <img
+              src={boyLeft}
+              alt="Left character"
+              className="h-64 md:h-72 object-cover rounded-2xl scale-110 -translate-x-3"
+            />
           </div>
 
           <form
             onSubmit={handleSubmit}
             id="workshop-form"
-            className="bg-white rounded-2xl shadow-xl p-5 sm:p-8 w-full max-w-md flex flex-col justify-center mx-auto z-10 relative"
+            className="workshop-theme-card rounded-2xl shadow-xl p-5 sm:p-8 w-full max-w-md flex flex-col justify-center mx-auto z-10 relative"
           >
             <h3 className="text-center text-lg sm:text-xl font-semibold text-green-700 mb-3">
               Request a Workshop to Lyfshilp Academy
             </h3>
 
             {status.message && (
-              <p className={`text-center text-sm mb-3 font-medium ${status.success ? "text-green-600" : "text-red-500"}`}>
+              <p
+                className={`text-center text-sm mb-3 font-medium ${status.success ? "text-green-600" : "text-red-500"}`}
+              >
                 {status.message}
               </p>
             )}
 
             {/* Inputs unchanged */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-3">
-              <input type="text" name="name" value={formData.name} onChange={handleChange} placeholder="Full Name" required className="border border-gray-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-green-500" />
-              <input type="text" name="phone" value={formData.phone} onChange={handleChange} placeholder="Phone Number" required className="border border-gray-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-green-500" />
+              <input
+                type="text"
+                name="name"
+                value={formData.name}
+                onChange={handleChange}
+                placeholder="Full Name"
+                required
+                className="border border-gray-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-green-500"
+              />
+              <input
+                type="text"
+                name="phone"
+                value={formData.phone}
+                onChange={handleChange}
+                placeholder="Phone Number"
+                required
+                className="border border-gray-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-green-500"
+              />
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-3">
-              <input type="email" name="email" value={formData.email} onChange={handleChange} placeholder="Email ID" required className="border border-gray-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-green-500" />
-              <input type="text" name="organization" value={formData.organization} onChange={handleChange} placeholder="School or Company Name" className="border border-gray-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-green-500" />
+              <input
+                type="email"
+                name="email"
+                value={formData.email}
+                onChange={handleChange}
+                placeholder="Email ID"
+                required
+                className="border border-gray-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-green-500"
+              />
+              <input
+                type="text"
+                name="organization"
+                value={formData.organization}
+                onChange={handleChange}
+                placeholder="School or Company Name"
+                className="border border-gray-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-green-500"
+              />
             </div>
 
-            <textarea name="message" value={formData.message} onChange={handleChange} placeholder="Message" rows="3" className="border border-gray-300 rounded-lg px-3 py-2 text-sm mb-4 focus:ring-2 focus:ring-green-500"></textarea>
+            <textarea
+              name="message"
+              value={formData.message}
+              onChange={handleChange}
+              placeholder="Message"
+              rows="3"
+              className="border border-gray-300 rounded-lg px-3 py-2 text-sm mb-4 focus:ring-2 focus:ring-green-500"
+            ></textarea>
 
-            <button type="submit" disabled={loading} className={`w-full ${loading ? "bg-green-400" : "bg-green-600 hover:bg-green-700"} text-white py-2 rounded-full font-medium transition`}>
+            <button
+              type="submit"
+              disabled={loading}
+              className={`w-full ${loading ? "bg-green-400" : "bg-green-600 hover:bg-green-700"} text-white py-2 rounded-full font-medium transition`}
+            >
               {loading ? "Submitting..." : "Submit Now"}
             </button>
 
@@ -447,7 +537,11 @@ export default function Workshop() {
           </form>
 
           <div className="hidden md:flex justify-start w-1/3 relative z-20 -ml-4">
-            <img src={boyRight} alt="Right character" className="h-64 md:h-72 object-cover rounded-2xl scale-110 translate-x-3" />
+            <img
+              src={boyRight}
+              alt="Right character"
+              className="h-64 md:h-72 object-cover rounded-2xl scale-110 translate-x-3"
+            />
           </div>
         </div>
       </section>
@@ -572,7 +666,6 @@ export default function Workshop() {
     }
   `}
       </style>
-
     </div>
   );
 }

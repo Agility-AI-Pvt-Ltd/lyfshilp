@@ -1,94 +1,148 @@
-import React from "react";
+import { useEffect, useRef, useState } from "react";
+
+const useInView = (threshold = 0.12) => {
+  const ref = useRef(null);
+  const [inView, setInView] = useState(false);
+  useEffect(() => {
+    const obs = new IntersectionObserver(
+      ([e]) => { if (e.isIntersecting) setInView(true); },
+      { threshold }
+    );
+    if (ref.current) obs.observe(ref.current);
+    return () => obs.disconnect();
+  }, [threshold]);
+  return [ref, inView];
+};
+
+const gamifiedItems = [
+  { icon: "XP", title: "XP System", desc: "Points, Levels, Badges, Leaderboards" },
+  { icon: "VB", title: "Live Venture Build", desc: "Build a live venture managing finance, operations, marketing and sales with expert mentorship." },
+  { icon: "LS", title: "Live Industry Sessions", desc: "Interactive sessions with founders and industry leaders." },
+];
 
 export default function OlympiadSection3() {
+  const [leftRef, leftInView] = useInView(0.1);
+  const [rightRef, rightInView] = useInView(0.1);
+
   return (
-    <section className="relative py-16 px-6 sm:px-10 md:px-16 lg:px-24 bg-[#FFF8EE] overflow-hidden">
+    <section style={{
+      background: "#061510",
+      padding: "88px 24px", position: "relative", overflow: "hidden",
+    }}>
+      <div style={{
+        position: "absolute", inset: 0, pointerEvents: "none",
+        background: "radial-gradient(circle at 80% 60%,rgba(0,200,150,.1),transparent 40%)",
+      }} />
 
-      <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+      <div className="max-w-7xl mx-auto" style={{ position: "relative", zIndex: 2 }}>
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
 
-        {/* ===================== LEFT IMAGE BLOCK ===================== */}
-        <div className="relative flex justify-center lg:justify-start min-h-[450px]">
-
-          {/* Soft Glows */}
-          <div className="absolute top-20 left-0 w-72 h-72 bg-indigo-300 opacity-25 rounded-full blur-3xl"></div>
-          <div className="absolute bottom-10 left-10 w-64 h-64 bg-purple-300 opacity-25 rounded-full blur-2xl"></div>
-
-          {/* Illustration */}
-          <img
-            src="/images/4.svg"
-            alt="mentor"
-            className="relative z-10 w-72 sm:w-[26rem] lg:w-[30rem] object-contain drop-shadow-xl"
-          />
-        </div>
-
-        {/* ===================== RIGHT TEXT BLOCK ===================== */}
-        <div className="leading-tight space-y-8 max-w-xl">
-
-          {/* Title */}
-          <div>
-            <h3 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-gray-900 uppercase leading-snug">
-              PEDAGOGY & <span className="text-green-600 italic">MENTORSHIP</span>
-            </h3>
-
-            <p className="mt-3 font-semibold text-gray-900 text-sm sm:text-base bg-yellow-100 inline-block px-4 py-1 rounded">
-              Learning from Industry Leaders
-            </p>
-
-            <p className="text-gray-700 text-sm sm:text-base leading-snug mt-4">
-              We go beyond textbooks, students are mentored by experts bringing real-world insights into the classroom.
-            </p>
+          {/* Left image */}
+          <div
+            ref={leftRef}
+            className="flex justify-center"
+            style={{
+              opacity: leftInView ? 1 : 0,
+              transform: leftInView ? "translateX(0)" : "translateX(-40px)",
+              transition: "opacity .8s ease, transform .8s ease",
+              position: "relative",
+            }}
+          >
+            <div style={{
+              position: "absolute", inset: "5%",
+              background: "radial-gradient(circle,rgba(0,200,150,.15),transparent 65%)",
+              filter: "blur(20px)", borderRadius: "50%",
+            }} />
+            <img src="/images/4.svg" alt="Mentorship"
+              style={{ position: "relative", zIndex: 1, width: "85%", maxWidth: 420, filter: "drop-shadow(0 20px 48px rgba(0,0,0,.4))" }}
+            />
           </div>
 
-          {/* Mentors Card */}
-          <div className="bg-white rounded-xl p-6 shadow-md border-l-4 border-indigo-500 hover:shadow-lg transition-all">
-            <h4 className="font-bold text-gray-900 text-base sm:text-lg mb-3">Mentors Include:</h4>
+          {/* Right content */}
+          <div
+            ref={rightRef}
+            style={{
+              opacity: rightInView ? 1 : 0,
+              transform: rightInView ? "translateX(0)" : "translateX(40px)",
+              transition: "opacity .8s ease .15s, transform .8s ease .15s",
+            }}
+          >
+            <div style={{
+              fontFamily: "'DM Sans',sans-serif", fontSize: ".72rem", fontWeight: 700,
+              letterSpacing: "2.5px", textTransform: "uppercase", color: "#00c896", marginBottom: 14,
+            }}>Founder-Mentor Pedagogy</div>
+            <h2 style={{
+              fontFamily: "'Playfair Display',serif",
+              fontSize: "clamp(2rem,4vw,3rem)", fontWeight: 900,
+              color: "#fff", lineHeight: 1.15, marginBottom: 16,
+            }}>
+              Pedagogy & <span style={{ color: "#00c896" }}>Mentorship</span>
+            </h2>
+            <p style={{
+              fontFamily: "'DM Sans',sans-serif", color: "rgba(255,255,255,.55)",
+              fontSize: ".95rem", lineHeight: 1.85, marginBottom: 28,
+            }}>
+              We go beyond textbooks — students are mentored by experts bringing real-world insights into the classroom.
+            </p>
 
-            <ul className="space-y-2 text-gray-700 text-sm sm:text-base leading-snug">
-              {[
-                "IIT & IIM Alumni",
-                "Industry Experts & Startup Founders",
-                "Former IAS Officers",
-              ].map((item, i) => (
-                <li key={i} className="flex gap-3">
-                  <span className="w-2 h-2 bg-indigo-500 rounded-full mt-2"></span>
-                  {item}
-                </li>
+            {/* Mentors */}
+            <div style={{
+              background: "rgba(255,255,255,.05)", border: "1px solid rgba(0,200,150,.18)",
+              borderRadius: 16, padding: "20px", marginBottom: 14,
+            }}>
+              <div style={{ fontFamily: "'DM Sans',sans-serif", fontWeight: 700, color: "#00c896", fontSize: ".8rem", textTransform: "uppercase", letterSpacing: "1.5px", marginBottom: 14 }}>
+                Mentors Include
+              </div>
+              {["IIT & IIM Alumni", "Industry Experts & Startup Founders", "Former IAS Officers"].map((item, i) => (
+                <div key={i} style={{ display: "flex", gap: 10, alignItems: "center", marginBottom: 10 }}>
+                  <span style={{ width: 6, height: 6, borderRadius: "50%", background: "#00c896", flexShrink: 0 }} />
+                  <span style={{ fontFamily: "'DM Sans',sans-serif", color: "rgba(255,255,255,.72)", fontSize: ".87rem" }}>{item}</span>
+                </div>
               ))}
-            </ul>
-          </div>
+            </div>
 
-          {/* Gamified Learning */}
-          <div className="bg-white rounded-xl p-6 shadow-md border-l-4 border-pink-500 hover:shadow-lg transition-all">
-            <h4 className="font-bold text-gray-900 text-base sm:text-lg mb-3">
-              Gamified Learning Elements:
-            </h4>
-
-            <ul className="space-y-2 text-gray-700 text-sm sm:text-base leading-snug">
-              <li className="flex gap-3">
-                <span className="w-2 h-2 bg-pink-500 rounded-full mt-2"></span>
-                <span><strong>XP System:</strong> Points, Levels, Badges, Leaderboards</span>
-              </li>
-
-              <li className="flex gap-3 ">
-                <span className="w-2 h-2 bg-pink-500 rounded-full mt-[0.50rem] flex-shrink-0"></span>
-                <span><strong>Students learn business and tech:</strong> by building a live venture, managing finance, operations, marketing and sales with expert mentorship.</span>
-              </li>
-
-              <li className="flex gap-3">
-                <span className="w-2 h-2 bg-pink-500 rounded-full mt-2 flex-shrink-0"></span>
-                <span><strong>Live Lectures by Industry Experts:</strong> Interactive sessions with founders and leaders</span>
-              </li>
-            </ul>
+            {/* Gamified items */}
+            <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
+              {gamifiedItems.map(({ icon, title, desc }) => (
+                <div key={title} style={{
+                  display: "flex", gap: 14,
+                  background: "rgba(255,255,255,.04)", border: "1px solid rgba(0,200,150,.1)",
+                  borderRadius: 12, padding: "14px 16px",
+                  transition: "border-color .3s, background .3s",
+                }}
+                  onMouseEnter={e => { e.currentTarget.style.borderColor = "rgba(0,200,150,.3)"; e.currentTarget.style.background = "rgba(0,200,150,.06)"; }}
+                  onMouseLeave={e => { e.currentTarget.style.borderColor = "rgba(0,200,150,.1)"; e.currentTarget.style.background = "rgba(255,255,255,.04)"; }}
+                >
+                  <span
+                    style={{
+                      width: 34,
+                      height: 34,
+                      borderRadius: 10,
+                      flexShrink: 0,
+                      display: "inline-flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      fontSize: ".7rem",
+                      fontWeight: 800,
+                      letterSpacing: ".7px",
+                      color: "#00c896",
+                      border: "1px solid rgba(0,200,150,.3)",
+                      background: "rgba(0,200,150,.1)",
+                    }}
+                  >
+                    {icon}
+                  </span>
+                  <div>
+                    <div style={{ fontFamily: "'DM Sans',sans-serif", fontWeight: 700, fontSize: ".88rem", color: "#fff", marginBottom: 3 }}>{title}</div>
+                    <div style={{ fontFamily: "'DM Sans',sans-serif", fontSize: ".78rem", color: "rgba(255,255,255,.45)", lineHeight: 1.55 }}>{desc}</div>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
 
         </div>
-
       </div>
-
-      {/* Floating Decorations */}
-      <div className="absolute top-12 right-12 w-28 h-28 bg-indigo-300 opacity-20 rounded-full blur-2xl"></div>
-      <div className="absolute bottom-16 left-10 w-36 h-36 bg-pink-300 opacity-20 rounded-full blur-2xl"></div>
-
     </section>
   );
 }

@@ -1,202 +1,130 @@
-import React from "react";
+import { useEffect, useRef, useState } from "react";
+
+const useInView = (threshold = 0.1) => {
+  const ref = useRef(null);
+  const [inView, setInView] = useState(false);
+  useEffect(() => {
+    const obs = new IntersectionObserver(
+      ([e]) => { if (e.isIntersecting) setInView(true); },
+      { threshold }
+    );
+    if (ref.current) obs.observe(ref.current);
+    return () => obs.disconnect();
+  }, [threshold]);
+  return [ref, inView];
+};
+
+const QUOTES = [
+  { name: "Larry Page", role: "Co-founder, Google | Former CEO, Alphabet", text: "Education should encourage creativity and experimentation.", img: "/images/larry_page.svg" },
+  { name: "Barack Obama", role: "44th President of the United States", text: "Education should prepare young people for jobs that don't yet exist.", img: "/images/Obama.svg" },
+  { name: "Bill Gates", role: "Co-founder, Microsoft | Co-chair, Gates Foundation", text: "We need education systems that teach problem-solving and critical thinking.", img: "/images/Bill_Gates.svg" },
+  { name: "Jensen Huang", role: "Founder & CEO, NVIDIA", text: "Understanding how to work with AI will be essential for every profession.", img: "/images/Jensen_huang.svg" },
+  { name: "Peter Thiel", role: "Co-founder, PayPal | Entrepreneur & Investor", text: "Education should teach people how to think, not what to think.", img: "/images/Peter_Theil.svg" },
+  { name: "Falguni Nayar", role: "Founder & CEO, Nykaa", text: "Modern careers demand adaptability and practical skills at every stage.", img: "/images/Falguni_Nayar.svg" },
+  { name: "Sheryl Sandberg", role: "Former COO, Meta", text: "Careers today require constant reinvention and skill building.", img: "/images/Sheryl_Sandberg.svg" },
+];
+
+const QuoteCard = ({ name, role, text, img, delay }) => {
+  const [ref, inView] = useInView(0.1);
+  return (
+    <div
+      ref={ref}
+      className="quote-card"
+      style={{
+        opacity: inView ? 1 : 0,
+        transform: inView ? "translateY(0)" : "translateY(32px)",
+        transition: `opacity .7s ease ${delay}s, transform .7s ease ${delay}s`,
+        position: "relative",
+        background: "rgba(255,255,255,.055)",
+        border: "1px solid rgba(0,200,150,.14)",
+        borderRadius: 20,
+        padding: "28px 24px 22px",
+        backdropFilter: "blur(8px)",
+        overflow: "hidden",
+      }}
+    >
+      <div style={{
+        position: "absolute", top: 8, left: 18,
+        fontFamily: "'Playfair Display',serif", fontSize: "5rem",
+        color: "rgba(0,200,150,.15)", lineHeight: 1, userSelect: "none",
+      }}>"</div>
+      <p style={{
+        fontFamily: "'Playfair Display',serif", fontStyle: "italic",
+        color: "rgba(255,255,255,.82)", fontSize: ".92rem", lineHeight: 1.7,
+        marginTop: 28, marginBottom: 18, position: "relative",
+      }}>{text}</p>
+      <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
+        <img
+          src={img} alt={name}
+          style={{ width: 40, height: 40, borderRadius: "50%", objectFit: "cover", border: "2px solid rgba(0,200,150,.3)", flexShrink: 0 }}
+          onError={e => { e.currentTarget.src = `https://ui-avatars.com/api/?name=${encodeURIComponent(name)}&background=0d3d2f&color=00c896&size=80`; }}
+        />
+        <div>
+          <div style={{ fontFamily: "'DM Sans',sans-serif", fontWeight: 700, color: "#00c896", fontSize: ".84rem" }}>{name}</div>
+          <div style={{ fontFamily: "'DM Sans',sans-serif", color: "rgba(255,255,255,.38)", fontSize: ".7rem", marginTop: 2 }}>{role}</div>
+        </div>
+      </div>
+    </div>
+  );
+};
 
 export default function OlympiadSection1b() {
+  const [headRef, headInView] = useInView(0.1);
   return (
-    <section className="relative py-8 px-6 sm:px-10 md:px-16 lg:px-24 bg-[#FFF8EE] overflow-hidden">
-      {/* py-16 → py-10 */}
+    <section style={{
+      background: "#061510",
+      padding: "88px 24px",
+      position: "relative", overflow: "hidden",
+    }}>
+      <div style={{
+        position: "absolute", inset: 0, pointerEvents: "none",
+        background: "radial-gradient(circle at 85% 25%,rgba(212,175,55,.07),transparent 35%), radial-gradient(circle at 15% 75%,rgba(0,200,150,.08),transparent 40%)",
+      }} />
 
-      <div className="max-w-5xl mx-auto">
-
-        {/* HEADING */}
-        <div className="text-center mb-12">
-          {/* mb-12 → mb-6 */}
-          <h3 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-gray-900 uppercase leading-snug">
-            WHY INTERNATIONAL <span className="text-green-600 italic"> FUTUREX FELLOWSHIP? </span>
-          </h3>
-
-          <p className="mt-4 font-semibold text-gray-900 text-sm sm:text-base bg-yellow-100 inline-block px-4 py-1 rounded">
-            {/* mt-3 → mt-2 */}
+      <div className="max-w-5xl mx-auto" style={{ position: "relative", zIndex: 2 }}>
+        <div
+          ref={headRef}
+          className="text-center"
+          style={{
+            marginBottom: 52,
+            opacity: headInView ? 1 : 0,
+            transform: headInView ? "translateY(0)" : "translateY(28px)",
+            transition: "opacity .75s ease, transform .75s ease",
+          }}
+        >
+          <div style={{
+            fontFamily: "'DM Sans',sans-serif", fontSize: ".72rem", fontWeight: 700,
+            letterSpacing: "2.5px", textTransform: "uppercase", color: "#00c896", marginBottom: 12,
+          }}>Global Visionaries Agree</div>
+          <h2 style={{ fontFamily: "'Playfair Display',serif", fontSize: "clamp(1.8rem,4vw,2.8rem)", fontWeight: 900, color: "#fff", lineHeight: 1.2 }}>
+            Why <span style={{ color: "#00c896" }}>FutureX Fellowship?</span>
+          </h2>
+          <p style={{ fontFamily: "'DM Sans',sans-serif", color: "rgba(255,255,255,.45)", fontSize: ".92rem", marginTop: 12 }}>
             Global Thought Leaders on Future-Ready Education
           </p>
         </div>
 
-        {/* QUOTES */}
-        <div className="space-y-4">
-          {/* space-y-6 → space-y-4 */}
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5" style={{ marginBottom: 36 }}>
+          {QUOTES.map((q, i) => <QuoteCard key={q.name} {...q} delay={i * 0.08} />)}
+        </div>
 
-          {/* Larry Page */}
-          <div className="bg-white rounded-xl p-5 shadow-md border-l-4 border-r-4 border-green-500 hover:shadow-lg transition-all flex gap-4">
-            {/* p-6 → p-5 */}
-            <img
-              src="/images/larry_page.svg"
-              alt="Larry Page"
-              className="w-12 h-12 rounded-full object-cover border"
-            />
-            <div>
-              <h4 className="font-bold text-gray-900 text-sm sm:text-base">
-                Larry Page
-                <span className="block text-xs text-gray-500 font-medium">
-                  Co-founder, Google | Former CEO, Alphabet
-                </span>
-              </h4>
-              <p className="mt-1 text-sm sm:text-base text-gray-700 italic">
-                {/* mt-2 → mt-1 */}
-                “Education should encourage creativity and experimentation.”
-              </p>
-            </div>
-          </div>
-
-          {/* Barack Obama */}
-          <div className="bg-white rounded-xl p-5 shadow-md border-l-4 border-blue-500  border-r-4 hover:shadow-lg transition-all flex gap-4">
-            <img
-              src="/images/Obama.svg"
-              alt="Barack Obama"
-              className="w-12 h-12 rounded-full object-cover border"
-            />
-            <div>
-              <h4 className="font-bold text-gray-900 text-sm sm:text-base">
-                Barack Obama
-                <span className="block text-xs text-gray-500 font-medium">
-                  44th President of the United States
-                </span>
-              </h4>
-              <p className="mt-1 text-sm sm:text-base text-gray-700 italic">
-                “Education should prepare young people for jobs that don’t yet exist.”
-              </p>
-            </div>
-          </div>
-
-          {/* Bill Gates */}
-          <div className="bg-white rounded-xl p-5 shadow-md border-l-4 border-purple-500  border-r-4 hover:shadow-lg transition-all flex gap-4">
-            <img
-              src="/images/Bill_Gates.svg"
-              alt="Bill Gates"
-              className="w-12 h-12 rounded-full object-cover border"
-            />
-            <div>
-              <h4 className="font-bold text-gray-900 text-sm sm:text-base">
-                Bill Gates
-                <span className="block text-xs text-gray-500 font-medium">
-                  Co-founder, Microsoft | Co-chair, Bill & Melinda Gates Foundation
-                </span>
-              </h4>
-              <p className="mt-1 text-sm sm:text-base text-gray-700 italic">
-                “We need education systems that teach problem-solving and critical thinking.”
-              </p>
-            </div>
-          </div>
-
-          {/* Jensen Huang */}
-          <div className="bg-white rounded-xl p-5 shadow-md border-l-4 border-orange-500  border-r-4 hover:shadow-lg transition-all flex gap-4">
-            <img
-              src="/images/Jensen_huang.svg"
-              alt="Jensen Huang"
-              className="w-12 h-12 rounded-full object-cover border"
-            />
-            <div>
-              <h4 className="font-bold text-gray-900 text-sm sm:text-base">
-                Jensen Huang
-                <span className="block text-xs text-gray-500 font-medium">
-                  Founder & CEO, NVIDIA
-                </span>
-              </h4>
-              <p className="mt-1 text-sm sm:text-base text-gray-700 italic">
-                “Understanding how to work with AI will be essential for every profession.”
-              </p>
-            </div>
-          </div>
-
-          {/* Peter Thiel */}
-          <div className="bg-white rounded-xl p-5 shadow-md border-l-4 border-emerald-600  border-r-4 hover:shadow-lg transition-all flex gap-4">
-            <img
-              src="/images/Peter_Theil.svg"
-              alt="Peter Thiel"
-              className="w-12 h-12 rounded-full object-cover border"
-            />
-            <div>
-              <h4 className="font-bold text-gray-900 text-sm sm:text-base">
-                Peter Thiel
-                <span className="block text-xs text-gray-500 font-medium">
-                  Co-founder, PayPal | Entrepreneur & Investor
-                </span>
-              </h4>
-              <p className="mt-1 text-sm sm:text-base text-gray-700 italic">
-                “Education should teach people how to think, not what to think.”
-              </p>
-            </div>
-          </div>
-
-          {/* Falguni Nayar */}
-          <div className="bg-white rounded-xl p-5 shadow-md border-l-4 border-pink-500  border-r-4 hover:shadow-lg transition-all flex gap-4">
-            <img
-              src="/images/Falguni_Nayar.svg"
-              alt="Falguni Nayar"
-              className="w-12 h-12 rounded-full object-cover border"
-            />
-            <div>
-              <h4 className="font-bold text-gray-900 text-sm sm:text-base">
-                Falguni Nayar
-                <span className="block text-xs text-gray-500 font-medium">
-                  Founder & CEO, Nykaa
-                </span>
-              </h4>
-              <p className="mt-1 text-sm sm:text-base text-gray-700 italic">
-                “Modern careers demand adaptability and practical skills at every stage.”
-              </p>
-            </div>
-          </div>
-
-          {/* Sheryl Sandberg */}
-          <div className="bg-white rounded-xl p-5 shadow-md border-l-4 border-indigo-500  border-r-4 hover:shadow-lg transition-all flex gap-4">
-            <img
-              src="/images/Sheryl_Sandberg.svg"
-              alt="Sheryl Sandberg"
-              className="w-12 h-12 rounded-full object-cover border"
-            />
-            <div>
-              <h4 className="font-bold text-gray-900 text-sm sm:text-base">
-                Sheryl Sandberg
-                <span className="block text-xs text-gray-500 font-medium">
-                  Former COO, Meta
-                </span>
-              </h4>
-              <p className="mt-1 text-sm sm:text-base text-gray-700 italic">
-                “Careers today require constant reinvention and skill building.”
-              </p>
-            </div>
-          </div>
-
-{/* FINAL HIGHLIGHT LINE */}
-<div className="mt-8 flex justify-center">
-  <div className="
-    relative
-    bg-white/70 backdrop-blur-sm
-    px-6 py-4 rounded-xl
-    shadow-lg
-    ring-2 ring-yellow-400/70
-    hover:ring-yellow-500
-    transition-all
-    max-w-3xl
-  ">
-    <p className="text-sm sm:text-base lg:text-lg font-semibold text-gray-900 italic text-center">
-      International{" "}
-      <span className="text-green-600 font-bold">FutureX Fellowship</span> is built to
-      develop{" "}
-      <span className="font-bold text-green-600">thinkers</span>,{" "}
-      <span className="font-bold text-green-600">builders</span>, and{" "}
-      <span className="font-bold text-green-600">leaders</span>{" "}
-      for an AI-driven world.
-    </p>
-
-    {/* Soft Yellow Glow */}
-    <span className="absolute -inset-1 rounded-xl bg-yellow-300/20 blur-xl -z-10"></span>
-  </div>
-</div>
+        {/* Final callout */}
+        <div style={{
+          background: "rgba(0,200,150,.08)", border: "1px solid rgba(0,200,150,.22)",
+          borderRadius: 20, padding: "28px 32px", textAlign: "center",
+          backdropFilter: "blur(8px)",
+        }}>
+          <p style={{
+            fontFamily: "'Playfair Display',serif", fontStyle: "italic",
+            color: "rgba(255,255,255,.88)", fontSize: "clamp(.95rem,2vw,1.1rem)", lineHeight: 1.7,
+          }}>
+            International <strong style={{ color: "#00c896" }}>FutureX Fellowship</strong> is built to develop{" "}
+            <strong style={{ color: "#00c896" }}>thinkers</strong>,{" "}
+            <strong style={{ color: "#00c896" }}>builders</strong>, and{" "}
+            <strong style={{ color: "#00c896" }}>leaders</strong> for an AI-driven world.
+          </p>
         </div>
       </div>
-      {/* Soft Background Decorations (tightened) */}
-      <div className="absolute top-14 left-10 w-24 h-24 bg-green-200 opacity-20 rounded-full blur-2xl"></div>
-      <div className="absolute bottom-14 right-12 w-28 h-28 bg-yellow-300 opacity-20 rounded-full blur-2xl"></div>
     </section>
   );
 }
