@@ -288,9 +288,7 @@ export default function Header() {
                   <span style={{ color: "#00c896" }}>X</span>
                 </div>
               </div>
-              <span className="logo-caption">
-                Powered By Lyfshilp Academy{" "}
-              </span>
+              <span className="logo-caption">Powered By Lyfshilp Academy </span>
             </Link>
           </div>
 
@@ -419,7 +417,9 @@ export default function Header() {
               to="/for-schools"
               className={`nav-link ${isActive("/for-schools") ? "active" : ""}`}
               style={{
-                color: isActive("/for-schools") ? "#00c896" : "rgba(255,255,255,.75)",
+                color: isActive("/for-schools")
+                  ? "#00c896"
+                  : "rgba(255,255,255,.75)",
                 textDecoration: "none",
                 fontFamily: "'DM Sans',sans-serif",
                 fontSize: ".87rem",
@@ -619,22 +619,15 @@ export default function Header() {
               >
                 Home
               </Link>
-              <Link
-                to="/about"
-                onClick={() => setMobileOpen(false)}
-                className={`mobile-link ${isActive("/about") ? "active" : ""}`}
-              >
-                About Us
-              </Link>
 
               {/* Exam Prep as Single Link */}
-              <Link
+              {/* <Link
                 to="/exam-prep"
                 onClick={() => setMobileOpen(false)}
                 className={`mobile-link ${isActive("/exam-prep") ? "active" : ""}`}
               >
                 Exam Prep
-              </Link>
+              </Link> */}
 
               <Link
                 to="/futureX"
@@ -653,13 +646,13 @@ export default function Header() {
               >
                 Podcast
               </Link>
-              <Link
+              {/* <Link
                 to="/free-content"
                 onClick={() => setMobileOpen(false)}
                 className={`mobile-link ${isActive("/free-content") ? "active" : ""}`}
               >
                 Free Content
-              </Link>
+              </Link> */}
               <Link
                 to="/summer-programme"
                 onClick={() => setMobileOpen(false)}
@@ -693,8 +686,16 @@ export default function Header() {
                 Corporate AI
               </Link>
 
+              <Link
+                to="/about"
+                onClick={() => setMobileOpen(false)}
+                className={`mobile-link ${isActive("/about") ? "active" : ""}`}
+              >
+                About Us
+              </Link>
+
               {/* Careers Collapsible */}
-              <button
+              {/* <button
                 onClick={() => setMobileCareerOpen(!mobileCareerOpen)}
                 className="mobile-subtle-btn"
               >
@@ -718,7 +719,7 @@ export default function Header() {
                     Internships
                   </Link>
                 </div>
-              )}
+              )} */}
 
               {user?.role?.toLowerCase() === "admin" && (
                 <Link

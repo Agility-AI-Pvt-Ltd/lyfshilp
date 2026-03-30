@@ -3,6 +3,11 @@ import NewLandingPageAbout from "../components/newLandingPageAbout.jsx";
 import NewHero from "../components/NewHero.jsx";
 import NewLandingPagePillars from "../components/NewLandingPagePillars.jsx";
 import GlobalVoicesSection from "../components/GlobalVoicesSection.jsx";
+import Prof_Sumit_Img from "../assets/mentors/sumit.jpg";
+import Prof_Aashish_Argade_Img from "../assets/mentors/aashish.jpg";
+import Cdr_Praveen_Kumar_img from "../assets/mentors/praveen.jpg";
+import Prof_Ashok_R_Patil_img from "../assets/mentors/ashok.jpg";
+import Dr_Rajeev_Tyagi_img from "../assets/mentors/rajeev.jpg";
 
 /* ── Scroll-reveal hooks ── */
 const useInView = (threshold = 0.15) => {
@@ -128,7 +133,13 @@ const EvalBar = ({ label, pct, delay }) => {
 };
 
 /* ── Professional SVG icons (replaces emoji) ── */
-function Ico({ size = 24, color = "#00c896", stroke = 1.5, children, fill = "none" }) {
+function Ico({
+  size = 24,
+  color = "#00c896",
+  stroke = 1.5,
+  children,
+  fill = "none",
+}) {
   return (
     <span
       style={{
@@ -294,9 +305,23 @@ const HomeIcons = {
 
 function PrizeMedalIcon({ rank, color, size = 22 }) {
   return (
-    <span style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
+    <span
+      style={{
+        display: "inline-flex",
+        alignItems: "center",
+        justifyContent: "center",
+        flexShrink: 0,
+      }}
+    >
       <svg width={size} height={size} viewBox="0 0 24 24" fill="none">
-        <circle cx="12" cy="10" r="7" stroke={color} strokeWidth="1.5" fill={`${color}18`} />
+        <circle
+          cx="12"
+          cy="10"
+          r="7"
+          stroke={color}
+          strokeWidth="1.5"
+          fill={`${color}18`}
+        />
         <text
           x="12"
           y="13.5"
@@ -308,7 +333,12 @@ function PrizeMedalIcon({ rank, color, size = 22 }) {
         >
           {rank}
         </text>
-        <path d="M8 17l-1 5M16 17l1 5" stroke={color} strokeWidth="1.5" strokeLinecap="round" />
+        <path
+          d="M8 17l-1 5M16 17l1 5"
+          stroke={color}
+          strokeWidth="1.5"
+          strokeLinecap="round"
+        />
       </svg>
     </span>
   );
@@ -347,22 +377,27 @@ const EVAL = [
 
 const ADVISORS = [
   {
+    img: Prof_Sumit_Img,
     name: "Prof. Sumit Kumar Yadav",
     role: "Assistant Professor, IIT Roorkee | PhD: IIM Ahmedabad | BTech: IIT Bombay",
   },
   {
+    img: Prof_Aashish_Argade_Img,
     name: "Prof. Aashish Argade",
     role: "Assistant Professor, IRMA | PhD: IIM Ahmedabad",
   },
   {
+    img: Cdr_Praveen_Kumar_img,
     name: "Cdr Praveen Kumar",
     role: "CIO & Head of IT, Nykaa | IIT Kanpur | ISB",
   },
   {
+    img: Prof_Ashok_R_Patil_img,
     name: "Prof. Ashok R. Patil",
     role: "Vice Chancellor, NUSRL Ranchi | Professor, NLSIU Bengaluru",
   },
   {
+    img: Dr_Rajeev_Tyagi_img,
     name: "Dr. Rajeev Tyagi",
     role: "IIT Roorkee Alumnus | Principal, Mt Carmel School, Delhi",
   },
@@ -666,7 +701,9 @@ export default function HomeNew() {
                   }}
                 >
                   <span style={{ flexShrink: 0 }}>
-                    {HomeIcons[icon] ? HomeIcons[icon]({ size: 28, color: "#00c896" }) : null}
+                    {HomeIcons[icon]
+                      ? HomeIcons[icon]({ size: 28, color: "#00c896" })
+                      : null}
                   </span>
                   <div>
                     <div
@@ -914,7 +951,9 @@ export default function HomeNew() {
                   }}
                 >
                   <div style={{ marginBottom: 16 }}>
-                    {HomeIcons[icon] ? HomeIcons[icon]({ size: 40, color: "#00c896" }) : null}
+                    {HomeIcons[icon]
+                      ? HomeIcons[icon]({ size: 40, color: "#00c896" })
+                      : null}
                   </div>
                   <h4
                     style={{
@@ -1009,7 +1048,9 @@ export default function HomeNew() {
                       }}
                     >
                       <span style={{ marginTop: 2 }}>
-                        {HomeIcons[icon] ? HomeIcons[icon]({ size: 22, color: "#00c896" }) : null}
+                        {HomeIcons[icon]
+                          ? HomeIcons[icon]({ size: 22, color: "#00c896" })
+                          : null}
                       </span>
                       <span
                         style={{
@@ -1098,7 +1139,9 @@ export default function HomeNew() {
                     }}
                   />
                   <div style={{ marginBottom: 18 }}>
-                    {HomeIcons[icon] ? HomeIcons[icon]({ size: 44, color: "#00c896" }) : null}
+                    {HomeIcons[icon]
+                      ? HomeIcons[icon]({ size: 44, color: "#00c896" })
+                      : null}
                   </div>
                   <h4
                     style={{
@@ -1377,7 +1420,9 @@ export default function HomeNew() {
                       justifyContent: "center",
                     }}
                   >
-                    {HomeIcons[icon] ? HomeIcons[icon]({ size: 44, color: "#00c896" }) : null}
+                    {HomeIcons[icon]
+                      ? HomeIcons[icon]({ size: 44, color: "#00c896" })
+                      : null}
                   </div>
                   <h4
                     style={{
@@ -1491,7 +1536,7 @@ export default function HomeNew() {
             </h2>
           </Reveal>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 mb-20">
-            {ADVISORS.map(({ name, role }, i) => (
+            {ADVISORS.map(({ img, name, role }, i) => (
               <Reveal key={name} delay={i * 0.1}>
                 <div
                   className="hover-lift p-6 rounded-2xl"
@@ -1510,18 +1555,39 @@ export default function HomeNew() {
                       alignItems: "center",
                       justifyContent: "center",
                       marginBottom: 16,
-                      fontFamily: "'Playfair Display',serif",
-                      fontWeight: 900,
-                      color: "#00c896",
-                      fontSize: "1.2rem",
+                      overflow: "hidden",
+                      flexShrink: 0,
                     }}
                   >
-                    {
-                      name
-                        .split(" ")
-                        .filter((w) => w[0] === w[0].toUpperCase())
-                        .slice(-1)[0]?.[0]
-                    }
+                    {img ? (
+                      <img
+                        src={img}
+                        alt={name}
+                        style={{
+                          width: "100%",
+                          height: "100%",
+                          objectFit: "cover",
+                          objectPosition: "center",
+                          display: "block",
+                        }}
+                      />
+                    ) : (
+                      <span
+                        style={{
+                          fontFamily: "'Playfair Display',serif",
+                          fontWeight: 900,
+                          color: "#00c896",
+                          fontSize: "1.2rem",
+                        }}
+                      >
+                        {
+                          name
+                            .split(" ")
+                            .filter((w) => w[0] === w[0].toUpperCase())
+                            .slice(-1)[0]?.[0]
+                        }
+                      </span>
+                    )}
                   </div>
                   <h4
                     style={{
@@ -1636,7 +1702,9 @@ export default function HomeNew() {
                   }}
                 >
                   <div style={{ marginBottom: 10 }}>
-                    {HomeIcons[icon] ? HomeIcons[icon]({ size: 32, color: "#00c896" }) : null}
+                    {HomeIcons[icon]
+                      ? HomeIcons[icon]({ size: 32, color: "#00c896" })
+                      : null}
                   </div>
                   <div
                     style={{
