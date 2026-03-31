@@ -362,6 +362,22 @@ export default function Header() {
             >
               Podcast
             </Link>
+            <Link
+              to="/community"
+              className={`nav-link ${isActive("/community") ? "active" : ""}`}
+              style={{
+                color: isActive("/community")
+                  ? "#00c896"
+                  : "rgba(255,255,255,.75)",
+                textDecoration: "none",
+                fontFamily: "'DM Sans',sans-serif",
+                fontSize: ".87rem",
+                fontWeight: 500,
+                letterSpacing: ".4px",
+              }}
+            >
+              Community
+            </Link>
             {/* <Link
               to="/free-content"
               className={`nav-link ${isActive("/free-content") ? "active" : ""}`}
@@ -645,6 +661,13 @@ export default function Header() {
                 className={`mobile-link ${isActive("/podcasts") ? "active" : ""}`}
               >
                 Podcast
+              </Link>
+              <Link
+                to="/community"
+                onClick={() => setMobileOpen(false)}
+                className={`mobile-link ${isActive("/community") ? "active" : ""}`}
+              >
+                Community
               </Link>
               {/* <Link
                 to="/free-content"

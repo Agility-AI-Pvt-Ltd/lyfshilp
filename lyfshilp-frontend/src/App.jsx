@@ -18,6 +18,7 @@ import ClatPage from "./pages/ClatPage.jsx";
 import IpmatPage from "./pages/IpmatPage.jsx";
 import NotFound from "./pages/NotFound.jsx";
 import FreeContent from "./pages/FreeContent.jsx";
+import ComingSoon from "./pages/ComingSoon.jsx";
 
 import Job1 from "./pages/Job1.jsx";
 import Job2 from "./pages/Job2.jsx";
@@ -142,6 +143,7 @@ export default function App() {
             <Route path="/for-colleges" element={<ForColleges />} />
             <Route path="/corporate-ai-upskilling" element={<CorporateAI />} />
             <Route path="/podcasts" element={<Podcast />} />
+            <Route path="/community" element={<ComingSoon />} />
             <Route path="/about" element={<AboutUs />} />
             <Route path="/career" element={<Careers />} />
             <Route path="/career/job1" element={<Job1 />} />
