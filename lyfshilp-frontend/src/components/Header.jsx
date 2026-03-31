@@ -229,7 +229,7 @@ export default function Header() {
         }
       `}</style>
 
-        <div className=" mx-auto flex items-center justify-between px-3 sm:px-4 md:px-24 py-3">
+        <div className=" mx-auto flex items-center justify-between px-3 sm:px-4 md:px-14 py-3">
           {/* Logo Section */}
           <div className="flex items-center space-x-1.5 sm:space-x-2 flex-shrink-0 min-w-0">
             <Link
