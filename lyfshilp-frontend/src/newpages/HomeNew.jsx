@@ -8,6 +8,7 @@ import Prof_Aashish_Argade_Img from "../assets/mentors/aashish.jpg";
 import Cdr_Praveen_Kumar_img from "../assets/mentors/praveen.jpg";
 import Prof_Ashok_R_Patil_img from "../assets/mentors/ashok.jpg";
 import Dr_Rajeev_Tyagi_img from "../assets/mentors/rajeev.jpg";
+import Sri_R_Ramaseshan_img from "../assets/R_Ramaseshan_sir.jpg";
 
 /* ── Scroll-reveal hooks ── */
 const useInView = (threshold = 0.15) => {
@@ -78,55 +79,143 @@ const ScaleIn = ({ children, delay = 0, className = "" }) => {
   );
 };
 
-/* ── Animated Eval Bar ── */
-const EvalBar = ({ label, pct, delay }) => {
+/* ── Evaluation Pie Chart ── */
+const EvalPieChart = ({ data }) => {
   const [ref, inView] = useInView();
+  let cumulative = 0;
+  const palette = ["#00c896", "#0d3d2f", "#d4af37", "#57b8ff"];
+  const segments = data.map((item, idx) => {
+    const start = cumulative;
+    cumulative += item.pct;
+    return {
+      ...item,
+      color: palette[idx % palette.length],
+      start,
+      end: cumulative,
+    };
+  });
+  const pieBackground = `conic-gradient(${segments
+    .map((s) => `${s.color} ${s.start}% ${s.end}%`)
+    .join(", ")})`;
+
   return (
-    <div ref={ref} style={{ marginBottom: 20 }}>
+    <div
+      ref={ref}
+      style={{
+        opacity: inView ? 1 : 0,
+        transform: inView ? "translateY(0)" : "translateY(18px)",
+        transition: "opacity 0.6s ease, transform 0.6s ease",
+      }}
+    >
       <div
         style={{
-          display: "flex",
-          justifyContent: "space-between",
-          marginBottom: 8,
-        }}
-      >
-        <span
-          style={{
-            fontFamily: "'DM Sans',sans-serif",
-            fontSize: "0.88rem",
-            fontWeight: 600,
-            color: "#0d3d2f",
-          }}
-        >
-          {label}
-        </span>
-        <span
-          style={{
-            fontFamily: "'Playfair Display',serif",
-            fontWeight: 700,
-            color: "#00c896",
-          }}
-        >
-          {pct}%
-        </span>
-      </div>
-      <div
-        style={{
-          height: 8,
-          background: "rgba(13,61,47,0.1)",
-          borderRadius: 50,
-          overflow: "hidden",
+          display: "grid",
+          gap: 26,
+          alignItems: "center",
+          gridTemplateColumns: "repeat(auto-fit,minmax(220px,1fr))",
         }}
       >
         <div
           style={{
-            width: inView ? `${pct}%` : "0%",
-            transition: `width 1.3s ease ${delay}s`,
-            height: "100%",
-            background: "linear-gradient(90deg, #00c896, #d4af37)",
-            borderRadius: 50,
+            width: 240,
+            height: 240,
+            borderRadius: "50%",
+            margin: "0 auto",
+            background: pieBackground,
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            boxShadow: "0 10px 30px rgba(13,61,47,.16)",
+            transform: inView ? "scale(1)" : "scale(0.92)",
+            transition: "transform 0.65s ease",
           }}
-        />
+        >
+          <div
+            style={{
+              width: 130,
+              height: 130,
+              borderRadius: "50%",
+              background: "#fff",
+              border: "1px solid #d8ede7",
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            <span
+              style={{
+                fontFamily: "'DM Sans',sans-serif",
+                fontSize: ".72rem",
+                color: "#5a7a6e",
+                letterSpacing: "1px",
+                textTransform: "uppercase",
+              }}
+            >
+              Total
+            </span>
+            <span
+              style={{
+                fontFamily: "'Playfair Display',serif",
+                fontSize: "2rem",
+                color: "#0d3d2f",
+                fontWeight: 900,
+                lineHeight: 1,
+              }}
+            >
+              100
+            </span>
+          </div>
+        </div>
+        <div>
+          {segments.map(({ label, pct, color }) => (
+            <div
+              key={label}
+              style={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "space-between",
+                marginBottom: 14,
+                paddingBottom: 10,
+                borderBottom: "1px dashed rgba(13,61,47,.13)",
+              }}
+            >
+              <span
+                style={{
+                  display: "inline-flex",
+                  alignItems: "center",
+                  gap: 10,
+                  fontFamily: "'DM Sans',sans-serif",
+                  color: "#0d3d2f",
+                  fontSize: ".88rem",
+                  fontWeight: 600,
+                }}
+              >
+                <span
+                  style={{
+                    width: 10,
+                    height: 10,
+                    borderRadius: "50%",
+                    background: color,
+                    boxShadow: `0 0 0 4px ${color}22`,
+                    flexShrink: 0,
+                  }}
+                />
+                {label}
+              </span>
+              <span
+                style={{
+                  fontFamily: "'Playfair Display',serif",
+                  fontWeight: 700,
+                  color,
+                  fontSize: "1.05rem",
+                }}
+              >
+                {pct}%
+              </span>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );
@@ -376,6 +465,11 @@ const EVAL = [
 ];
 
 const ADVISORS = [
+  {
+    img: Sri_R_Ramaseshan_img,
+    name: "Sri R Ramaseshan",
+    role: "Former IAS. Former MD & CEO at NCDEX. Chairman of the Board at National Commodity Clearing Limited.",
+  },
   {
     img: Prof_Sumit_Img,
     name: "Prof. Sumit Kumar Yadav",
@@ -1232,14 +1326,7 @@ export default function HomeNew() {
                     — Total 100 Marks
                   </span>
                 </h3>
-                {EVAL.map(({ label, pct }, i) => (
-                  <EvalBar
-                    key={label}
-                    label={label}
-                    pct={pct}
-                    delay={i * 0.15}
-                  />
-                ))}
+                <EvalPieChart data={EVAL} />
               </div>
             </SlideIn>
             <SlideIn from="right">
@@ -1539,7 +1626,15 @@ export default function HomeNew() {
             {ADVISORS.map(({ img, name, role }, i) => (
               <Reveal key={name} delay={i * 0.1}>
                 <div
-                  className="hover-lift p-6 rounded-2xl"
+                  className={`hover-lift p-6 rounded-2xl ${
+                    i === ADVISORS.length - 1 && ADVISORS.length % 2 === 1
+                      ? "sm:col-span-2 sm:max-w-xl sm:mx-auto sm:w-full lg:col-span-1 lg:max-w-none lg:mx-0"
+                      : ""
+                  } ${
+                    i === ADVISORS.length - 1 && ADVISORS.length % 3 === 1
+                      ? "lg:col-start-2"
+                      : ""
+                  }`}
                   style={{
                     background: "rgba(255,255,255,.055)",
                     border: "1px solid rgba(0,200,150,.14)",
