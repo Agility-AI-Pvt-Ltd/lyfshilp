@@ -5,7 +5,13 @@ import Shreyaimg from "../assets/Aboutimg/Shreya.svg";
 import Saurabhimg from "../assets/Aboutimg/Saurabh.svg";
 import AboutImage from "../assets/Aboutimg/LyfshilpStudents.svg";
 import AryanImg from "../assets/aryan_profile.jpg";
+import ProfSumitImg from "../assets/mentors/sumit.jpg";
+import ProfAashishArgadeImg from "../assets/mentors/aashish.jpg";
+import CdrPraveenKumarImg from "../assets/mentors/praveen.jpg";
+import ProfAshokRPatilImg from "../assets/mentors/ashok.jpg";
+import DrRajeevTyagiImg from "../assets/mentors/rajeev.jpg";
 import { FaLinkedin } from "react-icons/fa";
+import Sri_R_Ramaseshan_img from "../assets/R_Ramaseshan_sir.jpg";
 
 /* ── scroll reveal ── */
 const useInView = (threshold = 0.08) => {
@@ -108,38 +114,39 @@ const TEAM = [
 
 const ADVISORS = [
   {
-    name: "Prof. Sumit Kumar Yadav",
-    title: "Asst. Professor",
-    inst: "IIT Roorkee",
-    creds: "PhD IIM Ahmedabad · B.Tech IIT Bombay",
-    initial: "SY",
-  },
-  {
-    name: "Prof. Aashish Argade",
-    title: "Asst. Professor",
-    inst: "IRMA",
-    creds: "PhD IIM Ahmedabad",
-    initial: "AA",
-  },
-  {
-    name: "Sri R. Ramaseshan",
-    title: "Former IAS",
-    inst: "NCDEX",
-    creds: "Ex-MD & CEO NCDEX · Chairman National Commodity Clearing Ltd.",
+    img: Sri_R_Ramaseshan_img,
+    name: "Sri R Ramaseshan",
+    role: "Former IAS. Former MD & CEO at NCDEX. Chairman of the Board at National Commodity Clearing Limited.",
     initial: "RR",
   },
   {
+    img: ProfSumitImg,
+    name: "Prof. Sumit Kumar Yadav",
+    role: "Assistant Professor, IIT Roorkee | PhD: IIM Ahmedabad | BTech: IIT Bombay",
+    initial: "SY",
+  },
+  {
+    img: ProfAashishArgadeImg,
+    name: "Prof. Aashish Argade",
+    role: "Assistant Professor, IRMA | PhD: IIM Ahmedabad",
+    initial: "AA",
+  },
+  {
+    img: CdrPraveenKumarImg,
+    name: "Cdr Praveen Kumar",
+    role: "CIO & Head of IT, Nykaa | IIT Kanpur | ISB",
+    initial: "PK",
+  },
+  {
+    img: ProfAshokRPatilImg,
     name: "Prof. Ashok R. Patil",
-    title: "Vice Chancellor",
-    inst: "NUSRL",
-    creds: "Professor NLSIU Bengaluru",
+    role: "Vice Chancellor, NUSRL Ranchi | Professor, NLSIU Bengaluru",
     initial: "AP",
   },
   {
+    img: DrRajeevTyagiImg,
     name: "Dr. Rajeev Tyagi",
-    title: "Principal",
-    inst: "Mt Carmel School, Delhi",
-    creds: "IIT Roorkee Alumnus · Mt Carmel School Dwarka",
+    role: "IIT Roorkee Alumnus | Principal, Mt Carmel School, Delhi",
     initial: "RT",
   },
 ];
@@ -661,20 +668,36 @@ export default function AboutUs() {
                 margin: "10px auto 0",
               }}
             >
-              Professors from IIT, IIM, and IRMA. A former IAS officer. A Vice
-              Chancellor. Our advisors bring academic rigour and institutional
-              wisdom to everything we build.
+              Professors, school leaders, and industry experts from IIT, IIM,
+              IRMA, and top institutions. Our advisors bring academic rigour and
+              practical leadership to everything we build.
             </p>
           </Reveal>
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
-            {ADVISORS.map(({ name, title, inst, creds, initial }, i) => (
+            {ADVISORS.map(({ img, name, role, initial }, i) => (
               <Reveal key={name} delay={i * 0.08}>
                 <div
                   className="ab-advisor-card h-full"
                   style={{ display: "flex", gap: 16, alignItems: "flex-start" }}
                 >
-                  <div className="ab-initial-avatar">{initial}</div>
+                  {img ? (
+                    <img
+                      src={img}
+                      alt={name}
+                      style={{
+                        width: 52,
+                        height: 52,
+                        borderRadius: 14,
+                        objectFit: "cover",
+                        objectPosition: "center",
+                        border: "1px solid rgba(0,200,150,.28)",
+                        flexShrink: 0,
+                      }}
+                    />
+                  ) : (
+                    <div className="ab-initial-avatar">{initial}</div>
+                  )}
                   <div style={{ flex: 1 }}>
                     <div
                       style={{
@@ -689,25 +712,12 @@ export default function AboutUs() {
                     </div>
                     <div
                       style={{
-                        fontSize: ".75rem",
-                        color: "#00c896",
-                        fontWeight: 600,
-                        marginBottom: 6,
-                      }}
-                    >
-                      {title} ·{" "}
-                      <span style={{ color: "var(--color-gold, #C9A84C)" }}>
-                        {inst}
-                      </span>
-                    </div>
-                    <div
-                      style={{
                         color: "var(--color-text-muted, #7A9E8A)",
                         fontSize: ".75rem",
                         lineHeight: 1.6,
                       }}
                     >
-                      {creds}
+                      {role}
                     </div>
                   </div>
                 </div>
