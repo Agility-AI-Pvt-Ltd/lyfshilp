@@ -118,36 +118,43 @@ const ADVISORS = [
     name: "Sri R Ramaseshan",
     role: "Former IAS. Former MD & CEO at NCDEX. Chairman of the Board at National Commodity Clearing Limited.",
     initial: "RR",
+    linkedin: "#",
   },
   {
     img: ProfSumitImg,
     name: "Prof. Sumit Kumar Yadav",
     role: "Assistant Professor, IIT Roorkee | PhD: IIM Ahmedabad | BTech: IIT Bombay",
     initial: "SY",
+    linkedin: "https://www.linkedin.com/in/sumit-kumar-yadav-904b5917b/",
   },
   {
     img: ProfAashishArgadeImg,
     name: "Prof. Aashish Argade",
     role: "Assistant Professor, IRMA | PhD: IIM Ahmedabad",
     initial: "AA",
+    linkedin: "https://www.linkedin.com/in/aashish-argade-5a43261/",
   },
   {
     img: CdrPraveenKumarImg,
     name: "Cdr Praveen Kumar",
     role: "CIO & Head of IT, Nykaa | IIT Kanpur | ISB",
     initial: "PK",
+    linkedin: "https://www.linkedin.com/in/cdr-praveen-kumar-0532ba6/",
   },
   {
     img: ProfAshokRPatilImg,
     name: "Prof. Ashok R. Patil",
     role: "Vice Chancellor, NUSRL Ranchi | Professor, NLSIU Bengaluru",
     initial: "AP",
+    linkedin:
+      "https://www.linkedin.com/in/prof-dr-ashok-r-patil-vice-chancellor-00568819/",
   },
   {
     img: DrRajeevTyagiImg,
     name: "Dr. Rajeev Tyagi",
     role: "IIT Roorkee Alumnus | Principal, Mt Carmel School, Delhi",
     initial: "RT",
+    linkedin: "https://www.linkedin.com/in/drrajeevtyagi/",
   },
 ];
 
@@ -675,7 +682,7 @@ export default function AboutUs() {
           </Reveal>
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
-            {ADVISORS.map(({ img, name, role, initial }, i) => (
+            {ADVISORS.map(({ img, name, role, initial, linkedin }, i) => (
               <Reveal key={name} delay={i * 0.08}>
                 <div
                   className="ab-advisor-card h-full"
@@ -701,14 +708,33 @@ export default function AboutUs() {
                   <div style={{ flex: 1 }}>
                     <div
                       style={{
-                        fontFamily: "var(--font-body)",
-                        fontWeight: 700,
-                        fontSize: ".92rem",
-                        color: "var(--color-text-body)",
+                        display: "flex",
+                        alignItems: "center",
+                        gap: 10,
                         marginBottom: 2,
                       }}
                     >
-                      {name}
+                      <div
+                        style={{
+                          fontFamily: "var(--font-body)",
+                          fontWeight: 700,
+                          fontSize: ".92rem",
+                          color: "var(--color-text-body)",
+                          flex: 1,
+                        }}
+                      >
+                        {name}
+                      </div>
+
+                      <a
+                        href={linkedin}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="ab-linkedin"
+                        aria-label={`${name} LinkedIn`}
+                      >
+                        <FaLinkedin size={14} />
+                      </a>
                     </div>
                     <div
                       style={{

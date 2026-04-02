@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from "react";
+import { FaLinkedin } from "react-icons/fa";
 import NewLandingPageAbout from "../components/newLandingPageAbout.jsx";
 import NewHero from "../components/NewHero.jsx";
 import NewLandingPagePillars from "../components/NewLandingPagePillars.jsx";
@@ -469,31 +470,38 @@ const ADVISORS = [
     img: Sri_R_Ramaseshan_img,
     name: "Sri R Ramaseshan",
     role: "Former IAS. Former MD & CEO at NCDEX. Chairman of the Board at National Commodity Clearing Limited.",
+    linkedin: "#",
   },
   {
     img: Prof_Sumit_Img,
     name: "Prof. Sumit Kumar Yadav",
     role: "Assistant Professor, IIT Roorkee | PhD: IIM Ahmedabad | BTech: IIT Bombay",
+    linkedin: "https://www.linkedin.com/in/sumit-kumar-yadav-904b5917b/",
   },
   {
     img: Prof_Aashish_Argade_Img,
     name: "Prof. Aashish Argade",
     role: "Assistant Professor, IRMA | PhD: IIM Ahmedabad",
+    linkedin: "https://www.linkedin.com/in/aashish-argade-5a43261/",
   },
   {
     img: Cdr_Praveen_Kumar_img,
     name: "Cdr Praveen Kumar",
     role: "CIO & Head of IT, Nykaa | IIT Kanpur | ISB",
+    linkedin: "https://www.linkedin.com/in/cdr-praveen-kumar-0532ba6/",
   },
   {
     img: Prof_Ashok_R_Patil_img,
     name: "Prof. Ashok R. Patil",
     role: "Vice Chancellor, NUSRL Ranchi | Professor, NLSIU Bengaluru",
+    linkedin:
+      "https://www.linkedin.com/in/prof-dr-ashok-r-patil-vice-chancellor-00568819/",
   },
   {
     img: Dr_Rajeev_Tyagi_img,
     name: "Dr. Rajeev Tyagi",
     role: "IIT Roorkee Alumnus | Principal, Mt Carmel School, Delhi",
+    linkedin: "https://www.linkedin.com/in/drrajeevtyagi/",
   },
 ];
 
@@ -880,7 +888,7 @@ export default function HomeNew() {
                     d: "Demo Day pitch before investors, mentors, and school leaders.",
                   },
                 ].map(({ n, t, d }, i) => (
-                  <Reveal key={n} delay={i * 0.15}>
+                  <div key={n}>
                     <div className="flex gap-4 mb-6 last:mb-0">
                       <div
                         style={{
@@ -927,7 +935,7 @@ export default function HomeNew() {
                         </div>
                       </div>
                     </div>
-                  </Reveal>
+                  </div>
                 ))}
               </div>
               {/* Case study */}
@@ -1623,7 +1631,7 @@ export default function HomeNew() {
             </h2>
           </Reveal>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 mb-20">
-            {ADVISORS.map(({ img, name, role }, i) => (
+            {ADVISORS.map(({ img, name, role, linkedin }, i) => (
               <Reveal key={name} delay={i * 0.1}>
                 <div
                   className={`hover-lift p-6 rounded-2xl ${
@@ -1694,9 +1702,33 @@ export default function HomeNew() {
                       fontSize: ".95rem",
                       fontWeight: 700,
                       marginBottom: 8,
+                      display: "flex",
+                      alignItems: "center",
+                      gap: 10,
                     }}
                   >
-                    {name}
+                    <span>{name}</span>
+                    <a
+                      href={linkedin}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={`${name} LinkedIn`}
+                      style={{
+                        display: "inline-flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        width: 28,
+                        height: 28,
+                        borderRadius: 10,
+                        background: "rgba(10,102,194,.15)",
+                        border: "1px solid rgba(10,102,194,.3)",
+                        color: "#0A66C2",
+                        textDecoration: "none",
+                        flex: "0 0 auto",
+                      }}
+                    >
+                      <FaLinkedin size={14} />
+                    </a>
                   </h4>
                   <p
                     style={{
