@@ -11,6 +11,17 @@ import Prof_Ashok_R_Patil_img from "../assets/mentors/ashok.jpg";
 import Dr_Rajeev_Tyagi_img from "../assets/mentors/rajeev.jpg";
 import Sri_R_Ramaseshan_img from "../assets/R_Ramaseshan_sir.jpg";
 
+import Session1 from "../assets/sessions/session1.png";
+import Session2 from "../assets/sessions/session2.png";
+import Session3 from "../assets/sessions/session3.png";
+import Session4 from "../assets/sessions/session4.png";
+import Session5 from "../assets/sessions/session5.png";
+import Session6 from "../assets/sessions/session6.png";
+import Session7 from "../assets/sessions/session7.png";
+import Session8 from "../assets/sessions/session8.png";
+import Session9 from "../assets/sessions/session9.png";
+import Session10 from "../assets/sessions/session10.png";
+
 /* ── Scroll-reveal hooks ── */
 const useInView = (threshold = 0.15) => {
   const ref = useRef(null);
@@ -656,6 +667,10 @@ export default function HomeNew() {
         .hover-lift{transition:transform .3s,border-color .3s,box-shadow .3s;}
         .hover-lift:hover{transform:translateY(-5px);box-shadow:0 14px 40px rgba(13,61,47,.12);}
 
+        .session-photo-card{cursor:pointer;}
+        .session-photo-card:hover img{transform:scale(1.06);}
+        .session-photo-card img{transition:transform .55s ease;}
+
         .quote-card{transition:transform .3s,box-shadow .3s;}
         .quote-card:hover{transform:translateY(-5px);box-shadow:0 16px 40px rgba(0,0,0,.22);}
 
@@ -681,6 +696,361 @@ export default function HomeNew() {
       />
 
       <NewHero />
+
+      {/* ══ SESSIONS IN ACTION ══ */}
+      <section
+        style={{
+          background: "linear-gradient(135deg,#071a11,#0d3d2f)",
+          padding: "96px 24px",
+          overflow: "hidden",
+        }}
+      >
+        <div className="max-w-7xl mx-auto">
+          <Reveal className="text-center mb-14">
+            <div
+              style={{
+                fontFamily: "'DM Sans',sans-serif",
+                fontSize: ".73rem",
+                fontWeight: 700,
+                letterSpacing: "2.5px",
+                textTransform: "uppercase",
+                color: "#00c896",
+                marginBottom: 14,
+              }}
+            >
+              Real Impact. Real Schools.
+            </div>
+            <h2
+              style={{
+                fontSize: "clamp(2rem,4vw,3rem)",
+                color: "#fff",
+                marginBottom: 16,
+              }}
+            >
+              FutureX{" "}
+              <span style={{ color: "#00c896" }}>Sessions in Action</span>
+            </h2>
+            <p
+              style={{
+                fontFamily: "'DM Sans',sans-serif",
+                color: "rgba(255,255,255,.5)",
+                fontSize: ".95rem",
+                maxWidth: 520,
+                margin: "0 auto",
+                lineHeight: 1.8,
+              }}
+            >
+              From auditoriums to classrooms — our experts bring transformative
+              learning experiences directly to students across India.
+            </p>
+          </Reveal>
+
+          {/* Top row: 3 equal columns */}
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "repeat(3, 1fr)",
+              gap: 12,
+              marginBottom: 12,
+            }}
+          >
+            {[Session1, Session2, Session3].map((src, i) => (
+              <Reveal key={i} delay={i * 0.1}>
+                <div
+                  style={{
+                    borderRadius: 16,
+                    overflow: "hidden",
+                    aspectRatio: "4/3",
+                    border: "1px solid rgba(0,200,150,.15)",
+                    boxShadow: "0 8px 32px rgba(0,0,0,.35)",
+                    position: "relative",
+                  }}
+                  className="session-photo-card"
+                >
+                  <img
+                    src={src}
+                    alt={`FutureX session ${i + 1}`}
+                    style={{
+                      width: "100%",
+                      height: "100%",
+                      objectFit: "cover",
+                      objectPosition: "center",
+                      display: "block",
+                      transition: "transform .5s ease",
+                    }}
+                  />
+                  <div
+                    style={{
+                      position: "absolute",
+                      inset: 0,
+                      background:
+                        "linear-gradient(to top, rgba(7,26,17,.55) 0%, transparent 50%)",
+                      pointerEvents: "none",
+                    }}
+                  />
+                </div>
+              </Reveal>
+            ))}
+          </div>
+
+          {/* Middle row: wide left + narrow right */}
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "3fr 2fr",
+              gap: 12,
+              marginBottom: 12,
+            }}
+          >
+            <Reveal delay={0.05}>
+              <div
+                style={{
+                  borderRadius: 16,
+                  overflow: "hidden",
+                  aspectRatio: "16/9",
+                  border: "1px solid rgba(0,200,150,.15)",
+                  boxShadow: "0 8px 32px rgba(0,0,0,.35)",
+                  position: "relative",
+                }}
+                className="session-photo-card"
+              >
+                <img
+                  src={Session4}
+                  alt="FutureX session 4"
+                  style={{
+                    width: "100%",
+                    height: "100%",
+                    objectFit: "cover",
+                    objectPosition: "center",
+                    display: "block",
+                    transition: "transform .5s ease",
+                  }}
+                />
+                <div
+                  style={{
+                    position: "absolute",
+                    inset: 0,
+                    background:
+                      "linear-gradient(to top, rgba(7,26,17,.55) 0%, transparent 50%)",
+                    pointerEvents: "none",
+                  }}
+                />
+              </div>
+            </Reveal>
+            <Reveal delay={0.15}>
+              <div
+                style={{
+                  borderRadius: 16,
+                  overflow: "hidden",
+                  aspectRatio: "4/3",
+                  border: "1px solid rgba(0,200,150,.15)",
+                  boxShadow: "0 8px 32px rgba(0,0,0,.35)",
+                  position: "relative",
+                  height: "100%",
+                }}
+                className="session-photo-card"
+              >
+                <img
+                  src={Session5}
+                  alt="FutureX session 5"
+                  style={{
+                    width: "100%",
+                    height: "100%",
+                    objectFit: "cover",
+                    objectPosition: "center",
+                    display: "block",
+                    transition: "transform .5s ease",
+                  }}
+                />
+                <div
+                  style={{
+                    position: "absolute",
+                    inset: 0,
+                    background:
+                      "linear-gradient(to top, rgba(7,26,17,.55) 0%, transparent 50%)",
+                    pointerEvents: "none",
+                  }}
+                />
+              </div>
+            </Reveal>
+          </div>
+
+          {/* Bottom row: narrow left + wide right */}
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "2fr 3fr",
+              gap: 12,
+              marginBottom: 12,
+            }}
+          >
+            <Reveal delay={0.05}>
+              <div
+                style={{
+                  borderRadius: 16,
+                  overflow: "hidden",
+                  aspectRatio: "4/3",
+                  border: "1px solid rgba(0,200,150,.15)",
+                  boxShadow: "0 8px 32px rgba(0,0,0,.35)",
+                  position: "relative",
+                  height: "100%",
+                }}
+                className="session-photo-card"
+              >
+                <img
+                  src={Session6}
+                  alt="FutureX session 6"
+                  style={{
+                    width: "100%",
+                    height: "100%",
+                    objectFit: "cover",
+                    objectPosition: "center",
+                    display: "block",
+                    transition: "transform .5s ease",
+                  }}
+                />
+                <div
+                  style={{
+                    position: "absolute",
+                    inset: 0,
+                    background:
+                      "linear-gradient(to top, rgba(7,26,17,.55) 0%, transparent 50%)",
+                    pointerEvents: "none",
+                  }}
+                />
+              </div>
+            </Reveal>
+            <Reveal delay={0.15}>
+              <div
+                style={{
+                  borderRadius: 16,
+                  overflow: "hidden",
+                  aspectRatio: "16/9",
+                  border: "1px solid rgba(0,200,150,.15)",
+                  boxShadow: "0 8px 32px rgba(0,0,0,.35)",
+                  position: "relative",
+                }}
+                className="session-photo-card"
+              >
+                <img
+                  src={Session7}
+                  alt="FutureX session 7"
+                  style={{
+                    width: "100%",
+                    height: "100%",
+                    objectFit: "cover",
+                    objectPosition: "center",
+                    display: "block",
+                    transition: "transform .5s ease",
+                  }}
+                />
+                <div
+                  style={{
+                    position: "absolute",
+                    inset: 0,
+                    background:
+                      "linear-gradient(to top, rgba(7,26,17,.55) 0%, transparent 50%)",
+                    pointerEvents: "none",
+                  }}
+                />
+              </div>
+            </Reveal>
+          </div>
+
+          {/* Last row: 3 equal columns */}
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "repeat(3, 1fr)",
+              gap: 12,
+            }}
+          >
+            {[Session8, Session9, Session10].map((src, i) => (
+              <Reveal key={i} delay={i * 0.1}>
+                <div
+                  style={{
+                    borderRadius: 16,
+                    overflow: "hidden",
+                    aspectRatio: "4/3",
+                    border: "1px solid rgba(0,200,150,.15)",
+                    boxShadow: "0 8px 32px rgba(0,0,0,.35)",
+                    position: "relative",
+                  }}
+                  className="session-photo-card"
+                >
+                  <img
+                    src={src}
+                    alt={`FutureX session ${i + 8}`}
+                    style={{
+                      width: "100%",
+                      height: "100%",
+                      objectFit: "cover",
+                      objectPosition: "center",
+                      display: "block",
+                      transition: "transform .5s ease",
+                    }}
+                  />
+                  <div
+                    style={{
+                      position: "absolute",
+                      inset: 0,
+                      background:
+                        "linear-gradient(to top, rgba(7,26,17,.55) 0%, transparent 50%)",
+                      pointerEvents: "none",
+                    }}
+                  />
+                </div>
+              </Reveal>
+            ))}
+          </div>
+
+          {/* Stats bar */}
+          <Reveal delay={0.2}>
+            <div
+              className="grid sm:grid-cols-3 gap-6 mt-14"
+              style={{
+                background: "rgba(0,200,150,.07)",
+                border: "1px solid rgba(0,200,150,.2)",
+                borderRadius: 20,
+                padding: "32px 40px",
+              }}
+            >
+              {[
+                { num: "50+", label: "Schools Reached" },
+                { num: "10,000+", label: "Students Impacted" },
+                { num: "100+", label: "Sessions Conducted" },
+              ].map(({ num, label }) => (
+                <div key={label} style={{ textAlign: "center" }}>
+                  <div
+                    style={{
+                      fontFamily: "'Playfair Display',serif",
+                      fontWeight: 900,
+                      fontSize: "clamp(2rem,4vw,2.8rem)",
+                      color: "#00c896",
+                      lineHeight: 1,
+                      marginBottom: 8,
+                    }}
+                  >
+                    {num}
+                  </div>
+                  <div
+                    style={{
+                      fontFamily: "'DM Sans',sans-serif",
+                      fontSize: ".85rem",
+                      color: "rgba(255,255,255,.5)",
+                      textTransform: "uppercase",
+                      letterSpacing: "1.5px",
+                      fontWeight: 600,
+                    }}
+                  >
+                    {label}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </Reveal>
+        </div>
+      </section>
 
       <NewLandingPageAbout />
 

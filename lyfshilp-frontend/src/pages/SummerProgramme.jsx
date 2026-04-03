@@ -1,6 +1,17 @@
 import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 
+import SS1 from "../assets/summer-sessions/ss1.png";
+import SS2 from "../assets/summer-sessions/ss2.png";
+import SS3 from "../assets/summer-sessions/ss3.png";
+import SS4 from "../assets/summer-sessions/ss4.png";
+import SS5 from "../assets/summer-sessions/ss5.png";
+import SS6 from "../assets/summer-sessions/ss6.png";
+import SS7 from "../assets/summer-sessions/ss7.png";
+import SS8 from "../assets/summer-sessions/ss8.png";
+import SS9 from "../assets/summer-sessions/ss9.png";
+import SS10 from "../assets/summer-sessions/ss10.png";
+
 /* ── scroll reveal ── */
 const useInView = (threshold = 0.12) => {
   const ref = useRef(null);
@@ -453,6 +464,115 @@ export default function SummerProgramme() {
               </div>
             </Reveal>
           ))}
+        </div>
+      </section>
+
+      {/* ── SESSIONS MARQUEE ── */}
+      <section
+        style={{
+          padding: "80px 0",
+          background: "linear-gradient(135deg,#071a11,#0d3d2f)",
+          overflow: "hidden",
+        }}
+      >
+        <style>{`
+          @keyframes marquee-left {
+            0%   { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+          }
+          @keyframes marquee-right {
+            0%   { transform: translateX(-50%); }
+            100% { transform: translateX(0); }
+          }
+          .sp-marquee-track-left  { animation: marquee-left  28s linear infinite; }
+          .sp-marquee-track-right { animation: marquee-right 34s linear infinite; }
+          .sp-marquee-track-left:hover,
+          .sp-marquee-track-right:hover { animation-play-state: paused; }
+          .sp-marquee-img {
+            flex-shrink: 0;
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid rgba(0,200,150,.18);
+            box-shadow: 0 8px 32px rgba(0,0,0,.4);
+            transition: transform .4s ease, box-shadow .4s ease;
+          }
+          .sp-marquee-img:hover {
+            transform: scale(1.04);
+            box-shadow: 0 16px 48px rgba(0,200,150,.2);
+          }
+          .sp-marquee-img img {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+          }
+        `}</style>
+
+        {/* Heading */}
+        <Reveal className="text-center" style={{ marginBottom: 48, padding: "0 24px" }}>
+          <div
+            style={{
+              fontFamily: "var(--font-body)",
+              fontSize: ".72rem",
+              fontWeight: 700,
+              letterSpacing: "2.5px",
+              textTransform: "uppercase",
+              color: "#00c896",
+              marginBottom: 12,
+            }}
+          >
+            Real Sessions. Real Schools.
+          </div>
+          <h2
+            style={{
+              fontFamily: "var(--font-display)",
+              fontWeight: 900,
+              fontSize: "clamp(1.8rem,4vw,2.8rem)",
+              color: "#fff",
+              marginBottom: 0,
+            }}
+          >
+            Seen Across India's{" "}
+            <span style={{ color: "#00c896" }}>Best Schools</span>
+          </h2>
+        </Reveal>
+
+        {/* Row 1 — scrolls LEFT */}
+        <div style={{ overflow: "hidden", marginBottom: 16 }}>
+          <div
+            className="sp-marquee-track-left"
+            style={{ display: "flex", gap: 16, width: "max-content" }}
+          >
+            {[SS1, SS2, SS3, SS4, SS5, SS6, SS7, SS8, SS9, SS10,
+              SS1, SS2, SS3, SS4, SS5, SS6, SS7, SS8, SS9, SS10].map((src, i) => (
+              <div
+                key={i}
+                className="sp-marquee-img"
+                style={{ width: 420, height: 280 }}
+              >
+                <img src={src} alt={`FutureX session ${(i % 10) + 1}`} />
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Row 2 — scrolls RIGHT (reversed order for variety) */}
+        <div style={{ overflow: "hidden" }}>
+          <div
+            className="sp-marquee-track-right"
+            style={{ display: "flex", gap: 16, width: "max-content" }}
+          >
+            {[SS6, SS7, SS8, SS9, SS10, SS1, SS2, SS3, SS4, SS5,
+              SS6, SS7, SS8, SS9, SS10, SS1, SS2, SS3, SS4, SS5].map((src, i) => (
+              <div
+                key={i}
+                className="sp-marquee-img"
+                style={{ width: 380, height: 260 }}
+              >
+                <img src={src} alt={`FutureX session ${(i % 10) + 6}`} />
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -1501,7 +1621,7 @@ export default function SummerProgramme() {
             >
               Seats are limited.
               <br />
-              <span className="sp-accent">Summer 2026 fills fast.</span>
+              <span className="sp-accent">Summer 2026 filling fast.</span>
             </h2>
 
             <Link

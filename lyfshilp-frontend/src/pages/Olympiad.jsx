@@ -147,7 +147,8 @@ function PartnerHandshakeIcon({ size = 280, ariaLabel = "Partnership" }) {
           transform: "translate(-50%, -50%)",
           width: glow,
           height: glow,
-          background: "radial-gradient(circle,rgba(0,200,150,.18),transparent 62%)",
+          background:
+            "radial-gradient(circle,rgba(0,200,150,.18),transparent 62%)",
           filter: "blur(20px)",
           borderRadius: "50%",
           pointerEvents: "none",
@@ -2678,7 +2679,55 @@ export default function Olympiad() {
               style={{ padding: "36px 32px", backdropFilter: "blur(8px)" }}
             >
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-                <PartnerHandshakeIcon size={280} ariaLabel="Purpose-built partnership" />
+                <div
+                  aria-label="Purpose-built partnership logo"
+                  style={{
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    width: "100%",
+                    minHeight: 380,
+                    position: "relative",
+                  }}
+                >
+                  <div
+                    style={{
+                      position: "absolute",
+                      inset: -20,
+                      borderRadius: 24,
+                      background:
+                        "radial-gradient(circle at 50% 40%, rgba(0,200,150,.18), transparent 60%)",
+                      filter: "blur(14px)",
+                      pointerEvents: "none",
+                    }}
+                  />
+                  <div
+                    style={{
+                      position: "relative",
+                      zIndex: 1,
+                      width: "clamp(128px, 20vw, 220px)",
+                      height: "clamp(128px, 20vw, 220px)",
+                      borderRadius: 9999,
+                      background: "rgba(0,200,150,.08)",
+                      border: "1px solid rgba(0,200,150,.18)",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      padding: 18,
+                    }}
+                  >
+                    <img
+                      src="/logo.png"
+                      alt="FutureX Fellowship logo"
+                      style={{
+                        width: "100%",
+                        height: "100%",
+                        objectFit: "contain",
+                        display: "block",
+                      }}
+                    />
+                  </div>
+                </div>
                 <div>
                   <div
                     style={{
