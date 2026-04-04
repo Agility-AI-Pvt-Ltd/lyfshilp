@@ -39,6 +39,7 @@ import ForSchools from "./pages/ForSchools.jsx";
 import ForColleges from "./pages/ForColleges.jsx";
 import CorporateAI from "./pages/CorporateAI.jsx";
 import Podcasts from "./pages/Podcasts.jsx";
+import Community from "./pages/Community.jsx";
 
 import Podcast from "./pages/Podcast.jsx";
 import Internships from "./pages/Internships.jsx";
@@ -143,7 +144,7 @@ export default function App() {
             <Route path="/for-colleges" element={<ForColleges />} />
             <Route path="/corporate-ai-upskilling" element={<CorporateAI />} />
             <Route path="/podcasts" element={<Podcast />} />
-            <Route path="/community" element={<ComingSoon />} />
+            <Route path="/community" element={<Community />} />
             <Route path="/about" element={<AboutUs />} />
             <Route path="/career" element={<Careers />} />
             <Route path="/career/job1" element={<Job1 />} />
