@@ -13,6 +13,16 @@ import { LIVE_SESSION_GALLERY, LIVE_SESSION_IMAGES } from "../assets/summer-sess
 
 const PAYMENT_URL = __RAZORPAY_URL__;
 
+function trackLiveWebinarPaymentClick() {
+  if (typeof window !== "undefined" && window.fbq) {
+    window.fbq("track", "InitiateCheckout", {
+      value: 99,
+      currency: "INR",
+      content_name: "Live Webinar Seat",
+    });
+  }
+}
+
 /** slice(4) is 7 URLs; last repeats ss10 for layout parity; investment banner uses gallery.wide */
 const [heroWorkshopA, heroWorkshopB, problemWorkshop, agendaWorkshop, ferrariWorkshop, sessionWorkshop, whyWorkshop] =
   LIVE_SESSION_IMAGES.slice(4);
@@ -127,7 +137,7 @@ function SeatBar() {
   );
 }
 
-function PrimaryCta({ children, href, className = "" }) {
+function PrimaryCta({ children, href, className = "", onClick }) {
   const sharedClass = `group relative w-full min-w-[280px] overflow-hidden rounded-xl px-8 py-4 text-center text-base font-semibold text-white no-underline shadow-lg transition-all duration-300 ease-out hover:scale-[1.03] hover:shadow-[0_14px_48px_rgba(13,159,114,0.42)] active:scale-[0.98] motion-reduce:transition-colors sm:w-auto inline-flex items-center justify-center gap-2 ${className}`;
   const style = {
     background: `linear-gradient(135deg, ${GREEN} 0%, ${GREEN_DIM} 100%)`,
@@ -135,7 +145,7 @@ function PrimaryCta({ children, href, className = "" }) {
   };
   if (href) {
     return (
-      <a href={href} rel="noopener noreferrer" className={sharedClass} style={style}>
+      <a href={href} rel="noopener noreferrer" className={sharedClass} style={style} onClick={onClick}>
         <span className="relative z-10 inline-flex items-center gap-2">{children}</span>
         <span
           className="pointer-events-none absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/20 to-transparent opacity-0 transition-all duration-500 group-hover:translate-x-full group-hover:opacity-100 motion-reduce:hidden"
@@ -151,7 +161,7 @@ function PrimaryCta({ children, href, className = "" }) {
   );
 }
 
-function GoldCta({ children, href, className = "" }) {
+function GoldCta({ children, href, className = "", onClick }) {
   const base =
     `rounded-xl px-4 py-2 text-sm font-semibold text-black no-underline transition-all duration-300 hover:scale-[1.05] hover:shadow-[0_10px_36px_rgba(212,175,55,0.35)] active:scale-[0.98] motion-reduce:transition-colors inline-flex items-center justify-center ${className}`;
   if (!href) {
@@ -162,7 +172,7 @@ function GoldCta({ children, href, className = "" }) {
     );
   }
   return (
-    <a href={href} rel="noopener noreferrer" className={base} style={{ background: GOLD }}>
+    <a href={href} rel="noopener noreferrer" className={base} style={{ background: GOLD }} onClick={onClick}>
       {children}
     </a>
   );
@@ -192,6 +202,15 @@ export default function LiveWebinar() {
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  useEffect(() => {
+    if (typeof window !== "undefined" && window.fbq) {
+      window.fbq("track", "ViewContent", {
+        content_name: "Live Webinar",
+        content_category: "webinar",
+      });
+    }
   }, []);
 
   const countdown = useMemo(() => {
@@ -235,7 +254,9 @@ export default function LiveWebinar() {
           <span className="fx-head text-xl font-black tracking-tight transition-transform duration-300 hover:scale-[1.02]">
             Future<span style={{ color: GOLD }}>X</span>
           </span>
-          <GoldCta href={PAYMENT_URL || undefined}>Reserve Seat — ₹99</GoldCta>
+          <GoldCta href={PAYMENT_URL || undefined} onClick={PAYMENT_URL ? trackLiveWebinarPaymentClick : undefined}>
+            Reserve Seat — ₹99
+          </GoldCta>
         </div>
       </header>
 
@@ -290,7 +311,7 @@ export default function LiveWebinar() {
           className="fx-hero-stagger mb-10 flex flex-col items-center justify-center gap-4 sm:flex-row"
           style={{ animationDelay: "340ms" }}
         >
-          <PrimaryCta href={PAYMENT_URL}>
+          <PrimaryCta href={PAYMENT_URL} onClick={trackLiveWebinarPaymentClick}>
             Reserve My Seat for ₹99
             <ArrowRight className="h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" />
           </PrimaryCta>
@@ -449,7 +470,7 @@ export default function LiveWebinar() {
           </div>
         </Reveal>
         <Reveal delay={120} className="mt-12 flex justify-center">
-          <PrimaryCta href={PAYMENT_URL}>
+          <PrimaryCta href={PAYMENT_URL} onClick={trackLiveWebinarPaymentClick}>
             Reserve My Seat — ₹99
             <ArrowRight className="h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" />
           </PrimaryCta>
@@ -517,7 +538,7 @@ export default function LiveWebinar() {
           </div>
         </Reveal>
         <Reveal delay={100} className="mt-12 flex justify-center">
-          <PrimaryCta href={PAYMENT_URL}>
+          <PrimaryCta href={PAYMENT_URL} onClick={trackLiveWebinarPaymentClick}>
             Pay ₹99 &amp; Reserve — Razorpay
             <ArrowRight className="h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" />
           </PrimaryCta>
@@ -578,7 +599,11 @@ export default function LiveWebinar() {
           </div>
         </Reveal>
         <Reveal delay={140} className="mt-10 flex justify-center">
-          <GoldCta href={PAYMENT_URL || undefined} className="px-10 py-4 text-base font-semibold">
+          <GoldCta
+            href={PAYMENT_URL || undefined}
+            className="px-10 py-4 text-base font-semibold"
+            onClick={PAYMENT_URL ? trackLiveWebinarPaymentClick : undefined}
+          >
             Enroll Now — ₹99
           </GoldCta>
         </Reveal>
@@ -610,7 +635,7 @@ export default function LiveWebinar() {
           </p>
         </Reveal>
         <Reveal delay={100} className="relative z-10">
-          <PrimaryCta href={PAYMENT_URL}>
+          <PrimaryCta href={PAYMENT_URL} onClick={trackLiveWebinarPaymentClick}>
             I Want to Shift Gears — ₹99
             <ArrowRight className="h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" />
           </PrimaryCta>
@@ -683,7 +708,7 @@ export default function LiveWebinar() {
           </Reveal>
         </div>
         <Reveal delay={160} className="mt-12 flex justify-center">
-          <PrimaryCta href={PAYMENT_URL}>
+          <PrimaryCta href={PAYMENT_URL} onClick={trackLiveWebinarPaymentClick}>
             Join Now — ₹99
             <ArrowRight className="h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" />
           </PrimaryCta>
@@ -728,7 +753,7 @@ export default function LiveWebinar() {
               <strong className="text-white">If you are serious about this, ₹99 is nothing.</strong> If you are not —
               this session is not for you.
             </p>
-            <PrimaryCta href={PAYMENT_URL}>
+            <PrimaryCta href={PAYMENT_URL} onClick={trackLiveWebinarPaymentClick}>
               I&apos;m Serious — Pay ₹99
               <ArrowRight className="h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" />
             </PrimaryCta>
@@ -793,6 +818,7 @@ export default function LiveWebinar() {
               <a
                 href={PAYMENT_URL || undefined}
                 rel="noopener noreferrer"
+                onClick={PAYMENT_URL ? trackLiveWebinarPaymentClick : undefined}
                 className={`group mb-6 inline-flex w-full items-center justify-center gap-2 rounded-xl py-4 text-base font-semibold text-white no-underline transition-all duration-300 hover:scale-[1.02] hover:shadow-[0_12px_40px_rgba(13,159,114,0.4)] active:scale-[0.98] motion-reduce:transition-colors ${
                   !PAYMENT_URL ? "pointer-events-none opacity-40" : ""
                 }`}
@@ -868,7 +894,7 @@ export default function LiveWebinar() {
           </div>
         </Reveal>
         <Reveal delay={120}>
-          <PrimaryCta href={PAYMENT_URL}>
+          <PrimaryCta href={PAYMENT_URL} onClick={trackLiveWebinarPaymentClick}>
             Reserve My Seat — ₹99 Only
             <ArrowRight className="h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" />
           </PrimaryCta>
