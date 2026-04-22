@@ -9,14 +9,14 @@ import {
   Smartphone,
   X,
 } from "lucide-react";
-import { WEBINAR_GALLERY, WEBINAR_IMAGES } from "../assets/webinar/images.js";
+import { LIVE_SESSION_GALLERY, LIVE_SESSION_IMAGES } from "../assets/summer-sessions/images.js";
 
 const PAYMENT_URL = __RAZORPAY_URL__;
 
-/** slice(4) is 7 URLs (no w06 file); 8th slot is the investment banner — use gallery wide asset */
+/** slice(4) is 7 URLs; last repeats ss10 for layout parity; investment banner uses gallery.wide */
 const [heroWorkshopA, heroWorkshopB, problemWorkshop, agendaWorkshop, ferrariWorkshop, sessionWorkshop, whyWorkshop] =
-  WEBINAR_IMAGES.slice(4);
-const investWorkshop = WEBINAR_GALLERY.wide;
+  LIVE_SESSION_IMAGES.slice(4);
+const investWorkshop = LIVE_SESSION_GALLERY.wide;
 
 const GREEN = "#0d9f72";
 const GREEN_DIM = "#0a7a58";
@@ -538,7 +538,7 @@ export default function LiveWebinar() {
             <div className="flex w-full flex-col gap-3 md:flex-row md:gap-4">
               <div className="group/g1 relative min-h-[220px] w-full flex-1 overflow-hidden rounded-2xl border border-white/10 shadow-lg transition-all duration-500 hover:border-emerald-500/35 hover:shadow-[0_0_40px_-8px_rgba(13,159,114,0.25)] md:min-h-[320px]">
                 <WebinarPhoto
-                  src={WEBINAR_GALLERY.main}
+                  src={LIVE_SESSION_GALLERY.main}
                   alt="Main workshop — group session with FutureX"
                   className="absolute inset-0 h-full w-full"
                   imgClassName="transition-transform duration-700 group-hover/g1:scale-105"
@@ -548,7 +548,7 @@ export default function LiveWebinar() {
               <div className="flex w-full shrink-0 flex-col gap-3 md:w-[min(40%,280px)] md:gap-4">
                 <div className="group/g2 relative min-h-[120px] w-full flex-1 overflow-hidden rounded-2xl border border-white/10 shadow-md transition-all duration-500 hover:border-amber-500/35 hover:shadow-lg md:min-h-[152px]">
                   <WebinarPhoto
-                    src={WEBINAR_GALLERY.stackTop}
+                    src={LIVE_SESSION_GALLERY.stackTop}
                     alt="Workshop student activity"
                     className="absolute inset-0 h-full w-full"
                     imgClassName="transition-transform duration-700 group-hover/g2:scale-105"
@@ -557,7 +557,7 @@ export default function LiveWebinar() {
                 </div>
                 <div className="group/g3 relative min-h-[120px] w-full flex-1 overflow-hidden rounded-2xl border border-white/10 shadow-md transition-all duration-500 hover:border-amber-500/35 hover:shadow-lg md:min-h-[152px]">
                   <WebinarPhoto
-                    src={WEBINAR_GALLERY.stackBottom}
+                    src={LIVE_SESSION_GALLERY.stackBottom}
                     alt="Students working during the workshop"
                     className="absolute inset-0 h-full w-full"
                     imgClassName="transition-transform duration-700 group-hover/g3:scale-105"
@@ -568,7 +568,7 @@ export default function LiveWebinar() {
             </div>
             <div className="group/g4 relative min-h-[140px] w-full overflow-hidden rounded-2xl border border-white/10 shadow-lg transition-all duration-500 hover:border-emerald-500/35 hover:shadow-[0_0_36px_-6px_rgba(13,159,114,0.2)] sm:min-h-[180px]">
               <WebinarPhoto
-                src={WEBINAR_GALLERY.wide}
+                src={LIVE_SESSION_GALLERY.wide}
                 alt="Wide workshop or classroom shot"
                 className="absolute inset-0 h-full w-full"
                 imgClassName="transition-transform duration-700 group-hover/g4:scale-[1.02]"
