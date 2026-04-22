@@ -1,7 +1,6 @@
 import w00 from "./WhatsApp Image 2026-04-22 at 4.54.12 PM.jpeg";
 import w01 from "./WhatsApp Image 2026-04-22 at 4.54.12 PM (1).jpeg";
 import w02 from "./WhatsApp Image 2026-04-22 at 4.54.12 PM (2).jpeg";
-import w03 from "./WhatsApp Image 2026-04-22 at 4.54.12 PM (3).jpeg";
 import w04 from "./WhatsApp Image 2026-04-22 at 4.54.12 PM (4).jpeg";
 import w05 from "./WhatsApp Image 2026-04-22 at 4.54.12 PM (5).jpeg";
 import w07 from "./WhatsApp Image 2026-04-22 at 4.54.12 PM (7).jpeg";
@@ -15,7 +14,6 @@ export const WEBINAR_IMAGES = [
   w00,
   w01,
   w02,
-  w03,
   w04,
   w05,
   w07,
@@ -23,11 +21,12 @@ export const WEBINAR_IMAGES = [
   w09,
   w10,
   w11,
+  w11,
 ];
 
 export const WEBINAR_GALLERY = {
   main: w00,
   stackTop: w01,
   stackBottom: w02,
-  wide: w03,
+  wide: w04,
 };
