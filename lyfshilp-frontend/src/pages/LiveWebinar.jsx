@@ -618,10 +618,7 @@ export default function LiveWebinar() {
       </section>
 
       {/* For / Skip */}
-      <section
-        className="relative z-10 mx-auto max-w-6xl border-t border-white/5 px-4 py-20 transition-colors duration-500"
-        style={{ background: "#0a0a0a" }}
-      >
+      <section className="relative z-10 mx-auto max-w-6xl border-t border-white/5 px-4 py-20">
         <Reveal>
           <h2 className="fx-head mb-10 text-center text-3xl font-black">This Session Is For —</h2>
         </Reveal>
