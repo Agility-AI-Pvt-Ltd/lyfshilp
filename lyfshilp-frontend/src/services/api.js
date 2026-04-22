@@ -1,10 +1,12 @@
 import axios from "axios";
 
+const baseURL = __BACKEND_URL__;
+
 const api = axios.create({
-  baseURL: "https://lyfshilp-backend-210425516679.asia-south1.run.app/api", // Production backend URL from Google Cloud Run
+  baseURL,
+  withCredentials: true,
 });
 
-// Add JWT automatically if available
 api.interceptors.request.use((config) => {
   const token = localStorage.getItem("token");
   if (token) {

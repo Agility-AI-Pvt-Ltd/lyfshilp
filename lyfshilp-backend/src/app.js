@@ -22,8 +22,7 @@ import contactRoutes from "./routes/contactRoutes.js";
 import partnerSchoolRoutes from "./routes/partnerSchoolRoutes.js"
 import dailyPdfRoutes from "./routes/dailyPdfRoutes.js";
 import careerGuidanceRoutes from "./routes/careerGuidanceRoutes.js";
-
-
+import paymentRoutes from "./routes/paymentRoutes.js";
 
 const app = express();
 
@@ -85,7 +84,7 @@ app.use("/api/podcast", podcastRoutes);
 app.use("/api/contact", contactRoutes);
 app.use("/api/daily-pdf", dailyPdfRoutes);
 app.use("/api/career-guidance", careerGuidanceRoutes);
-
+app.use("/api/payments", paymentRoutes);
 
 // --- Health check ---
 app.get("/api/health", (req, res) => {

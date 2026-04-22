@@ -40,6 +40,7 @@ import ForColleges from "./pages/ForColleges.jsx";
 import CorporateAI from "./pages/CorporateAI.jsx";
 import Podcasts from "./pages/Podcasts.jsx";
 import Community from "./pages/Community.jsx";
+import LiveWebinar from "./pages/LiveWebinar.jsx";
 
 import Podcast from "./pages/Podcast.jsx";
 import Internships from "./pages/Internships.jsx";
@@ -61,7 +62,7 @@ function BreadcrumbSchema() {
   const path = location.pathname || "/";
 
   // Home / landing pages: no breadcrumb schema
-  if (path === "/" || path === "/home") return null;
+  if (path === "/" || path === "/home" || path === "/live-webinar" || path === "/live-seminar") return null;
 
   const origin = typeof window !== "undefined" ? window.location.origin : "";
   const segments = path.split("/").filter(Boolean);
@@ -114,11 +115,14 @@ function BreadcrumbSchema() {
 }
 
 export default function App() {
+  const location = useLocation();
+  const hideSiteChrome =
+    location.pathname === "/live-webinar" || location.pathname === "/live-seminar";
+
   return (
     <AuthProvider>
       <div className="min-h-screen flex flex-col">
-        {/* Header (Navbar) */}
-        <Header />
+        {!hideSiteChrome ? <Header /> : null}
 
         {/* Main content */}
         <main className="flex-grow">
@@ -145,6 +149,8 @@ export default function App() {
             <Route path="/corporate-ai-upskilling" element={<CorporateAI />} />
             <Route path="/podcasts" element={<Podcast />} />
             <Route path="/community" element={<Community />} />
+            <Route path="/live-webinar" element={<LiveWebinar />} />
+            <Route path="/live-seminar" element={<LiveWebinar />} />
             <Route path="/about" element={<AboutUs />} />
             <Route path="/career" element={<Careers />} />
             <Route path="/career/job1" element={<Job1 />} />
@@ -198,8 +204,7 @@ export default function App() {
           </Routes>
         </main>
 
-        {/* Footer */}
-        <Footer />
+        {!hideSiteChrome ? <Footer /> : null}
       </div>
     </AuthProvider>
   );

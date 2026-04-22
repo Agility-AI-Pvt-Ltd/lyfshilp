@@ -1472,6 +1472,31 @@ export default function NewHero() {
             >
               join summer programme
             </a>
+            <a
+              href="/live-seminar"
+              style={{
+                display: "inline-block",
+                border: "2px solid rgba(255,255,255,.25)",
+                color: "#fff",
+                padding: "14px 32px",
+                borderRadius: 50,
+                fontFamily: "'DM Sans',sans-serif",
+                fontSize: ".9rem",
+                fontWeight: 500,
+                textDecoration: "none",
+                transition: "border-color .3s,color .3s",
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.borderColor = "#00c896";
+                e.currentTarget.style.color = "#00c896";
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.borderColor = "rgba(255,255,255,.25)";
+                e.currentTarget.style.color = "#fff";
+              }}
+            >
+              Live seminar
+            </a>
           </div>
         </div>
       </div>
