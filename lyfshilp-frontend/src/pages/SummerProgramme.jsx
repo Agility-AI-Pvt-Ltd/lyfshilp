@@ -51,7 +51,7 @@ const STATS = [
   { value: "10", label: "Live Online Sessions" },
   { value: "90", label: "Minutes Each" },
   { value: "May–Jun", label: "2026 Batch" },
-  { value: "₹2,999", label: "+ GST" },
+  { value: "₹6,999", label: "+ GST" },
 ];
 
 const TRACK_A = [
@@ -420,7 +420,7 @@ export default function SummerProgramme() {
               }}
             >
               <Link to="/contact" className="sp-btn-primary">
-                Enroll Now — ₹2,999 + GST →
+                Enroll Now — ₹6,999 + GST →
               </Link>
               <a href="#curriculum" className="sp-btn-outline">
                 View Curriculum
@@ -509,7 +509,10 @@ export default function SummerProgramme() {
         `}</style>
 
         {/* Heading */}
-        <Reveal className="text-center" style={{ marginBottom: 48, padding: "0 24px" }}>
+        <Reveal
+          className="text-center"
+          style={{ marginBottom: 48, padding: "0 24px" }}
+        >
           <div
             style={{
               fontFamily: "var(--font-body)",
@@ -543,8 +546,28 @@ export default function SummerProgramme() {
             className="sp-marquee-track-left"
             style={{ display: "flex", gap: 16, width: "max-content" }}
           >
-            {[SS1, SS2, SS3, SS4, SS5, SS6, SS7, SS8, SS9, SS10,
-              SS1, SS2, SS3, SS4, SS5, SS6, SS7, SS8, SS9, SS10].map((src, i) => (
+            {[
+              SS1,
+              SS2,
+              SS3,
+              SS4,
+              SS5,
+              SS6,
+              SS7,
+              SS8,
+              SS9,
+              SS10,
+              SS1,
+              SS2,
+              SS3,
+              SS4,
+              SS5,
+              SS6,
+              SS7,
+              SS8,
+              SS9,
+              SS10,
+            ].map((src, i) => (
               <div
                 key={i}
                 className="sp-marquee-img"
@@ -562,8 +585,28 @@ export default function SummerProgramme() {
             className="sp-marquee-track-right"
             style={{ display: "flex", gap: 16, width: "max-content" }}
           >
-            {[SS6, SS7, SS8, SS9, SS10, SS1, SS2, SS3, SS4, SS5,
-              SS6, SS7, SS8, SS9, SS10, SS1, SS2, SS3, SS4, SS5].map((src, i) => (
+            {[
+              SS6,
+              SS7,
+              SS8,
+              SS9,
+              SS10,
+              SS1,
+              SS2,
+              SS3,
+              SS4,
+              SS5,
+              SS6,
+              SS7,
+              SS8,
+              SS9,
+              SS10,
+              SS1,
+              SS2,
+              SS3,
+              SS4,
+              SS5,
+            ].map((src, i) => (
               <div
                 key={i}
                 className="sp-marquee-img"
@@ -1629,7 +1672,7 @@ export default function SummerProgramme() {
               className="sp-btn-primary"
               style={{ fontSize: "1.05rem", padding: "18px 44px" }}
             >
-              Enroll Now — ₹2,999 + GST →
+              Enroll Now — ₹6,999 + GST →
             </Link>
 
             <p
