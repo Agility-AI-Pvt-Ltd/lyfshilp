@@ -30,8 +30,8 @@ export default function Footerbefore() {
         <div>
           <h4 className="text-lg font-semibold text-amber-400 mb-4">Contact Us</h4>
           <p className="mb-2">📍 Delhi, India</p>
-          <p className="mb-2">📞 +91 98765 43210</p>
-          <p>✉️ info@lyfshilpacademy.com</p>
+          <p className="mb-2">📞 +91 70426 71115</p>
+          <p>✉️ futurex@lyfshilpacademy.com</p>
         </div>
 
         {/* Social Media */}

@@ -2546,14 +2546,14 @@ export default function Olympiad() {
                   {
                     icon: "PH",
                     label: "Phone",
-                    val: "7042671115 | 7042672300",
+                    val: "7042671115",
                     href: "tel:7042671115",
                   },
                   {
                     icon: "EM",
                     label: "Email",
-                    val: "service.excellence@lyfshilpacademy.com",
-                    href: "mailto:service.excellence@lyfshilpacademy.com",
+                    val: "futurex@lyfshilpacademy.com",
+                    href: "mailto:futurex@lyfshilpacademy.com",
                   },
                   {
                     icon: "WB",

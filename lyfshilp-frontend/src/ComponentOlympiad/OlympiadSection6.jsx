@@ -187,8 +187,8 @@ export default function OlympiadSection6() {
               borderRadius: 16, padding: "20px 20px", marginBottom: 24,
             }}>
               {[
-                { icon: "PH", label: "Phone", val: "7042671115 | 7042672300", href: "tel:7042671115" },
-                { icon: "EM", label: "Email", val: "service.excellence@lyfshilpacademy.com", href: "mailto:service.excellence@lyfshilpacademy.com" },
+                { icon: "PH", label: "Phone", val: "7042671115", href: "tel:7042671115" },
+                { icon: "EM", label: "Email", val: "futurex@lyfshilpacademy.com", href: "mailto:futurex@lyfshilpacademy.com" },
                 { icon: "WB", label: "Website", val: "lyfshilp.com", href: "https://lyfshilp.com" },
               ].map(({ icon, label, val, href }) => (
                 <a key={label} href={href} style={{ display: "flex", gap: 12, alignItems: "flex-start", marginBottom: 14, textDecoration: "none" }}>

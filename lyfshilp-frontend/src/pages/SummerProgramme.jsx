@@ -1727,7 +1727,7 @@ export default function SummerProgramme() {
                 +91 70426 71115
               </a>
               <a
-                href="mailto:service.excellence@lyfshilpacademy.com"
+                href="mailto:futurex@lyfshilpacademy.com"
                 style={{
                   display: "flex",
                   alignItems: "center",
@@ -1754,7 +1754,7 @@ export default function SummerProgramme() {
                 >
                   EM
                 </span>
-                service.excellence@lyfshilpacademy.com
+                futurex@lyfshilpacademy.com
               </a>
             </div>
           </Reveal>

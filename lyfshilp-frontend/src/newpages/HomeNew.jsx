@@ -2178,14 +2178,14 @@ export default function HomeNew() {
                 {
                   icon: "phone",
                   label: "Phone",
-                  val: "7042671115 | 7042672300",
+                  val: "7042671115",
                   href: "tel:7042671115",
                 },
                 {
                   icon: "mail",
                   label: "Email",
-                  val: "service.excellence@lyfshilpacademy.com",
-                  href: "mailto:service.excellence@lyfshilpacademy.com",
+                  val: "futurex@lyfshilpacademy.com",
+                  href: "mailto:futurex@lyfshilpacademy.com",
                 },
                 {
                   icon: "globe",
@@ -2240,7 +2240,7 @@ export default function HomeNew() {
           </Reveal>
           <Reveal delay={0.35}>
             <a
-              href="mailto:service.excellence@lyfshilpacademy.com"
+              href="mailto:futurex@lyfshilpacademy.com"
               className="shimmer-btn inline-block px-12 py-5 text-base"
               style={{
                 textDecoration: "none",
