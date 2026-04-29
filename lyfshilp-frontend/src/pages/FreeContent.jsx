@@ -238,7 +238,7 @@ export default function FreeContent() {
 
                 <div className="flex flex-col sm:flex-row gap-3">
                   <a
-                    href="https://wa.me/9871700767"
+                    href="https://wa.me/917042671115"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex items-center justify-center gap-2 bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-xl font-semibold shadow-lg transition-all hover:scale-105"
@@ -391,7 +391,7 @@ export default function FreeContent() {
               because of lack of <b>consistency</b> and <b>doubt-clearing</b>.
               If you don’t want to be part of that 90%, this is where the difference begins{" "}
               <a
-                href="https://wa.me/9871700767"
+                href="https://wa.me/917042671115"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 bg-green-600 hover:bg-green-700 

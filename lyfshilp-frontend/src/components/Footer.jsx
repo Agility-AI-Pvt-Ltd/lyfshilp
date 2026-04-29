@@ -82,7 +82,7 @@ export default function Footer() {
                   <SiYoutube size={14} />
                 </a>
                 <a
-                  href="https://wa.me/919990581573"
+                  href="https://wa.me/917042671115"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="w-9 h-9 flex items-center justify-center rounded-full transition"

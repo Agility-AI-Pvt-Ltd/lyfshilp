@@ -35,7 +35,7 @@ import CareerFairSection from "../components/CareerFairSection.jsx";
 
 export default function Workshop() {
   const handleWhatsAppClick = () => {
-    window.open("https://wa.me/918595034205", "_blank");
+    window.open("https://wa.me/917042671115", "_blank");
   };
 
   const images = [workshopMain, img1, img2, img3, img4, img5, img6, img7];
