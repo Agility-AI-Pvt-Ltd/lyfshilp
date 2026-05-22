@@ -119,14 +119,9 @@ export default function Footer() {
                   </a>
                 </li>
                 <li>
-                  <a
-                    href="https://www.lyfshilpacademy.in/privacypolicy"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="hover:text-white"
-                  >
+                  <Link to="/privacy-policy" className="hover:text-white">
                     Privacy Policy
-                  </a>
+                  </Link>
                 </li>
                 <li>
                   <Link to="/termsconditions" className="hover:text-white">
