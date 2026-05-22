@@ -13,6 +13,7 @@ import Careers from "./pages/Careers.jsx";
 import ExamPrep from "./pages/ExamPrep.jsx";
 import Olympiad from "./pages/Olympiad.jsx";
 import TermsConditions from "./pages/TermsConditions.jsx";
+import PrivacyPolicy from "./pages/PrivacyPolicy.jsx";
 import CuetPage from "./pages/CuetPage.jsx";
 import ClatPage from "./pages/ClatPage.jsx";
 import IpmatPage from "./pages/IpmatPage.jsx";
@@ -166,6 +167,7 @@ export default function App() {
             <Route path="/futureX" element={<Olympiad />} />
             <Route path="/futurex-fellowship" element={<Olympiad />} />
             <Route path="/termsconditions" element={<TermsConditions />} />
+            <Route path="/privacy-policy" element={<PrivacyPolicy />} />
             <Route path="/cuet" element={<CuetPage />} />
             <Route path="/clat" element={<ClatPage />} />
             <Route path="/ipmat" element={<IpmatPage />} />
