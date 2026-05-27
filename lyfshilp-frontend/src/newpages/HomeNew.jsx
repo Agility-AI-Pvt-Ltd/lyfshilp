@@ -1944,7 +1944,7 @@ export default function HomeNew() {
                   marginBottom: 8,
                 }}
               >
-                ₹49,999
+                ₹1.18 Lakh
               </div>
               <div
                 style={{
