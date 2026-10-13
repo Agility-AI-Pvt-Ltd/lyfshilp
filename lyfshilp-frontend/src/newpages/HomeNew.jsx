@@ -523,10 +523,6 @@ const FOUNDERS = [
   },
   { name: "Shreya Sienha", cred: "BTech, NSUT Delhi | PGPM, MICA Ahmedabad" },
   {
-    name: "CA Saurabh Jain",
-    cred: "FCA | Cer.IFRS(ICAI) | CS-E | Cer.Startup(ICAI)",
-  },
-  {
     name: "Deepak Dandotiya",
     cred: "BTech: NIT Silchar | MBA: Eastern Michigan University, USA",
   },

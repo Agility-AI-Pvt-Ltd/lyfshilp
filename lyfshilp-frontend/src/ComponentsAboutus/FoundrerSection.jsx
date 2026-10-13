@@ -1,6 +1,5 @@
 import Sharadimg from "../assets/Aboutimg/Sharad.svg";
 import Shreyaimg from "../assets/Aboutimg/Shreya.svg";
-import Saurabhimg from "../assets/Aboutimg/Saurabh.svg";
 import { FaLinkedin } from "react-icons/fa";
 
 export default function FoundersSection() {
@@ -24,15 +23,6 @@ export default function FoundersSection() {
       bio: `An Engineer turned Educator, Shreya brings creativity and empathy to everything she designs. Her experience in Digital Marketing at Piramal Pharma and later with the Piramal Foundation gave her a unique blend of analytical thinking and human-centered design helping her understand how young minds learn best, through curiosity and play.
 
       Her belief: “When students feel seen, learning takes care of itself.”`,
-    },
-    {
-      img: Saurabhimg,
-      name: "Saurabh Jain",
-      role: "Co-Founder",
-      linkedin: "https://www.linkedin.com/in/ca-saurabh-jain-8a014034/",
-      bio: `A Chartered Accountant who believes numbers and learning can be equally exciting, Saurabh brings financial discipline and strategic clarity to Lyfshilp’s vision. Having worked with multiple startups and education ventures, he ensures the academy grows with purpose and sustainability all while keeping the joy of learning at the center.
-
-      His philosophy: “Strong foundations build not just balance sheets but better learners.”`,
     },
   ];
 

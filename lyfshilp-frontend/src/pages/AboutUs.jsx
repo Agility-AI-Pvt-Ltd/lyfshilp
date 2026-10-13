@@ -2,7 +2,6 @@ import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import Sharadimg from "../assets/Aboutimg/Sharad.svg";
 import Shreyaimg from "../assets/Aboutimg/Shreya.svg";
-import Saurabhimg from "../assets/Aboutimg/Saurabh.svg";
 import AboutImage from "../assets/Aboutimg/LyfshilpStudents.svg";
 import AryanImg from "../assets/aryan_profile.jpg";
 import ProfSumitImg from "../assets/mentors/sumit.jpg";
@@ -91,15 +90,6 @@ const TEAM = [
     exp: "~10 Years",
     linkedin: "https://www.linkedin.com/in/shreya-sinha2802",
     bio: `An Engineer turned Educator, Shreya brings creativity and empathy to everything she designs. Her experience in Digital Marketing at Piramal Pharma and with Piramal Foundation gave her a unique blend of analytical thinking and human-centred design — helping her understand how young minds learn best.\n\n"When students feel seen, learning takes care of itself."`,
-  },
-  {
-    img: Saurabhimg,
-    name: "CA Saurabh Jain",
-    title: "Co-Founder & CFO",
-    creds: "FCA · Cer.IFRS (ICAI) · CS-E · Cer.Startup (ICAI) · FAFD · BRSR",
-    exp: "10+ Years",
-    linkedin: "https://www.linkedin.com/in/ca-saurabh-jain-8a014034/",
-    bio: `A Chartered Accountant who believes numbers and learning can be equally exciting, Saurabh brings financial discipline and strategic clarity to Lyfshilp's vision. Having worked with multiple startups and education ventures, he ensures the academy grows with purpose and sustainability.\n\n"Strong foundations build not just balance sheets — but better learners."`,
   },
   {
     img: AryanImg,
