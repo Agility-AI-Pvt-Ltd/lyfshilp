@@ -1197,6 +1197,7 @@ export default function NewHero() {
     "Stanford GSB",
     "Incubated at IIIT Allahabad",
     "Incubated at IIT Kanpur",
+    "Incubated at NSRCEL: IIM Bangalore",
     "DPIIT Recognised",
     "38 Institutions",
     "6,000+ Students",

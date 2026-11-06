@@ -2546,8 +2546,8 @@ export default function Olympiad() {
                   {
                     icon: "PH",
                     label: "Phone",
-                    val: "7042671115",
-                    href: "tel:7042671115",
+                    val: "7042149608",
+                    href: "tel:7042149608",
                   },
                   {
                     icon: "EM",

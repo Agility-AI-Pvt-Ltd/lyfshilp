@@ -2030,8 +2030,8 @@ export default function HomeNew() {
                 {
                   icon: "phone",
                   label: "Phone",
-                  val: "7042671115",
-                  href: "tel:7042671115",
+                  val: "7042149608",
+                  href: "tel:7042149608",
                 },
                 {
                   icon: "mail",

@@ -1,9 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
-import Sharadimg from "../assets/Aboutimg/Sharad.svg";
-import Shreyaimg from "../assets/Aboutimg/Shreya.svg";
 import AboutImage from "../assets/Aboutimg/LyfshilpStudents.svg";
-import AryanImg from "../assets/aryan_profile.jpg";
 import ProfSumitImg from "../assets/mentors/sumit.jpg";
 import ProfAashishArgadeImg from "../assets/mentors/aashish.jpg";
 import CdrPraveenKumarImg from "../assets/mentors/praveen.jpg";
@@ -73,32 +70,31 @@ const STATS = [
 
 const TEAM = [
   {
-    img: Sharadimg,
+    img: "/team/sharad.png",
     name: "Sharad Raaj Utsav",
     title: "Founder & CEO",
     creds:
-      "Stanford Seed · Stanford GSB · B.Tech NSUT · MBA IRMA · M.S. BITS Pilani",
+      "B.Tech, NSUT Delhi · MBA (Rural Management), IRMA · M.Sc. Data Science and AI, BITS Pilani · Stanford Seed alumnus · Claude Certified Instructor",
     exp: "~10 Years",
     linkedin: "https://www.linkedin.com/in/sharadrajutsav",
-    bio: `A curious mind with degrees in Engineering, Management and Law, Sharad has explored education, business and development across organisations like the United Nations, Amul and Piramal Foundation. His journey from boardrooms to classrooms inspired Lyfshilp Academy, where he's on a mission to make learning fun, relevant, and future-ready.\n\n"If learning feels like a chore, you're doing it wrong."`,
   },
   {
-    img: Shreyaimg,
+    img: "/team/shreya.png",
     name: "Shreya Sinha",
     title: "Co-Founder & COO",
-    creds: "B.Tech NSUT · PGP MICA · Ex-DM Head Piramal Pharma",
+    creds:
+      "B.Tech, NSUT Delhi · Women Startup Program, IIM Bangalore · PGP in Digital and Strategic Marketing, MICA Ahmedabad",
     exp: "~10 Years",
     linkedin: "https://www.linkedin.com/in/shreya-sinha2802",
-    bio: `An Engineer turned Educator, Shreya brings creativity and empathy to everything she designs. Her experience in Digital Marketing at Piramal Pharma and with Piramal Foundation gave her a unique blend of analytical thinking and human-centred design — helping her understand how young minds learn best.\n\n"When students feel seen, learning takes care of itself."`,
   },
   {
-    img: AryanImg,
+    img: "/team/aryan.png",
     name: "Aryan Shukla",
-    title: "CTO",
-    creds: "B.Tech · M.Tech IIT BHU · Samsung Research India",
+    title: "Co-Founder & CTO",
+    creds:
+      "Integrated B.Tech and M.Tech, Mathematics and Computing, IIT (BHU) Varanasi",
     exp: "3 Years",
     linkedin: "#",
-    bio: `An IIT BHU alumnus and former researcher at Samsung Research India, Aryan architects the technology backbone of Lyfshilp's learning platform — from AI-driven personalisation to scalable delivery infrastructure that powers students across India.`,
   },
 ];
 
@@ -507,7 +503,7 @@ export default function AboutUs() {
           </Reveal>
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
-            {TEAM.map(({ img, name, title, creds, exp, linkedin, bio }, i) => (
+            {TEAM.map(({ img, name, title, creds, exp, linkedin }, i) => (
               <Reveal key={name} delay={i * 0.09}>
                 <div
                   className="ab-card ab-card-hover h-full"
@@ -626,20 +622,6 @@ export default function AboutUs() {
                         </span>
                       ))}
                     </div>
-                    <div
-                      style={{ height: 1, background: "rgba(0,200,150,.08)" }}
-                    />
-                    <p
-                      style={{
-                        color: "var(--color-text-muted, #7A9E8A)",
-                        fontSize: ".8rem",
-                        lineHeight: 1.7,
-                        margin: 0,
-                        whiteSpace: "pre-line",
-                      }}
-                    >
-                      {bio}
-                    </p>
                     <div
                       style={{
                         fontSize: ".7rem",

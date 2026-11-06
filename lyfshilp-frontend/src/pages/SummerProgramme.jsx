@@ -1584,7 +1584,7 @@ export default function SummerProgramme() {
               }}
             >
               <a
-                href="https://wa.me/917042671115"
+                href="https://wa.me/917042149608"
                 style={{
                   display: "flex",
                   alignItems: "center",
@@ -1611,7 +1611,7 @@ export default function SummerProgramme() {
                 >
                   WA
                 </span>
-                +91 70426 71115
+                +91 70421 49608
               </a>
               <a
                 href="mailto:futurex@lyfshilpacademy.com"

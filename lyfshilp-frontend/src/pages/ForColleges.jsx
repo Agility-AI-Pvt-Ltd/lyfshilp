@@ -358,9 +358,9 @@ export default function ForColleges() {
             </div>
 
             <div style={{ marginTop: 22, display: "flex", gap: 20, justifyContent: "center", flexWrap: "wrap" }}>
-              <a href="https://wa.me/917042671115" style={{ display: "flex", alignItems: "center", gap: 7, color: "var(--color-text-muted, #7A9E8A)", textDecoration: "none", fontSize: ".84rem" }}>
+              <a href="https://wa.me/917042149608" style={{ display: "flex", alignItems: "center", gap: 7, color: "var(--color-text-muted, #7A9E8A)", textDecoration: "none", fontSize: ".84rem" }}>
                 <span style={{ width: 28, height: 28, borderRadius: 8, background: "rgba(0,200,150,.1)", border: "1px solid rgba(0,200,150,.26)", display: "flex", alignItems: "center", justifyContent: "center", fontSize: ".55rem", fontWeight: 800, color: "#00c896" }}>WA</span>
-                +91 70426 71115
+                +91 70421 49608
               </a>
               <a href="mailto:futurex@lyfshilpacademy.com" style={{ display: "flex", alignItems: "center", gap: 7, color: "var(--color-text-muted, #7A9E8A)", textDecoration: "none", fontSize: ".84rem" }}>
                 <span style={{ width: 28, height: 28, borderRadius: 8, background: "rgba(0,200,150,.1)", border: "1px solid rgba(0,200,150,.26)", display: "flex", alignItems: "center", justifyContent: "center", fontSize: ".55rem", fontWeight: 800, color: "#00c896" }}>EM</span>

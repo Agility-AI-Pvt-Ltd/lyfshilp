@@ -242,7 +242,7 @@ export default function ForSchools() {
             </p>
             <div style={{ display: "flex", gap: 14, justifyContent: "center", flexWrap: "wrap" }}>
               <Link to="/contact" className="fs-btn-primary">Become a FutureX Partner School →</Link>
-              <a href="https://wa.me/917042671115" className="fs-btn-outline">Schedule a Free Demo</a>
+              <a href="https://wa.me/917042149608" className="fs-btn-outline">Schedule a Free Demo</a>
             </div>
           </Reveal>
 
@@ -465,13 +465,13 @@ export default function ForSchools() {
             </Link>
 
             <div style={{ marginTop: 20, display: "flex", gap: 8, justifyContent: "center", alignItems: "center", flexWrap: "wrap" }}>
-              <a href="https://wa.me/917042671115" style={{ color: "var(--color-text-muted, #7A9E8A)", textDecoration: "none", fontSize: ".85rem" }}>
+              <a href="https://wa.me/917042149608" style={{ color: "var(--color-text-muted, #7A9E8A)", textDecoration: "none", fontSize: ".85rem" }}>
                 Schedule a free demo call
               </a>
               <span style={{ color: "rgba(0,200,150,.3)" }}>|</span>
-              <a href="https://wa.me/917042671115" style={{ display: "flex", alignItems: "center", gap: 6, color: "#00c896", textDecoration: "none", fontSize: ".85rem", fontWeight: 600 }}>
+              <a href="https://wa.me/917042149608" style={{ display: "flex", alignItems: "center", gap: 6, color: "#00c896", textDecoration: "none", fontSize: ".85rem", fontWeight: 600 }}>
                 <span style={{ width: 26, height: 26, borderRadius: 8, background: "rgba(0,200,150,.12)", border: "1px solid rgba(0,200,150,.28)", display: "flex", alignItems: "center", justifyContent: "center", fontSize: ".55rem", fontWeight: 800 }}>WA</span>
-                +91 70426 71115
+                +91 70421 49608
               </a>
             </div>
           </Reveal>
