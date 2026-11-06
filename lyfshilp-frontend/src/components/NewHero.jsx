@@ -1196,6 +1196,7 @@ export default function NewHero() {
     "MIT Sloan",
     "Stanford GSB",
     "Incubated at IIIT Allahabad",
+    "Incubated at IIT Kanpur",
     "DPIIT Recognised",
     "38 Institutions",
     "6,000+ Students",

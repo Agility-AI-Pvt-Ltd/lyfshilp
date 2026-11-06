@@ -514,6 +514,18 @@ const ADVISORS = [
     role: "IIT Roorkee Alumnus | Principal, Mt Carmel School, Delhi",
     linkedin: "https://www.linkedin.com/in/drrajeevtyagi/",
   },
+  {
+    img: "/advisors/shrinivasan.jpeg",
+    name: "Prof. Srinivasan Radhakrishnan",
+    role: "Faculty, Indian Institute of Management Ahmedabad (IIM-A).",
+    linkedin: "#",
+  },
+  {
+    img: "/advisors/manzoor.jpeg",
+    name: "Manzoor UI Akram",
+    role: "Faculty, BITS Pilani Dubai.",
+    linkedin: "#",
+  },
 ];
 
 const FOUNDERS = [

@@ -146,6 +146,20 @@ const ADVISORS = [
     initial: "RT",
     linkedin: "https://www.linkedin.com/in/drrajeevtyagi/",
   },
+  {
+    img: "/advisors/shrinivasan.jpeg",
+    name: "Prof. Srinivasan Radhakrishnan",
+    role: "Faculty, Indian Institute of Management Ahmedabad (IIM-A).",
+    initial: "SR",
+    linkedin: "#",
+  },
+  {
+    img: "/advisors/manzoor.jpeg",
+    name: "Manzoor UI Akram",
+    role: "Faculty, BITS Pilani Dubai.",
+    initial: "MA",
+    linkedin: "#",
+  },
 ];
 
 export default function AboutUs() {
